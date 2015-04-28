@@ -1,0 +1,3 @@
+INSERT INTO meds (med_name, chem_name, dosage, type, start_date, time, monday, tuesday, wednesday, thursday, friday, saturday, sunday, active) VALUES ('ERYTHROMYCIN', 'ERY-TAB', '333mg', 'Tab','02-16-2015','8:00am', 1, 0, 1, 0 , 1, 0, 0, 1);
+ INSERT INTO meds (med_name, chem_name, dosage, type, start_date, time, monday, tuesday, wednesday, thursday, friday, saturday, sunday, active) VALUES ('ALLEGRA', 'fexofenadine', '180mg', 'Tab','02-16-2015','9:00am', 1, 0, 1, 0 , 1, 0, 0, 1);
+ INSERT INTO meds (med_name, chem_name, dosage, type, start_date, time, monday, tuesday, wednesday, thursday, friday, saturday, sunday, active) VALUES ('MUCINEX', 'guaiFENesin', '600mg', 'Tab','02-16-2015','9:00am', 1, 0, 1, 0 , 1, 0, 0, 1);
