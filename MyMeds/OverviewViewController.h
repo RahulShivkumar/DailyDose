@@ -18,9 +18,10 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *timeline;
 @property (nonatomic, strong) UITableView *medsView;
 @property (nonatomic, strong) DBManager *dbManager;
-
+@property (nonatomic, strong) UISearchBar *searchBar;
 - (IBAction)addMedication:(id)sender;
 - (IBAction)changeTimeline:(id)sender;
+- (IBAction)toggleSearch:(id)sender;
 
 
 @end

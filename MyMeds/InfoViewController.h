@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "Medication.h"
 #import "DBManager.h"
+#import "Constants.h"
+#import "EditMedsController.h"
 
 @interface InfoViewController : UIViewController{
     UIButton *close;
+    UIButton *edit;
     UIButton *endMed;
     UILabel *medInfo;
     UILabel *medLabel;
@@ -25,11 +28,14 @@
     UIView *underLine1;
     Medication *med;
     
+    NSMutableArray *daySchedule;
+    NSMutableArray *times;
 }
 @property (nonatomic, strong) DBManager *dbManager;
 
 -(void)setupData;
 -(IBAction)closeWindow:(id)sender;
+-(IBAction)editMeds:(id)sender;
 -(CGFloat)window_height;
 -(CGFloat)window_width;
 

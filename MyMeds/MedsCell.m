@@ -16,67 +16,74 @@
 -(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
-        
-        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
-        //Set the buttons here
-        info = [[UIButton alloc] initWithFrame:CGRectMake(0.31 * [self window_width], self.frame.origin.y, 0.23 * [self window_width], [self window_height]/8)];
-        [info.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:17]];
-        [info setBackgroundColor:[UIColor colorWithRed:122/255.0 green:0/255.0 blue:38/255.0 alpha:1.0]];
-        [info setTitle:@"Info" forState:UIControlStateNormal];
-        
-        undo = [[UIButton alloc] initWithFrame:CGRectMake(0.77 * [self window_width], self.frame.origin.y, 0.23 * [self window_width], [self window_height]/8)];
-        [undo.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:17]];
-        [undo setBackgroundColor:[UIColor colorWithRed:237/255.0 green:28/255.0 blue:36/255.0 alpha:1.0]];
-        
-        postpone = [[UIButton alloc] initWithFrame:CGRectMake(0.54 * [self window_width], self.frame.origin.y, 0.23 * [self window_width], [self window_height]/8)];
-        [postpone.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:17]];
-        [postpone setBackgroundColor:[UIColor colorWithRed:204/255.0 green:46/255.0 blue:46/255.0 alpha:1.0]];
-        [postpone setTitle:@"Delay" forState:UIControlStateNormal];
-        //Set mainView
-        mainView = [[UIView alloc] initWithFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, [self window_width],[self window_height]/8)];
-        
-
-        [mainView setBackgroundColor:[UIColor whiteColor]];
-        
-        //Set the labels
-        medLabel= [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(10, 0 ,self.bounds.size.width, mainView.bounds.size.height * 0.67)];
-        medLabel.textColor = [UIColor blackColor];
-        medLabel.backgroundColor = [UIColor clearColor];
-      [medLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:mainView.bounds.size.height * 0.4]];
-        [medLabel setAdjustsFontSizeToFitWidth:YES];
-        [medLabel setTextColor:[UIColor colorWithRed:94/255.0 green:94/255.0 blue:94/255.0 alpha:1.0]];
-        
-        chemLabel = [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(12, mainView.bounds.size.height * 0.37, self.bounds.size.width, mainView.bounds.size.height-10)];
-        chemLabel.textColor = [UIColor blackColor];
-        chemLabel.backgroundColor = [UIColor clearColor];
-        [chemLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:mainView.bounds.size.height * 0.28]];
-        [chemLabel setTextColor:[UIColor colorWithRed:94/255.0 green:94/255.0 blue:94/255.0 alpha:1.0]];
-        
-        timeLabel = [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(2.70*[self window_width]/4, mainView.bounds.size.height * 0.05, 1.2*[self window_width]/4, mainView.bounds.size.height-10)];
-        timeLabel.textColor = [UIColor blackColor];
-        timeLabel.backgroundColor = [UIColor clearColor];
-        [timeLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:mainView.bounds.size.height * 0.5]];
-        [timeLabel setTextColor:[UIColor colorWithRed:94/255.0 green:94/255.0 blue:94/255.0 alpha:1.0]];
-        [timeLabel setTextAlignment:NSTextAlignmentRight];
-        
-        //Add buttons as subviews to self.view
-        [self addSubview:info];
-        [self addSubview:undo];
-        [self addSubview:postpone];
-        //Add labels as subviews to mainView
-        [mainView addSubview:medLabel];
-        [mainView addSubview:chemLabel];
-        [mainView addSubview:timeLabel];
-        //Final setup
-        [self addSubview:mainView];
-        [self setBackgroundColor:[UIColor whiteColor]];
+        if( ! _viewSet){
+            [self setViews];
+            _viewSet = YES;
+        }
 
     }
     return self;
 }
 
--(void)setMed:(Medication *)med{
+- (void)setViews{
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
+    
+    [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+    //Set the buttons here
+    info = [[UIButton alloc] initWithFrame:CGRectMake(0.31 * [self window_width], self.frame.origin.y, 0.23 * [self window_width], [self window_height]/8)];
+    [info.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:17]];
+    [info setBackgroundColor:[UIColor colorWithRed:145/255.0 green:0/255.0 blue:8/255.0 alpha:1.0]];
+    [info setTitle:@"Info" forState:UIControlStateNormal];
+    
+    undo = [[UIButton alloc] initWithFrame:CGRectMake(0.77 * [self window_width], self.frame.origin.y, 0.23 * [self window_width], [self window_height]/8)];
+    [undo.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:17]];
+    [undo setBackgroundColor:[UIColor colorWithRed:195/255.0 green:62/255.0 blue:64/255.0 alpha:1.0]];
+    
+    postpone = [[UIButton alloc] initWithFrame:CGRectMake(0.54 * [self window_width], self.frame.origin.y, 0.23 * [self window_width], [self window_height]/8)];
+    [postpone.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:17]];
+    [postpone setBackgroundColor:[UIColor colorWithRed:166/255.0 green:17/255.0 blue:22/255.0 alpha:1.0]];
+    [postpone setTitle:@"Delay" forState:UIControlStateNormal];
+    //Set mainView
+    mainView = [[UIView alloc] initWithFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, [self window_width],[self window_height]/8)];
+    
+    
+    [mainView setBackgroundColor:[UIColor whiteColor]];
+    
+    //Set the labels
+    medLabel= [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(10, 0 ,self.bounds.size.width, mainView.bounds.size.height * 0.67)];
+    medLabel.textColor = [UIColor blackColor];
+    medLabel.backgroundColor = [UIColor clearColor];
+    [medLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:mainView.bounds.size.height * 0.4]];
+    [medLabel setAdjustsFontSizeToFitWidth:YES];
+    [medLabel setTextColor:[UIColor colorWithRed:94/255.0 green:94/255.0 blue:94/255.0 alpha:1.0]];
+    
+    chemLabel = [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(12, mainView.bounds.size.height * 0.37, self.bounds.size.width, mainView.bounds.size.height-10)];
+    chemLabel.textColor = [UIColor blackColor];
+    chemLabel.backgroundColor = [UIColor clearColor];
+    [chemLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:mainView.bounds.size.height * 0.28]];
+    [chemLabel setTextColor:[UIColor colorWithRed:94/255.0 green:94/255.0 blue:94/255.0 alpha:1.0]];
+    
+    timeLabel = [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(2.70*[self window_width]/4, mainView.bounds.size.height * 0.05, 1.2*[self window_width]/4, mainView.bounds.size.height-10)];
+    timeLabel.textColor = [UIColor blackColor];
+    timeLabel.backgroundColor = [UIColor clearColor];
+    [timeLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:mainView.bounds.size.height * 0.5]];
+    [timeLabel setTextColor:[UIColor colorWithRed:94/255.0 green:94/255.0 blue:94/255.0 alpha:1.0]];
+    [timeLabel setTextAlignment:NSTextAlignmentRight];
+    
+    //Add buttons as subviews to self.view
+    [self addSubview:info];
+    [self addSubview:undo];
+    [self addSubview:postpone];
+    //Add labels as subviews to mainView
+    [mainView addSubview:medLabel];
+    [mainView addSubview:chemLabel];
+    [mainView addSubview:timeLabel];
+    //Final setup
+    [self addSubview:mainView];
+    [self setBackgroundColor:[UIColor whiteColor]];
+    
+}
+- (void)setMed:(Medication *)med{
     [medLabel setText:med.medName];
     [chemLabel setText:med.subName];
     [timeLabel setText:med.time];
@@ -223,14 +230,18 @@
     }
 }
 
--(void)complete{
+- (void)complete{
     // mark the item as complete and update the UI state
     NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 1 where med_name = '%@' and chem_name = '%@' and time = '%d'",  medication.medName, medication.chemName, medication.actualTime];
     [self.dbManager executeQuery:query];
+    [medication setCompleted:YES];
+    [self uiComplete];
+}
+
+- (void)uiComplete{
     medLabel.strikethrough = YES;
     timeLabel.strikethrough = YES;
     chemLabel.strikethrough = YES;
-    [medication setCompleted:YES];
     [undo setTitle:@"Undo" forState:UIControlStateNormal];
 }
 
@@ -243,16 +254,19 @@
      ];
 }
 
--(void)undo{
+- (void)undo{
     NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 0 where med_name = '%@' and chem_name = '%@' and time = '%d'",  medication.medName, medication.chemName, medication.actualTime];
     [self.dbManager executeQuery:query];
+    [medication isCompleted:NO];
+    [self uiUndo];
+}
+
+- (void)uiUndo{
     medLabel.strikethrough = NO;
     timeLabel.strikethrough = NO;
     chemLabel.strikethrough = NO;
-    [medication isCompleted:NO];
     [undo setTitle:@"Taken" forState:UIControlStateNormal];
 }
-
 
 
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>43766050-4CFA-4409-B509-841301F004DD</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MyMeds</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E4E78DDCE1247D31900781B1E38B8FE3726496C4</key>
+		<string>https://github.com/RahulShivkumar/DailyDose.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MyMeds.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E4E78DDCE1247D31900781B1E38B8FE3726496C4</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/RahulShivkumar/DailyDose.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E4E78DDCE1247D31900781B1E38B8FE3726496C4</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E4E78DDCE1247D31900781B1E38B8FE3726496C4</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MyMeds</string>
+		</dict>
+	</array>
+</dict>
+</plist>

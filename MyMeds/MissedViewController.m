@@ -16,6 +16,7 @@
 
 @implementation MissedViewController
 
+//Custom init method with meds and current hour
 -(id)initWithMeds:(NSMutableArray*)missedMeds andHour:(int)hr{
     if (self = [super init]) {
         meds = missedMeds;
@@ -24,19 +25,20 @@
     }
     return self;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupViews];
-    
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)setupViews{
-    title = [[UILabel alloc]initWithFrame:CGRectMake(10, [self window_height]/6 - 40, [self window_width], 40)];
+
+//Method called to setup views
+- (void)setupViews{
+    title = [[UILabel alloc]initWithFrame:CGRectMake(10, [Constants window_height]/6 - 40, [Constants window_width], 40)];
     [title setFont:[UIFont fontWithName:@"HelveticaNeue" size:30]];
     [title setText:@"Missed Medication:"];
     [title setTextColor:[UIColor whiteColor]];
@@ -52,11 +54,11 @@
     [self.medsView setSeparatorInset:UIEdgeInsetsZero];
     [self.medsView setSeparatorColor:[UIColor colorWithRed:204/255.0 green:46/255.0 blue:46/255.0 alpha:1.0]];
     if([meds count] <= 5){
-        [self.medsView setFrame:CGRectMake(0, [self window_height]/6, [self window_width], [self window_height]/8 *[meds count])];
+        [self.medsView setFrame:CGRectMake(0, [Constants window_height]/6, [Constants window_width], [Constants window_height]/8 *[meds count])];
         [self.medsView setScrollEnabled:NO];
     }
     else{
-        [self.medsView setFrame:CGRectMake(0, [self window_height]/6, [self window_width], [self window_height]/8 * 5)];
+        [self.medsView setFrame:CGRectMake(0, [Constants window_height]/6, [Constants window_width], [Constants window_height]/8 * 5)];
     }
     [self.view addSubview:self.medsView];
     
@@ -72,24 +74,24 @@
     [takenLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:takenLabel];
     
-    delay = [[UIButton alloc] initWithFrame:CGRectMake([self window_width]/2 - 35, self.medsView.frame.origin.y + self.medsView.frame.size.height + 30, 70, 70)];
+    delay = [[UIButton alloc] initWithFrame:CGRectMake([Constants window_width]/2 - 35, self.medsView.frame.origin.y + self.medsView.frame.size.height + 30, 70, 70)];
     [delay setImage:[UIImage imageNamed:@"delay"] forState:UIControlStateNormal];
     [delay addTarget:self action:@selector(delay:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:delay];
     
-    UILabel *delayLabel = [[UILabel alloc] initWithFrame:CGRectMake([self window_width]/2 - 35, self.medsView.frame.origin.y + self.medsView.frame.size.height + 110, 70, 20)];
+    UILabel *delayLabel = [[UILabel alloc] initWithFrame:CGRectMake([Constants window_width]/2 - 35, self.medsView.frame.origin.y + self.medsView.frame.size.height + 110, 70, 20)];
     [delayLabel setTextColor:[UIColor whiteColor]];
     [delayLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:18]];
     [delayLabel setText:@"Delay"];
     [delayLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:delayLabel];
     
-    skip = [[UIButton alloc] initWithFrame:CGRectMake([self window_width] - 20- 70, self.medsView.frame.origin.y + self.medsView.frame.size.height + 30, 70, 70)];
+    skip = [[UIButton alloc] initWithFrame:CGRectMake([Constants window_width] - 20- 70, self.medsView.frame.origin.y + self.medsView.frame.size.height + 30, 70, 70)];
     [skip setImage:[UIImage imageNamed:@"skip"] forState:UIControlStateNormal];
     [skip addTarget:self action:@selector(skip:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:skip];
     
-    UILabel *skipLabel = [[UILabel alloc] initWithFrame:CGRectMake([self window_width] - 20- 70, self.medsView.frame.origin.y + self.medsView.frame.size.height + 110, 70, 20)];
+    UILabel *skipLabel = [[UILabel alloc] initWithFrame:CGRectMake([Constants window_width] - 20- 70, self.medsView.frame.origin.y + self.medsView.frame.size.height + 110, 70, 20)];
     [skipLabel setTextColor:[UIColor whiteColor]];
     [skipLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:18]];
     [skipLabel setText:@"Skip"];
@@ -97,8 +99,8 @@
     [self.view addSubview:skipLabel];
     
 }
-#pragma mark - Table view delegate methods
 
+#pragma mark - Table view delegate methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
@@ -119,50 +121,19 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self window_height]/8;
+    return [Constants window_height]/8;
 }
 
 
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
- } else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }
- }
- */
-
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
- }
- */
-
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
 #pragma mark - IBActions 
--(IBAction)taken:(id)sender{
-    NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 1 where time <= %d and completed = 0", hour];
+//Method called to mark all missed meds as taken
+- (IBAction)taken:(id)sender{
+    NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 1", hour];
     [self.dbManager executeQuery:query];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
--(IBAction)delay:(id)sender{
+//Method called to delay all missed meds
+- (IBAction)delay:(id)sender{
     NSString *amPm = @"AM";
     if(hour > 12){
         amPm = @"PM";
@@ -171,19 +142,14 @@
     [self.dbManager executeQuery:query];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
--(IBAction)skip:(id)sender{\
+//Method called to skip all meds
+- (IBAction)skip:(id)sender{\
     //2 Used to show it is skipped
     NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 2 where time <= %d and completed = 0", hour];
     [self.dbManager executeQuery:query];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-#pragma mark  - Helper Methods
--(CGFloat)window_height{
-    return [UIScreen mainScreen].applicationFrame.size.height;
-}
 
--(CGFloat)window_width{
-    return [UIScreen mainScreen].applicationFrame.size.width;
-}
+
 
 @end

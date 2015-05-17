@@ -12,6 +12,8 @@
 
 @end
 
+#define NavBarColor [UIColor colorWithRed:170/255.0 green:18/255.0 blue:22/255.0 alpha:1.0]
+
 @implementation SettingsViewController
 
 - (void)viewDidLoad {
@@ -20,15 +22,17 @@
 
     // Do any additional setup after loading the view.
 }
+//Place a placeholder image for now
 - (void)setPlaceholderImage{
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 375, [Constants window_height] - 89)];
     [self.view addSubview:imageView];
     [imageView setImage:[UIImage imageNamed:@"settingsph"]];
 }
+//Method called to set navigation bar
 - (void)setNavbar{
     [self.navigationController.navigationBar setTranslucent:NO];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:194/255.0 green:59/255.0 blue:34/255.0 alpha:1.0]];
+    [self.navigationController.navigationBar setBarTintColor:NavBarColor];
     [self.navigationItem setTitle:@"Settings"];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DBManager.h"
+#import "Constants.h"
 
 @interface MissedViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>{
     NSMutableArray *meds;
@@ -20,11 +21,9 @@
 @property (nonatomic, strong) UITableView *medsView;
 @property (nonatomic, strong) DBManager *dbManager;
 
--(id)initWithMeds:(NSMutableArray*)missedMeds andHour:(int)hr;
--(void)setupViews;
--(CGFloat)window_height;
--(CGFloat)window_width;
--(IBAction)taken:(id)sender;
--(IBAction)delay:(id)sender;
--(IBAction)skip:(id)sender;
+- (id)initWithMeds:(NSMutableArray*)missedMeds andHour:(int)hr;
+- (void)setupViews;
+- (IBAction)taken:(id)sender;
+- (IBAction)delay:(id)sender;
+- (IBAction)skip:(id)sender;
 @end

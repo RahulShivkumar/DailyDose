@@ -1,28 +1,38 @@
 //
-//  AddMedViewController.m
+//  EditMedsController.m
 //  MyMeds
 //
-//  Created by Rahul Shivkumar on 3/17/15.
+//  Created by Rahul Shivkumar on 5/8/15.
 //  Copyright (c) 2015 test. All rights reserved.
 //
 
-#import "AddMedViewController.h"
+#import "EditMedsController.h"
 #import "AZNotification.h"
-#import <QuartzCore/QuartzCore.h>
 
-@interface AddMedViewController ()
+@interface EditMedsController ()
 
 @end
 
 #define uid @"uid"
-#define bgColor [UIColor colorWithRed:180/255.0 green:42/255.0 blue:50/255.0 alpha:1.0]
-#define bgColor2 [UIColor colorWithRed:255/255.0 green:184/255.0 blue:140/255.0 alpha:1.0]
+#define bgColor [UIColor colorWithRed:125/255.0 green:0/255.0 blue:10/255.0 alpha:1.0]
+#define bgColor2 [UIColor colorWithRed:180/255.0 green:42/255.0 blue:50/255.0 alpha:1.0]
 
-@implementation AddMedViewController
+@implementation EditMedsController
+
+-(id)initWithMed:(Medication*)medication andDays:(NSMutableArray *)daySchedule andTime:(NSMutableArray *)timeSchedule{
+    if (self = [super init]) {
+        med = medication;
+        self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
+        self.dayShedule = daySchedule;
+        self.times = timeSchedule;
+
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupViews];
+    [self setupView];
     // Do any additional setup after loading the view.
 }
 
@@ -31,24 +41,17 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - View Setup
-//Method called to setupviews
--(void)setupViews{
+#pragma mark - Setup Views
+-(void)setupView{
     timePickers = [[NSMutableArray alloc] init];
-    times = [[NSMutableArray alloc] init];
+    times = self.times;
     amPm = [[NSMutableArray alloc] init];
-    //[self.view setBackgroundColor:bgColor];
-    
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = self.view.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[bgColor CGColor], (id)[bgColor2 CGColor], nil];
-    [self.view.layer insertSublayer:gradient atIndex:0];
-    
+    [self.view setBackgroundColor:bgColor];
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:self.scrollView];
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Constants window_width], 50)];
-    [headerView setBackgroundColor:[UIColor clearColor]];
+    [headerView setBackgroundColor:bgColor];
     [self.view addSubview:headerView];
     
     cancel = [[UIButton alloc]initWithFrame:CGRectMake(0, 15, 60, 40)];
@@ -78,7 +81,7 @@
     [name setText:@"Medication Name"];
     [name setTextColor:[UIColor whiteColor]];
     [self.scrollView addSubview:name];
-
+    
     medName = [[UITextField alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.12 + 20, [Constants window_width], [Constants window_height]/15)];
     [medName setBackgroundColor:[UIColor clearColor]];
     [medName setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:25]];
@@ -86,6 +89,7 @@
     [medName setTintColor:[UIColor whiteColor]];
     [medName setDelegate:self];
     [medName.layer setSublayerTransform:CATransform3DMakeTranslation(7, 0, 0)];
+    [medName setText:med.medName];
     [self addTextViewBorder:medName];
     [self.scrollView  addSubview:medName];
     
@@ -98,9 +102,11 @@
     chemName = [[UITextField alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.23 + 20, [Constants window_width], [Constants window_height]/15)];
     [chemName setBackgroundColor:[UIColor clearColor]];
     [chemName setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:25]];
+    [chemName setTextColor:[UIColor whiteColor]];
     [chemName setTintColor:[UIColor whiteColor]];
     [chemName.layer setSublayerTransform:CATransform3DMakeTranslation(7, 0, 0)];
     [chemName setDelegate:self];
+    [chemName setText:med.chemName];
     [self addTextViewBorder:chemName];
     [self.scrollView  addSubview:chemName];
     
@@ -113,9 +119,11 @@
     dosageNum = [[UITextField alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.34 + 20, [Constants window_width], [Constants window_height]/15)];
     [dosageNum setBackgroundColor:[UIColor clearColor]];
     [dosageNum setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:25]];
+    [dosageNum setTextColor:[UIColor whiteColor]];
     [dosageNum setTintColor:[UIColor whiteColor]];
     [dosageNum.layer setSublayerTransform:CATransform3DMakeTranslation(7, 0, 0)];
     [dosageNum setDelegate:self];
+    [dosageNum setText:med.dosage];
     [self addTextViewBorder:dosageNum];
     [self.scrollView  addSubview:dosageNum];
     
@@ -125,7 +133,7 @@
     [days setTextColor:[UIColor whiteColor]];
     [self.scrollView  addSubview:days];
     
-    dayPicker = [[DayPicker alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.45 + 20, [Constants window_width], [Constants window_height]/10) andBG:[UIColor clearColor] andTc:[UIColor whiteColor] andHtc:[UIColor whiteColor] andHl:bgColor andTextviews:[NSMutableArray arrayWithObjects:medName, chemName, dosageNum, nil]];
+    dayPicker = [[DayPicker alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.45 + 20, [Constants window_width], [Constants window_height]/10) andBG:[UIColor clearColor] andTc:[UIColor whiteColor] andHtc:[UIColor whiteColor] andHl:[UIColor whiteColor] andTextviews:[NSMutableArray arrayWithObjects:medName, chemName, dosageNum, nil]];
     [self.scrollView  addSubview:dayPicker];
     
     
@@ -137,13 +145,12 @@
     
     timePicker = [[UIButton alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.60 + 20, [Constants window_width], [Constants window_height]/10)];
     [timePicker setBackgroundColor:[UIColor whiteColor]];
-    [timePicker setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [timePicker setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [timePicker.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:30]];
     [timePicker setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [timePicker setContentEdgeInsets:UIEdgeInsetsMake(0, 7, 0, 0)];
-    [timePicker setTitle:@"Add Time" forState:UIControlStateNormal];
+    [timePicker setTitle:[self.times objectAtIndex:0] forState:UIControlStateNormal];
     [timePicker setTintColor:[UIColor whiteColor]];
-    [timePicker setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [timePicker setBackgroundColor:[UIColor clearColor]];
     [timePicker setTag:0];
     [timePicker addTarget:self action:@selector(setDate:) forControlEvents:UIControlEventTouchUpInside];
@@ -152,18 +159,19 @@
     datePicker = [RMDateSelectionViewController dateSelectionController];
     [datePicker setDelegate:self];
     datePicker.datePicker.datePickerMode = UIDatePickerModeTime;
-     [self manipulateTime];
+    [self setupDayPicker];
     [datePicker.datePicker setMinuteInterval:30];
     [timePickers addObject:timePicker];
+    [self setupTimes];
     [self.scrollView  addSubview:timePicker];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-                                  initWithTarget:self
-                                  action:@selector(dismissKeyboard)];
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
     
     [self.scrollView addGestureRecognizer:tap];
     
-  //  [dayPicker addGestureRecognizer:tap];
+    //  [dayPicker addGestureRecognizer:tap];
     
 }
 
@@ -181,8 +189,72 @@
     [button.layer addSublayer:bottomBorder];
 }
 
+#pragma mark - Setup Day Picker
+- (void)setupDayPicker{
+    for(int i = 0; i < 7; i++){
+        if ([self.dayShedule[i] intValue] == 1){
+            if(i == 0){
+                [dayPicker sun:nil];
+            }
+            else if (i == 1){
+                [dayPicker mon:nil];
+            }
+            else if (i == 2){
+                [dayPicker tue:nil];
+            }
+            else if (i == 3){
+                [dayPicker wed:nil];
+            }
+            else if (i == 4){
+                [dayPicker thur:nil];
+            }
+            else if (i == 5){
+                [dayPicker fri:nil];
+            }
+            else if (i == 6){
+                [dayPicker sat:nil];
+            }
+        }
+    }
+}
+
+#pragma mark - Setup Times 
+
+- (void)setupTimes{
+    for (int i = 1; i < [self.times count]; i ++){
+        [self createButton];
+        UIButton *bottomBut = [timePickers objectAtIndex:[timePickers count] - 1];
+        [bottomBut setTitle:[self.times objectAtIndex:i] forState:UIControlStateNormal];
+        
+    }
+}
+- (void)createButton{
+    UIButton *bottomBut = [timePickers objectAtIndex:[timePickers count] - 1];
+    UIButton *newButton = [[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(bottomBut.frame) + 2, [Constants window_width], [Constants window_height]/10)];
+    [newButton setBackgroundColor:[UIColor whiteColor]];
+    [newButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [newButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:30]];
+    [newButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [newButton setContentEdgeInsets:UIEdgeInsetsMake(0, 7, 0, 0)];
+    [newButton setTintColor:[UIColor whiteColor]];
+    [newButton setBackgroundColor:[UIColor clearColor]];
+    [newButton setTitle:@"Add Time" forState:UIControlStateNormal];
+    [self.scrollView addSubview:newButton];
+    [newButton setTag:(int)[timePickers count]];
+    [newButton addTarget:self action:@selector(setDate:) forControlEvents:UIControlEventTouchUpInside];
+    [timePickers addObject:newButton];
+    [self addButtonBorder:newButton];
+    
+    //Set up Scrolling
+    if (CGRectGetMaxY(self.scrollView.frame) < CGRectGetMaxY(newButton.frame)){
+        [self.scrollView setContentSize:(CGSizeMake([Constants window_width], CGRectGetMaxY(newButton.frame)))];
+    }
+}
+
 #pragma mark - DatePicker Delegate
 - (void)dateSelectionViewController:(RMDateSelectionViewController *)vc didSelectDate:(NSDate *)aDate {
+    
+    
     UIButton *button = [timePickers objectAtIndex:selectedTag];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"hh:mm a"];
@@ -203,38 +275,14 @@
     if (selectedTag == [timePickers count] -1){
         [self createButton];
     }
-
-}
-
-#pragma mark - Create new Button
--(void)createButton{
-    UIButton *bottomBut = [timePickers objectAtIndex:[timePickers count] - 1];
-    UIButton *newButton = [[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(bottomBut.frame) + 2, [Constants window_width], [Constants window_height]/10)];
-    [newButton setBackgroundColor:[UIColor whiteColor]];
-    [newButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [newButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:30]];
-    [newButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [newButton setContentEdgeInsets:UIEdgeInsetsMake(0, 7, 0, 0)];
-    [newButton setTintColor:[UIColor whiteColor]];
-    [newButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [newButton setBackgroundColor:[UIColor clearColor]];
-    [newButton setTitle:@"Add Time" forState:UIControlStateNormal];
-    [self.scrollView addSubview:newButton];
-    [newButton setTag:(int)[timePickers count]];
-    [newButton addTarget:self action:@selector(setDate:) forControlEvents:UIControlEventTouchUpInside];
-    [timePickers addObject:newButton];
-    [self addButtonBorder:newButton];
     
-    //Set up Scrolling
-    if (CGRectGetMaxY(self.scrollView.frame) < CGRectGetMaxY(newButton.frame)){
-        [self.scrollView setContentSize:(CGSizeMake([Constants window_width], CGRectGetMaxY(newButton.frame)))];
-    }
 }
+
 #pragma  mark - Textfield Method
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return NO;
-  
+    
 }
 -(void)dismissKeyboard {
     [medName resignFirstResponder];
@@ -287,20 +335,21 @@
     }
     [times addObject:[NSNumber numberWithFloat:hr]];
 }
+
 #pragma mark - IBActions
-//Method called when datePicker date is chosen
+-(IBAction)closeWindow:(id)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)setDate:(id)sender{
-     UIButton *buttonClicked = (UIButton *)sender;
+    UIButton *buttonClicked = (UIButton *)sender;
     selectedTag = (int)buttonClicked.tag;
     [datePicker show];
 }
-//Method called to close window
-- (IBAction)closeWindow:(id)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-//Method called when "done" button is hit. Creates new entries for meds into meds and today_meds.
+
 - (IBAction)done:(id)sender{
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
+    int completed = 0;
     NSInteger hour;
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:[NSDate date]];
     hour= [components hour];
@@ -308,38 +357,33 @@
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat: @"MM/dd/yyyy"];
     NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
-
     if([times count] != 0 && medName.text && medName.text.length > 0 && chemName.text && chemName.text.length > 0 && dosageNum.text && dosageNum.text.length > 0){
+       // [self setupLocalNotifs];
         
-        //Setup Local Notifications on a separate thread
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [self setupLocalNotifs];
-        });
-        int completed;
-            
-            for (int i = 0; i < [times count]; i++){
-                NSString *query = [NSString stringWithFormat: @"insert into meds(med_name, chem_name, dosage, time, ampm, monday, tuesday, wednesday, thursday, friday, saturday, sunday, completed, start_date) values ('%@', '%@', '%@', %f, '%@', '%d', %d, %d, %d, %d, %d, %d, 0, '%@')", medName.text, chemName.text, dosageNum.text, [[times objectAtIndex:i] floatValue], [amPm objectAtIndex:i], [[dayPicker.days objectForKey:@"mon"] intValue],[[dayPicker.days objectForKey:@"tue"] intValue], [[dayPicker.days objectForKey:@"wed"] intValue], [[dayPicker.days objectForKey:@"thur"] intValue], [[dayPicker.days objectForKey:@"fri"] intValue], [[dayPicker.days objectForKey:@"sat"] intValue], [[dayPicker.days objectForKey:@"sun"] intValue], dateString];
-                [self.dbManager executeQuery:query];
-                
-                //TO-DO fix bug where med is added to today's meds table
-                if(hour <= [[times objectAtIndex:i] floatValue]){
-                    completed = 0;
-                    query = [NSString stringWithFormat: @"insert into today_meds(med_name, chem_name, dosage, time, ampm, completed) values ('%@', '%@', '%@', %f, '%@', %d)",medName.text, chemName.text, dosageNum.text, [[times objectAtIndex:i] floatValue],  [amPm objectAtIndex:i], completed];
-                    [self.dbManager executeQuery:query];
-                }
-
+        for (int i = 0; i < [times count]; i++){
+            NSString *ampm = @"AM";
+            if([times objectAtIndex:i] > 12){
+                ampm = @"PM";
             }
+            NSString *query = [NSString stringWithFormat: @"update meds  set med_name = '%@', chem_name = '%@', dosage = '%@', time = %f, ampm = '%@', monday = %d, tuesday = %d, wednesday = %d, thursday = %d, friday = %d, saturday = %d, sunday = %d, completed = 0, start_date = '%@' where med_name = '%@'", medName.text, chemName.text, dosageNum.text, [[times objectAtIndex:i] floatValue], [amPm objectAtIndex:i], [[dayPicker.days objectForKey:@"mon"] intValue],[[dayPicker.days objectForKey:@"tue"] intValue], [[dayPicker.days objectForKey:@"wed"] intValue], [[dayPicker.days objectForKey:@"thur"] intValue], [[dayPicker.days objectForKey:@"fri"] intValue], [[dayPicker.days objectForKey:@"sat"] intValue], [[dayPicker.days objectForKey:@"sun"] intValue], dateString, med.medName];
+            [self.dbManager executeQuery:query];
+            
+//            if(hour <= [[times objectAtIndex:i] floatValue]){
+//                completed = 0;
+//                query = [NSString stringWithFormat: @"update today_meds med_name, chem_name, dosage, time, ampm, completed) values ('%@', '%@', '%@', %f, '%@', %d)",medName.text, chemName.text, dosageNum.text, [[times objectAtIndex:i] floatValue],  [amPm objectAtIndex:i], completed];
+//                [self.dbManager executeQuery:query];
+//            }
+            
+        }
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     else{
-         [AZNotification showNotificationWithTitle:@"Please Add All Information!" controller:self notificationType:AZNotificationTypeWarning];
+        [AZNotification showNotificationWithTitle:@"Please Add All Information!" controller:self notificationType:AZNotificationTypeWarning];
     }
     
     
 }
-
 #pragma mark - Setup Local Notifs
-//Method called to setup local notifications
 - (void)setupLocalNotifs{
     NSArray *daysOfWeek = [[NSArray alloc] initWithObjects:@"sun", @"mon", @"tue", @"wed", @"thur", @"fri", @"sat", nil];
     BOOL flag = NO;
@@ -354,7 +398,7 @@
                     NSDictionary *userInfoCurrent = oneEvent.userInfo;
                     NSString *identifier = [userInfoCurrent objectForKey:uid];
                     NSString *prefix = [day stringByAppendingString:[NSString stringWithFormat:@"%@",[times objectAtIndex:j]]];
-
+                    
                     if ([identifier hasPrefix:prefix])
                     {
                         flag = YES;
@@ -374,10 +418,10 @@
             }
         }
     }
-
+    
     
 }
-//Method called to create the local notifications
+
 - (void)initLocalNotif:(int)number andDay:(NSString *)day andTime:(NSString*)timeString andDayIndex:(int)dayIndex{
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDate *now = [NSDate date];
@@ -403,9 +447,7 @@
     if (number == 1){
         alertBody = [s stringByAppendingString:@" med!"];
     }
-    else{
-        alertBody = [s stringByAppendingString:@" meds!"];
-    }
+    alertBody = [s stringByAppendingString:@" meds!"];
     localNotification.alertBody = [@"Time to take " stringByAppendingString:alertBody];
     localNotification.timeZone = [NSTimeZone defaultTimeZone];
     localNotification.repeatInterval = NSWeekCalendarUnit;

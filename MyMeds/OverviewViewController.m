@@ -16,6 +16,9 @@
 
 @end
 
+
+#define NavBarColor [UIColor colorWithRed:170/255.0 green:18/255.0 blue:22/255.0 alpha:1.0]
+
 @implementation OverviewViewController
 
 - (void)viewDidLoad {
@@ -38,6 +41,7 @@
 }
 
 #pragma mark - Set up views
+//Method called to set up views
 - (void)setupViews{
     self.medsView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
     [self.medsView setDataSource:self];
@@ -48,15 +52,16 @@
     [self.view addSubview:self.medsView];
     [self setupNavbar];
 }
-
+//Method called to setup navbar
 - (void)setupNavbar{
     [self.navigationController.navigationBar setTranslucent:NO];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:194/255.0 green:59/255.0 blue:34/255.0 alpha:1.0]];
+    [self.navigationController.navigationBar setBarTintColor:NavBarColor];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
 #pragma mark - Set Up Medication 
+//Method called to setup meds based on selection current/past
 - (void)setupMeds:(int)completed{
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
     meds = [[NSMutableArray alloc]init];
@@ -68,6 +73,7 @@
     [self.medsView reloadData];
 
 }
+//Method called to convert SQLData to Array
 - (NSMutableArray *)setDataInArray:(NSArray *)temp{
     NSMutableArray *tempMutable = [[NSMutableArray alloc] init];
     for(int i = 0; i < [temp count]; i++){
@@ -129,6 +135,7 @@
 
 
 #pragma mark - IBActions
+//Method called to change the timeline 
 - (IBAction)changeTimeline:(id)sender {
     if(self.timeline.selectedSegmentIndex == 0){
         [self setupMeds:0];

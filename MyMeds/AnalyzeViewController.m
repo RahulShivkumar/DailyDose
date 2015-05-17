@@ -11,9 +11,9 @@
 
 @interface AnalyzeViewController ()
 
-
-
 @end
+
+#define NavBarColor [UIColor colorWithRed:170/255.0 green:18/255.0 blue:22/255.0 alpha:1.0]
 
 @implementation AnalyzeViewController
 
@@ -28,7 +28,7 @@
 -(void)setFakeImage{
     [self.navigationController.navigationBar setTranslucent:NO];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:194/255.0 green:59/255.0 blue:34/255.0 alpha:1.0]];
+    [self.navigationController.navigationBar setBarTintColor:NavBarColor];
     [self.navigationItem setTitle:@"Analyze"];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
@@ -36,7 +36,7 @@
     [self.view addSubview:scrollView];
     [scrollView setScrollEnabled:YES];
     UIView *pageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 375, 824)];
-    UIImageView *analyze = [[UIImageView alloc] initWithFrame:CGRectMake(0, 15, 375, 774)];
+    UIImageView *analyze = [[UIImageView alloc] initWithFrame:CGRectMake(0, 15, 320, 648)];
     [analyze setImage:[UIImage imageNamed:@"fakeanalyze"]];
     [pageView addSubview:analyze];
      [scrollView setContentSize:pageView.frame.size];

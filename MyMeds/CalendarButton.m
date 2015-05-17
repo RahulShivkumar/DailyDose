@@ -8,7 +8,7 @@
 
 #import "CalendarButton.h"
 
-#define highlight [UIColor colorWithRed:194/255.0 green:59/255.0 blue:34/255.0 alpha:1.0]
+#define highlight [UIColor colorWithRed:170/255.0 green:18/255.0 blue:22/255.0 alpha:1.0]
 #define gray [UIColor colorWithRed:94/255.0 green:94/255.0 blue:94/255.0 alpha:1.0]
 
 #define bgFrame CGRectMake(self.frame.origin.x + 5, 0, 80, self.frame.size.height)

@@ -23,6 +23,7 @@
     NSDate *current;
     NSDate *futureDate;
     BOOL future;
+    BOOL pushed;
     
 }
 

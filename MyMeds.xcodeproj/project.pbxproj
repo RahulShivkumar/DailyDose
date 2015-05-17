@@ -12,16 +12,20 @@
 		B7275DB71AC259030016D085 /* RMDateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7275DB61AC259030016D085 /* RMDateSelectionViewController.m */; };
 		B72993631A92B2EC00084DAE /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B72993621A92B2EC00084DAE /* DBManager.m */; };
 		B7322A471A8AD3720057B916 /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7322A461A8AD3720057B916 /* MenuController.m */; };
+		B755187F1B00337600CE23A3 /* AZNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = B755187A1B00337600CE23A3 /* AZNotification.m */; };
+		B75518801B00337600CE23A3 /* AZNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B755187C1B00337600CE23A3 /* AZNotificationView.m */; };
+		B75518811B00337600CE23A3 /* UIColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B755187E1B00337600CE23A3 /* UIColor+Additions.m */; };
 		B75A08EE1AB945D8009D2056 /* DayPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A08ED1AB945D8009D2056 /* DayPicker.m */; };
 		B75A08F11AB9DC79009D2056 /* DayPickerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A08F01AB9DC79009D2056 /* DayPickerButton.m */; };
 		B75FAD681A9FBE140094ACE5 /* MissedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B75FAD671A9FBE140094ACE5 /* MissedViewController.m */; };
+		B76243C11B06E91800FA86AC /* CRGradientNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B76243C01B06E91800FA86AC /* CRGradientNavigationBar.m */; };
 		B764A1941AB9041B0068A119 /* AddMedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B764A1931AB9041B0068A119 /* AddMedViewController.m */; };
+		B772FC4E1AFD60A2001CB237 /* EditMedsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B772FC4D1AFD60A2001CB237 /* EditMedsController.m */; };
 		B78B3FF01AB77B5800160A15 /* dailydosedb.sql in Resources */ = {isa = PBXBuildFile; fileRef = B78B3FEF1AB77B5800160A15 /* dailydosedb.sql */; };
+		B78D8C961B07EDCB00FA62F7 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = B78D8C951B07EDCB00FA62F7 /* Parser.m */; };
 		B7988D601A7B350A0061DF8C /* MedsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7988D5F1A7B350A0061DF8C /* MedsCell.m */; };
 		B7988D641A7B38C50061DF8C /* StrikeThroughLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7988D631A7B38C50061DF8C /* StrikeThroughLabel.m */; };
 		B7A1FD4E1A8298D40003CD52 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A1FD4D1A8298D40003CD52 /* InfoViewController.m */; };
-		B7A3E41F1AC34C65002038B4 /* NotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A3E41E1AC34C65002038B4 /* NotificationManager.m */; };
-		B7A3E4221AC361B3002038B4 /* NotificationObject.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A3E4211AC361B3002038B4 /* NotificationObject.m */; };
 		B7AAC02D1A834A1300BC6B2C /* Medication.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AAC02C1A834A1300BC6B2C /* Medication.m */; };
 		B7BF61AF1A8B25EF00F08413 /* CalendarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B7BF61AE1A8B25EF00F08413 /* CalendarButton.m */; };
 		B7C27E1D1A76AA8100DFB416 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C27E1C1A76AA8100DFB416 /* main.m */; };
@@ -60,25 +64,33 @@
 		B72993621A92B2EC00084DAE /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		B7322A451A8AD3720057B916 /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
 		B7322A461A8AD3720057B916 /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
+		B75518791B00337600CE23A3 /* AZNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZNotification.h; sourceTree = "<group>"; };
+		B755187A1B00337600CE23A3 /* AZNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZNotification.m; sourceTree = "<group>"; };
+		B755187B1B00337600CE23A3 /* AZNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZNotificationView.h; sourceTree = "<group>"; };
+		B755187C1B00337600CE23A3 /* AZNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZNotificationView.m; sourceTree = "<group>"; };
+		B755187D1B00337600CE23A3 /* UIColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Additions.h"; sourceTree = "<group>"; };
+		B755187E1B00337600CE23A3 /* UIColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Additions.m"; sourceTree = "<group>"; };
 		B75A08EC1AB945D8009D2056 /* DayPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DayPicker.h; path = ../DayPicker.h; sourceTree = "<group>"; };
 		B75A08ED1AB945D8009D2056 /* DayPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DayPicker.m; path = ../DayPicker.m; sourceTree = "<group>"; };
 		B75A08EF1AB9DC79009D2056 /* DayPickerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayPickerButton.h; sourceTree = "<group>"; };
 		B75A08F01AB9DC79009D2056 /* DayPickerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayPickerButton.m; sourceTree = "<group>"; };
 		B75FAD661A9FBE140094ACE5 /* MissedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissedViewController.h; sourceTree = "<group>"; };
 		B75FAD671A9FBE140094ACE5 /* MissedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissedViewController.m; sourceTree = "<group>"; };
+		B76243BF1B06E91800FA86AC /* CRGradientNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRGradientNavigationBar.h; sourceTree = "<group>"; };
+		B76243C01B06E91800FA86AC /* CRGradientNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRGradientNavigationBar.m; sourceTree = "<group>"; };
 		B764A1921AB9041B0068A119 /* AddMedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMedViewController.h; sourceTree = "<group>"; };
 		B764A1931AB9041B0068A119 /* AddMedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMedViewController.m; sourceTree = "<group>"; };
+		B772FC4C1AFD60A2001CB237 /* EditMedsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMedsController.h; sourceTree = "<group>"; };
+		B772FC4D1AFD60A2001CB237 /* EditMedsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMedsController.m; sourceTree = "<group>"; };
 		B78B3FEF1AB77B5800160A15 /* dailydosedb.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = dailydosedb.sql; sourceTree = "<group>"; };
+		B78D8C941B07EDCB00FA62F7 /* Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Parser.h; path = ../Parser.h; sourceTree = "<group>"; };
+		B78D8C951B07EDCB00FA62F7 /* Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Parser.m; path = ../Parser.m; sourceTree = "<group>"; };
 		B7988D5E1A7B350A0061DF8C /* MedsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedsCell.h; sourceTree = "<group>"; };
 		B7988D5F1A7B350A0061DF8C /* MedsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedsCell.m; sourceTree = "<group>"; };
 		B7988D621A7B38C50061DF8C /* StrikeThroughLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrikeThroughLabel.h; sourceTree = "<group>"; };
 		B7988D631A7B38C50061DF8C /* StrikeThroughLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrikeThroughLabel.m; sourceTree = "<group>"; };
 		B7A1FD4C1A8298D40003CD52 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		B7A1FD4D1A8298D40003CD52 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
-		B7A3E41D1AC34C65002038B4 /* NotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationManager.h; sourceTree = "<group>"; };
-		B7A3E41E1AC34C65002038B4 /* NotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationManager.m; sourceTree = "<group>"; };
-		B7A3E4201AC361B3002038B4 /* NotificationObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationObject.h; sourceTree = "<group>"; };
-		B7A3E4211AC361B3002038B4 /* NotificationObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationObject.m; sourceTree = "<group>"; };
 		B7AAC02B1A834A1300BC6B2C /* Medication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Medication.h; sourceTree = "<group>"; };
 		B7AAC02C1A834A1300BC6B2C /* Medication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Medication.m; sourceTree = "<group>"; };
 		B7BF61AD1A8B25EF00F08413 /* CalendarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarButton.h; sourceTree = "<group>"; };
@@ -172,8 +184,32 @@
 				B7C27E221A76AA8100DFB416 /* TodayViewController.m */,
 				B75FAD661A9FBE140094ACE5 /* MissedViewController.h */,
 				B75FAD671A9FBE140094ACE5 /* MissedViewController.m */,
+				B772FC4C1AFD60A2001CB237 /* EditMedsController.h */,
+				B772FC4D1AFD60A2001CB237 /* EditMedsController.m */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		B75518681B002FE600CE23A3 /* Notification Toast */ = {
+			isa = PBXGroup;
+			children = (
+				B75518791B00337600CE23A3 /* AZNotification.h */,
+				B755187A1B00337600CE23A3 /* AZNotification.m */,
+				B755187B1B00337600CE23A3 /* AZNotificationView.h */,
+				B755187C1B00337600CE23A3 /* AZNotificationView.m */,
+				B755187D1B00337600CE23A3 /* UIColor+Additions.h */,
+				B755187E1B00337600CE23A3 /* UIColor+Additions.m */,
+			);
+			name = "Notification Toast";
+			sourceTree = "<group>";
+		};
+		B76243BB1B06DED100FA86AC /* Custom Navigation Bar */ = {
+			isa = PBXGroup;
+			children = (
+				B76243BF1B06E91800FA86AC /* CRGradientNavigationBar.h */,
+				B76243C01B06E91800FA86AC /* CRGradientNavigationBar.m */,
+			);
+			name = "Custom Navigation Bar";
 			sourceTree = "<group>";
 		};
 		B76766E61A794BBA0048AA04 /* Strikethrough Control */ = {
@@ -185,6 +221,15 @@
 				B7988D631A7B38C50061DF8C /* StrikeThroughLabel.m */,
 			);
 			name = "Strikethrough Control";
+			sourceTree = "<group>";
+		};
+		B78D8C971B07EDDD00FA62F7 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				B78D8C941B07EDCB00FA62F7 /* Parser.h */,
+				B78D8C951B07EDCB00FA62F7 /* Parser.m */,
+			);
+			name = Parser;
 			sourceTree = "<group>";
 		};
 		B7C27E0E1A76AA8100DFB416 = {
@@ -208,7 +253,10 @@
 		B7C27E191A76AA8100DFB416 /* MyMeds */ = {
 			isa = PBXGroup;
 			children = (
+				B78D8C971B07EDDD00FA62F7 /* Parser */,
 				B78B3FEF1AB77B5800160A15 /* dailydosedb.sql */,
+				B76243BB1B06DED100FA86AC /* Custom Navigation Bar */,
+				B75518681B002FE600CE23A3 /* Notification Toast */,
 				B70CC81A1AED8C940042F1CE /* View Controllers */,
 				B70CC8191AED8C470042F1CE /* Day Picker */,
 				B70CC8181AED8BA40042F1CE /* Models */,
@@ -260,10 +308,6 @@
 			children = (
 				B72993611A92B2EC00084DAE /* DBManager.h */,
 				B72993621A92B2EC00084DAE /* DBManager.m */,
-				B7A3E41D1AC34C65002038B4 /* NotificationManager.h */,
-				B7A3E41E1AC34C65002038B4 /* NotificationManager.m */,
-				B7A3E4201AC361B3002038B4 /* NotificationObject.h */,
-				B7A3E4211AC361B3002038B4 /* NotificationObject.m */,
 			);
 			name = DBManager;
 			sourceTree = "<group>";
@@ -387,24 +431,28 @@
 				B764A1941AB9041B0068A119 /* AddMedViewController.m in Sources */,
 				B7C27E261A76AA8100DFB416 /* OverviewViewController.m in Sources */,
 				B7A1FD4E1A8298D40003CD52 /* InfoViewController.m in Sources */,
-				B7A3E41F1AC34C65002038B4 /* NotificationManager.m in Sources */,
 				B7C27E201A76AA8100DFB416 /* AppDelegate.m in Sources */,
+				B772FC4E1AFD60A2001CB237 /* EditMedsController.m in Sources */,
 				B7C27E231A76AA8100DFB416 /* TodayViewController.m in Sources */,
 				B7C27E1D1A76AA8100DFB416 /* main.m in Sources */,
 				B7322A471A8AD3720057B916 /* MenuController.m in Sources */,
 				B72993631A92B2EC00084DAE /* DBManager.m in Sources */,
 				B7275DB71AC259030016D085 /* RMDateSelectionViewController.m in Sources */,
+				B75518801B00337600CE23A3 /* AZNotificationView.m in Sources */,
 				B70CC81D1AED8E9B0042F1CE /* Constants.m in Sources */,
+				B755187F1B00337600CE23A3 /* AZNotification.m in Sources */,
 				B75A08EE1AB945D8009D2056 /* DayPicker.m in Sources */,
 				B7BF61AF1A8B25EF00F08413 /* CalendarButton.m in Sources */,
+				B78D8C961B07EDCB00FA62F7 /* Parser.m in Sources */,
 				B7AAC02D1A834A1300BC6B2C /* Medication.m in Sources */,
 				B7988D641A7B38C50061DF8C /* StrikeThroughLabel.m in Sources */,
 				B7C27E571A76E65A00DFB416 /* AnalyzeViewController.m in Sources */,
 				B75FAD681A9FBE140094ACE5 /* MissedViewController.m in Sources */,
 				B75A08F11AB9DC79009D2056 /* DayPickerButton.m in Sources */,
-				B7A3E4221AC361B3002038B4 /* NotificationObject.m in Sources */,
 				B7C27E511A76E63200DFB416 /* HistoryViewController.m in Sources */,
 				B7C27E541A76E64100DFB416 /* SettingsViewController.m in Sources */,
+				B76243C11B06E91800FA86AC /* CRGradientNavigationBar.m in Sources */,
+				B75518811B00337600CE23A3 /* UIColor+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

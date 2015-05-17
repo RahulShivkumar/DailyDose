@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3G0-Yh-xg9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3G0-Yh-xg9">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
         <!--Item-->
@@ -10,7 +10,7 @@
             <objects>
                 <navigationController id="iVt-SZ-WOR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="5Nu-Cd-eEh"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DQx-tJ-d3v">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DQx-tJ-d3v" customClass="CRGradientNavigationBar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -82,6 +82,9 @@
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" image="search" id="Daw-ma-fIe">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="toggleSearch:" destination="8rJ-Kc-sve" id="lWg-XV-xI8"/>
+                            </connections>
                         </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="jtb-ad-wLM">
                             <rect key="frame" x="209" y="6" width="182" height="32"/>
@@ -159,7 +162,6 @@
         <!--Item-->
         <scene sceneID="gPH-7g-H7M">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BUo-Vo-FZe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="7Ux-EB-vMQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="jzv-aA-aG8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="wgm-tn-y14">
@@ -173,6 +175,7 @@
                         <segue destination="EwZ-d9-7iq" kind="relationship" relationship="rootViewController" id="CZE-KD-bf5"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BUo-Vo-FZe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-308" y="598"/>
         </scene>

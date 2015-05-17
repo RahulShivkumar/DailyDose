@@ -11,7 +11,10 @@
 #import "InfoViewController.h"
 #import "Medication.h"
 #import "MissedViewController.h"
+#import "CRGradientNavigationBar.h"
+#import "Parser.h"
 #import <QuartzCore/QuartzCore.h>
+
 
 
 
@@ -23,22 +26,39 @@
 #define TabBarBorderColor [UIColor colorWithRed:194/255.0 green:59/255.0 blue:34/255.0 alpha:1.0].CGColor
 #define TabBarBorderFrame CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 0.5f)
 
-#define NavBarColor [UIColor colorWithRed:194/255.0 green:59/255.0 blue:34/255.0 alpha:1.0]
+#define NavBarColor1 [UIColor colorWithRed:180/255.0 green:12/255.0 blue:3/255.0 alpha:1.0]
+#define NavBarColor2 [UIColor colorWithRed:194/255.0 green:41/255.0 blue:0/255.0 alpha:1.0]
+
+
+
+
 @implementation TodayViewController
 
 -(void)viewDidLoad {
     [super viewDidLoad];
 }
 
+//Methods called in viewDidAppear so that the views are refreshed
 -(void)viewDidAppear:(BOOL)animated{
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(appReturnsActive) name:UIApplicationDidBecomeActiveNotification
                                                object:nil];
+
+    Parser *parser = [[Parser alloc] init];
+    pushed = NO;
     current = [NSDate date];
     future = NO;
     futureDate = current;
     [self setupMeds];
     [self setupViews];
+}
+
+//Move the table back up when the view disappears
+- (void) viewWillDisappear:(BOOL)animated {
+    [self moveTableUp];
+    [super viewWillDisappear:animated];
+    
 }
 
 -(void)didReceiveMemoryWarning {
@@ -47,6 +67,7 @@
 }
 
 #pragma mark - Setup Meds
+//Meds setup method - Looks at current date selected and determines if its today or a future date
 - (void)setupMeds{
     NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:@"Date"];
 
@@ -68,9 +89,9 @@
     
 }
 
+//Method called when a new day's meds are setup. Sql call takes data from the meds table and puts into the "today_meds" table
+
 - (void)setupSqlDefaults:(NSDate*)date{
-    //To-Do setup missed meds for this shit
-    
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init] ;
@@ -137,6 +158,7 @@
     }
 }
 
+//Method called to setup amMeds and pmMeds arrays from today_meds table
 -(void)setupTodayArrays:(NSDate *)date{
     header = [[NSMutableArray alloc]init];
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
@@ -154,17 +176,17 @@
     }
     
     //First lets see if there are any missed meds today
-//    if([self compareDate:current withOtherdate:date]){
-//        NSString *query = [NSString stringWithFormat: @"select rowid, med_name, chem_name, dosage, time, ampm, completed from today_meds where  time < %d and completed = 0 order by time", (int)hour - 2];
-//        NSArray *temp = [self.dbManager loadDataFromDB:query];
-//        missedMeds = [self setDataInArray:temp andToday:YES];
-//        
-//        if([missedMeds count] > 0){
-//            //Launch missed meds view
-//            MissedViewController *missedVC = [[MissedViewController alloc] initWithMeds:missedMeds andHour:(int)hour-1];
-//            [self.tabBarController presentViewController:missedVC animated:NO completion:nil];
-//        }
-//    }
+    if([Constants compareDate:[NSDate date] withOtherdate:date]){
+        NSString *query = [NSString stringWithFormat: @"select rowid, med_name, chem_name, dosage, time, ampm, completed from today_meds where  time < %d and completed = 0 order by time", (int)hour - 1];
+        NSArray *temp = [self.dbManager loadDataFromDB:query];
+        missedMeds = [self setDataInArray:temp andToday:YES];
+        
+        if([missedMeds count] > 0){
+            //Launch missed meds view
+            MissedViewController *missedVC = [[MissedViewController alloc] initWithMeds:missedMeds andHour:(int)hour-1];
+            [self.tabBarController presentViewController:missedVC animated:NO completion:nil];
+        }
+    }
   
     //Get am and pm meds from today's sql table
     NSString *query = [NSString stringWithFormat: @"select rowid, med_name, chem_name, dosage, time, ampm, completed from today_meds where  time >= %ld and ampm = 'AM' order by time", (long)hour - 1];
@@ -196,7 +218,7 @@
 }
 
 
-
+//Method used for converting SQL results into an array
 -(NSMutableArray *)setDataInArray:(NSArray *)temp andToday:(BOOL)today{
     NSMutableArray *tempMutable = [[NSMutableArray alloc] init];
     for(int i = 0; i < [temp count]; i++){
@@ -248,10 +270,18 @@
 }
 
 #pragma mark - Setup Views
+//Method called to setup views
 - (void)setupViews{
+    //Remove all subviews first
+    for(UIView *subview in [self.view subviews]) {
+        [subview removeFromSuperview];
+    }
+    UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 375, 375)];
+    [bgView setImage:[UIImage imageNamed:@"testimage2"]];
+    [self.view addSubview:bgView];
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self.view setFrame:CGRectMake(0, 0, [Constants window_width], [Constants window_height]-24)];
-    if([amMeds count] == 0 && [pmMeds count] == 0 && [Constants compareDate:current withOtherdate:futureDate]){
+    [self.view setFrame:CGRectMake(0, 0, [Constants window_width], [Constants window_height])];
+    if([amMeds count] == 0 && [pmMeds count] == 0 && [Constants compareDate:[NSDate date] withOtherdate:futureDate]){
         UIImageView *completedImage = [[UIImageView alloc] initWithFrame:CGRectMake(([Constants window_width] - 300)/2, 50, 300, 311)];
         [completedImage setImage:[UIImage imageNamed:@"completed"]];
         UIView *bgImage = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Constants window_width], [Constants window_height])];
@@ -265,10 +295,14 @@
     }
     else{
         self.medsView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
+        UITapGestureRecognizer *singleFingerTap =
+        [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                action:@selector(handleSingleTap:)];
+        [self.medsView addGestureRecognizer:singleFingerTap];
         [self.medsView setDataSource:self];
         [self.medsView setDelegate:self];
-        [self.medsView registerClass:[MedsCell class] forCellReuseIdentifier:@"cell"];
         [self.medsView setBackgroundColor:[UIColor whiteColor]];
+
         [self.medsView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
         [self.medsView setSeparatorInset:UIEdgeInsetsZero];
         [self.view addSubview:self.medsView];
@@ -279,6 +313,7 @@
     [self setupCalendar];
 }
 
+//Method called to setup tabbar
 -(void)setupTabBar{
     [self.tabBarController.tabBar setTintColor:TabBarColor];
     CALayer *topBorder = [CALayer layer];
@@ -288,10 +323,14 @@
     [self.tabBarController.tabBar setClipsToBounds:YES];
 }
 
+//Method called to setup navbar
 -(void)setupNavBar{
+
+    NSArray *colors = [NSArray arrayWithObjects:(id)NavBarColor1.CGColor, (id)NavBarColor2.CGColor, nil];
+    [(CRGradientNavigationBar *)[self.navigationController navigationBar] setBarTintGradientColors:colors];
+//    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+    [self.navigationController.navigationBar setBarTintColor: NavBarColor1];
     [self.navigationController.navigationBar setTranslucent:NO];
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-    [self.navigationController.navigationBar setBarTintColor:NavBarColor];
     [self.navigationItem setTitle:@"Daily Dose"];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     UIBarButtonItem *calendarButton = [[UIBarButtonItem alloc] initWithTitle:@""
@@ -303,7 +342,18 @@
     [calendarButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
     [self.navigationItem setRightBarButtonItem:calendarButton];
     
+    UIBarButtonItem *personButton = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self
+                                                                      action:@selector(showCompliance)];
+    [personButton setImage:[UIImage imageNamed:@"personIcon"]];
+    attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName ,nil];
+    [personButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    [self.navigationItem setLeftBarButtonItem:personButton];
+    
 }
+
+//Method used to setup calendar
 -(void)setupCalendar{
     sideBar = [[MenuController alloc] initWithDate:[NSDate date] andCurrentDate:current andView:self.navigationController.view andVC:self];
     sideBar.delegate = self;
@@ -329,7 +379,12 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-     MedsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+     MedsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    
+    if (cell == nil) {
+        cell = [[MedsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        //cell.reuseIdentifier = @"cell";
+    }
      if([Constants compareDate:current withOtherdate:futureDate]){
          [cell setPannable];
      }
@@ -347,22 +402,26 @@
      else{
          med = [pmMeds objectAtIndex:indexPath.row];
      }
-     [cell setMed:med];
+    [cell setMed:med];
+    
      if(med.completed){
-         [cell complete];
+         [cell uiComplete];
      }
      else{
-        [cell undo];
+        [cell uiUndo];
      }
     
      return cell;
  }
+
+
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [Constants window_height]/8;
 }
 
+//Setup AM & PM headers
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, self.navigationController.view.frame.size.height/28.4)];
@@ -376,13 +435,14 @@
     }
     [label setTextColor:[UIColor whiteColor]];
     [view addSubview:label];
-    [view setBackgroundColor:[UIColor colorWithRed:194/255.0 green:59/255.0 blue:34/255.0 alpha:1.0]];
+    [view setBackgroundColor:NavBarColor1];
     return view;
 }
 
+
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Constants window_width], 50)];
+    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Constants window_width], 500)];
     [footer setBackgroundColor:[UIColor whiteColor]];
     
     return footer;
@@ -401,6 +461,7 @@
     return 70.0f;
 }
 
+
 #pragma mark - Menu Delegate 
 - (void)menuButtonClicked:(int)index{
     futureDate = [[NSDate date] dateByAddingTimeInterval: + index * 86400.0];
@@ -412,8 +473,48 @@
     }
     [self setupMeds];
 }
+#pragma mark - Move Table View
+- (void)showCompliance{
+    if(pushed){
+        [self moveTableUp];
+        pushed = NO;
+    }
+    else{
+        [self moveTableDown];
+        pushed = YES;
+    }
+    
+}
+- (void)moveTableUp{
+    [UIView animateWithDuration:0.7 animations:^(){
+        [self.medsView setFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
+        
+        //[self.medsView reloadData];
+    }];
+    [self.medsView setScrollEnabled:YES];
+}
+- (void)moveTableDown{
+    [UIView animateWithDuration:0.7 animations:^(){
+        //297 for i5
+        [self.medsView setFrame:CGRectMake(0, 350, [Constants window_width], self.medsView.frame.size.height)];
+        //[self.medsView reloadData];
+    }];
+    [self.medsView setScrollEnabled:NO];
+   // [self.medsView setBackgroundColor:[UIColor whiteColor]];
+    
+    
+}
 
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
+    if(pushed){
+        [self moveTableUp];
+        pushed = NO;
+    }
+    
+    //Do stuff here...
+}
 #pragma mark - IBActions
+//Method called to load info page
 - (IBAction)loadInfo:(id)sender{
     //Get Button Position to detect which med to send
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.medsView];
@@ -430,6 +531,7 @@
     [self.navigationController presentViewController:infoVC animated:YES completion:^{[cell closeCell];}];
 }
 
+//Method called to delay med
 - (IBAction)delay:(id)sender{
     //Get Button Position to detect which med to send
     
@@ -459,6 +561,8 @@
     [self setupTodayArrays:current];
     [self.medsView reloadData];
 }
+
+//Method called to undo "taken" med
 - (IBAction)undo:(id)sender{
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.medsView];
     NSIndexPath *indexPath = [self.medsView indexPathForRowAtPoint:buttonPosition];
@@ -497,7 +601,7 @@
     future = NO;
     futureDate = current;
     [self setupMeds];
-    [self setupViews];
+   // [self setupViews];
     
 }
 
@@ -505,6 +609,8 @@
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
+
+
 
 
 

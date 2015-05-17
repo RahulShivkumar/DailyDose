@@ -17,6 +17,7 @@
     BOOL _closeMenu;
     BOOL _closeGesture;
     BOOL _marked;
+    BOOL _viewSet;
     
     StrikeThroughLabel *medLabel;
     StrikeThroughLabel *chemLabel;
@@ -31,11 +32,13 @@
     @public UIButton *postpone;
 }
 @property (nonatomic, strong) DBManager *dbManager;
--(void)setMed:(Medication*)med;
--(void)setPannable;
--(void)removePannable;
--(CGFloat) window_width;
--(void)closeCell;
--(void)undo;
--(void)complete;
+- (void)setMed:(Medication*)med;
+- (void)setPannable;
+- (void)removePannable;
+- (CGFloat) window_width;
+- (void)closeCell;
+- (void)undo;
+- (void)uiUndo;
+- (void)complete;
+- (void)uiComplete;
 @end

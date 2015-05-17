@@ -13,6 +13,9 @@
 
 @end
 
+#define bgColor [UIColor colorWithRed:125/255.0 green:0/255.0 blue:10/255.0 alpha:1.0]
+#define bgColor2 [UIColor colorWithRed:180/255.0 green:42/255.0 blue:50/255.0 alpha:1.0]
+
 @implementation InfoViewController
 
 -(id)initWithMed:(Medication*)medication{
@@ -36,16 +39,28 @@
 
 #pragma  mark View Setup 
 -(void)setupView{
-    [self.view setBackgroundColor:[UIColor colorWithRed:122/255.0 green:0/255.0 blue:38/255.0 alpha:1.0]];
+    //[self.view setBackgroundColor:bgColor];
     
-    close = [[UIButton alloc]initWithFrame:CGRectMake(0, 21, 60, 40)];
-    [close.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:18]];
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.view.bounds;
+    gradient.colors = [NSArray arrayWithObjects:(id)[bgColor CGColor], (id)[bgColor2 CGColor], nil];
+    [self.view.layer insertSublayer:gradient atIndex:0];
+    
+    close = [[UIButton alloc]initWithFrame:CGRectMake(0, 15, 60, 40)];
+    [close.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
     [close setTitle:@"Close" forState:UIControlStateNormal];
     [close.titleLabel setTextColor:[UIColor whiteColor]];
     [self.view addSubview:close];
     [close addTarget:self action:@selector(closeWindow:) forControlEvents:UIControlEventTouchUpInside];
     
-    medInfo = [[UILabel alloc]initWithFrame:CGRectMake(0, 21, [self window_width], 40)];
+    edit = [[UIButton alloc]initWithFrame:CGRectMake([Constants window_width] - 60, 15, 60, 40)];
+    [edit.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
+    [edit setTitle:@"Edit" forState:UIControlStateNormal];
+    [edit.titleLabel setTextColor:[UIColor whiteColor]];
+    [self.view addSubview:edit];
+    [edit addTarget:self action:@selector(editMeds:) forControlEvents:UIControlEventTouchUpInside];
+    
+    medInfo = [[UILabel alloc]initWithFrame:CGRectMake([Constants window_width]/2 -100, 15, 200, 40)];
     [medInfo setTextAlignment:NSTextAlignmentCenter];
     [medInfo setFont:[UIFont fontWithName:@"HelveticaNeue" size:18]];
     [medInfo setText:@"Medication Info"];
@@ -135,6 +150,7 @@
     
 }
 -(void)setupDaysTaken{
+    daySchedule = [[NSMutableArray alloc] init];
     UILabel *daysTaken = [[UILabel alloc] initWithFrame:CGRectMake(30, [self window_height]* 0.320, [self window_width] *0.6, [self window_height]*0.145)];
     [daysTaken setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:22]];
     [daysTaken setTextColor:[UIColor whiteColor]];
@@ -153,6 +169,7 @@
         
         NSString *tempDay = [[temp objectAtIndex:0] objectAtIndex:i];
         int tempValue = [tempDay intValue];
+        [daySchedule addObject:tempDay];
         if(tempValue == 1){
             [day.layer setBorderWidth:1.0];
             [day.layer setCornerRadius:day.frame.size.width/2.0];
@@ -163,6 +180,7 @@
 }
 
 -(void)setupTime{
+    times = [[NSMutableArray alloc] init];
     NSString *query = [NSString stringWithFormat: @"select time, ampm from meds where med_name = '%@' and chem_name = '%@' order by ampm, time", med.medName, med.chemName];
     NSArray *temp = [self.dbManager loadDataFromDB:query];
     
@@ -181,6 +199,9 @@
             timeString = [timeString stringByAppendingString:@":30"];
         }
         
+        [times addObject:[timeString stringByAppendingString:[@" " stringByAppendingString:amPm]]
+         ];
+        
         time = [[UILabel alloc]initWithFrame:CGRectMake([self window_width]/2.0, [self window_height]* 0.38 + 0.05 * i * [self window_height], [self window_width]/2.0-10, [self window_height]*0.2)];
         [time setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:25]];
         [time setTextColor:[UIColor whiteColor]];
@@ -191,8 +212,13 @@
     }
     
 }
--(IBAction)closeWindow:(id)sender{
+- (IBAction)closeWindow:(id)sender{
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)editMeds:(id)sender{
+    EditMedsController *editMedsController = [[EditMedsController alloc] initWithMed:med andDays:daySchedule andTime:times];
+    [editMedsController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    [self presentViewController:editMedsController animated:YES completion:nil];
 }
 -(IBAction)endCourse:(id)sender{
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
