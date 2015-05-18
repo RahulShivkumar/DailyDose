@@ -128,7 +128,7 @@
 #pragma mark - IBActions 
 //Method called to mark all missed meds as taken
 - (IBAction)taken:(id)sender{
-    NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 1", hour];
+    NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 1 where time <= %d - 1", hour];
     [self.dbManager executeQuery:query];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

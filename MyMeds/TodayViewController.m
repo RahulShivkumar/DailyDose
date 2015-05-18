@@ -173,6 +173,17 @@
         hour = 0;
     }
     
+
+  
+    //Get am and pm meds from today's sql table
+    NSString *query = [NSString stringWithFormat: @"select rowid, med_name, chem_name, dosage, time, ampm, completed from today_meds where  time >= %ld and ampm = 'AM' order by time", (long)hour - 1];
+    NSArray *temp = [self.dbManager loadDataFromDB:query];
+    amMeds = [self setDataInArray:temp andToday:YES];
+    
+    query = [NSString stringWithFormat: @"select rowid, med_name, chem_name, dosage, time, ampm, completed from today_meds where time >= %ld and ampm = 'PM' order by time", (long)hour - 1];
+    temp = [self.dbManager loadDataFromDB:query];
+    pmMeds = [self setDataInArray:temp andToday:YES];
+    
     //First lets see if there are any missed meds today
     if([Constants compareDate:[NSDate date] withOtherdate:date]){
         NSString *query = [NSString stringWithFormat: @"select rowid, med_name, chem_name, dosage, time, ampm, completed from today_meds where  time < %d and completed = 0 order by time", (int)hour - 1];
@@ -185,15 +196,6 @@
             [self.tabBarController presentViewController:missedVC animated:NO completion:nil];
         }
     }
-  
-    //Get am and pm meds from today's sql table
-    NSString *query = [NSString stringWithFormat: @"select rowid, med_name, chem_name, dosage, time, ampm, completed from today_meds where  time >= %ld and ampm = 'AM' order by time", (long)hour - 1];
-    NSArray *temp = [self.dbManager loadDataFromDB:query];
-    amMeds = [self setDataInArray:temp andToday:YES];
-    
-    query = [NSString stringWithFormat: @"select rowid, med_name, chem_name, dosage, time, ampm, completed from today_meds where time >= %ld and ampm = 'PM' order by time", (long)hour - 1];
-    temp = [self.dbManager loadDataFromDB:query];
-    pmMeds = [self setDataInArray:temp andToday:YES];
     
     if([amMeds count] == 0 && [pmMeds count] == 0){
         
@@ -210,7 +212,7 @@
     else{
         [header addObject:@"AM"];
         [header addObject:@"PM"];
-         [self.medsView reloadData];
+        [self.medsView reloadData];
     }
     
 }
@@ -470,6 +472,7 @@
         future = YES;
     }
     [self setupMeds];
+    [self setupViews];
 }
 #pragma mark - Move Table View
 - (void)showCompliance{
@@ -599,7 +602,7 @@
     future = NO;
     futureDate = current;
     [self setupMeds];
-   // [self setupViews];
+    [self setupViews];
     
 }
 

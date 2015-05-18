@@ -364,14 +364,14 @@
                         [app cancelLocalNotification:oneEvent];
                         int number = [[identifier substringFromIndex:[prefix length]] intValue];
                         
-                        [self initLocalNotif:number andDay:day andTime:[NSString stringWithFormat:@"%@",[times objectAtIndex:j]] andDayIndex:[daysOfWeek indexOfObject:day]];
+                        [self initLocalNotif:number andDay:day andTime:[NSString stringWithFormat:@"%@",[times objectAtIndex:j]] andDayIndex:(int)[daysOfWeek indexOfObject:day]];
                         
                         break;
                     }
                 }
                 if (!flag){
                     int number = 0;
-                    [self initLocalNotif:number andDay:day andTime:[NSString stringWithFormat:@"%@",[times objectAtIndex:j]] andDayIndex:[daysOfWeek indexOfObject:day]];
+                    [self initLocalNotif:number andDay:day andTime:[NSString stringWithFormat:@"%@",[times objectAtIndex:j]] andDayIndex:(int)[daysOfWeek indexOfObject:day]];
                 }
                 
             }

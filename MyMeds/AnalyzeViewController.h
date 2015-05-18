@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *ampm;
 @property (weak, nonatomic) IBOutlet UITextField *type;
 @property (nonatomic, strong) DBManager *dbManager;
-- (IBAction)addmed:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UISwitch *monday;
 @property (weak, nonatomic) IBOutlet UISwitch *tuesday;
 @property (weak, nonatomic) IBOutlet UISwitch *wednesday;
@@ -29,6 +29,8 @@
 @property (weak, nonatomic) IBOutlet UISwitch *fri;
 @property (weak, nonatomic) IBOutlet UISwitch *sat;
 @property (weak, nonatomic) IBOutlet UISwitch *sun;
+
+- (IBAction)addmed:(id)sender;
 
 
 @end
