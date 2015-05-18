@@ -133,6 +133,11 @@
                                 <action selector="deleteMeds:" destination="PRP-Ru-ow1" id="aAf-26-KyH"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Sync" id="yhH-3n-ndN">
+                            <connections>
+                                <action selector="syncMeds:" destination="PRP-Ru-ow1" id="Fpr-QY-XA1"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E9m-Tm-bMs" userLabel="First Responder" sceneMemberID="firstResponder"/>

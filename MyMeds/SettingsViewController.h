@@ -18,4 +18,5 @@
 - (void)setPlaceholderImage;
 - (void)setNavbar;
 - (IBAction)deleteMeds:(id)sender;
+- (IBAction)syncMeds:(id)sender;
 @end

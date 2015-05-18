@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import "Parser.h"
 
 @interface SettingsViewController ()
 
@@ -49,6 +50,10 @@
         [self.dbManager executeQuery:query2];
           NSString *query4 = [NSString stringWithFormat: @"delete from today_meds"];
         [self.dbManager executeQuery:query4];
+}
+
+- (IBAction)syncMeds:(id)sender{
+     Parser *parser = [[Parser alloc] init];
 }
 
 @end

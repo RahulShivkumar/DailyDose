@@ -12,7 +12,6 @@
 #import "Medication.h"
 #import "MissedViewController.h"
 #import "CRGradientNavigationBar.h"
-#import "Parser.h"
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -45,7 +44,6 @@
                                              selector:@selector(appReturnsActive) name:UIApplicationDidBecomeActiveNotification
                                                object:nil];
 
-    Parser *parser = [[Parser alloc] init];
     pushed = NO;
     current = [NSDate date];
     future = NO;
