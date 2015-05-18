@@ -99,7 +99,9 @@
     [chemName setBackgroundColor:[UIColor clearColor]];
     [chemName setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:25]];
     [chemName setTintColor:[UIColor whiteColor]];
+    [chemName setTextColor:[UIColor whiteColor]];
     [chemName.layer setSublayerTransform:CATransform3DMakeTranslation(7, 0, 0)];
+    
     [chemName setDelegate:self];
     [self addTextViewBorder:chemName];
     [self.scrollView  addSubview:chemName];
@@ -114,6 +116,7 @@
     [dosageNum setBackgroundColor:[UIColor clearColor]];
     [dosageNum setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:25]];
     [dosageNum setTintColor:[UIColor whiteColor]];
+    [dosageNum setTextColor:[UIColor whiteColor]];
     [dosageNum.layer setSublayerTransform:CATransform3DMakeTranslation(7, 0, 0)];
     [dosageNum setDelegate:self];
     [self addTextViewBorder:dosageNum];

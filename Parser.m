@@ -119,7 +119,7 @@
                     else{
                         [self insertIntoDB:med andTime:meal3 + 0.5 andAmpm:@"PM"];
                         [self insertIntoDB:med andTime:meal1 + 0.5 andAmpm:@"AM"];
-                        [self insertIntoDB:med andTime:meal2 + 0.5 andAmpm:@"PM"];
+                        [self insertIntoDB:med andTime:meal2 andAmpm:@"PM"];
                     }
                     
                 }

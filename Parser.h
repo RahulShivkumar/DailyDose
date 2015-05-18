@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 test. All rights reserved.
 //
 #define queue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-#define apiURL [NSURL URLWithString:@"http://localhost:3000/db"]
+#define apiURL [NSURL URLWithString:@"http://klinik.io/db.json"]
 #import <Foundation/Foundation.h>
 #import "DBManager.h"
 #import "Medication.h"
