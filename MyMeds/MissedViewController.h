@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DBManager.h"
 #import "Constants.h"
+#import "InfoViewController.h"
 
 @interface MissedViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>{
     NSMutableArray *meds;

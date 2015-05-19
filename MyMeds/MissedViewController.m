@@ -10,6 +10,9 @@
 #import "Medication.h"
 #import "MedsCell.h"
 
+#define bgColor [UIColor colorWithRed:174/255.0 green:17/255.0 blue:20/255.0 alpha:1.0]
+#define bgColor2 [UIColor colorWithRed:244/255.0 green:136/255.0 blue:159/255.0 alpha:1.0]
+
 @interface MissedViewController ()
 
 @end
@@ -44,7 +47,11 @@
     [title setTextColor:[UIColor whiteColor]];
     [self.view addSubview:title];
     
-    [self.view setBackgroundColor:[UIColor colorWithRed:204/255.0 green:46/255.0 blue:46/255.0 alpha:1.0]];
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.view.bounds;
+    gradient.colors = [NSArray arrayWithObjects:(id)[bgColor CGColor], (id)[bgColor2 CGColor], nil];
+    [self.view.layer insertSublayer:gradient atIndex:0];
+    
     self.medsView = [[UITableView alloc] init];
     [self.medsView setDataSource:self];
     [self.medsView setDelegate:self];
@@ -114,6 +121,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MedsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     Medication *med = [meds objectAtIndex:indexPath.row];
+    [cell->info addTarget:self action:@selector(loadInfo:) forControlEvents:UIControlEventTouchUpInside];
+    [cell->postpone addTarget:self action:@selector(delaySingleMed:) forControlEvents:UIControlEventTouchUpInside];
+    [cell->undo addTarget:self action:@selector(skipSingleMed:) forControlEvents:UIControlEventTouchUpInside];
     [cell setMed:med];
     [cell setPannable];
     return cell;
@@ -143,13 +153,72 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 //Method called to skip all meds
-- (IBAction)skip:(id)sender{\
+- (IBAction)skip:(id)sender{
     //2 Used to show it is skipped
     NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 2 where time <= %d and completed = 0", hour];
     [self.dbManager executeQuery:query];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)loadInfo:(id)sender{
+    //Get Button Position to detect which med to send
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.medsView];
+    NSIndexPath *indexPath = [self.medsView indexPathForRowAtPoint:buttonPosition];
+    MedsCell *cell = (MedsCell*)[self.medsView cellForRowAtIndexPath:indexPath];
+   
+    InfoViewController *infoVC = [[InfoViewController alloc] initWithMed:[meds objectAtIndex:indexPath.row]];
+    [self.navigationController presentViewController:infoVC animated:YES completion:^{[cell closeCell];}];
+}
+
+- (IBAction)delaySingleMed:(id)sender{
+    //Get Button Position to detect which med to send
+    
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.medsView];
+    NSIndexPath *indexPath = [self.medsView indexPathForRowAtPoint:buttonPosition];
+    MedsCell *cell = (MedsCell*)[self.medsView cellForRowAtIndexPath:indexPath];[cell closeCell];
+    [cell closeCell];
+    Medication *med = [meds objectAtIndex:indexPath.row];
+
+    if (med.actualTime < 23){
+        
+        //Convert to PM if its past 12!
+        NSString *amPm = @"AM";
+        if(hour > 12){
+            amPm = @"PM";
+        }
+        NSString *query = [NSString stringWithFormat: @"update today_meds set time = %d, ampm = %@  where rowid = %f and completed = 0", hour + 2, amPm, med.med_id];
+        [self.dbManager executeQuery:query];
+    }
+    
+    //TO-DO dismiss med from the screen
+   // [self setupTodayArrays:current];
+    //[self.medsView reloadData];
+}
+
+- (IBAction)skipSingleMed:(id)sender{
+    //Get Button Position to detect which med to send
+    
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.medsView];
+    NSIndexPath *indexPath = [self.medsView indexPathForRowAtPoint:buttonPosition];
+    MedsCell *cell = (MedsCell*)[self.medsView cellForRowAtIndexPath:indexPath];[cell closeCell];
+    [cell closeCell];
+    Medication *med = [meds objectAtIndex:indexPath.row];
+    
+    if (med.actualTime < 23){
+        
+        //Convert to PM if its past 12!
+        NSString *amPm = @"AM";
+        if(hour > 12){
+            amPm = @"PM";
+        }
+        NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 2 where rowid = %f", med.med_id];
+        [self.dbManager executeQuery:query];
+    }
+    
+    //TO-DO dismiss med from the screen
+    // [self setupTodayArrays:current];
+    //[self.medsView reloadData];
+}
 
 
 @end

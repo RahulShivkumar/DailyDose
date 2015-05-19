@@ -43,7 +43,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(appReturnsActive) name:UIApplicationDidBecomeActiveNotification
                                                object:nil];
-
+    
     pushed = NO;
     current = [NSDate date];
     future = NO;
@@ -68,7 +68,7 @@
 //Meds setup method - Looks at current date selected and determines if its today or a future date
 - (void)setupMeds{
     NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:@"Date"];
-
+    
     if(!future){
         //First time setup
         if(!date){
@@ -173,8 +173,8 @@
         hour = 0;
     }
     
-
-  
+    
+    
     //Get am and pm meds from today's sql table
     NSString *query = [NSString stringWithFormat: @"select rowid, med_name, chem_name, dosage, time, ampm, completed from today_meds where  time >= %ld and ampm = 'AM' order by time", (long)hour - 1];
     NSArray *temp = [self.dbManager loadDataFromDB:query];
@@ -202,12 +202,12 @@
     }
     else if([amMeds count] == 0){
         [header addObject:@"PM"];
-         [self.medsView reloadData];
+        [self.medsView reloadData];
         
     }
     else if ([pmMeds count] == 0){
         [header addObject:@"AM"];
-         [self.medsView reloadData];
+        [self.medsView reloadData];
     }
     else{
         [header addObject:@"AM"];
@@ -226,7 +226,7 @@
         NSString *chemName = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"chem_name"]];
         NSString *dosage = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"dosage"]];
         NSString *amPm = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"ampm"]];
-     //   NSString *type = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"type"]];
+        //   NSString *type = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"type"]];
         NSString *subName = [chemName stringByAppendingString:@" - "];
         subName = [subName stringByAppendingString:dosage];
         
@@ -237,7 +237,7 @@
         med.subName = subName;
         med.dosage = dosage;
         med.amPm = amPm;
-   //     med.type = type;
+        //     med.type = type;
         if(actualTime > 12.5){
             actualTime -= 12;
         }
@@ -302,7 +302,7 @@
         [self.medsView setDataSource:self];
         [self.medsView setDelegate:self];
         [self.medsView setBackgroundColor:[UIColor whiteColor]];
-
+        
         [self.medsView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
         [self.medsView setSeparatorInset:UIEdgeInsetsZero];
         [self.view addSubview:self.medsView];
@@ -325,27 +325,27 @@
 
 //Method called to setup navbar
 -(void)setupNavBar{
-
+    
     NSArray *colors = [NSArray arrayWithObjects:(id)NavBarColor1.CGColor, (id)NavBarColor2.CGColor, nil];
     [(CRGradientNavigationBar *)[self.navigationController navigationBar] setBarTintGradientColors:colors];
-//    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
+    //    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     [self.navigationController.navigationBar setBarTintColor: NavBarColor1];
     [self.navigationController.navigationBar setTranslucent:NO];
     [self.navigationItem setTitle:@"Daily Dose"];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     UIBarButtonItem *calendarButton = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                             style:UIBarButtonItemStylePlain
-                                                                            target:self
-                                                                            action:@selector(showMenu)];
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self
+                                                                      action:@selector(showMenu)];
     [calendarButton setImage:[UIImage imageNamed:@"CalendarIcon"]];
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName ,nil];
     [calendarButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
     [self.navigationItem setRightBarButtonItem:calendarButton];
     
     UIBarButtonItem *personButton = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                       style:UIBarButtonItemStylePlain
-                                                                      target:self
-                                                                      action:@selector(showCompliance)];
+                                                                     style:UIBarButtonItemStylePlain
+                                                                    target:self
+                                                                    action:@selector(showCompliance)];
     [personButton setImage:[UIImage imageNamed:@"personIcon"]];
     attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName ,nil];
     [personButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
@@ -379,40 +379,40 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-     MedsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    MedsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
     if (cell == nil) {
         cell = [[MedsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         //cell.reuseIdentifier = @"cell";
     }
-     if([Constants compareDate:current withOtherdate:futureDate]){
-         [cell setPannable];
-     }
-     else{
-         [cell removePannable];
-     }
-     [cell->info addTarget:self action:@selector(loadInfo:) forControlEvents:UIControlEventTouchUpInside];
-     [cell->postpone addTarget:self action:@selector(delay:) forControlEvents:UIControlEventTouchUpInside];
-     [cell->undo addTarget:self action:@selector(undo:) forControlEvents:UIControlEventTouchUpInside];
-     Medication * med;
-     // set the text
-     if([[header objectAtIndex:indexPath.section]  isEqual: @"AM"]){
-         med = [amMeds objectAtIndex:indexPath.row];
-     }
-     else{
-         med = [pmMeds objectAtIndex:indexPath.row];
-     }
+    if([Constants compareDate:current withOtherdate:futureDate]){
+        [cell setPannable];
+    }
+    else{
+        [cell removePannable];
+    }
+    [cell->info addTarget:self action:@selector(loadInfo:) forControlEvents:UIControlEventTouchUpInside];
+    [cell->postpone addTarget:self action:@selector(delay:) forControlEvents:UIControlEventTouchUpInside];
+    [cell->undo addTarget:self action:@selector(undo:) forControlEvents:UIControlEventTouchUpInside];
+    Medication * med;
+    // set the text
+    if([[header objectAtIndex:indexPath.section]  isEqual: @"AM"]){
+        med = [amMeds objectAtIndex:indexPath.row];
+    }
+    else{
+        med = [pmMeds objectAtIndex:indexPath.row];
+    }
     [cell setMed:med];
     
-     if(med.completed){
-         [cell uiComplete];
-     }
-     else{
+    if(med.completed){
+        [cell uiComplete];
+    }
+    else{
         [cell uiUndo];
-     }
+    }
     
-     return cell;
- }
+    return cell;
+}
 
 
 
@@ -428,10 +428,10 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 2, tableView.frame.size.width, self.navigationController.view.frame.size.height/28.4 - 4)];
     [label setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
     if ([[header objectAtIndex:section] isEqual: @"AM"]){
-        [label setText:@"AM"];
+        [label setText:@"Breakfast"];
     }
     else{
-        [label setText:@"PM"];
+        [label setText:@"Lunch"];
     }
     [label setTextColor:[UIColor whiteColor]];
     [view addSubview:label];
@@ -462,7 +462,7 @@
 }
 
 
-#pragma mark - Menu Delegate 
+#pragma mark - Menu Delegate
 - (void)menuButtonClicked:(int)index{
     futureDate = [[NSDate date] dateByAddingTimeInterval: + index * 86400.0];
     if(index == 0){
@@ -472,7 +472,7 @@
         future = YES;
     }
     [self setupMeds];
-    [self setupViews];
+    //[self setupViews];
 }
 #pragma mark - Move Table View
 - (void)showCompliance{
@@ -501,7 +501,7 @@
         //[self.medsView reloadData];
     }];
     [self.medsView setScrollEnabled:NO];
-   // [self.medsView setBackgroundColor:[UIColor whiteColor]];
+    // [self.medsView setBackgroundColor:[UIColor whiteColor]];
     
     
 }
