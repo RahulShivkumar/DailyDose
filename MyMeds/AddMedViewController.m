@@ -325,11 +325,11 @@
                 [self.dbManager executeQuery:query];
                 
                 //TO-DO fix bug where med is added to today's meds table
-                if(hour <= [[times objectAtIndex:i] floatValue]){
+//                if(hour <= [[times objectAtIndex:i] floatValue]){
                     completed = 0;
                     query = [NSString stringWithFormat: @"insert into today_meds(med_name, chem_name, dosage, time, ampm, completed) values ('%@', '%@', '%@', %f, '%@', %d)",medName.text, chemName.text, dosageNum.text, [[times objectAtIndex:i] floatValue],  [amPm objectAtIndex:i], completed];
                     [self.dbManager executeQuery:query];
-                }
+              //  }
 
             }
         [self dismissViewControllerAnimated:YES completion:nil];

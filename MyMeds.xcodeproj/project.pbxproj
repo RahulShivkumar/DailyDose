@@ -21,7 +21,11 @@
 		B76243C11B06E91800FA86AC /* CRGradientNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B76243C01B06E91800FA86AC /* CRGradientNavigationBar.m */; };
 		B764A1941AB9041B0068A119 /* AddMedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B764A1931AB9041B0068A119 /* AddMedViewController.m */; };
 		B772FC4E1AFD60A2001CB237 /* EditMedsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B772FC4D1AFD60A2001CB237 /* EditMedsController.m */; };
-		B78B3FF01AB77B5800160A15 /* dailydosedb.sql in Resources */ = {isa = PBXBuildFile; fileRef = B78B3FEF1AB77B5800160A15 /* dailydosedb.sql */; };
+		B78439151B0C69F100507D0A /* libFlurry_6.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B78439141B0C69F100507D0A /* libFlurry_6.4.0.a */; };
+		B78439161B0C69F100507D0A /* libFlurry_6.4.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B78439141B0C69F100507D0A /* libFlurry_6.4.0.a */; };
+		B78439181B0C6A4E00507D0A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B78439171B0C6A4E00507D0A /* CoreGraphics.framework */; };
+		B784391A1B0C6A5700507D0A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B78439191B0C6A5700507D0A /* Security.framework */; };
+		B784391C1B0C6A6500507D0A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B784391B1B0C6A6500507D0A /* SystemConfiguration.framework */; };
 		B78D8C961B07EDCB00FA62F7 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = B78D8C951B07EDCB00FA62F7 /* Parser.m */; };
 		B7988D601A7B350A0061DF8C /* MedsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7988D5F1A7B350A0061DF8C /* MedsCell.m */; };
 		B7988D641A7B38C50061DF8C /* StrikeThroughLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7988D631A7B38C50061DF8C /* StrikeThroughLabel.m */; };
@@ -42,6 +46,7 @@
 		B7C27E511A76E63200DFB416 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C27E501A76E63200DFB416 /* HistoryViewController.m */; };
 		B7C27E541A76E64100DFB416 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C27E531A76E64100DFB416 /* SettingsViewController.m */; };
 		B7C27E571A76E65A00DFB416 /* AnalyzeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C27E561A76E65A00DFB416 /* AnalyzeViewController.m */; };
+		B7F680571B0D1AE400D99940 /* dailydosedb.sql in Resources */ = {isa = PBXBuildFile; fileRef = B7F680561B0D1AE400D99940 /* dailydosedb.sql */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,7 +87,11 @@
 		B764A1931AB9041B0068A119 /* AddMedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMedViewController.m; sourceTree = "<group>"; };
 		B772FC4C1AFD60A2001CB237 /* EditMedsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMedsController.h; sourceTree = "<group>"; };
 		B772FC4D1AFD60A2001CB237 /* EditMedsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMedsController.m; sourceTree = "<group>"; };
-		B78B3FEF1AB77B5800160A15 /* dailydosedb.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = dailydosedb.sql; sourceTree = "<group>"; };
+		B78439131B0C69F100507D0A /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		B78439141B0C69F100507D0A /* libFlurry_6.4.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.4.0.a; sourceTree = "<group>"; };
+		B78439171B0C6A4E00507D0A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		B78439191B0C6A5700507D0A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B784391B1B0C6A6500507D0A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B78D8C941B07EDCB00FA62F7 /* Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Parser.h; path = ../Parser.h; sourceTree = "<group>"; };
 		B78D8C951B07EDCB00FA62F7 /* Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Parser.m; path = ../Parser.m; sourceTree = "<group>"; };
 		B7988D5E1A7B350A0061DF8C /* MedsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedsCell.h; sourceTree = "<group>"; };
@@ -119,6 +128,7 @@
 		B7C27E531A76E64100DFB416 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B7C27E551A76E65A00DFB416 /* AnalyzeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyzeViewController.h; sourceTree = "<group>"; };
 		B7C27E561A76E65A00DFB416 /* AnalyzeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyzeViewController.m; sourceTree = "<group>"; };
+		B7F680561B0D1AE400D99940 /* dailydosedb.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = dailydosedb.sql; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,10 +136,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B784391C1B0C6A6500507D0A /* SystemConfiguration.framework in Frameworks */,
+				B784391A1B0C6A5700507D0A /* Security.framework in Frameworks */,
+				B78439181B0C6A4E00507D0A /* CoreGraphics.framework in Frameworks */,
+				B7C27E441A76AAFA00DFB416 /* Foundation.framework in Frameworks */,
 				B7C27E491A76AB2600DFB416 /* libsqlite3.0.dylib in Frameworks */,
 				B7C27E4A1A76AB2600DFB416 /* libsqlite3.dylib in Frameworks */,
 				B7C27E461A76AB0700DFB416 /* UIKit.framework in Frameworks */,
-				B7C27E441A76AAFA00DFB416 /* Foundation.framework in Frameworks */,
+				B78439151B0C69F100507D0A /* libFlurry_6.4.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B78439161B0C69F100507D0A /* libFlurry_6.4.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +238,15 @@
 			name = "Strikethrough Control";
 			sourceTree = "<group>";
 		};
+		B784390C1B0C67F400507D0A /* Flurry Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				B78439131B0C69F100507D0A /* Flurry.h */,
+				B78439141B0C69F100507D0A /* libFlurry_6.4.0.a */,
+			);
+			name = "Flurry Analytics";
+			sourceTree = "<group>";
+		};
 		B78D8C971B07EDDD00FA62F7 /* Parser */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +259,10 @@
 		B7C27E0E1A76AA8100DFB416 = {
 			isa = PBXGroup;
 			children = (
+				B7F680561B0D1AE400D99940 /* dailydosedb.sql */,
+				B784391B1B0C6A6500507D0A /* SystemConfiguration.framework */,
+				B78439191B0C6A5700507D0A /* Security.framework */,
+				B78439171B0C6A4E00507D0A /* CoreGraphics.framework */,
 				B7C27E191A76AA8100DFB416 /* MyMeds */,
 				B7C27E361A76AA8100DFB416 /* MyMedsTests */,
 				B7C27E181A76AA8100DFB416 /* Products */,
@@ -253,8 +281,8 @@
 		B7C27E191A76AA8100DFB416 /* MyMeds */ = {
 			isa = PBXGroup;
 			children = (
+				B784390C1B0C67F400507D0A /* Flurry Analytics */,
 				B78D8C971B07EDDD00FA62F7 /* Parser */,
-				B78B3FEF1AB77B5800160A15 /* dailydosedb.sql */,
 				B76243BB1B06DED100FA86AC /* Custom Navigation Bar */,
 				B75518681B002FE600CE23A3 /* Notification Toast */,
 				B70CC81A1AED8C940042F1CE /* View Controllers */,
@@ -407,7 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B700AB1D1A7ECE280034EF14 /* Main.storyboard in Resources */,
-				B78B3FF01AB77B5800160A15 /* dailydosedb.sql in Resources */,
+				B7F680571B0D1AE400D99940 /* dailydosedb.sql in Resources */,
 				B7C27E2E1A76AA8100DFB416 /* LaunchScreen.xib in Resources */,
 				B7C27E2B1A76AA8100DFB416 /* Images.xcassets in Resources */,
 			);
@@ -572,6 +600,11 @@
 				INFOPLIST_FILE = MyMeds/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MyMeds/Flurry",
+					"$(PROJECT_DIR)/MyMeds",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -587,6 +620,11 @@
 				INFOPLIST_FILE = MyMeds/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MyMeds/Flurry",
+					"$(PROJECT_DIR)/MyMeds",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -606,6 +644,10 @@
 				);
 				INFOPLIST_FILE = MyMedsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MyMeds",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyMeds.app/MyMeds";
 			};
@@ -621,6 +663,10 @@
 				);
 				INFOPLIST_FILE = MyMedsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MyMeds",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyMeds.app/MyMeds";
 			};

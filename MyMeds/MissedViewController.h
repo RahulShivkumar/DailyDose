@@ -10,8 +10,12 @@
 #import "DBManager.h"
 #import "Constants.h"
 #import "InfoViewController.h"
+#import "MedsCell.h"
+#import "MissedViewController.h"
+#import "Medication.h"
+#import "MedsCell.h"
 
-@interface MissedViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>{
+@interface MissedViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, StrikeDelegate>{
     NSMutableArray *meds;
     UILabel *title;
     UIButton *taken;

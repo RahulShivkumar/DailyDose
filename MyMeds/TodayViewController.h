@@ -10,6 +10,7 @@
 #import "MenuController.h"
 #import "DBManager.h"
 #import "Constants.h"
+#import "Flurry.h"
 
 @interface TodayViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MenuControllerDelegate>{
     NSMutableArray *amMeds;

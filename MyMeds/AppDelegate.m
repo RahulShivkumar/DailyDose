@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Flurry.h"
 #import "TodayViewController.h"
 #import "OverviewViewController.h"
 #import "HistoryViewController.h"
@@ -22,6 +23,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [Flurry startSession:@"4BQF329Z7GRC6T29MYF7"];
+    
+    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]) {
         [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeSound categories:nil]];

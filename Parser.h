@@ -7,14 +7,16 @@
 //
 #define queue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 #define apiURL [NSURL URLWithString:@"http://klinik.io/db.json"]
+
 #import <Foundation/Foundation.h>
 #import "DBManager.h"
 #import "Medication.h"
 
-@interface Parser : NSObject{
+@interface Parser : NSObject <NSXMLParserDelegate>{
     int wakeup, bedtime, meal1, meal2, meal3;
     Medication *med;
-    
+    NSString *chemNameURL;
+    NSString *dummyString;
 }
 @property (nonatomic, strong) DBManager *dbManager;
 

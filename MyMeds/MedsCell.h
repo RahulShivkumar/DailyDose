@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "StrikeThroughLabel.h"
 #import "Medication.h"
+#import "Flurry.h"
+
+@protocol StrikeDelegate
+- (void)strikeDelegate:(id)sender;
+@end
 
 @interface MedsCell : UITableViewCell{
     CGPoint _originalCenter;
@@ -31,6 +36,7 @@
     @public UIButton *info;
     @public UIButton *postpone;
 }
+@property (nonatomic, assign) id  <StrikeDelegate> delegate;
 @property (nonatomic, strong) DBManager *dbManager;
 - (void)setMed:(Medication*)med;
 - (void)setPannable;

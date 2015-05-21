@@ -428,10 +428,10 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 2, tableView.frame.size.width, self.navigationController.view.frame.size.height/28.4 - 4)];
     [label setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
     if ([[header objectAtIndex:section] isEqual: @"AM"]){
-        [label setText:@"Breakfast"];
+        [label setText:@"AM"];
     }
     else{
-        [label setText:@"Lunch"];
+        [label setText:@"PM"];
     }
     [label setTextColor:[UIColor whiteColor]];
     [view addSubview:label];
@@ -559,6 +559,14 @@
         [self.dbManager executeQuery:query];
     }
     
+    NSDictionary *eventParams = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 @"User", [[UIDevice currentDevice] identifierForVendor],
+                                 @"Late", @"No",
+                                 @"Medication", med.medName,
+                                 @"Time", med.time,
+                                 nil];
+    [Flurry logEvent:@"Delay" withParameters:eventParams];
+    
     [self setupTodayArrays:current];
     [self.medsView reloadData];
 }
@@ -579,11 +587,26 @@
         //Complete med
         [cell closeCell];
         [cell undo];
+        NSDictionary *eventParams = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     @"User", [[UIDevice currentDevice] identifierForVendor],
+                                     @"Late", @"No",
+                                     @"Medication", med.medName,
+                                     @"Time", med.time,
+                                     nil];
+        [Flurry logEvent:@"Undo" withParameters:eventParams];
     }
     else{
         //Incomplete med
         [cell closeCell];
         [cell complete];
+        NSDictionary *eventParams = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     @"User", [[UIDevice currentDevice] identifierForVendor],
+                                     @"Late", @"No",
+                                     @"Swipe", @"No",
+                                     @"Medication", med.medName,
+                                     @"Time", med.time,
+                                     nil];
+        [Flurry logEvent:@"Taken" withParameters:eventParams];
     }
 }
 

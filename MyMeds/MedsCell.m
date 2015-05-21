@@ -96,34 +96,34 @@
 
 }
 
--(void)layoutSubviews {
+- (void)layoutSubviews {
     [super layoutSubviews];
     // ensure the gradient layers occupies the full bounds
 }
 
--(void)awakeFromNib {
+- (void)awakeFromNib {
     // Initialization code
 }
 
--(void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
 }
 
 #pragma mark - horizontal pan gesture methods
--(void)setPannable{
+- (void)setPannable{
     //Set the Gesture
     panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
     panRecognizer.delegate = self;
     [mainView addGestureRecognizer:panRecognizer];
 }
 
--(void)removePannable{
+- (void)removePannable{
     [mainView removeGestureRecognizer:panRecognizer];
 }
 
--(BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer {
+- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer {
     CGPoint translation = [gestureRecognizer translationInView:mainView];
     // Check for horizontal gesture
     if (fabs(translation.x) > fabs(translation.y)) {
@@ -132,7 +132,7 @@
     return NO;
 }
 
--(void)handlePan:(UIPanGestureRecognizer *)recognizer {
+- (void)handlePan:(UIPanGestureRecognizer *)recognizer {
     //Use velocity to detect direction 
     CGPoint velocity = [recognizer velocityInView:mainView];
     
@@ -144,6 +144,14 @@
         [postpone setHidden:YES];
         if(!medication.completed){
             [self complete];
+            NSDictionary *eventParams = [NSDictionary dictionaryWithObjectsAndKeys:
+                                         @"User", [[UIDevice currentDevice] identifierForVendor],
+                                         @"Late", @"No",
+                                         @"Swipe", @"Yes",
+                                         @"Medication", medication.medName,
+                                         @"Time", medication.time,
+                                         nil];
+            [Flurry logEvent:@"Taken" withParameters:eventParams];
         }
         
     }
@@ -232,7 +240,7 @@
 
 - (void)complete{
     // mark the item as complete and update the UI state
-    NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 1 where med_name = '%@' and chem_name = '%@' and time = '%d'",  medication.medName, medication.chemName, medication.actualTime];
+    NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 1 where rowid = %f",  medication.med_id];
     [self.dbManager executeQuery:query];
     [medication setCompleted:YES];
     [self uiComplete];
@@ -242,6 +250,7 @@
     medLabel.strikethrough = YES;
     timeLabel.strikethrough = YES;
     chemLabel.strikethrough = YES;
+    [self.delegate strikeDelegate:self];
     [undo setTitle:@"Undo" forState:UIControlStateNormal];
 }
 

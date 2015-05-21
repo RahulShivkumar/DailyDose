@@ -7,8 +7,7 @@
 //
 
 #import "MissedViewController.h"
-#import "Medication.h"
-#import "MedsCell.h"
+
 
 #define bgColor [UIColor colorWithRed:174/255.0 green:17/255.0 blue:20/255.0 alpha:1.0]
 #define bgColor2 [UIColor colorWithRed:244/255.0 green:136/255.0 blue:159/255.0 alpha:1.0]
@@ -120,10 +119,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MedsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    [cell setDelegate:self];
     Medication *med = [meds objectAtIndex:indexPath.row];
     [cell->info addTarget:self action:@selector(loadInfo:) forControlEvents:UIControlEventTouchUpInside];
     [cell->postpone addTarget:self action:@selector(delaySingleMed:) forControlEvents:UIControlEventTouchUpInside];
     [cell->undo addTarget:self action:@selector(skipSingleMed:) forControlEvents:UIControlEventTouchUpInside];
+    [cell->undo setTitle:@"Skip" forState:UIControlStateNormal];
     [cell setMed:med];
     [cell setPannable];
     return cell;
@@ -141,6 +142,17 @@
     NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 1 where time <= %d - 1", hour];
     [self.dbManager executeQuery:query];
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    for (Medication *med in meds){
+        NSDictionary *eventParams = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     @"User", [[UIDevice currentDevice] identifierForVendor],
+                                     @"Late", @"Yes",
+                                     @"Swipe", @"Yes",
+                                     @"Medication", med.medName,
+                                     @"Time", med.time,
+                                     nil];
+        [Flurry logEvent:@"Taken" withParameters:eventParams];
+    }
 }
 //Method called to delay all missed meds
 - (IBAction)delay:(id)sender{
@@ -149,6 +161,16 @@
         amPm = @"PM";
     }
     NSString *query = [NSString stringWithFormat: @"update today_meds set time = %d, ampm = %@  where time <= %d and completed = 0", hour + 2, amPm, hour];
+    
+    for (Medication *med in meds){
+        NSDictionary *eventParams = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     @"User", [[UIDevice currentDevice] identifierForVendor],
+                                     @"Late", @"Yes",
+                                     @"Medication", med.medName,
+                                     @"Time", med.time,
+                                     nil];
+        [Flurry logEvent:@"Delay" withParameters:eventParams];
+    }
     [self.dbManager executeQuery:query];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -157,6 +179,15 @@
     //2 Used to show it is skipped
     NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 2 where time <= %d and completed = 0", hour];
     [self.dbManager executeQuery:query];
+    for (Medication *med in meds){
+        NSDictionary *eventParams = [NSDictionary dictionaryWithObjectsAndKeys:
+                                     @"User", [[UIDevice currentDevice] identifierForVendor],
+                                     @"Missed_meds", @"Yes",
+                                     @"Medication", med.medName,
+                                     @"Time", med.time,
+                                     nil];
+        [Flurry logEvent:@"Skip" withParameters:eventParams];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -167,7 +198,7 @@
     MedsCell *cell = (MedsCell*)[self.medsView cellForRowAtIndexPath:indexPath];
    
     InfoViewController *infoVC = [[InfoViewController alloc] initWithMed:[meds objectAtIndex:indexPath.row]];
-    [self.navigationController presentViewController:infoVC animated:YES completion:^{[cell closeCell];}];
+    [self presentViewController:infoVC animated:YES completion:^{[cell closeCell];}];
 }
 
 - (IBAction)delaySingleMed:(id)sender{
@@ -190,9 +221,23 @@
         [self.dbManager executeQuery:query];
     }
     
-    //TO-DO dismiss med from the screen
-   // [self setupTodayArrays:current];
-    //[self.medsView reloadData];
+    NSDictionary *eventParams = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 @"User", [[UIDevice currentDevice] identifierForVendor],
+                                 @"Late", @"Yes",
+                                 @"Medication", med.medName,
+                                 @"Time", med.time,
+                                 nil];
+    [Flurry logEvent:@"Delay" withParameters:eventParams];
+    
+    [meds removeObjectAtIndex:indexPath.row];
+    
+    [self.medsView beginUpdates];
+    [self.medsView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
+    [self.medsView endUpdates];
+    
+    
+    [self checkCompleted];
+    
 }
 
 - (IBAction)skipSingleMed:(id)sender{
@@ -200,25 +245,71 @@
     
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.medsView];
     NSIndexPath *indexPath = [self.medsView indexPathForRowAtPoint:buttonPosition];
-    MedsCell *cell = (MedsCell*)[self.medsView cellForRowAtIndexPath:indexPath];[cell closeCell];
+    MedsCell *cell = (MedsCell*)[self.medsView cellForRowAtIndexPath:indexPath];
     [cell closeCell];
     Medication *med = [meds objectAtIndex:indexPath.row];
     
-    if (med.actualTime < 23){
-        
-        //Convert to PM if its past 12!
-        NSString *amPm = @"AM";
-        if(hour > 12){
-            amPm = @"PM";
-        }
-        NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 2 where rowid = %f", med.med_id];
-        [self.dbManager executeQuery:query];
-    }
+
+    NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 2 where rowid = %f", med.med_id];
+    [self.dbManager executeQuery:query];
     
+    NSDictionary *eventParams = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 @"User", [[UIDevice currentDevice] identifierForVendor],
+                                 @"Missed_meds", @"Yes",
+                                 @"Medication", med.medName,
+                                 @"Time", med.time,
+                                 nil];
+    [Flurry logEvent:@"Skip" withParameters:eventParams];
+    
+    [meds removeObjectAtIndex:indexPath.row];
+    [self.medsView beginUpdates];
+    [self.medsView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
+    [self.medsView endUpdates];
+
+    [self checkCompleted];
     //TO-DO dismiss med from the screen
     // [self setupTodayArrays:current];
     //[self.medsView reloadData];
 }
+
+#pragma mark Strike Delegate
+- (void)strikeDelegate:(id)sender{
+    MedsCell *medCell = (MedsCell *)sender;
+    NSIndexPath *indexPath = [self.medsView indexPathForCell:medCell];
+    Medication *med = [meds objectAtIndex:indexPath.row];
+    [meds removeObjectAtIndex:indexPath.row];
+
+    NSDictionary *eventParams = [NSDictionary dictionaryWithObjectsAndKeys:
+                                 @"User", [[UIDevice currentDevice] identifierForVendor],
+                                 @"Late", @"Yes",
+                                 @"Swipe", @"Yes",
+                                 @"Medication", med.medName,
+                                 @"Time", med.time,
+                                 nil];
+    [Flurry logEvent:@"Taken" withParameters:eventParams];
+    
+    double delayInSeconds = 0.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        //code to be executed on the main queue after delay
+        [self.medsView beginUpdates];
+        
+        [self.medsView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
+        [self.medsView endUpdates];
+        [self checkCompleted];
+        
+    });
+
+    
+
+}
+- (void)checkCompleted{
+    if ([meds count] == 0){
+    
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
 
 
 @end

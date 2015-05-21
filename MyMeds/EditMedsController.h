@@ -36,6 +36,7 @@
     
     NSMutableArray *timePickers;
     NSMutableArray *times;
+    NSMutableArray *oldTimes;
     NSMutableArray *amPm;
     
     int selectedTag;
