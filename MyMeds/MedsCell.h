@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "StrikeThroughLabel.h"
 #import "Medication.h"
-#import "Flurry.h"
 
 @protocol StrikeDelegate
 - (void)strikeDelegate:(id)sender;

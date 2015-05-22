@@ -143,16 +143,9 @@
     [self.dbManager executeQuery:query];
     [self dismissViewControllerAnimated:YES completion:nil];
     
-    for (Medication *med in meds){
-        NSDictionary *eventParams = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     @"User", [[UIDevice currentDevice] identifierForVendor],
-                                     @"Late", @"Yes",
-                                     @"Swipe", @"Yes",
-                                     @"Medication", med.medName,
-                                     @"Time", med.time,
-                                     nil];
-        [Flurry logEvent:@"Taken" withParameters:eventParams];
-    }
+//    for (Medication *med in meds){
+//
+//    }
 }
 //Method called to delay all missed meds
 - (IBAction)delay:(id)sender{
@@ -162,15 +155,9 @@
     }
     NSString *query = [NSString stringWithFormat: @"update today_meds set time = %d, ampm = %@  where time <= %d and completed = 0", hour + 2, amPm, hour];
     
-    for (Medication *med in meds){
-        NSDictionary *eventParams = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     @"User", [[UIDevice currentDevice] identifierForVendor],
-                                     @"Late", @"Yes",
-                                     @"Medication", med.medName,
-                                     @"Time", med.time,
-                                     nil];
-        [Flurry logEvent:@"Delay" withParameters:eventParams];
-    }
+//    for (Medication *med in meds){
+//
+//    }
     [self.dbManager executeQuery:query];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -180,13 +167,7 @@
     NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 2 where time <= %d and completed = 0", hour];
     [self.dbManager executeQuery:query];
     for (Medication *med in meds){
-        NSDictionary *eventParams = [NSDictionary dictionaryWithObjectsAndKeys:
-                                     @"User", [[UIDevice currentDevice] identifierForVendor],
-                                     @"Missed_meds", @"Yes",
-                                     @"Medication", med.medName,
-                                     @"Time", med.time,
-                                     nil];
-        [Flurry logEvent:@"Skip" withParameters:eventParams];
+
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -221,13 +202,7 @@
         [self.dbManager executeQuery:query];
     }
     
-    NSDictionary *eventParams = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 @"User", [[UIDevice currentDevice] identifierForVendor],
-                                 @"Late", @"Yes",
-                                 @"Medication", med.medName,
-                                 @"Time", med.time,
-                                 nil];
-    [Flurry logEvent:@"Delay" withParameters:eventParams];
+
     
     [meds removeObjectAtIndex:indexPath.row];
     
@@ -253,13 +228,7 @@
     NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 2 where rowid = %f", med.med_id];
     [self.dbManager executeQuery:query];
     
-    NSDictionary *eventParams = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 @"User", [[UIDevice currentDevice] identifierForVendor],
-                                 @"Missed_meds", @"Yes",
-                                 @"Medication", med.medName,
-                                 @"Time", med.time,
-                                 nil];
-    [Flurry logEvent:@"Skip" withParameters:eventParams];
+   
     
     [meds removeObjectAtIndex:indexPath.row];
     [self.medsView beginUpdates];
@@ -279,14 +248,7 @@
     Medication *med = [meds objectAtIndex:indexPath.row];
     [meds removeObjectAtIndex:indexPath.row];
 
-    NSDictionary *eventParams = [NSDictionary dictionaryWithObjectsAndKeys:
-                                 @"User", [[UIDevice currentDevice] identifierForVendor],
-                                 @"Late", @"Yes",
-                                 @"Swipe", @"Yes",
-                                 @"Medication", med.medName,
-                                 @"Time", med.time,
-                                 nil];
-    [Flurry logEvent:@"Taken" withParameters:eventParams];
+
     
     double delayInSeconds = 0.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);

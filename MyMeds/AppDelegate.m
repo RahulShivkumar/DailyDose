@@ -7,12 +7,13 @@
 //
 
 #import "AppDelegate.h"
-#import "Flurry.h"
 #import "TodayViewController.h"
 #import "OverviewViewController.h"
 #import "HistoryViewController.h"
 #import "AnalyzeViewController.h"
 #import "SettingsViewController.h"
+#import "GAI.h"
+
 
 @interface AppDelegate ()
 
@@ -22,8 +23,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    [Flurry startSession:@"4BQF329Z7GRC6T29MYF7"];
+    
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    [GAI sharedInstance].dispatchInterval = 20;
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelNone];
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-63232519-1"];
     
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];

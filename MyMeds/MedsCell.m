@@ -144,14 +144,7 @@
         [postpone setHidden:YES];
         if(!medication.completed){
             [self complete];
-            NSDictionary *eventParams = [NSDictionary dictionaryWithObjectsAndKeys:
-                                         @"User", [[UIDevice currentDevice] identifierForVendor],
-                                         @"Late", @"No",
-                                         @"Swipe", @"Yes",
-                                         @"Medication", medication.medName,
-                                         @"Time", medication.time,
-                                         nil];
-            [Flurry logEvent:@"Taken" withParameters:eventParams];
+   
         }
         
     }

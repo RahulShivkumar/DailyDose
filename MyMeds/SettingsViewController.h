@@ -9,11 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "DBManager.h"
 #import "Constants.h"
+#import "Parsimmon.h"
 
 @interface SettingsViewController : UIViewController
 
 @property (nonatomic, strong) DBManager *dbManager;
 
+@property (weak, nonatomic) IBOutlet UITextField *scriptPhrase;
+@property (strong, nonatomic) ParsimmonNaiveBayesClassifier *classifier;
+
+- (IBAction)parse:(id)sender;
 
 - (void)setPlaceholderImage;
 - (void)setNavbar;
