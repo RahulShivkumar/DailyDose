@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "StrikeThroughLabel.h"
 #import "Medication.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
 
 @protocol StrikeDelegate
 - (void)strikeDelegate:(id)sender;

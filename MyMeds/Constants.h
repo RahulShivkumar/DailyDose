@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 
 @interface Constants : NSObject
+
 +(CGFloat)window_height;
 +(CGFloat)window_width;
 +(BOOL)compareDate:(NSDate*)date1 withOtherdate:(NSDate*)date2;

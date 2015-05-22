@@ -20,12 +20,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavbar];
+    [self train1];
 
     // Do any additional setup after loading the view.
 }
+- (void)train1{
+    self.classifier = [[ParsimmonNaiveBayesClassifier alloc] init];
+    
+    
+}
+
+- (void)train2{
+    self.classifier = [[ParsimmonNaiveBayesClassifier alloc] init];
+}
+
+- (void)train3{
+    self.classifier = [[ParsimmonNaiveBayesClassifier alloc] init];
+}
+- (void)train4{
+    self.classifier = [[ParsimmonNaiveBayesClassifier alloc] init];
+    
+}
 //Place a placeholder image for now
 - (IBAction)parse:(id)sender {
-    self.classifier = [[ParsimmonNaiveBayesClassifier alloc] init];
+    
     NSString *unstructuredSig = self.scriptPhrase.text;
     unstructuredSig = [unstructuredSig lowercaseString];
     
@@ -105,11 +123,7 @@
 //    NSLog(@"%d", frequency);
 //    NSLog(@"%@", dosageClassification);
     
-    [self.classifier trainWithText:@"twice daily" category:@"two-day"];
-    [self.classifier trainWithText:@"once daily" category:@"one-day"];
-    [self.classifier trainWithText:@"every day by oral route before meals category" category:@"one-day"];
-    [self.classifier trainWithText:@"every day by topical route." category:@"one-day"];
-    [self.classifier trainWithText:@"twice a day by subcutaneous route with meals." category:@"two-day-"];
+
     
     
     NSLog(@"%@", newCommand);

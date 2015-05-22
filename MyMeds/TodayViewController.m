@@ -281,19 +281,19 @@
     [self.view addSubview:bgView];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.view setFrame:CGRectMake(0, 0, [Constants window_width], [Constants window_height])];
-    if([amMeds count] == 0 && [pmMeds count] == 0 && [Constants compareDate:[NSDate date] withOtherdate:futureDate]){
-        UIImageView *completedImage = [[UIImageView alloc] initWithFrame:CGRectMake(([Constants window_width] - 300)/2, 50, 300, 311)];
-        [completedImage setImage:[UIImage imageNamed:@"completed"]];
-        UIView *bgImage = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Constants window_width], [Constants window_height])];
-        [bgImage setBackgroundColor:[UIColor whiteColor]];
-        [bgImage addSubview:completedImage];
-        [self.view addSubview:bgImage];
-        
-    }
-    else if([amMeds count] == 0 && [pmMeds count] == 0){
-        
-    }
-    else{
+//    if([amMeds count] == 0 && [pmMeds count] == 0 && [Constants compareDate:[NSDate date] withOtherdate:futureDate]){
+//        UIImageView *completedImage = [[UIImageView alloc] initWithFrame:CGRectMake(([Constants window_width] - 300)/2, 50, 300, 311)];
+//        [completedImage setImage:[UIImage imageNamed:@"completed"]];
+//        UIView *bgImage = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Constants window_width], [Constants window_height])];
+//        [bgImage setBackgroundColor:[UIColor whiteColor]];
+//        [bgImage addSubview:completedImage];
+//        [self.view addSubview:bgImage];
+//        
+//    }
+//    else if([amMeds count] == 0 && [pmMeds count] == 0){
+//        
+//    }
+//    else{
         self.medsView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
         UITapGestureRecognizer *singleFingerTap =
         [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -306,7 +306,7 @@
         [self.medsView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
         [self.medsView setSeparatorInset:UIEdgeInsetsZero];
         [self.view addSubview:self.medsView];
-    }
+//    }
     
     [self setupTabBar];
     [self setupNavBar];
@@ -557,6 +557,12 @@
             query = [NSString stringWithFormat: @"update today_meds set time = %d where rowid = %f", med.actualTime + 1, med.med_id];
         }
         [self.dbManager executeQuery:query];
+        
+        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Delay"
+                                                              action:@"Regular"
+                                                               label:med.medName
+                                                               value:[NSNumber numberWithInt:med.actualTime]] build]];
     }
     
  
@@ -582,12 +588,22 @@
         //Complete med
         [cell closeCell];
         [cell undo];
+        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Undo"
+                                                              action:@"Regular"
+                                                               label:med.medName
+                                                               value:[NSNumber numberWithInt:med.actualTime]] build]];
 
     }
     else{
         //Incomplete med
         [cell closeCell];
         [cell complete];
+        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Taken"
+                                                              action:@"Regular"
+                                                               label:med.medName
+                                                               value:[NSNumber numberWithInt:med.actualTime]] build]];
 
     }
 }

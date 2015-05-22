@@ -45,9 +45,10 @@
     [postpone setTitle:@"Delay" forState:UIControlStateNormal];
     //Set mainView
     mainView = [[UIView alloc] initWithFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, [self window_width],[self window_height]/8)];
-    
-    
     [mainView setBackgroundColor:[UIColor whiteColor]];
+//    [self roundCornersOnView:mainView onTopLeft:YES topRight:NO bottomLeft:YES bottomRight:NO radius:20.0];
+//    [self roundCornersOnView:self onTopLeft:YES topRight:NO bottomLeft:YES bottomRight:NO radius:10.0];
+    
     
     //Set the labels
     medLabel= [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(10, 0 ,self.bounds.size.width, mainView.bounds.size.height * 0.67)];
@@ -143,6 +144,11 @@
         [undo setHidden:YES];
         [postpone setHidden:YES];
         if(!medication.completed){
+            id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Taken"
+                                                                  action:@"Regular"
+                                                                   label:medication.medName
+                                                                   value:[NSNumber numberWithInt:medication.actualTime]] build]];
             [self complete];
    
         }
@@ -270,7 +276,33 @@
     [undo setTitle:@"Taken" forState:UIControlStateNormal];
 }
 
+-(void)roundCornersOnView:(UIView *)view onTopLeft:(BOOL)tl topRight:(BOOL)tr bottomLeft:(BOOL)bl bottomRight:(BOOL)br radius:(float)radius {
+    
+    if (tl || tr || bl || br) {
+        UIRectCorner corner = 0; //holds the corner
+        //Determine which corner(s) should be changed
+        if (tl) {
+            corner = corner | UIRectCornerTopLeft;
+        }
+        if (tr) {
+            corner = corner | UIRectCornerTopRight;
+        }
+        if (bl) {
+            corner = corner | UIRectCornerBottomLeft;
+        }
+        if (br) {
+            corner = corner | UIRectCornerBottomRight;
+        }
+        
 
+        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:corner cornerRadii:CGSizeMake(radius, radius)];
+        CAShapeLayer *maskLayer = [CAShapeLayer layer];
+        maskLayer.frame = view.bounds;
+        maskLayer.path = maskPath.CGPath;
+        view.layer.mask = maskLayer;
+    }
+    
+}
 
 #pragma mark  - Helper Methods
 -(CGFloat)window_width{
