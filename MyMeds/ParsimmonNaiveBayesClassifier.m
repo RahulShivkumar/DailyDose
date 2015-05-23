@@ -60,6 +60,10 @@
     [self trainWithTokens:[self.tokenizer tokenizeWordsInText:text] category:category];
 }
 
+- (void)trainWithText:(NSString *)text category:(NSString *)category keywords:(NSString *)keyWords{
+    [self trainWithTokens:[self.tokenizer tokenizeWordsInText:text] category:category keywords:[self.tokenizer tokenizeWordsInText:keyWords]];
+}
+
 - (void)trainWithTokens:(NSArray *)tokens category:(NSString *)category
 {
     NSArray *words = [self removeDuplicates:tokens];
@@ -70,6 +74,9 @@
     self.trainingCount += 1;
 }
 
+- (void)trainWithTokens:(NSArray *)tokens category:(NSString *)category keywords:(NSArray *)keywords{
+    
+}
 
 #pragma mark - Classifying
 
@@ -87,11 +94,16 @@
         CGFloat currentCategoryScore = 0;
         CGFloat pCategory = [self pCategory:category]; // P(C=cat)
         currentCategoryScore += log(pCategory); // log(P(C=cat))
+        int words = 0;
         for (NSString *token in tokens) { // sum_token
             // P(W=token|C=cat) = P(C=cat, W=token) / P(C=cat)
             CGFloat numerator = [self pCategory:category andWord:token];
+            
+            if (numerator > 0){
+                words = words + 5000;
+            }
             // Do some smoothing
-            CGFloat pWordGivenCategory = (numerator + kParsimmonSmoothingParameter) /
+            CGFloat pWordGivenCategory = (numerator * words + kParsimmonSmoothingParameter) /
                     (pCategory + kParsimmonSmoothingParameter * self.wordCount);
             currentCategoryScore += log(pWordGivenCategory); // log(P(W=token|C=cat))
         }

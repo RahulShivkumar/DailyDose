@@ -11,12 +11,12 @@
 
 @interface Medication : NSObject
 
-// A text description of this item.
 @property (nonatomic, copy) NSString *medName;
 @property (nonatomic, copy) NSString *chemName;
 @property (nonatomic, copy) NSString *subName;
 @property (nonatomic, copy) NSString *dosage;
 @property (nonatomic, copy) NSString *time;
+@property (nonatomic, copy) NSString *rxid;
 @property (nonatomic)int actualTime;
 @property (nonatomic, copy) NSString *amPm;
 @property (nonatomic, copy) NSString *type;
@@ -27,7 +27,7 @@
 @property (nonatomic) int quantity;
 @property (nonatomic) double med_id;
 
-// A boolean value that determines the completed state of this item.
+
 @property (nonatomic) BOOL completed;
 @property (nonatomic) BOOL mon;
 @property (nonatomic) BOOL tue;

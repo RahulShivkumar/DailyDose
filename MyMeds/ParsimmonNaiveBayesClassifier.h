@@ -69,6 +69,7 @@
  */
 - (void)trainWithText:(NSString *)text category:(NSString *)category;
 
+- (void)trainWithText:(NSString *)text category:(NSString *)category keywords:(NSString *)keyWords;
 /**
  Trains the classifier with tokenized text and its category.
  This is useful if you wish to use your own tokenization method.
@@ -76,6 +77,8 @@
  @param category The category of the text
  */
 - (void)trainWithTokens:(NSArray *)tokens category:(NSString *)category;
+
+- (void)trainWithTokens:(NSArray *)tokens category:(NSString *)category keywords:(NSArray *)keywords;
 
 /**
  Classifies the given text based on its training data.

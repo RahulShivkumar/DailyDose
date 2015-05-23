@@ -20,25 +20,82 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNavbar];
-    [self train1];
+    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
+
 
     // Do any additional setup after loading the view.
 }
+- (void)setup{
+  
+}
 - (void)train1{
     self.classifier = [[ParsimmonNaiveBayesClassifier alloc] init];
+    NSString *query = @"select phrase, category from parser where type = 1";
     
-    
+    NSArray *temp = [self.dbManager loadDataFromDB:query];
+    for(int i = 0; i < [temp count]; i++){
+        NSString *phrase = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"phrase"]];
+        NSString *category = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"category"]];
+        
+        [self.classifier trainWithText:phrase category:category];
+    }
 }
-
 - (void)train2{
     self.classifier = [[ParsimmonNaiveBayesClassifier alloc] init];
+    NSString *query = @"select phrase, category from parser where type = 2";
+    
+    NSArray *temp = [self.dbManager loadDataFromDB:query];
+    for(int i = 0; i < [temp count]; i++){
+        NSString *phrase = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"phrase"]];
+        NSString *category = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"category"]];
+        
+        [self.classifier trainWithText:phrase category:category];
+    }
 }
-
 - (void)train3{
     self.classifier = [[ParsimmonNaiveBayesClassifier alloc] init];
+    NSString *query = @"select phrase, category from parser where type = 3";
+    
+    NSArray *temp = [self.dbManager loadDataFromDB:query];
+    for(int i = 0; i < [temp count]; i++){
+        NSString *phrase = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"phrase"]];
+        NSString *category = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"category"]];
+        
+        [self.classifier trainWithText:phrase category:category];
+    }
+    
+   
+    
 }
 - (void)train4{
     self.classifier = [[ParsimmonNaiveBayesClassifier alloc] init];
+    NSString *query = @"select phrase, category from parser where type = 4";
+    
+    NSArray *temp = [self.dbManager loadDataFromDB:query];
+    for(int i = 0; i < [temp count]; i++){
+        NSString *phrase = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"phrase"]];
+        NSString *category = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"category"]];
+        
+        [self.classifier trainWithText:phrase category:category];
+    }
+    
+
+    
+}
+
+- (void)train5{
+    self.classifier = [[ParsimmonNaiveBayesClassifier alloc] init];
+    NSString *query = @"select phrase, category from parser where type = 5";
+    
+    NSArray *temp = [self.dbManager loadDataFromDB:query];
+    for(int i = 0; i < [temp count]; i++){
+        NSString *phrase = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"phrase"]];
+        NSString *category = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"category"]];
+        
+        [self.classifier trainWithText:phrase category:category];
+    }
+    
+    
     
 }
 //Place a placeholder image for now
@@ -116,7 +173,7 @@
 //            frequency = 1;
 //        }
 //    }
-//    
+//
 //    if (frequency == 0){
 //        frequency = 1;
 //    }
@@ -126,11 +183,58 @@
 
     
     
-    NSLog(@"%@", newCommand);
-    
+    [self train1];
     NSString *category = [self.classifier classify:newCommand];
-    NSLog(@"%@", dosage);
-    NSLog(@"%@", category);
+    [self.type1 setText:category];
+    
+    [self train2];
+    category = [self.classifier classify:newCommand];
+    [self.type2 setText:category];
+    
+    [self train3];
+    category = [self.classifier classify:newCommand];
+    [self.type3 setText:category];
+    
+    [self train4];
+    category = [self.classifier classify:newCommand];
+    [self.type4 setText:category];
+    
+    [self train5];
+    category = [self.classifier classify:newCommand];
+    [self.type5 setText:category];
+}
+
+- (IBAction)input:(id)sender {
+   NSString *query = [NSString stringWithFormat: @"insert into parser(phrase, category, type) values ('%@', '%@', %d)", self.scriptPhrase.text, self.setType1.text, 1];
+    [self.dbManager executeQuery:query];
+    query = [NSString stringWithFormat: @"insert into parser(phrase, category, type) values ('%@', '%@', %d)", self.scriptPhrase.text, self.setType2.text, 2];
+    [self.dbManager executeQuery:query];
+    query = [NSString stringWithFormat: @"insert into parser(phrase, category, type) values ('%@', '%@', %d)", self.scriptPhrase.text, self.setType3.text, 3];
+    [self.dbManager executeQuery:query];
+    query = [NSString stringWithFormat: @"insert into parser(phrase, category, type) values ('%@', '%@', %d)", self.scriptPhrase.text, self.setType4.text, 4];
+    [self.dbManager executeQuery:query];
+    query = [NSString stringWithFormat: @"insert into parser(phrase, category, type) values ('%@', '%@', %d)", self.scriptPhrase.text, self.setType4.text, 5];
+    [self.dbManager executeQuery:query];
+}
+
+- (IBAction)delete:(id)sender{
+    NSString *query = [NSString stringWithFormat: @"delete from parser where phrase = '%@' and category = '%@' and type = %d", self.scriptPhrase.text, self.setType1.text, 1];
+    [self.dbManager executeQuery:query];
+    query = [NSString stringWithFormat: @"delete from parser where phrase = '%@' and category = '%@' and type = %d", self.scriptPhrase.text, self.setType1.text, 2];
+    [self.dbManager executeQuery:query];
+     query = [NSString stringWithFormat: @"delete from parser where phrase = '%@' and category = '%@' and type = %d", self.scriptPhrase.text, self.setType1.text, 3];
+    [self.dbManager executeQuery:query];
+     query = [NSString stringWithFormat: @"delete from parser where phrase = '%@' and category = '%@' and type = %d", self.scriptPhrase.text, self.setType1.text, 4];
+    [self.dbManager executeQuery:query];
+    query = [NSString stringWithFormat: @"delete from parser where phrase = '%@' and category = '%@' and type = %d", self.scriptPhrase.text, self.setType1.text, 5];
+    [self.dbManager executeQuery:query];
+    
+    
+}
+- (IBAction)correct:(id)sender {
+}
+
+- (IBAction)wrong:(id)sender {
 }
 
 - (void)setPlaceholderImage{

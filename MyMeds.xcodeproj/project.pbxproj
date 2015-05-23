@@ -22,6 +22,8 @@
 		B764A1941AB9041B0068A119 /* AddMedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B764A1931AB9041B0068A119 /* AddMedViewController.m */; };
 		B772FC4E1AFD60A2001CB237 /* EditMedsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B772FC4D1AFD60A2001CB237 /* EditMedsController.m */; };
 		B78D8C961B07EDCB00FA62F7 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = B78D8C951B07EDCB00FA62F7 /* Parser.m */; };
+		B78DF5471B1060B500D43ECC /* dailydosedb.sql in Resources */ = {isa = PBXBuildFile; fileRef = B78DF5461B1060B500D43ECC /* dailydosedb.sql */; };
+		B78DF5481B1060B500D43ECC /* dailydosedb.sql in Resources */ = {isa = PBXBuildFile; fileRef = B78DF5461B1060B500D43ECC /* dailydosedb.sql */; };
 		B7988D601A7B350A0061DF8C /* MedsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7988D5F1A7B350A0061DF8C /* MedsCell.m */; };
 		B7988D641A7B38C50061DF8C /* StrikeThroughLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7988D631A7B38C50061DF8C /* StrikeThroughLabel.m */; };
 		B7A1FD4E1A8298D40003CD52 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A1FD4D1A8298D40003CD52 /* InfoViewController.m */; };
@@ -39,7 +41,6 @@
 		B7C27E511A76E63200DFB416 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C27E501A76E63200DFB416 /* HistoryViewController.m */; };
 		B7C27E541A76E64100DFB416 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C27E531A76E64100DFB416 /* SettingsViewController.m */; };
 		B7C27E571A76E65A00DFB416 /* AnalyzeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C27E561A76E65A00DFB416 /* AnalyzeViewController.m */; };
-		B7F680571B0D1AE400D99940 /* dailydosedb.sql in Resources */ = {isa = PBXBuildFile; fileRef = B7F680561B0D1AE400D99940 /* dailydosedb.sql */; };
 		B7FC56FD1B0E4BAC00A1828A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FC56FC1B0E4BAC00A1828A /* CoreData.framework */; };
 		B7FC56FE1B0E4BBB00A1828A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B784391B1B0C6A6500507D0A /* SystemConfiguration.framework */; };
 		B7FC57001B0E4BC400A1828A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FC56FF1B0E4BC400A1828A /* libz.dylib */; };
@@ -98,6 +99,7 @@
 		B784391B1B0C6A6500507D0A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		B78D8C941B07EDCB00FA62F7 /* Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Parser.h; path = ../Parser.h; sourceTree = "<group>"; };
 		B78D8C951B07EDCB00FA62F7 /* Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Parser.m; path = ../Parser.m; sourceTree = "<group>"; };
+		B78DF5461B1060B500D43ECC /* dailydosedb.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = dailydosedb.sql; sourceTree = "<group>"; };
 		B7988D5E1A7B350A0061DF8C /* MedsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedsCell.h; sourceTree = "<group>"; };
 		B7988D5F1A7B350A0061DF8C /* MedsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedsCell.m; sourceTree = "<group>"; };
 		B7988D621A7B38C50061DF8C /* StrikeThroughLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrikeThroughLabel.h; sourceTree = "<group>"; };
@@ -132,7 +134,6 @@
 		B7C27E531A76E64100DFB416 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B7C27E551A76E65A00DFB416 /* AnalyzeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyzeViewController.h; sourceTree = "<group>"; };
 		B7C27E561A76E65A00DFB416 /* AnalyzeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyzeViewController.m; sourceTree = "<group>"; };
-		B7F680561B0D1AE400D99940 /* dailydosedb.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = dailydosedb.sql; sourceTree = "<group>"; };
 		B7FC56F21B0E4B8900A1828A /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAI.h; sourceTree = "<group>"; };
 		B7FC56F31B0E4B8900A1828A /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIDictionaryBuilder.h; sourceTree = "<group>"; };
 		B7FC56F41B0E4B8900A1828A /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAIEcommerceFields.h; sourceTree = "<group>"; };
@@ -317,7 +318,6 @@
 		B7C27E0E1A76AA8100DFB416 = {
 			isa = PBXGroup;
 			children = (
-				B7F680561B0D1AE400D99940 /* dailydosedb.sql */,
 				B7C27E191A76AA8100DFB416 /* MyMeds */,
 				B7C27E361A76AA8100DFB416 /* MyMedsTests */,
 				B7C27E181A76AA8100DFB416 /* Products */,
@@ -336,6 +336,7 @@
 		B7C27E191A76AA8100DFB416 /* MyMeds */ = {
 			isa = PBXGroup;
 			children = (
+				B78DF5461B1060B500D43ECC /* dailydosedb.sql */,
 				B784390C1B0C67F400507D0A /* Google Analytics */,
 				B78D8C971B07EDDD00FA62F7 /* Parser */,
 				B76243BB1B06DED100FA86AC /* Custom Navigation Bar */,
@@ -496,8 +497,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B700AB1D1A7ECE280034EF14 /* Main.storyboard in Resources */,
-				B7F680571B0D1AE400D99940 /* dailydosedb.sql in Resources */,
 				B7C27E2B1A76AA8100DFB416 /* Images.xcassets in Resources */,
+				B78DF5471B1060B500D43ECC /* dailydosedb.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +506,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B78DF5481B1060B500D43ECC /* dailydosedb.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
