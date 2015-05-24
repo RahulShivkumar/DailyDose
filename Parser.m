@@ -57,7 +57,7 @@
         med.medName = [med.medName componentsSeparatedByString:@" "][0];
         
         NSString *rxnorm = [medJson objectForKey:@"rxnorm"][0];
-        
+        med.rxid = rxnorm;
         chemNameURL = @"http://rxnav.nlm.nih.gov/REST/rxcui/";
         
 
@@ -65,14 +65,8 @@
                         [NSURL URLWithString:[chemNameURL stringByAppendingString:rxnorm]]];
         
         NSXMLParser *parser = [[NSXMLParser alloc] initWithData:data];
-        
         [parser setDelegate:self];
         [parser parse];
-        
-        
-
-        
-        
         
         NSLog(@"%@", med.medName);
         NSLog(@"%@", med.dosage);
@@ -170,6 +164,20 @@
     
 }
 
+#pragma mark - Interactions Check
+- (void)checkInteractions{
+    NSString *query = @"select distinct rxid from meds";
+    NSString *request = @"";
+    NSArray *temp = [self.dbManager loadDataFromDB:query];
+    for(int i = 0; i < [temp count]; i++){
+        NSString *rxid = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"rxid"]];
+        request = [request stringByAppendingString:rxid];
+        request = [request stringByAppendingString:@"+"];
+    }
+    
+}
+
+#pragma mark - XML Parser Delegate
 - (void) parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict{
     dummyString = @"";
 }
@@ -183,11 +191,9 @@
     {
         med.chemName = [dummyString componentsSeparatedByString:@" "][0];
     }
-
-
 }
 
-- (void)insertIntoDB:(Medication*)med andTime:(float)time andAmpm:(NSString *)ampm{
+- (void)insertIntoDB:(Medication*)medication andTime:(float)time andAmpm:(NSString *)ampm{
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat: @"MM/dd/yyyy"];
     NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
@@ -196,11 +202,11 @@
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:[NSDate date]];
     hour = [components hour];
     
-    NSString *query = [NSString stringWithFormat: @"insert into meds(med_name, chem_name, dosage, time, ampm, monday, tuesday, wednesday, thursday, friday, saturday, sunday, completed, start_date) values ('%@', '%@', '%@', %f, '%@', '%d', %d, %d, %d, %d, %d, %d, 0, '%@')", med.medName, med.chemName,med.dosage, time, ampm, 1, 1, 1, 1, 1, 1, 1, dateString ];
+    NSString *query = [NSString stringWithFormat: @"insert into meds(med_name, chem_name, dosage, time, ampm, monday, tuesday, wednesday, thursday, friday, saturday, sunday, completed, start_date, rxid) values ('%@', '%@', '%@', %f, '%@', '%d', %d, %d, %d, %d, %d, %d, 0, '%@', '%@')", medication.medName, medication.chemName, medication.dosage, time, ampm, 1, 1, 1, 1, 1, 1, 1, dateString, medication.rxid ];
     [self.dbManager executeQuery:query];
     
     if(hour <= time){
-        NSString *query = [NSString stringWithFormat: @"insert into today_meds(med_name, chem_name, dosage, time, ampm, completed) values ('%@', '%@', '%@', %f, '%@', %d)",med.medName, med.chemName, med.dosage, time,  ampm, 0];
+        NSString *query = [NSString stringWithFormat: @"insert into today_meds(med_name, chem_name, dosage, time, ampm, completed, rxid) values ('%@', '%@', '%@', %f, '%@', %d, '%@')",medication.medName, med.chemName, medication.dosage, time,  ampm, 0, medication.rxid];
         [self.dbManager executeQuery:query];
     }
 }

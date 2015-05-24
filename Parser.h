@@ -23,5 +23,7 @@
 - (id)init;
 - (void)setupData;
 - (void)fetchedData:(NSData *)responseData;
+- (void)checkInteractions;
+- (void)insertIntoDB:(Medication*)med andTime:(float)time andAmpm:(NSString *)ampm;
 - (NSMutableArray *)getMeds;
 @end
