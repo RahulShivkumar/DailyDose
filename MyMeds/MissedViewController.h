@@ -19,9 +19,12 @@
 
 @interface MissedViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, StrikeDelegate>{
     NSMutableArray *meds;
+    
     UILabel *title;
+    
     UIButton *taken;
     UIButton *delay;
+    
     UIButton *skip;
     int hour;
 }
@@ -29,8 +32,16 @@
 @property (nonatomic, strong) DBManager *dbManager;
 
 - (id)initWithMeds:(NSMutableArray*)missedMeds andHour:(int)hr;
+
 - (void)setupViews;
+
 - (IBAction)taken:(id)sender;
 - (IBAction)delay:(id)sender;
 - (IBAction)skip:(id)sender;
+- (IBAction)loadInfo:(id)sender;
+- (IBAction)delaySingleMed:(id)sender;
+- (IBAction)skipSingleMed:(id)sender;
+- (void)checkCompleted;
+
+
 @end

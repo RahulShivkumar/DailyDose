@@ -289,6 +289,7 @@
     
     [dateFormatter setDateFormat:@"hh"];
     NSString *tempHours = [dateFormatter stringFromDate:aDate];
+    
     [dateFormatter setDateFormat:@"mm"];
     NSString *tempMins = [dateFormatter stringFromDate:aDate];
     

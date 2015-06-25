@@ -41,17 +41,23 @@
     
     int selectedTag;
 }
+
 @property (nonatomic, strong) UIScrollView *scrollView;
+
 @property (nonatomic, strong) DBManager *dbManager;
+
 @property (nonatomic, strong) NSMutableArray *dayShedule;
 @property (nonatomic, strong) NSMutableArray *times;;
+
 -(void)setupView;
 -(void)createButton;
 -(void)dismissKeyboard;
 -(void)manipulateTime;
+
 -(void)addTimeWithHour:(NSString *)hour andMins:(NSString *)mins andAmPm:(NSString *)ampm;
 
 -(id)initWithMed:(Medication*)medication andDays:(NSMutableArray *)daySchedule andTime:(NSMutableArray *)timeSchedule;
+
 -(IBAction)closeWindow:(id)sender;
 
 @end

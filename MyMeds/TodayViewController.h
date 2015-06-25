@@ -20,26 +20,44 @@
     NSMutableArray *futurePmMeds;
     NSMutableArray *header;
     NSMutableArray *missedMeds;
+    
     NSArray *medsArray;
+    
     MenuController *sideBar;
+    
     NSDate *current;
     NSDate *futureDate;
+    
     BOOL future;
     BOOL pushed;
-    
 }
 
 @property (nonatomic, strong) UITableView *medsView;
 @property (nonatomic, strong) DBManager *dbManager;
 
--(void)setupMeds;
--(void)setupViews;
--(void)setupTabBar;
--(void)setupNavBar;
--(void)setupCalendar;
--(IBAction)loadInfo:(id)sender;
--(IBAction)undo:(id)sender;
+- (void)setupSqlDefaults:(NSDate*)date;
+- (void)setupTodayArrays:(NSDate *)date;
+- (NSMutableArray *)setDataInArray:(NSArray *)temp andToday:(BOOL)today;
+- (void)setupMeds;
 
+- (void)setupViews;
+- (void)setupTabBar;
+- (void)setupNavBar;
+- (void)setupCalendar;
+
+- (void)showCompliance;
+- (void)moveTableUp;
+- (void)moveTableDown;
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer;
+
+- (IBAction)loadInfo:(id)sender;
+- (IBAction)delay:(id)sender;
+- (IBAction)undo:(id)sender;
+
+- (void)showMenu;
+- (BOOL)tabBarIsVisible;
+- (UIStatusBarStyle)preferredStatusBarStyle;
+- (void)appReturnsActive;
 
 @end
 
