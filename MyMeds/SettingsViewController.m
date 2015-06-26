@@ -204,6 +204,7 @@
     [self.type5 setText:category];
 }
 
+
 - (IBAction)input:(id)sender {
    NSString *query = [NSString stringWithFormat: @"insert into parser(phrase, category, type) values ('%@', '%@', %d)", self.scriptPhrase.text, self.setType1.text, 1];
     [self.dbManager executeQuery:query];
@@ -231,17 +232,24 @@
     
     
 }
+
+
 - (IBAction)correct:(id)sender {
 }
 
+
+
 - (IBAction)wrong:(id)sender {
 }
+
 
 - (void)setPlaceholderImage{
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 375, [Constants window_height] - 89)];
     [self.view addSubview:imageView];
     [imageView setImage:[UIImage imageNamed:@"settingsph"]];
 }
+
+
 //Method called to set navigation bar
 - (void)setNavbar{
     [self.navigationController.navigationBar setTranslucent:NO];
@@ -250,10 +258,13 @@
     [self.navigationItem setTitle:@"Settings"];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 #pragma mark - IBActions
 - (IBAction)deleteMeds:(id)sender{
@@ -264,6 +275,7 @@
           NSString *query4 = [NSString stringWithFormat: @"delete from today_meds"];
         [self.dbManager executeQuery:query4];
 }
+
 
 - (IBAction)syncMeds:(id)sender{
      Parser *parser = [[Parser alloc] init];

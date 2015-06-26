@@ -17,32 +17,39 @@
 @end
 
 
-#define NavBarColor [UIColor colorWithRed:170/255.0 green:18/255.0 blue:22/255.0 alpha:1.0]
+#define kBGColor [UIColor colorWithRed:170/255.0 green:18/255.0 blue:22/255.0 alpha:1.0]
 
 @implementation OverviewViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
+
+
 - (void)viewDidAppear:(BOOL)animated{
     //Lets ensure that the first page opened is our Schedule view regardless
     int index = 0;
+    
     if(self.timeline.selectedSegmentIndex == 1){
         index = 1;
     }
+    
     [self setupMeds:index];
     [self setupViews];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
 #pragma mark - Set up views
 //Method called to set up views
-- (void)setupViews{
+- (void)setupViews {
     self.medsView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
     [self.medsView setDataSource:self];
     [self.medsView setDelegate:self];
@@ -50,19 +57,17 @@
     [self.medsView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.medsView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.medsView];
-    [self setupNavbar];
+    
+    [Constants setupNavbar:self];
 }
-//Method called to setup navbar
-- (void)setupNavbar{
-    [self.navigationController.navigationBar setTranslucent:NO];
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-    [self.navigationController.navigationBar setBarTintColor:NavBarColor];
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-}
+
+
+
+
 
 #pragma mark - Set Up Medication 
 //Method called to setup meds based on selection current/past
-- (void)setupMeds:(int)completed{
+- (void)setupMeds:(int)completed {
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
     meds = [[NSMutableArray alloc]init];
     
@@ -73,6 +78,8 @@
     [self.medsView reloadData];
 
 }
+
+
 //Method called to convert SQLData to Array
 - (NSMutableArray *)setDataInArray:(NSArray *)temp{
     NSMutableArray *tempMutable = [[NSMutableArray alloc] init];
@@ -92,10 +99,12 @@
     return tempMutable;
 }
 
+
 #pragma mark - Table view delegate methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [meds count];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
@@ -106,6 +115,7 @@
     return cell;
 }
 
+
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Constants window_width], 50)];
@@ -114,15 +124,18 @@
     return footer;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return [Constants window_height]/10;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 70.0f;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -144,6 +157,8 @@
         [self setupMeds:1];
     }
 }
+
+
 - (IBAction)addMedication:(id)sender {
     AddMedViewController *addMedVC = [[AddMedViewController alloc] init];
     [self.navigationController presentViewController:addMedVC animated:YES completion:nil];

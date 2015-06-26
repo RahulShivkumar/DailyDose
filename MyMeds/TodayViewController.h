@@ -42,7 +42,6 @@
 
 - (void)setupViews;
 - (void)setupTabBar;
-- (void)setupNavBar;
 - (void)setupCalendar;
 
 - (void)showCompliance;

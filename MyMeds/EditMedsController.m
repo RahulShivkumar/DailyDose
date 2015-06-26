@@ -225,7 +225,7 @@
 #pragma mark - Setup Times 
 
 - (void)setupTimes{
-    int count = [self.times count];
+    int count = (int)[self.times count];
     for (int i = 1; i < count ; i++){
         [self createButton];
         UIButton *bottomBut = [timePickers objectAtIndex:[timePickers count] - 1];
@@ -393,7 +393,7 @@
         
         for (int i = 0; i < [times count]; i++){
             NSString *ampm = @"AM";
-            if([times objectAtIndex:i] > 12){
+            if((int)[times objectAtIndex:i] > 12){
                 ampm = @"PM";
             }
             

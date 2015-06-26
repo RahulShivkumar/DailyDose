@@ -25,8 +25,7 @@
 #define TabBarBorderColor [UIColor colorWithRed:194/255.0 green:59/255.0 blue:34/255.0 alpha:1.0].CGColor
 #define TabBarBorderFrame CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 0.5f)
 
-#define NavBarColor1 [UIColor colorWithRed:180/255.0 green:12/255.0 blue:3/255.0 alpha:1.0]
-#define NavBarColor2 [UIColor colorWithRed:194/255.0 green:41/255.0 blue:0/255.0 alpha:1.0]
+#define kBGColor [UIColor colorWithRed:180/255.0 green:12/255.0 blue:3/255.0 alpha:1.0]
 
 @implementation TodayViewController
 
@@ -312,7 +311,7 @@
     [self.view addSubview:self.medsView];
 //    }
     [self setupTabBar];
-    [self setupNavBar];
+    [Constants setupNavbar:self];
     [self setupCalendar];
 }
 
@@ -327,36 +326,6 @@
     [self.tabBarController.tabBar.layer addSublayer:topBorder];
     
     [self.tabBarController.tabBar setClipsToBounds:YES];
-}
-
-
-//Method called to setup navbar
-- (void)setupNavBar{
-    
-    NSArray *colors = [NSArray arrayWithObjects:(id)NavBarColor1.CGColor, (id)NavBarColor2.CGColor, nil];
-    [(CRGradientNavigationBar *)[self.navigationController navigationBar] setBarTintGradientColors:colors];
-    //    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-    [self.navigationController.navigationBar setBarTintColor: NavBarColor1];
-    [self.navigationController.navigationBar setTranslucent:NO];
-    [self.navigationItem setTitle:@"Daily Dose"];
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-    UIBarButtonItem *calendarButton = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                       style:UIBarButtonItemStylePlain
-                                                                      target:self
-                                                                      action:@selector(showMenu)];
-    [calendarButton setImage:[UIImage imageNamed:@"CalendarIcon"]];
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName ,nil];
-    [calendarButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
-    [self.navigationItem setRightBarButtonItem:calendarButton];
-    
-    UIBarButtonItem *personButton = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                     style:UIBarButtonItemStylePlain
-                                                                    target:self
-                                                                    action:@selector(showCompliance)];
-    [personButton setImage:[UIImage imageNamed:@"personIcon"]];
-    attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName ,nil];
-    [personButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
-    [self.navigationItem setLeftBarButtonItem:personButton];
 }
 
 
@@ -446,7 +415,7 @@
     
     [label setTextColor:[UIColor whiteColor]];
     [view addSubview:label];
-    [view setBackgroundColor:NavBarColor1];
+    [view setBackgroundColor:kBGColor];
     
     return view;
 }

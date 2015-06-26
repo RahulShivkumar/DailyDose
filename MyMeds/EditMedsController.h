@@ -47,7 +47,7 @@
 @property (nonatomic, strong) DBManager *dbManager;
 
 @property (nonatomic, strong) NSMutableArray *dayShedule;
-@property (nonatomic, strong) NSMutableArray *times;;
+@property (nonatomic, strong) NSMutableArray *times;
 
 -(void)setupView;
 -(void)createButton;
