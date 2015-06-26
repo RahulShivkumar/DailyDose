@@ -7,6 +7,7 @@
 //
 
 #import "AnalyzeViewController.h"
+#import "Constants.h"
 
 
 @interface AnalyzeViewController ()
@@ -25,21 +26,25 @@
 
 }
 
--(void)setFakeImage{
+- (void)setFakeImage{
     [self.navigationController.navigationBar setTranslucent:NO];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     [self.navigationController.navigationBar setBarTintColor:NavBarColor];
     [self.navigationItem setTitle:@"Analyze"];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 375, [self window_height] - 89)];
-    [self.view addSubview:scrollView];
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 375, [Constants window_height] - 89)];
     [scrollView setScrollEnabled:YES];
-    UIView *pageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 375, 824)];
+    [self.view addSubview:scrollView];
+    
+  
     UIImageView *analyze = [[UIImageView alloc] initWithFrame:CGRectMake(0, 15, 320, 648)];
     [analyze setImage:[UIImage imageNamed:@"fakeanalyze"]];
+    
+    UIView *pageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 375, 824)];
     [pageView addSubview:analyze];
-     [scrollView setContentSize:pageView.frame.size];
+    
+    [scrollView setContentSize:pageView.frame.size];
     [scrollView addSubview:pageView];
 
 }
@@ -60,10 +65,6 @@
 
 
 #pragma mark  - Helper Methods
--(CGFloat)window_height{
-    return [UIScreen mainScreen].applicationFrame.size.height;
-}
-
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return NO;

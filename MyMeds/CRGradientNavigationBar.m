@@ -2,8 +2,8 @@
 //  CRGradientNavigationBar.m
 //  CRGradientNavigationBar
 //
-//  Created by Christian Roman on 19/10/13.
-//  Copyright (c) 2013 Christian Roman. All rights reserved.
+//  Created by Rahul Shivkumar on 19/10/15.
+//  Copyright (c) 2015 Rahul Shivkumar. All rights reserved.
 //
 
 #import "CRGradientNavigationBar.h"
@@ -35,31 +35,23 @@ static CGFloat const kDefaultOpacity = 0.5f;
         // determine elements in the array are colours
         // and add them to the colors array
         [barTintGradientColors enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            if ([obj isKindOfClass:[UIColor class]])
-            {
+            if ([obj isKindOfClass:[UIColor class]]) {
                 // UIColor class
                 [colors addObject:(id)[obj CGColor]];
-            }
-            else if ( CFGetTypeID( (__bridge void *)obj ) == CGColorGetTypeID() )
-            {
+            } else if (CFGetTypeID( (__bridge void *)obj ) == CGColorGetTypeID()) {
                 // CGColorRef
                 [colors addObject:obj];
-            }
-            else
-            {
+            } else {
                 // obj is not a supported type
                 @throw [NSException exceptionWithName:@"BarTintGraidentColorsError" reason:@"object in barTintGradientColors array is not a UIColor or CGColorRef" userInfo:nil];
             }
         }];
         
         // make it possible for the graident to be seen for iOS 6 and iOS 7
-        if ( [self respondsToSelector:@selector(setBarTintColor:)] )
-        {
+        if ([self respondsToSelector:@selector(setBarTintColor:)]) {
             // iOS 7
             self.barTintColor = [UIColor clearColor];
-        }
-        else
-        {
+        } else {
             // iOS 6
             self.tintColor = [UIColor clearColor];
             // stops the gradient on iOS 6 UINavigationBar
@@ -78,16 +70,14 @@ static CGFloat const kDefaultOpacity = 0.5f;
     [super layoutSubviews];
     
     // allow all layout subviews call to adjust the frame
-    if ( self.gradientLayer != nil )
+    if (self.gradientLayer != nil )
     {
-        if ( floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1 )
+        if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
         {
              // iOS 7
             CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
             self.gradientLayer.frame = CGRectMake(0, 0 - statusBarHeight, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) + statusBarHeight);
-        }
-        else
-        {
+        } else {
             // iOS 6
             self.gradientLayer.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
         }

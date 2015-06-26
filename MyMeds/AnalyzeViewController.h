@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *time;
 @property (weak, nonatomic) IBOutlet UITextField *ampm;
 @property (weak, nonatomic) IBOutlet UITextField *type;
+
 @property (nonatomic, strong) DBManager *dbManager;
 
 @property (weak, nonatomic) IBOutlet UISwitch *monday;
@@ -30,7 +31,6 @@
 @property (weak, nonatomic) IBOutlet UISwitch *sat;
 @property (weak, nonatomic) IBOutlet UISwitch *sun;
 
-- (IBAction)addmed:(id)sender;
-
+- (void)setFakeImage;
 
 @end

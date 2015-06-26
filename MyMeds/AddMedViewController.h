@@ -41,12 +41,21 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) DBManager *dbManager;
 
--(void)setupViews;
--(void)createButton;
--(void)dismissKeyboard;
--(void)manipulateTime;
--(void)addTimeWithHour:(NSString *)hour andMins:(NSString *)mins andAmPm:(NSString *)ampm;
+- (void)setupViews;
+- (void)addTextViewBorder:(UITextField*)textView;
+- (void)addButtonBorder:(UIButton*)button;
 
--(IBAction)closeWindow:(id)sender;
+- (void)createButton;
+- (void)dismissKeyboard;
+
+- (void)manipulateTime;
+- (void)addTimeWithHour:(NSString *)hour andMins:(NSString *)mins andAmPm:(NSString *)ampm;
+
+- (IBAction)setDate:(id)sender;
+- (IBAction)closeWindow:(id)sender;
+- (IBAction)done:(id)sender;
+
+- (void)setupLocalNotifs;
+- (void)initLocalNotif:(int)number andDay:(NSString *)day andTime:(NSString*)timeString andDayIndex:(int)dayIndex;
 
 @end
