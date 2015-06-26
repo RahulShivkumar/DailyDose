@@ -11,9 +11,8 @@
 #import "DBManager.h"
 #import "Constants.h"
 #import "EditMedsController.h"
-#import "GAITrackedViewController.h"
 
-@interface InfoViewController : GAITrackedViewController{
+@interface InfoViewController : UIViewController{
     UIButton *close;
     UIButton *edit;
     UIButton *endMed;

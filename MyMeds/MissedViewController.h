@@ -14,8 +14,6 @@
 #import "MissedViewController.h"
 #import "Medication.h"
 #import "MedsCell.h"
-#import "GAI.h"
-#import "GAIDictionaryBuilder.h"
 
 @interface MissedViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, StrikeDelegate>{
     NSMutableArray *meds;

@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.screenName = @"Info Screen";
+//    self.screenName = @"Info Screen";
     [self setupView];
     // Do any additional setup after loading the view, typically from a nib.
 }

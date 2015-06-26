@@ -10,8 +10,6 @@
 #import "MenuController.h"
 #import "DBManager.h"
 #import "Constants.h"
-#import "GAI.h"
-#import "GAIDictionaryBuilder.h"
 
 @interface TodayViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MenuControllerDelegate>{
     NSMutableArray *amMeds;

@@ -144,11 +144,11 @@
         [undo setHidden:YES];
         [postpone setHidden:YES];
         if(!medication.completed){
-            id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Taken"
-                                                                  action:@"Regular"
-                                                                   label:medication.medName
-                                                                   value:[NSNumber numberWithInt:medication.actualTime]] build]];
+//            id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+//            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Taken"
+//                                                                  action:@"Regular"
+//                                                                   label:medication.medName
+//                                                                   value:[NSNumber numberWithInt:medication.actualTime]] build]];
             [self complete];
    
         }

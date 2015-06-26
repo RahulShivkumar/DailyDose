@@ -12,8 +12,6 @@
 #import "HistoryViewController.h"
 #import "AnalyzeViewController.h"
 #import "SettingsViewController.h"
-#import "GAI.h"
-
 
 @interface AppDelegate ()
 
@@ -23,12 +21,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    [GAI sharedInstance].trackUncaughtExceptions = YES;
-    [GAI sharedInstance].dispatchInterval = 20;
-    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelNone];
-    [[GAI sharedInstance] trackerWithTrackingId:@"UA-63232519-1"];
-    
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]) {

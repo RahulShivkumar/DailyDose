@@ -159,12 +159,12 @@
                              completion:nil];
     
     for (Medication *med in meds){
-        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Taken"
-                                                              action:@"Missed"
-                                                               label:med.medName
-                                                               value:[NSNumber numberWithInt:med.actualTime]] build]];
+//        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+//        
+//        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Taken"
+//                                                              action:@"Missed"
+//                                                               label:med.medName
+//                                                               value:[NSNumber numberWithInt:med.actualTime]] build]];
 
     }
 }
@@ -178,12 +178,12 @@
     NSString *query = [NSString stringWithFormat: @"update today_meds set time = %d, ampm = %@  where time <= %d and completed = 0", hour + 2, amPm, hour];
     
     for (Medication *med in meds){
-        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Delay"
-                                                              action:@"Missed"
-                                                               label:med.medName
-                                                               value:[NSNumber numberWithInt:med.actualTime]] build]];
+//        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+//        
+//        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Delay"
+//                                                              action:@"Missed"
+//                                                               label:med.medName
+//                                                               value:[NSNumber numberWithInt:med.actualTime]] build]];
     }
     
     [self.dbManager executeQuery:query];
@@ -199,12 +199,12 @@
     [self.dbManager executeQuery:query];
     
     for (Medication *med in meds){
-        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-        
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Skip"
-                                                              action:@"Missed"
-                                                               label:med.medName
-                                                               value:[NSNumber numberWithInt:med.actualTime]] build]];
+//        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+//        
+//        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Skip"
+//                                                              action:@"Missed"
+//                                                               label:med.medName
+//                                                               value:[NSNumber numberWithInt:med.actualTime]] build]];
     }
     
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -245,12 +245,12 @@
         [self.dbManager executeQuery:query];
     }
     
-    id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Delay"
-                                                          action:@"Missed"
-                                                           label:med.medName
-                                                           value:[NSNumber numberWithInt:med.actualTime]] build]];
+//    id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+//    
+//    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Delay"
+//                                                          action:@"Missed"
+//                                                           label:med.medName
+//                                                           value:[NSNumber numberWithInt:med.actualTime]] build]];
     
     [meds removeObjectAtIndex:indexPath.row];
     
@@ -284,12 +284,12 @@
     [self.medsView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
     [self.medsView endUpdates];
     
-    id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Skip"
-                                                          action:@"Missed"
-                                                           label:med.medName
-                                                           value:[NSNumber numberWithInt:med.actualTime]] build]];
+//    id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+//    
+//    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Skip"
+//                                                          action:@"Missed"
+//                                                           label:med.medName
+//                                                           value:[NSNumber numberWithInt:med.actualTime]] build]];
 
     [self checkCompleted];
     //TO-DO dismiss med from the screen
@@ -305,12 +305,12 @@
     Medication *med = [meds objectAtIndex:indexPath.row];
     [meds removeObjectAtIndex:indexPath.row];
 
-    id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Taken"
-                                                          action:@"Missed"
-                                                           label:med.medName
-                                                           value:[NSNumber numberWithInt:med.actualTime]] build]];
+//    id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+//    
+//    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Taken"
+//                                                          action:@"Missed"
+//                                                           label:med.medName
+//                                                           value:[NSNumber numberWithInt:med.actualTime]] build]];
     
     double delayInSeconds = 0.5;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
