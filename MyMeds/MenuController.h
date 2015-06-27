@@ -2,7 +2,7 @@
 //  MenuController.h
 //  CDSideBar
 //
-//  Created by Christophe Dellac on 9/11/14.
+//  Created by Rahul Shivkumar on 9/11/14.
 //  Copyright (c) 2015 Rahul Shivkumar. All rights reserved.
 //
 

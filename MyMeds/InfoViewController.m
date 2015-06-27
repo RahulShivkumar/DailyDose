@@ -28,17 +28,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    self.screenName = @"Info Screen";
-    [self setupView];
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self setupView];
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
 #pragma  mark View Setup 
 -(void)setupView{
+    for(UIView *subview in [self.view subviews]) {
+        [subview removeFromSuperview];
+    }
+    
+    
     if(med.completed){
         [self.view setBackgroundColor:kBGColor2];
    } else {
@@ -117,7 +130,7 @@
     [endMed.layer setBorderColor:kTextColor.CGColor];
     [self.view addSubview:endMed];
     
-   [self getDates];
+    [self getDates];
     [self setupDaysTaken];
     [self setupTime];
     

@@ -10,6 +10,7 @@
 #import "MenuController.h"
 #import "DBManager.h"
 #import "Constants.h"
+#import "ComplianceAnalyzer.h"
 
 @interface TodayViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MenuControllerDelegate>{
     NSMutableArray *amMeds;
@@ -28,6 +29,8 @@
     
     BOOL future;
     BOOL pushed;
+    
+    ComplianceAnalyzer *compAnalyzer;
 }
 
 @property (nonatomic, strong) UITableView *medsView;

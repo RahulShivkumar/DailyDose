@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B700AB1D1A7ECE280034EF14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B700AB1C1A7ECE280034EF14 /* Main.storyboard */; };
 		B70CC81D1AED8E9B0042F1CE /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = B70CC81C1AED8E9B0042F1CE /* Constants.m */; };
+		B71815AE1B3F47FE0081AFC9 /* ComplianceAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = B71815AD1B3F47FE0081AFC9 /* ComplianceAnalyzer.m */; };
+		B71815B11B3F4A370081AFC9 /* ComplianceCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = B71815B01B3F4A370081AFC9 /* ComplianceCircle.m */; };
 		B7275DB71AC259030016D085 /* RMDateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7275DB61AC259030016D085 /* RMDateSelectionViewController.m */; };
 		B72993631A92B2EC00084DAE /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B72993621A92B2EC00084DAE /* DBManager.m */; };
 		B7322A471A8AD3720057B916 /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7322A461A8AD3720057B916 /* MenuController.m */; };
@@ -18,7 +20,6 @@
 		B75A08EE1AB945D8009D2056 /* DayPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A08ED1AB945D8009D2056 /* DayPicker.m */; };
 		B75A08F11AB9DC79009D2056 /* DayPickerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A08F01AB9DC79009D2056 /* DayPickerButton.m */; };
 		B75FAD681A9FBE140094ACE5 /* MissedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B75FAD671A9FBE140094ACE5 /* MissedViewController.m */; };
-		B76243C11B06E91800FA86AC /* CRGradientNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B76243C01B06E91800FA86AC /* CRGradientNavigationBar.m */; };
 		B764A1941AB9041B0068A119 /* AddMedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B764A1931AB9041B0068A119 /* AddMedViewController.m */; };
 		B772FC4E1AFD60A2001CB237 /* EditMedsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B772FC4D1AFD60A2001CB237 /* EditMedsController.m */; };
 		B78E71191B3E39AE00D4350F /* dailydosedb.sql in Resources */ = {isa = PBXBuildFile; fileRef = B78E71181B3E39AE00D4350F /* dailydosedb.sql */; };
@@ -61,6 +62,10 @@
 		B700AB1C1A7ECE280034EF14 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B70CC81B1AED8E9B0042F1CE /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		B70CC81C1AED8E9B0042F1CE /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		B71815AC1B3F47FE0081AFC9 /* ComplianceAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplianceAnalyzer.h; sourceTree = "<group>"; };
+		B71815AD1B3F47FE0081AFC9 /* ComplianceAnalyzer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplianceAnalyzer.m; sourceTree = "<group>"; };
+		B71815AF1B3F4A370081AFC9 /* ComplianceCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplianceCircle.h; sourceTree = "<group>"; };
+		B71815B01B3F4A370081AFC9 /* ComplianceCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplianceCircle.m; sourceTree = "<group>"; };
 		B7275DB51AC259030016D085 /* RMDateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDateSelectionViewController.h; sourceTree = "<group>"; };
 		B7275DB61AC259030016D085 /* RMDateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDateSelectionViewController.m; sourceTree = "<group>"; };
 		B72993611A92B2EC00084DAE /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
@@ -79,8 +84,6 @@
 		B75A08F01AB9DC79009D2056 /* DayPickerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayPickerButton.m; sourceTree = "<group>"; };
 		B75FAD661A9FBE140094ACE5 /* MissedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissedViewController.h; sourceTree = "<group>"; };
 		B75FAD671A9FBE140094ACE5 /* MissedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissedViewController.m; sourceTree = "<group>"; };
-		B76243BF1B06E91800FA86AC /* CRGradientNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRGradientNavigationBar.h; sourceTree = "<group>"; };
-		B76243C01B06E91800FA86AC /* CRGradientNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CRGradientNavigationBar.m; sourceTree = "<group>"; };
 		B764A1921AB9041B0068A119 /* AddMedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMedViewController.h; sourceTree = "<group>"; };
 		B764A1931AB9041B0068A119 /* AddMedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMedViewController.m; sourceTree = "<group>"; };
 		B772FC4C1AFD60A2001CB237 /* EditMedsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMedsController.h; sourceTree = "<group>"; };
@@ -197,6 +200,17 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
+		B71815B21B3F4E170081AFC9 /* Compliance Rating */ = {
+			isa = PBXGroup;
+			children = (
+				B71815AC1B3F47FE0081AFC9 /* ComplianceAnalyzer.h */,
+				B71815AD1B3F47FE0081AFC9 /* ComplianceAnalyzer.m */,
+				B71815AF1B3F4A370081AFC9 /* ComplianceCircle.h */,
+				B71815B01B3F4A370081AFC9 /* ComplianceCircle.m */,
+			);
+			name = "Compliance Rating";
+			sourceTree = "<group>";
+		};
 		B75518681B002FE600CE23A3 /* Notification Toast */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,15 +222,6 @@
 				B755187E1B00337600CE23A3 /* UIColor+Additions.m */,
 			);
 			name = "Notification Toast";
-			sourceTree = "<group>";
-		};
-		B76243BB1B06DED100FA86AC /* Custom Navigation Bar */ = {
-			isa = PBXGroup;
-			children = (
-				B76243BF1B06E91800FA86AC /* CRGradientNavigationBar.h */,
-				B76243C01B06E91800FA86AC /* CRGradientNavigationBar.m */,
-			);
-			name = "Custom Navigation Bar";
 			sourceTree = "<group>";
 		};
 		B76766E61A794BBA0048AA04 /* Strikethrough Control */ = {
@@ -261,8 +266,8 @@
 			isa = PBXGroup;
 			children = (
 				B78E71181B3E39AE00D4350F /* dailydosedb.sql */,
+				B71815B21B3F4E170081AFC9 /* Compliance Rating */,
 				B78E711F1B3E3CE900D4350F /* Constants */,
-				B76243BB1B06DED100FA86AC /* Custom Navigation Bar */,
 				B75518681B002FE600CE23A3 /* Notification Toast */,
 				B70CC81A1AED8C940042F1CE /* View Controllers */,
 				B70CC8191AED8C470042F1CE /* Day Picker */,
@@ -443,6 +448,7 @@
 				B764A1941AB9041B0068A119 /* AddMedViewController.m in Sources */,
 				B7C27E261A76AA8100DFB416 /* OverviewViewController.m in Sources */,
 				B7A1FD4E1A8298D40003CD52 /* InfoViewController.m in Sources */,
+				B71815B11B3F4A370081AFC9 /* ComplianceCircle.m in Sources */,
 				B7C27E201A76AA8100DFB416 /* AppDelegate.m in Sources */,
 				B772FC4E1AFD60A2001CB237 /* EditMedsController.m in Sources */,
 				B7C27E231A76AA8100DFB416 /* TodayViewController.m in Sources */,
@@ -451,6 +457,7 @@
 				B72993631A92B2EC00084DAE /* DBManager.m in Sources */,
 				B7275DB71AC259030016D085 /* RMDateSelectionViewController.m in Sources */,
 				B75518801B00337600CE23A3 /* AZNotificationView.m in Sources */,
+				B71815AE1B3F47FE0081AFC9 /* ComplianceAnalyzer.m in Sources */,
 				B70CC81D1AED8E9B0042F1CE /* Constants.m in Sources */,
 				B755187F1B00337600CE23A3 /* AZNotification.m in Sources */,
 				B75A08EE1AB945D8009D2056 /* DayPicker.m in Sources */,
@@ -462,7 +469,6 @@
 				B75A08F11AB9DC79009D2056 /* DayPickerButton.m in Sources */,
 				B7C27E511A76E63200DFB416 /* HistoryViewController.m in Sources */,
 				B78E711D1B3E3CAE00D4350F /* SettingsViewController.m in Sources */,
-				B76243C11B06E91800FA86AC /* CRGradientNavigationBar.m in Sources */,
 				B75518811B00337600CE23A3 /* UIColor+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

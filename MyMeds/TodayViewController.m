@@ -11,7 +11,6 @@
 #import "InfoViewController.h"
 #import "Medication.h"
 #import "MissedViewController.h"
-#import "CRGradientNavigationBar.h"
 #import <QuartzCore/QuartzCore.h>
 
 
@@ -145,7 +144,7 @@
 
 
 //Method called to setup amMeds and pmMeds arrays from today_meds table
--(void)setupTodayArrays:(NSDate *)date{
+- (void)setupTodayArrays:(NSDate *)date {
     header = [[NSMutableArray alloc]init];
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
     
@@ -275,9 +274,8 @@
         [subview removeFromSuperview];
     }
     
-    UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 375, 375)];
-    [bgView setImage:[UIImage imageNamed:@"testimage2"]];
-    [self.view addSubview:bgView];
+    compAnalyzer = [[ComplianceAnalyzer alloc] initWithFrame:CGRectMake(0, 0, 375, 375)];
+    [self.view addSubview:compAnalyzer];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.view setFrame:CGRectMake(0, 0, [Constants window_width], [Constants window_height])];
@@ -502,18 +500,19 @@
         [self.medsView setFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
         //[self.medsView reloadData];
     }];
-    
     [self.medsView setScrollEnabled:YES];
+    
 }
 
 
 - (void)moveTableDown{
+    [compAnalyzer clearViews];
     [UIView animateWithDuration:0.7 animations:^(){
         //297 for i5
         [self.medsView setFrame:CGRectMake(0, 350, [Constants window_width], self.medsView.frame.size.height)];
         //[self.medsView reloadData];
     }];
-    
+    [compAnalyzer animateViews];
     [self.medsView setScrollEnabled:NO];
     // [self.medsView setBackgroundColor:[UIColor whiteColor]];
 }

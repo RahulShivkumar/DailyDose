@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constants.h"
 
 @interface SettingsViewController : UIViewController
+
+- (void)setupViews;
 
 @end

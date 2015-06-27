@@ -16,14 +16,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupViews];
     // Do any additional setup after loading the view.
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
+- (void)setupViews {
+    [Constants setupNavbar:self];
+    [self.navigationItem setTitle:@"Settings"];
+}
 /*
 #pragma mark - Navigation
 

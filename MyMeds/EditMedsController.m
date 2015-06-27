@@ -234,9 +234,11 @@
     for (int i = 1; i < count ; i++){
         [self createButton];
         UIButton *bottomBut = [timePickers objectAtIndex:[timePickers count] - 1];
-        [bottomBut setTitle:[self.times objectAtIndex:i] forState:UIControlStateNormal];
+        [bottomBut setTitle:[self.times objectAtIndex:i]
+                   forState:UIControlStateNormal];
         [self createTime:[self.times objectAtIndex:i]];
     }
+    [self createButton];
 }
 - (void)createTime:(NSString *)dateString{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -256,6 +258,7 @@
     
 }
 - (void)createButton{
+    
     UIButton *bottomBut = [timePickers objectAtIndex:[timePickers count] - 1];
     UIButton *newButton = [[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(bottomBut.frame) + 2, [Constants window_width], [Constants window_height]/10)];
     [newButton setBackgroundColor:[UIColor whiteColor]];
