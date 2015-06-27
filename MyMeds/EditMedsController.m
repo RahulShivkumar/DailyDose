@@ -14,8 +14,8 @@
 @end
 
 #define uid @"uid"
-#define bgColor [UIColor colorWithRed:125/255.0 green:0/255.0 blue:10/255.0 alpha:1.0]
-#define bgColor2 [UIColor colorWithRed:180/255.0 green:42/255.0 blue:50/255.0 alpha:1.0]
+#define bgColor [UIColor colorWithRed:229/255.0 green:98/255.0 blue:92/255.0 alpha:1.0]
+#define bgColor2 [UIColor colorWithRed:229/255.0 green:98/255.0 blue:92/255.0 alpha:1.0]
 
 @implementation EditMedsController
 
@@ -135,7 +135,12 @@
     [days setTextColor:[UIColor whiteColor]];
     [self.scrollView  addSubview:days];
     
-    dayPicker = [[DayPicker alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.45 + 20, [Constants window_width], [Constants window_height]/10) andBG:[UIColor clearColor] andTc:[UIColor whiteColor] andHtc:[UIColor whiteColor] andHl:[UIColor whiteColor] andTextviews:[NSMutableArray arrayWithObjects:medName, chemName, dosageNum, nil]];
+    dayPicker = [[DayPicker alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.45 + 20, [Constants window_width], [Constants window_height]/10)
+                                           andBG:bgColor
+                                           andTc:[UIColor whiteColor]
+                                          andHtc:bgColor
+                                           andHl:[UIColor whiteColor]
+                                    andTextviews:[NSMutableArray arrayWithObjects:medName, chemName, dosageNum, nil]];
     [self.scrollView  addSubview:dayPicker];
     
     

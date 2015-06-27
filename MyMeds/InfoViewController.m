@@ -8,15 +8,13 @@
 
 #import "InfoViewController.h"
 
-@interface InfoViewController()
--(void)setupView;
 
-@end
-
-#define bgColor [UIColor colorWithRed:229/255.0 green:98/255.0 blue:92/255.0 alpha:1.0]
-#define bgColor2 [UIColor colorWithRed:229/255.0 green:98/255.0 blue:92/255.0 alpha:1.0]
+#define kBGColor [UIColor colorWithRed:229/255.0 green:98/255.0 blue:92/255.0 alpha:1.0]
+#define kBGColor2 [UIColor colorWithRed:249/255.0 green:191/255.0 blue:118/255.0 alpha:1.0]
+#define kTextColor [UIColor whiteColor]
 
 @implementation InfoViewController
+
 
 -(id)initWithMed:(Medication*)medication{
     if (self = [super init]) {
@@ -25,6 +23,7 @@
     }
     return self;
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,24 +39,23 @@
 
 #pragma  mark View Setup 
 -(void)setupView{
-    //[self.view setBackgroundColor:bgColor];
-    
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = self.view.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[bgColor CGColor], (id)[bgColor2 CGColor], nil];
-    [self.view.layer insertSublayer:gradient atIndex:0];
+    if(med.completed){
+        [self.view setBackgroundColor:kBGColor2];
+   } else {
+       [self.view setBackgroundColor:kBGColor];
+   }
     
     close = [[UIButton alloc]initWithFrame:CGRectMake(0, 15, 60, 40)];
     [close.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
     [close setTitle:@"Close" forState:UIControlStateNormal];
-    [close.titleLabel setTextColor:[UIColor whiteColor]];
+    [close.titleLabel setTextColor:kTextColor];
     [self.view addSubview:close];
     [close addTarget:self action:@selector(closeWindow:) forControlEvents:UIControlEventTouchUpInside];
     
     edit = [[UIButton alloc]initWithFrame:CGRectMake([Constants window_width] - 60, 15, 60, 40)];
     [edit.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
     [edit setTitle:@"Edit" forState:UIControlStateNormal];
-    [edit.titleLabel setTextColor:[UIColor whiteColor]];
+    [edit.titleLabel setTextColor:kTextColor];
     [self.view addSubview:edit];
     [edit addTarget:self action:@selector(editMeds:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -65,60 +63,58 @@
     [medInfo setTextAlignment:NSTextAlignmentCenter];
     [medInfo setFont:[UIFont fontWithName:@"HelveticaNeue" size:18]];
     [medInfo setText:@"Medication Info"];
-    [medInfo setTextColor:[UIColor whiteColor]];
+    [medInfo setTextColor:kTextColor];
     [self.view addSubview:medInfo];
 //
     medLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, [self window_height]* 0.05, [self window_width] - 10, [self window_height]*0.2)];
     [medLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:42]];
-    [medLabel setTextColor:[UIColor whiteColor]];
+    [medLabel setTextColor:kTextColor];
     [medLabel setText:med.medName];
     [self.view addSubview:medLabel];
     
     chemLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, [self window_height]* 0.155, [self window_width] - 10, [self window_height]*0.145)];
-    [chemLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:22]];
-    [chemLabel setTextColor:[UIColor whiteColor]];
+    [chemLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:22]];
+    [chemLabel setTextColor:kTextColor];
     [chemLabel setText:[@"- " stringByAppendingString:med.chemName]];
     [self.view addSubview:chemLabel];
     
     //Caculate medlabel's text size and use that
     CGSize textSize = [medLabel.text sizeWithAttributes:@{NSFontAttributeName:[medLabel font]}];
     description = [[UILabel alloc]initWithFrame:CGRectMake(textSize.width + 30, [self window_height]* 0.09, [self window_width] - 10, [self window_height]*0.145)];
-    [description setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:22]];
-    [description setTextColor:[UIColor whiteColor]];
+    [description setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:22]];
+    [description setTextColor:kTextColor];
     [description setText:med.dosage];
     [self.view addSubview:description];
     
     startDate = [[UILabel alloc]initWithFrame:CGRectMake(30, [self window_height]* 0.210, [self window_width] - 10, [self window_height]*0.145)];
-    [startDate setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:22]];
-    [startDate setTextColor:[UIColor whiteColor]];
+    [startDate setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:22]];
+    [startDate setTextColor:kTextColor];
     [self.view addSubview:startDate];
     
     endDate = [[UILabel alloc]initWithFrame:CGRectMake(30, [self window_height]* 0.265, [self window_width] - 10, [self window_height]*0.145)];
-    [endDate setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:22]];
-    [endDate setTextColor:[UIColor whiteColor]];
+    [endDate setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:22]];
+    [endDate setTextColor:kTextColor];
     [self.view addSubview:endDate];
     
     timeTaken = [[UILabel alloc] initWithFrame:CGRectMake(10, [self window_height]* 0.38, [self window_width]/2.0-10, [self window_height]*0.2)];
     [timeTaken setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:25]];
-    [timeTaken setTextColor:[UIColor whiteColor]];
+    [timeTaken setTextColor:kTextColor];
     [timeTaken setText:@"Time Taken:"];
     [self.view addSubview:timeTaken];
     
     
     underLine1 = [[UIView alloc] initWithFrame:CGRectMake(10, [self window_height]* 0.5, [self window_width]-20, 1)];
-    [underLine1 setBackgroundColor:[UIColor whiteColor]];
+    [underLine1 setBackgroundColor:kTextColor];
     [self.view addSubview:underLine1];
     
 
-    
-    
     endMed =[[UIButton alloc] initWithFrame:CGRectMake(30, [self window_height] * 0.95, [self window_width] - 60, 30)];
     [endMed setTitle:@"End Course" forState:UIControlStateNormal];
     [endMed.layer setBorderWidth:1.0];
     [endMed addTarget:self
                action:@selector(endCourse:)
      forControlEvents:UIControlEventTouchUpInside];
-    [endMed.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [endMed.layer setBorderColor:kTextColor.CGColor];
     [self.view addSubview:endMed];
     
    [self getDates];
@@ -153,8 +149,8 @@
 -(void)setupDaysTaken{
     daySchedule = [[NSMutableArray alloc] init];
     UILabel *daysTaken = [[UILabel alloc] initWithFrame:CGRectMake(30, [self window_height]* 0.320, [self window_width] *0.6, [self window_height]*0.145)];
-    [daysTaken setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:22]];
-    [daysTaken setTextColor:[UIColor whiteColor]];
+    [daysTaken setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:22]];
+    [daysTaken setTextColor:kTextColor];
     [daysTaken setText:@"- Days Taken:"];
     [self.view addSubview:daysTaken];
     
@@ -164,9 +160,9 @@
     for (int i = 0; i < 7; i ++){
         UILabel *day = [[UILabel alloc] initWithFrame:CGRectMake(158 + i * 0.072 * [self window_width] , [self window_height]* 0.375, [self window_width] * 0.072 , [self window_width] * 0.072)];
         [day setText:[days objectAtIndex:i]];
-        [day setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:18]];
+        [day setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
         [day setTextAlignment:NSTextAlignmentCenter];
-        [day setTextColor:[UIColor whiteColor]];
+        [day setTextColor:kTextColor];
         
         NSString *tempDay = [[temp objectAtIndex:0] objectAtIndex:i];
         int tempValue = [tempDay intValue];
@@ -174,7 +170,7 @@
         if(tempValue == 1){
             [day.layer setBorderWidth:1.0];
             [day.layer setCornerRadius:day.frame.size.width/2.0];
-            [day.layer setBorderColor:[UIColor whiteColor].CGColor];
+            [day.layer setBorderColor:kTextColor.CGColor];
         }
         [self.view addSubview:day];
     }
@@ -205,7 +201,7 @@
         
         time = [[UILabel alloc]initWithFrame:CGRectMake([self window_width]/2.0, [self window_height]* 0.38 + 0.05 * i * [self window_height], [self window_width]/2.0-10, [self window_height]*0.2)];
         [time setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:25]];
-        [time setTextColor:[UIColor whiteColor]];
+        [time setTextColor:kTextColor];
         [time setText:[timeString stringByAppendingString:amPm]];
         [time setTextAlignment:NSTextAlignmentRight];
         [self.view addSubview:time];

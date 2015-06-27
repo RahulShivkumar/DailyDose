@@ -16,6 +16,7 @@
     UIButton *close;
     UIButton *edit;
     UIButton *endMed;
+    
     UILabel *medInfo;
     UILabel *medLabel;
     UILabel *chemLabel;
@@ -31,13 +32,17 @@
     NSMutableArray *daySchedule;
     NSMutableArray *times;
 }
+
 @property (nonatomic, strong) DBManager *dbManager;
 
--(void)setupData;
--(IBAction)closeWindow:(id)sender;
--(IBAction)editMeds:(id)sender;
--(CGFloat)window_height;
--(CGFloat)window_width;
+- (void)setupView;
+- (void)setupData;
+
+- (IBAction)closeWindow:(id)sender;
+- (IBAction)editMeds:(id)sender;
+
+- (CGFloat)window_height;
+- (CGFloat)window_width;
 
 -(id)initWithMed:(Medication*)medication;
 

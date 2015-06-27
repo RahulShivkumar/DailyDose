@@ -71,7 +71,7 @@
     self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
     meds = [[NSMutableArray alloc]init];
     
-    NSString *query = [NSString stringWithFormat: @"select distinct  med_name, chem_name, dosage, type from meds where completed = %d order by med_name", completed];
+    NSString *query = [NSString stringWithFormat: @"select distinct  med_name, chem_name, dosage, completed, type from meds where completed = %d order by med_name", completed];
     
     NSArray *temp = [self.dbManager loadDataFromDB:query];
     meds = [self setDataInArray:temp];
@@ -90,10 +90,19 @@
         NSString *subName = [chemName stringByAppendingString:@" - "];
         subName = [subName stringByAppendingString:dosage];
         
+        NSString *completed = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"completed"]];
+        int intCompleted = [completed intValue];
+        
         Medication *med = [[Medication alloc]initWithName:medName andChemName:chemName];
         med.subName = subName;
         med.dosage = dosage;
-
+        
+        if (intCompleted == 1){
+            [med setCompleted:YES];
+        } else {
+            [med setCompleted:NO];
+        }
+        
         [tempMutable addObject:med];
     }
     return tempMutable;

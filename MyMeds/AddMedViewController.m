@@ -130,7 +130,12 @@
     [days setTextColor:[UIColor whiteColor]];
     [self.scrollView  addSubview:days];
     
-    dayPicker = [[DayPicker alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.45 + 20, [Constants window_width], [Constants window_height]/10) andBG:[UIColor clearColor] andTc:[UIColor whiteColor] andHtc:[UIColor whiteColor] andHl:bgColor andTextviews:[NSMutableArray arrayWithObjects:medName, chemName, dosageNum, nil]];
+    dayPicker = [[DayPicker alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.45 + 20, [Constants window_width], [Constants window_height]/10)
+                                           andBG:bgColor
+                                           andTc:[UIColor whiteColor]
+                                          andHtc:bgColor
+                                           andHl:[UIColor whiteColor]
+                                    andTextviews:[NSMutableArray arrayWithObjects:medName, chemName, dosageNum, nil]];
     [self.scrollView  addSubview:dayPicker];
     
     time = [[UILabel alloc]initWithFrame:CGRectMake(7, [Constants window_height] * 0.60, 150, 20)];
