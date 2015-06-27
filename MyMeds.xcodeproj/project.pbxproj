@@ -21,9 +21,10 @@
 		B76243C11B06E91800FA86AC /* CRGradientNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B76243C01B06E91800FA86AC /* CRGradientNavigationBar.m */; };
 		B764A1941AB9041B0068A119 /* AddMedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B764A1931AB9041B0068A119 /* AddMedViewController.m */; };
 		B772FC4E1AFD60A2001CB237 /* EditMedsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B772FC4D1AFD60A2001CB237 /* EditMedsController.m */; };
-		B78D8C961B07EDCB00FA62F7 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = B78D8C951B07EDCB00FA62F7 /* Parser.m */; };
-		B78DF5471B1060B500D43ECC /* dailydosedb.sql in Resources */ = {isa = PBXBuildFile; fileRef = B78DF5461B1060B500D43ECC /* dailydosedb.sql */; };
-		B78DF5481B1060B500D43ECC /* dailydosedb.sql in Resources */ = {isa = PBXBuildFile; fileRef = B78DF5461B1060B500D43ECC /* dailydosedb.sql */; };
+		B78E71191B3E39AE00D4350F /* dailydosedb.sql in Resources */ = {isa = PBXBuildFile; fileRef = B78E71181B3E39AE00D4350F /* dailydosedb.sql */; };
+		B78E711A1B3E39AE00D4350F /* dailydosedb.sql in Resources */ = {isa = PBXBuildFile; fileRef = B78E71181B3E39AE00D4350F /* dailydosedb.sql */; };
+		B78E711D1B3E3CAE00D4350F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B78E711C1B3E3CAE00D4350F /* SettingsViewController.m */; };
+		B78E711E1B3E3CAE00D4350F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B78E711C1B3E3CAE00D4350F /* SettingsViewController.m */; };
 		B7988D601A7B350A0061DF8C /* MedsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7988D5F1A7B350A0061DF8C /* MedsCell.m */; };
 		B7988D641A7B38C50061DF8C /* StrikeThroughLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7988D631A7B38C50061DF8C /* StrikeThroughLabel.m */; };
 		B7A1FD4E1A8298D40003CD52 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A1FD4D1A8298D40003CD52 /* InfoViewController.m */; };
@@ -39,19 +40,10 @@
 		B7C27E491A76AB2600DFB416 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B7C27E471A76AB2600DFB416 /* libsqlite3.0.dylib */; };
 		B7C27E4A1A76AB2600DFB416 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B7C27E481A76AB2600DFB416 /* libsqlite3.dylib */; };
 		B7C27E511A76E63200DFB416 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C27E501A76E63200DFB416 /* HistoryViewController.m */; };
-		B7C27E541A76E64100DFB416 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C27E531A76E64100DFB416 /* SettingsViewController.m */; };
 		B7C27E571A76E65A00DFB416 /* AnalyzeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C27E561A76E65A00DFB416 /* AnalyzeViewController.m */; };
 		B7FC56FD1B0E4BAC00A1828A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FC56FC1B0E4BAC00A1828A /* CoreData.framework */; };
 		B7FC56FE1B0E4BBB00A1828A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B784391B1B0C6A6500507D0A /* SystemConfiguration.framework */; };
 		B7FC57001B0E4BC400A1828A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FC56FF1B0E4BC400A1828A /* libz.dylib */; };
-		B7FC572D1B0E66A000A1828A /* ParsimmonDecisionTree.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FC571E1B0E66A000A1828A /* ParsimmonDecisionTree.m */; };
-		B7FC572E1B0E66A000A1828A /* ParsimmonLemmatizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FC57201B0E66A000A1828A /* ParsimmonLemmatizer.m */; };
-		B7FC572F1B0E66A000A1828A /* ParsimmonNaiveBayesClassifier.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FC57221B0E66A000A1828A /* ParsimmonNaiveBayesClassifier.m */; };
-		B7FC57301B0E66A000A1828A /* ParsimmonNode.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FC57241B0E66A000A1828A /* ParsimmonNode.m */; };
-		B7FC57311B0E66A000A1828A /* ParsimmonSeed.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FC57261B0E66A000A1828A /* ParsimmonSeed.m */; };
-		B7FC57321B0E66A000A1828A /* ParsimmonTaggedToken.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FC57281B0E66A000A1828A /* ParsimmonTaggedToken.m */; };
-		B7FC57331B0E66A000A1828A /* ParsimmonTagger.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FC572A1B0E66A000A1828A /* ParsimmonTagger.m */; };
-		B7FC57341B0E66A000A1828A /* ParsimmonTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FC572C1B0E66A000A1828A /* ParsimmonTokenizer.m */; };
 		B7FC574E1B0E67C000A1828A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B78439171B0C6A4E00507D0A /* CoreGraphics.framework */; };
 /* End PBXBuildFile section */
 
@@ -96,9 +88,9 @@
 		B78439171B0C6A4E00507D0A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B78439191B0C6A5700507D0A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B784391B1B0C6A6500507D0A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		B78D8C941B07EDCB00FA62F7 /* Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Parser.h; path = ../Parser.h; sourceTree = "<group>"; };
-		B78D8C951B07EDCB00FA62F7 /* Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Parser.m; path = ../Parser.m; sourceTree = "<group>"; };
-		B78DF5461B1060B500D43ECC /* dailydosedb.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = dailydosedb.sql; sourceTree = "<group>"; };
+		B78E71181B3E39AE00D4350F /* dailydosedb.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = dailydosedb.sql; sourceTree = "<group>"; };
+		B78E711B1B3E3CAE00D4350F /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		B78E711C1B3E3CAE00D4350F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B7988D5E1A7B350A0061DF8C /* MedsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MedsCell.h; sourceTree = "<group>"; };
 		B7988D5F1A7B350A0061DF8C /* MedsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MedsCell.m; sourceTree = "<group>"; };
 		B7988D621A7B38C50061DF8C /* StrikeThroughLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrikeThroughLabel.h; sourceTree = "<group>"; };
@@ -129,29 +121,10 @@
 		B7C27E481A76AB2600DFB416 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		B7C27E4F1A76E63200DFB416 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		B7C27E501A76E63200DFB416 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
-		B7C27E521A76E64100DFB416 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		B7C27E531A76E64100DFB416 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		B7C27E551A76E65A00DFB416 /* AnalyzeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyzeViewController.h; sourceTree = "<group>"; };
 		B7C27E561A76E65A00DFB416 /* AnalyzeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyzeViewController.m; sourceTree = "<group>"; };
 		B7FC56FC1B0E4BAC00A1828A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B7FC56FF1B0E4BC400A1828A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		B7FC571C1B0E66A000A1828A /* Parsimmon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parsimmon.h; sourceTree = "<group>"; };
-		B7FC571D1B0E66A000A1828A /* ParsimmonDecisionTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsimmonDecisionTree.h; sourceTree = "<group>"; };
-		B7FC571E1B0E66A000A1828A /* ParsimmonDecisionTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsimmonDecisionTree.m; sourceTree = "<group>"; };
-		B7FC571F1B0E66A000A1828A /* ParsimmonLemmatizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsimmonLemmatizer.h; sourceTree = "<group>"; };
-		B7FC57201B0E66A000A1828A /* ParsimmonLemmatizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsimmonLemmatizer.m; sourceTree = "<group>"; };
-		B7FC57211B0E66A000A1828A /* ParsimmonNaiveBayesClassifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsimmonNaiveBayesClassifier.h; sourceTree = "<group>"; };
-		B7FC57221B0E66A000A1828A /* ParsimmonNaiveBayesClassifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsimmonNaiveBayesClassifier.m; sourceTree = "<group>"; };
-		B7FC57231B0E66A000A1828A /* ParsimmonNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsimmonNode.h; sourceTree = "<group>"; };
-		B7FC57241B0E66A000A1828A /* ParsimmonNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsimmonNode.m; sourceTree = "<group>"; };
-		B7FC57251B0E66A000A1828A /* ParsimmonSeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsimmonSeed.h; sourceTree = "<group>"; };
-		B7FC57261B0E66A000A1828A /* ParsimmonSeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsimmonSeed.m; sourceTree = "<group>"; };
-		B7FC57271B0E66A000A1828A /* ParsimmonTaggedToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsimmonTaggedToken.h; sourceTree = "<group>"; };
-		B7FC57281B0E66A000A1828A /* ParsimmonTaggedToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsimmonTaggedToken.m; sourceTree = "<group>"; };
-		B7FC57291B0E66A000A1828A /* ParsimmonTagger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsimmonTagger.h; sourceTree = "<group>"; };
-		B7FC572A1B0E66A000A1828A /* ParsimmonTagger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsimmonTagger.m; sourceTree = "<group>"; };
-		B7FC572B1B0E66A000A1828A /* ParsimmonTokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParsimmonTokenizer.h; sourceTree = "<group>"; };
-		B7FC572C1B0E66A000A1828A /* ParsimmonTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParsimmonTokenizer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,14 +175,12 @@
 		B70CC81A1AED8C940042F1CE /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				B78E711B1B3E3CAE00D4350F /* SettingsViewController.h */,
+				B78E711C1B3E3CAE00D4350F /* SettingsViewController.m */,
 				B7C27E551A76E65A00DFB416 /* AnalyzeViewController.h */,
 				B7C27E561A76E65A00DFB416 /* AnalyzeViewController.m */,
-				B7C27E521A76E64100DFB416 /* SettingsViewController.h */,
-				B7C27E531A76E64100DFB416 /* SettingsViewController.m */,
 				B764A1921AB9041B0068A119 /* AddMedViewController.h */,
 				B764A1931AB9041B0068A119 /* AddMedViewController.m */,
-				B70CC81B1AED8E9B0042F1CE /* Constants.h */,
-				B70CC81C1AED8E9B0042F1CE /* Constants.m */,
 				B7C27E4F1A76E63200DFB416 /* HistoryViewController.h */,
 				B7C27E501A76E63200DFB416 /* HistoryViewController.m */,
 				B7C27E241A76AA8100DFB416 /* OverviewViewController.h */,
@@ -259,30 +230,13 @@
 			name = "Strikethrough Control";
 			sourceTree = "<group>";
 		};
-		B78D8C971B07EDDD00FA62F7 /* Parser */ = {
+		B78E711F1B3E3CE900D4350F /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				B7FC571C1B0E66A000A1828A /* Parsimmon.h */,
-				B7FC571D1B0E66A000A1828A /* ParsimmonDecisionTree.h */,
-				B7FC571E1B0E66A000A1828A /* ParsimmonDecisionTree.m */,
-				B7FC571F1B0E66A000A1828A /* ParsimmonLemmatizer.h */,
-				B7FC57201B0E66A000A1828A /* ParsimmonLemmatizer.m */,
-				B7FC57211B0E66A000A1828A /* ParsimmonNaiveBayesClassifier.h */,
-				B7FC57221B0E66A000A1828A /* ParsimmonNaiveBayesClassifier.m */,
-				B7FC57231B0E66A000A1828A /* ParsimmonNode.h */,
-				B7FC57241B0E66A000A1828A /* ParsimmonNode.m */,
-				B7FC57251B0E66A000A1828A /* ParsimmonSeed.h */,
-				B7FC57261B0E66A000A1828A /* ParsimmonSeed.m */,
-				B7FC57271B0E66A000A1828A /* ParsimmonTaggedToken.h */,
-				B7FC57281B0E66A000A1828A /* ParsimmonTaggedToken.m */,
-				B7FC57291B0E66A000A1828A /* ParsimmonTagger.h */,
-				B7FC572A1B0E66A000A1828A /* ParsimmonTagger.m */,
-				B7FC572B1B0E66A000A1828A /* ParsimmonTokenizer.h */,
-				B7FC572C1B0E66A000A1828A /* ParsimmonTokenizer.m */,
-				B78D8C941B07EDCB00FA62F7 /* Parser.h */,
-				B78D8C951B07EDCB00FA62F7 /* Parser.m */,
+				B70CC81B1AED8E9B0042F1CE /* Constants.h */,
+				B70CC81C1AED8E9B0042F1CE /* Constants.m */,
 			);
-			name = Parser;
+			name = Constants;
 			sourceTree = "<group>";
 		};
 		B7C27E0E1A76AA8100DFB416 = {
@@ -306,8 +260,8 @@
 		B7C27E191A76AA8100DFB416 /* MyMeds */ = {
 			isa = PBXGroup;
 			children = (
-				B78DF5461B1060B500D43ECC /* dailydosedb.sql */,
-				B78D8C971B07EDDD00FA62F7 /* Parser */,
+				B78E71181B3E39AE00D4350F /* dailydosedb.sql */,
+				B78E711F1B3E3CE900D4350F /* Constants */,
 				B76243BB1B06DED100FA86AC /* Custom Navigation Bar */,
 				B75518681B002FE600CE23A3 /* Notification Toast */,
 				B70CC81A1AED8C940042F1CE /* View Controllers */,
@@ -466,7 +420,7 @@
 			files = (
 				B700AB1D1A7ECE280034EF14 /* Main.storyboard in Resources */,
 				B7C27E2B1A76AA8100DFB416 /* Images.xcassets in Resources */,
-				B78DF5471B1060B500D43ECC /* dailydosedb.sql in Resources */,
+				B78E71191B3E39AE00D4350F /* dailydosedb.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,7 +428,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B78DF5481B1060B500D43ECC /* dailydosedb.sql in Resources */,
+				B78E711A1B3E39AE00D4350F /* dailydosedb.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,17 +439,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7FC572D1B0E66A000A1828A /* ParsimmonDecisionTree.m in Sources */,
 				B7988D601A7B350A0061DF8C /* MedsCell.m in Sources */,
 				B764A1941AB9041B0068A119 /* AddMedViewController.m in Sources */,
 				B7C27E261A76AA8100DFB416 /* OverviewViewController.m in Sources */,
 				B7A1FD4E1A8298D40003CD52 /* InfoViewController.m in Sources */,
 				B7C27E201A76AA8100DFB416 /* AppDelegate.m in Sources */,
-				B7FC57341B0E66A000A1828A /* ParsimmonTokenizer.m in Sources */,
 				B772FC4E1AFD60A2001CB237 /* EditMedsController.m in Sources */,
 				B7C27E231A76AA8100DFB416 /* TodayViewController.m in Sources */,
 				B7C27E1D1A76AA8100DFB416 /* main.m in Sources */,
-				B7FC57311B0E66A000A1828A /* ParsimmonSeed.m in Sources */,
 				B7322A471A8AD3720057B916 /* MenuController.m in Sources */,
 				B72993631A92B2EC00084DAE /* DBManager.m in Sources */,
 				B7275DB71AC259030016D085 /* RMDateSelectionViewController.m in Sources */,
@@ -504,20 +455,14 @@
 				B755187F1B00337600CE23A3 /* AZNotification.m in Sources */,
 				B75A08EE1AB945D8009D2056 /* DayPicker.m in Sources */,
 				B7BF61AF1A8B25EF00F08413 /* CalendarButton.m in Sources */,
-				B78D8C961B07EDCB00FA62F7 /* Parser.m in Sources */,
 				B7AAC02D1A834A1300BC6B2C /* Medication.m in Sources */,
-				B7FC57321B0E66A000A1828A /* ParsimmonTaggedToken.m in Sources */,
 				B7988D641A7B38C50061DF8C /* StrikeThroughLabel.m in Sources */,
-				B7FC572E1B0E66A000A1828A /* ParsimmonLemmatizer.m in Sources */,
 				B7C27E571A76E65A00DFB416 /* AnalyzeViewController.m in Sources */,
 				B75FAD681A9FBE140094ACE5 /* MissedViewController.m in Sources */,
-				B7FC57331B0E66A000A1828A /* ParsimmonTagger.m in Sources */,
 				B75A08F11AB9DC79009D2056 /* DayPickerButton.m in Sources */,
 				B7C27E511A76E63200DFB416 /* HistoryViewController.m in Sources */,
-				B7C27E541A76E64100DFB416 /* SettingsViewController.m in Sources */,
-				B7FC57301B0E66A000A1828A /* ParsimmonNode.m in Sources */,
+				B78E711D1B3E3CAE00D4350F /* SettingsViewController.m in Sources */,
 				B76243C11B06E91800FA86AC /* CRGradientNavigationBar.m in Sources */,
-				B7FC572F1B0E66A000A1828A /* ParsimmonNaiveBayesClassifier.m in Sources */,
 				B75518811B00337600CE23A3 /* UIColor+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7C27E3A1A76AA8100DFB416 /* MyMedsTests.m in Sources */,
+				B78E711E1B3E3CAE00D4350F /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
