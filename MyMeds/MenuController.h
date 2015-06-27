@@ -3,7 +3,7 @@
 //  CDSideBar
 //
 //  Created by Christophe Dellac on 9/11/14.
-//  Copyright (c) 2014 Christophe Dellac. All rights reserved.
+//  Copyright (c) 2015 Rahul Shivkumar. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

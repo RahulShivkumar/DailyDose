@@ -2,8 +2,8 @@
 //  MenuController.m
 //  CDSideBar
 //
-//  Created by Christophe Dellac on 9/11/14.
-//  Copyright (c) 2014 Christophe Dellac. All rights reserved.
+//  Created by Rahul Shivkumar on 9/11/14.
+//  Copyright (c) 2015 Rahul Shivkumar. All rights reserved.
 //
 
 #import "MenuController.h"
@@ -26,6 +26,7 @@
     _menuColor = [UIColor whiteColor];
    _buttonList = [[NSMutableArray alloc] initWithCapacity:7];
     _vc = viewController;
+    
     int index = 0;
     while (index < 7)
     {

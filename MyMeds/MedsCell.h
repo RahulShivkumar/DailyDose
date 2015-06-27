@@ -3,7 +3,7 @@
 //  MyMeds
 //
 //  Created by Rahul Shivkumar on 1/29/15.
-//  Copyright (c) 2015 postpone. All rights reserved.
+//  Copyright (c) 2015 Rahul Shivkumar. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

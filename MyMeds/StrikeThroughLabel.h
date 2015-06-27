@@ -15,4 +15,7 @@
 
 @property (nonatomic) bool strikethrough;
 
+- (void)setText:(NSString *)text;
+- (void)resizeStrikeThrough;
+
 @end

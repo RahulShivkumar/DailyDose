@@ -15,8 +15,8 @@
 @end
 
 #define uid @"uid"
-#define bgColor [UIColor colorWithRed:180/255.0 green:42/255.0 blue:50/255.0 alpha:1.0]
-#define bgColor2 [UIColor colorWithRed:255/255.0 green:184/255.0 blue:140/255.0 alpha:1.0]
+#define bgColor [UIColor colorWithRed:142/255.0 green:178/255.0 blue:197/255.0 alpha:1.0]
+#define bgColor2 [UIColor colorWithRed:142/255.0 green:178/255.0 blue:197/255.0 alpha:1.0]
 
 @implementation AddMedViewController
 
@@ -266,6 +266,7 @@
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit) //Need to pass all this so we can get the day right later
                                                fromDate:[NSDate date]];
+    
     [components setCalendar:calendar]; //even though you got the components from a calendar, you have to manually set the calendar anyways, I don't know why but it doesn't work otherwise
     NSInteger hour = components.hour;
     NSInteger minute = components.minute;

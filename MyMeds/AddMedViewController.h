@@ -38,6 +38,7 @@
     
     int selectedTag;
 }
+
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) DBManager *dbManager;
 

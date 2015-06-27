@@ -27,11 +27,9 @@
 }
 
 - (void)setFakeImage{
-    [self.navigationController.navigationBar setTranslucent:NO];
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-    [self.navigationController.navigationBar setBarTintColor:NavBarColor];
+    [Constants setupNavbar:self];
     [self.navigationItem setTitle:@"Analyze"];
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+
     
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 375, [Constants window_height] - 89)];
     [scrollView setScrollEnabled:YES];

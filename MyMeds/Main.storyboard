@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3G0-Yh-xg9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3G0-Yh-xg9">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Item-->
@@ -135,32 +135,23 @@
                                 <state key="normal" title="Input">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="input:" destination="PRP-Ru-ow1" eventType="touchUpInside" id="ty6-WO-4pv"/>
-                                    <action selector="parse:" destination="PRP-Ru-ow1" eventType="touchUpInside" id="9OF-KL-NIk"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35W-2Y-jsI">
                                 <rect key="frame" x="187" y="430" width="44" height="30"/>
                                 <state key="normal" title="Delete">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="delete:" destination="PRP-Ru-ow1" eventType="touchDown" id="S6j-eo-UDB"/>
-                                    <action selector="input:" destination="PRP-Ru-ow1" eventType="touchUpInside" id="sm4-rk-V0N"/>
-                                    <action selector="parse:" destination="PRP-Ru-ow1" eventType="touchUpInside" id="E29-Aw-tkO"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gj1-Ft-6sJ">
                                 <rect key="frame" x="67" y="183" width="83" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heq-lG-llv">
                                 <rect key="frame" x="226" y="183" width="70" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="one/two" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sjx-eQ-XT9">
@@ -186,7 +177,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZkM-Mi-KKS">
                                 <rect key="frame" x="168" y="230" width="169" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yxX-hb-RhG">
@@ -194,23 +185,17 @@
                                 <state key="normal" title="Correct">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="correct:" destination="PRP-Ru-ow1" eventType="touchUpInside" id="jBa-GG-hf1"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pyq-VA-RBn">
                                 <rect key="frame" x="213" y="127" width="45" height="30"/>
                                 <state key="normal" title="Wrong">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="wrong:" destination="PRP-Ru-ow1" eventType="touchUpInside" id="keI-bs-Ozd"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sjr-64-z7x">
                                 <rect key="frame" x="141" y="131" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCX-7U-qtU">
@@ -218,9 +203,6 @@
                                 <state key="normal" title="Parse">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="parse:" destination="PRP-Ru-ow1" eventType="touchUpInside" id="Vi9-9Y-1Xn"/>
-                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Specific/Non Specific" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FaQ-dk-vlf">
                                 <rect key="frame" x="106" y="395" width="97" height="30"/>
@@ -230,13 +212,13 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfh-Am-jjq">
                                 <rect key="frame" x="133" y="265" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OaG-gu-1sQ">
                                 <rect key="frame" x="67" y="230" width="83" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -244,30 +226,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Settings" image="settings" id="209-PM-X6z"/>
                     <navigationItem key="navigationItem" id="fc5-jz-aXq">
-                        <barButtonItem key="leftBarButtonItem" title="Clear" id="9KV-LK-AXr">
-                            <connections>
-                                <action selector="deleteMeds:" destination="PRP-Ru-ow1" id="aAf-26-KyH"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Sync" id="yhH-3n-ndN">
-                            <connections>
-                                <action selector="syncMeds:" destination="PRP-Ru-ow1" id="Fpr-QY-XA1"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Clear" id="9KV-LK-AXr"/>
+                        <barButtonItem key="rightBarButtonItem" title="Sync" id="yhH-3n-ndN"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="scriptPhrase" destination="aj7-oh-u8K" id="YuQ-Nc-Jdp"/>
-                        <outlet property="setType1" destination="Sjx-eQ-XT9" id="g7Q-ih-QVD"/>
-                        <outlet property="setType2" destination="KhH-p0-75R" id="fqi-OP-ULC"/>
-                        <outlet property="setType3" destination="VF6-Rx-UB6" id="Xwl-ax-NqG"/>
-                        <outlet property="setType4" destination="qlL-4e-8ND" id="Rfo-QL-KaO"/>
-                        <outlet property="setType5" destination="FaQ-dk-vlf" id="qW2-c8-gBh"/>
-                        <outlet property="type1" destination="Gj1-Ft-6sJ" id="bF7-vi-eEr"/>
-                        <outlet property="type2" destination="heq-lG-llv" id="pqV-0z-ZcL"/>
-                        <outlet property="type3" destination="OaG-gu-1sQ" id="seI-h0-l6H"/>
-                        <outlet property="type4" destination="ZkM-Mi-KKS" id="Zcw-Hi-tJw"/>
-                        <outlet property="type5" destination="kfh-Am-jjq" id="5C4-Q1-F2R"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E9m-Tm-bMs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -322,7 +283,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.88709233399999998" green="0.617182919" blue="0.89835858589999995" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="iVt-SZ-WOR" kind="relationship" relationship="viewControllers" id="L9K-Q7-OYk"/>

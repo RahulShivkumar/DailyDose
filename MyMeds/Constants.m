@@ -8,9 +8,10 @@
 
 #import "Constants.h"
 
-#define kNavBarColor [UIColor colorWithRed:180/255.0 green:12/255.0 blue:3/255.0 alpha:1.0]
+#define kNavBarColor [UIColor colorWithRed:195/255.0 green:76/255.0 blue:60/255.0 alpha:1.0]
 
 @implementation Constants
+
 +(CGFloat)window_height{
     return [UIScreen mainScreen].applicationFrame.size.height;
 }
@@ -44,5 +45,10 @@
     [parentController.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
     [parentController.navigationController.navigationBar setBarTintColor:kNavBarColor];
     [parentController.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+}
+
+
++ (UIColor*)getNavBarColor{
+    return kNavBarColor;
 }
 @end

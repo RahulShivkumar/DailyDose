@@ -3,17 +3,19 @@
 //  MyMeds
 //
 //  Created by Rahul Shivkumar on 1/29/15.
-//  Copyright (c) 2015 postpone. All rights reserved.
+//  Copyright (c) 2015 Rahul Shivkumar. All rights reserved.
 //
 
 #import "MedsCell.h"
 #import "Medication.h"
 
+#define kDoneColor [UIColor colorWithRed:142/255.0 green:178/255.0 blue:197/255.0 alpha:1.0]
+#define kInfoColor [UIColor colorWithRed:229/255.0 green:98/255.0 blue:92/255.0 alpha:1.0]
+#define kDelayColor [UIColor colorWithRed:249/255.0 green:191/255.0 blue:118/255.0 alpha:1.0]
 
 @implementation MedsCell
 
-
--(id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         if( ! _viewSet){
@@ -32,16 +34,16 @@
     //Set the buttons here
     info = [[UIButton alloc] initWithFrame:CGRectMake(0.31 * [self window_width], self.frame.origin.y, 0.23 * [self window_width], [self window_height]/8)];
     [info.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:17]];
-    [info setBackgroundColor:[UIColor colorWithRed:145/255.0 green:0/255.0 blue:8/255.0 alpha:1.0]];
+    [info setBackgroundColor:kInfoColor];
     [info setTitle:@"Info" forState:UIControlStateNormal];
     
     undo = [[UIButton alloc] initWithFrame:CGRectMake(0.77 * [self window_width], self.frame.origin.y, 0.23 * [self window_width], [self window_height]/8)];
     [undo.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:17]];
-    [undo setBackgroundColor:[UIColor colorWithRed:195/255.0 green:62/255.0 blue:64/255.0 alpha:1.0]];
+    [undo setBackgroundColor:kDoneColor];
     
     postpone = [[UIButton alloc] initWithFrame:CGRectMake(0.54 * [self window_width], self.frame.origin.y, 0.23 * [self window_width], [self window_height]/8)];
     [postpone.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:17]];
-    [postpone setBackgroundColor:[UIColor colorWithRed:166/255.0 green:17/255.0 blue:22/255.0 alpha:1.0]];
+    [postpone setBackgroundColor:kDelayColor];
     [postpone setTitle:@"Delay" forState:UIControlStateNormal];
     //Set mainView
     mainView = [[UIView alloc] initWithFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, [self window_width],[self window_height]/8)];
@@ -253,7 +255,7 @@
     [undo setTitle:@"Undo" forState:UIControlStateNormal];
 }
 
--(void)closeCell{
+- (void)closeCell{
     [UIView animateWithDuration:0.2
                      animations:^{
                          
@@ -265,7 +267,7 @@
 - (void)undo{
     NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 0 where med_name = '%@' and chem_name = '%@' and time = '%d'",  medication.medName, medication.chemName, medication.actualTime];
     [self.dbManager executeQuery:query];
-    [medication isCompleted:NO];
+    [medication setCompleted:NO];
     [self uiUndo];
 }
 

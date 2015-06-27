@@ -30,13 +30,13 @@
     return self;
 }
 
+
 -(void)addHighlight{
     if(self.sel == 0){
         [self setBackgroundColor:highlight];
         [self setTitleColor:highlightTextColor forState:UIControlStateNormal];
         self.sel = 1;
-    }
-    else{
+    } else {
         [self setBackgroundColor:[UIColor clearColor]];
         [self setTitleColor:textColor forState:UIControlStateNormal];
         self.sel = 0;
@@ -44,13 +44,18 @@
     }
 }
 
+
 -(void)addTextColor:(UIColor*)tc andHighlightTextColor:(UIColor*)htc{
     [self setTitleColor:tc forState:UIControlStateNormal];
     textColor = tc;
     highlightTextColor = htc;
 }
+
+
 -(void)addHighlightColor:(UIColor*)tc{
     highlight = tc;
     [bgView setBackgroundColor:highlight];
 }
+
+
 @end

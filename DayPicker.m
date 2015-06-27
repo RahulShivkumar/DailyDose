@@ -72,6 +72,7 @@
     return self;
 }
 
+
 -(IBAction)sun:(id)sender{
     [sun addHighlight];
     sun.selected  = !sun.selected;
@@ -83,6 +84,8 @@
     }
     [self hideTviews];
 }
+
+
 -(IBAction)mon:(id)sender{
     [mon addHighlight];
     mon.selected  = !mon.selected;
@@ -94,6 +97,8 @@
     }
     [self hideTviews];
 }
+
+
 -(IBAction)tue:(id)sender{
     [tue addHighlight];
     tue.selected  = !tue.selected;
@@ -105,6 +110,8 @@
     }
     [self hideTviews];
 }
+
+
 -(IBAction)wed:(id)sender{
     [wed addHighlight];
     wed.selected  = !wed.selected;
@@ -116,6 +123,8 @@
     }
     [self hideTviews];
 }
+
+
 -(IBAction)thur:(id)sender{
     [thur addHighlight];
     thur.selected  = !thur.selected;
@@ -127,6 +136,8 @@
     }
     [self hideTviews];
 }
+
+
 -(IBAction)fri:(id)sender{
     [fri addHighlight];
     fri.selected  = !fri.selected;
@@ -138,6 +149,8 @@
     }
     [self hideTviews];
 }
+
+
 -(IBAction)sat:(id)sender{
     [sat addHighlight];
     sat.selected  = !sat.selected;
@@ -149,9 +162,13 @@
     }
     [self hideTviews];
 }
+
+
 -(void)hideTviews{
     for (int i = 0; i < [tviews count]; i ++){
         [tviews[i] resignFirstResponder];
     }
 }
+
+
 @end

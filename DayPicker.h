@@ -20,8 +20,11 @@
     
     NSMutableArray *tviews;
 }
+
 @property (nonatomic, strong)NSMutableDictionary *days;
+
 - (id)initWithFrame:(CGRect)frame andBG:(UIColor*)bg andTc:(UIColor*)tc andHtc:(UIColor*)htc andHl:(UIColor*)hl andTextviews:(NSMutableArray *)tViews;
+
 - (IBAction)sun:(id)sender;
 - (IBAction)mon:(id)sender;
 - (IBAction)tue:(id)sender;
@@ -29,4 +32,5 @@
 - (IBAction)thur:(id)sender;
 - (IBAction)fri:(id)sender;
 - (IBAction)sat:(id)sender;
+
 @end

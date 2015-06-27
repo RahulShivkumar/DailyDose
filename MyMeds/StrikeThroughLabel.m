@@ -24,18 +24,21 @@ const float STRIKEOUT_THICKNESS = 1.0f;
     return self;
 }
 
--(void)layoutSubviews {
+
+- (void)layoutSubviews {
     [super layoutSubviews];
     [self resizeStrikeThrough];
 }
 
--(void)setText:(NSString *)text {
+
+- (void)setText:(NSString *)text {
     [super setText:text];
     [self resizeStrikeThrough];
 }
 
+
 // resizes the strikethrough layer to match the current label text
--(void)resizeStrikeThrough {
+- (void)resizeStrikeThrough {
     CGSize textSize = [self.text sizeWithAttributes:@{NSFontAttributeName: self.font}];
     //Only for Time since its right aligned
     if(self.textAlignment == NSTextAlignmentRight){

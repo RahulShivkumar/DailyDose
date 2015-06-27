@@ -13,8 +13,8 @@
 
 @end
 
-#define bgColor [UIColor colorWithRed:125/255.0 green:0/255.0 blue:10/255.0 alpha:1.0]
-#define bgColor2 [UIColor colorWithRed:180/255.0 green:42/255.0 blue:50/255.0 alpha:1.0]
+#define bgColor [UIColor colorWithRed:229/255.0 green:98/255.0 blue:92/255.0 alpha:1.0]
+#define bgColor2 [UIColor colorWithRed:229/255.0 green:98/255.0 blue:92/255.0 alpha:1.0]
 
 @implementation InfoViewController
 

@@ -21,12 +21,9 @@
 
 @end
 
-#define TabBarColor [UIColor colorWithRed:194/255.0 green:59/255.0 blue:34/255.0 alpha:1.0]
-#define TabBarBorderColor [UIColor colorWithRed:194/255.0 green:59/255.0 blue:34/255.0 alpha:1.0].CGColor
+#define TabBarColor [UIColor colorWithRed:195/255.0 green:76/255.0 blue:60/255.0 alpha:1.0]
+#define TabBarBorderColor [UIColor colorWithRed:195/255.0 green:76/255.0 blue:60/255.0 alpha:1.0].CGColor
 #define TabBarBorderFrame CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 0.5f)
-
-#define NavBarColor1 [UIColor colorWithRed:180/255.0 green:12/255.0 blue:3/255.0 alpha:1.0]
-#define NavBarColor2 [UIColor colorWithRed:194/255.0 green:41/255.0 blue:0/255.0 alpha:1.0]
 
 @implementation TodayViewController
 
@@ -320,7 +317,7 @@
 //Method called to setup tabbar
 - (void)setupTabBar{
     [self.tabBarController.tabBar setTintColor:TabBarColor];
-    
+    [self.tabBarController.tabBar setBackgroundColor:TabBarColor];
     CALayer *topBorder = [CALayer layer];
     [topBorder setFrame:TabBarBorderFrame];
     [topBorder setBackgroundColor:TabBarBorderColor];
@@ -333,11 +330,8 @@
 //Method called to setup navbar
 - (void)setupNavBar{
     
-    NSArray *colors = [NSArray arrayWithObjects:(id)NavBarColor1.CGColor, (id)NavBarColor2.CGColor, nil];
-    [(CRGradientNavigationBar *)[self.navigationController navigationBar] setBarTintGradientColors:colors];
-    //    [self.navigationController.navigationBar setBarStyle:UIBarStyleDefault];
-    [self.navigationController.navigationBar setBarTintColor: NavBarColor1];
-    [self.navigationController.navigationBar setTranslucent:NO];
+    [Constants setupNavbar:self];
+    
     [self.navigationItem setTitle:@"Daily Dose"];
     [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     UIBarButtonItem *calendarButton = [[UIBarButtonItem alloc] initWithTitle:@""
@@ -446,7 +440,7 @@
     
     [label setTextColor:[UIColor whiteColor]];
     [view addSubview:label];
-    [view setBackgroundColor:NavBarColor1];
+    [view setBackgroundColor:[Constants getNavBarColor]];
     
     return view;
 }
