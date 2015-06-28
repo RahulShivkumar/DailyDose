@@ -204,8 +204,6 @@ NSArray *data;
                          completion:^(BOOL finished){
                              
                          }];
-        
-        
     }
     else{
         [tableViewController.tableView reloadData];

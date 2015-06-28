@@ -9,23 +9,6 @@
 #import "DBManager.h"
 #import <sqlite3.h>
 
-
-@interface DBManager()
-
-@property (nonatomic, strong) NSString *documentsDirectory;
-
-@property (nonatomic, strong) NSString *databaseFilename;
-
-@property (nonatomic, strong) NSMutableArray *arrResults;
-
-
--(void)copyDatabaseIntoDocumentsDirectory;
-
--(void)runQuery:(const char *)query isQueryExecutable:(BOOL)queryExecutable;
-
-@end
-
-
 @implementation DBManager
 
 #pragma mark - Initialization
