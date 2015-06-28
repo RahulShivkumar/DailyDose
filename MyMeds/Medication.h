@@ -32,6 +32,7 @@
 @property (nonatomic) double med_id;
 
 @property (nonatomic) BOOL completed;
+@property (nonatomic) BOOL expired;
 @property (nonatomic) BOOL mon;
 @property (nonatomic) BOOL tue;
 @property (nonatomic) BOOL wed;

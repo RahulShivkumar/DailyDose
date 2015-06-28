@@ -98,7 +98,7 @@
         med.dosage = dosage;
         
         if (intCompleted == 1){
-            [med setCompleted:YES];
+            [med setExpired:YES];
         } else {
             [med setCompleted:NO];
         }

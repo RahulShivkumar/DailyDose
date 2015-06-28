@@ -40,9 +40,8 @@
 
 - (IBAction)closeWindow:(id)sender;
 - (IBAction)editMeds:(id)sender;
-
-- (CGFloat)window_height;
-- (CGFloat)window_width;
+- (IBAction)endCourse:(id)sender;
+- (IBAction)deleteRecord:(id)sender;
 
 -(id)initWithMed:(Medication*)medication;
 

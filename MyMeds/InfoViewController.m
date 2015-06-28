@@ -63,12 +63,14 @@
     [self.view addSubview:close];
     [close addTarget:self action:@selector(closeWindow:) forControlEvents:UIControlEventTouchUpInside];
     
-    edit = [[UIButton alloc]initWithFrame:CGRectMake([Constants window_width] - 60, 15, 60, 40)];
-    [edit.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
-    [edit setTitle:@"Edit" forState:UIControlStateNormal];
-    [edit.titleLabel setTextColor:kTextColor];
-    [self.view addSubview:edit];
-    [edit addTarget:self action:@selector(editMeds:) forControlEvents:UIControlEventTouchUpInside];
+    if (! med.expired){
+        edit = [[UIButton alloc]initWithFrame:CGRectMake([Constants window_width] - 60, 15, 60, 40)];
+        [edit.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
+        [edit setTitle:@"Edit" forState:UIControlStateNormal];
+        [edit.titleLabel setTextColor:kTextColor];
+        [self.view addSubview:edit];
+        [edit addTarget:self action:@selector(editMeds:) forControlEvents:UIControlEventTouchUpInside];
+    }
     
     medInfo = [[UILabel alloc]initWithFrame:CGRectMake([Constants window_width]/2 -100, 15, 200, 40)];
     [medInfo setTextAlignment:NSTextAlignmentCenter];
@@ -77,13 +79,13 @@
     [medInfo setTextColor:kTextColor];
     [self.view addSubview:medInfo];
 //
-    medLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, [self window_height]* 0.05, [self window_width] - 10, [self window_height]*0.2)];
+    medLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, [Constants window_height]* 0.05, [Constants window_width] - 10, [Constants window_height]*0.2)];
     [medLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:42]];
     [medLabel setTextColor:kTextColor];
     [medLabel setText:med.medName];
     [self.view addSubview:medLabel];
     
-    chemLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, [self window_height]* 0.155, [self window_width] - 10, [self window_height]*0.145)];
+    chemLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, [Constants window_height]* 0.155, [Constants window_width] - 10, [Constants window_height]*0.145)];
     [chemLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:22]];
     [chemLabel setTextColor:kTextColor];
     [chemLabel setText:[@"- " stringByAppendingString:med.chemName]];
@@ -91,41 +93,50 @@
     
     //Caculate medlabel's text size and use that
     CGSize textSize = [medLabel.text sizeWithAttributes:@{NSFontAttributeName:[medLabel font]}];
-    description = [[UILabel alloc]initWithFrame:CGRectMake(textSize.width + 30, [self window_height]* 0.09, [self window_width] - 10, [self window_height]*0.145)];
+    description = [[UILabel alloc]initWithFrame:CGRectMake(textSize.width + 30, [Constants window_height]* 0.09, [Constants window_width] - 10, [Constants window_height]*0.145)];
     [description setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:22]];
     [description setTextColor:kTextColor];
     [description setText:med.dosage];
     [self.view addSubview:description];
     
-    startDate = [[UILabel alloc]initWithFrame:CGRectMake(30, [self window_height]* 0.210, [self window_width] - 10, [self window_height]*0.145)];
+    startDate = [[UILabel alloc]initWithFrame:CGRectMake(30, [Constants window_height]* 0.210, [Constants window_width] - 10, [Constants window_height]*0.145)];
     [startDate setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:22]];
     [startDate setTextColor:kTextColor];
     [self.view addSubview:startDate];
     
-    endDate = [[UILabel alloc]initWithFrame:CGRectMake(30, [self window_height]* 0.265, [self window_width] - 10, [self window_height]*0.145)];
+    endDate = [[UILabel alloc]initWithFrame:CGRectMake(30, [Constants window_height]* 0.265, [Constants window_width] - 10, [Constants window_height]*0.145)];
     [endDate setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:22]];
     [endDate setTextColor:kTextColor];
     [self.view addSubview:endDate];
     
-    timeTaken = [[UILabel alloc] initWithFrame:CGRectMake(10, [self window_height]* 0.38, [self window_width]/2.0-10, [self window_height]*0.2)];
+    timeTaken = [[UILabel alloc] initWithFrame:CGRectMake(10, [Constants window_height]* 0.38, [Constants window_width]/2.0-10, [Constants window_height]*0.2)];
     [timeTaken setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:25]];
     [timeTaken setTextColor:kTextColor];
     [timeTaken setText:@"Time Taken:"];
     [self.view addSubview:timeTaken];
     
     
-    underLine1 = [[UIView alloc] initWithFrame:CGRectMake(10, [self window_height]* 0.5, [self window_width]-20, 1)];
+    underLine1 = [[UIView alloc] initWithFrame:CGRectMake(10, [Constants window_height]* 0.5, [Constants window_width]-20, 1)];
     [underLine1 setBackgroundColor:kTextColor];
     [self.view addSubview:underLine1];
     
 
-    endMed =[[UIButton alloc] initWithFrame:CGRectMake(30, [self window_height] * 0.95, [self window_width] - 60, 30)];
-    [endMed setTitle:@"End Course" forState:UIControlStateNormal];
+    endMed =[[UIButton alloc] initWithFrame:CGRectMake(30, [Constants window_height] * 0.95, [Constants window_width] - 60, 30)];
     [endMed.layer setBorderWidth:1.0];
-    [endMed addTarget:self
-               action:@selector(endCourse:)
-     forControlEvents:UIControlEventTouchUpInside];
     [endMed.layer setBorderColor:kTextColor.CGColor];
+    
+    if (med.expired){
+        [endMed setTitle:@"Delete Record" forState:UIControlStateNormal];
+        [endMed addTarget:self
+                   action:@selector(deleteRecord:)
+         forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        [endMed setTitle:@"End Course" forState:UIControlStateNormal];
+        [endMed addTarget:self
+                   action:@selector(endCourse:)
+         forControlEvents:UIControlEventTouchUpInside];
+    }
+    
     [self.view addSubview:endMed];
     
     [self getDates];
@@ -159,7 +170,7 @@
 }
 -(void)setupDaysTaken{
     daySchedule = [[NSMutableArray alloc] init];
-    UILabel *daysTaken = [[UILabel alloc] initWithFrame:CGRectMake(30, [self window_height]* 0.320, [self window_width] *0.6, [self window_height]*0.145)];
+    UILabel *daysTaken = [[UILabel alloc] initWithFrame:CGRectMake(30, [Constants window_height]* 0.320, [Constants window_width] *0.6, [Constants window_height]*0.145)];
     [daysTaken setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:22]];
     [daysTaken setTextColor:kTextColor];
     [daysTaken setText:@"- Days Taken:"];
@@ -169,7 +180,7 @@
     NSArray *temp = [self.dbManager loadDataFromDB:query];
     NSMutableArray *days = [[NSMutableArray alloc] initWithObjects:@"S", @"M",@"T",@"W",@"Th",@"F", @"S", nil];
     for (int i = 0; i < 7; i ++){
-        UILabel *day = [[UILabel alloc] initWithFrame:CGRectMake(158 + i * 0.072 * [self window_width] , [self window_height]* 0.375, [self window_width] * 0.072 , [self window_width] * 0.072)];
+        UILabel *day = [[UILabel alloc] initWithFrame:CGRectMake(158 + i * 0.072 * [Constants window_width] , [Constants window_height]* 0.375, [Constants window_width] * 0.072 , [Constants window_width] * 0.072)];
         [day setText:[days objectAtIndex:i]];
         [day setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
         [day setTextAlignment:NSTextAlignmentCenter];
@@ -210,7 +221,7 @@
         [times addObject:[timeString stringByAppendingString:[@" " stringByAppendingString:amPm]]
          ];
         
-        time = [[UILabel alloc]initWithFrame:CGRectMake([self window_width]/2.0, [self window_height]* 0.38 + 0.05 * i * [self window_height], [self window_width]/2.0-10, [self window_height]*0.2)];
+        time = [[UILabel alloc]initWithFrame:CGRectMake([Constants window_width]/2.0, [Constants window_height]* 0.38 + 0.05 * i * [Constants window_height], [Constants window_width]/2.0-10, [Constants window_height]*0.2)];
         [time setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:25]];
         [time setTextColor:kTextColor];
         [time setText:[timeString stringByAppendingString:amPm]];
@@ -228,16 +239,31 @@
     [editMedsController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     [self presentViewController:editMedsController animated:YES completion:nil];
 }
--(IBAction)endCourse:(id)sender{
+
+- (IBAction)endCourse:(id)sender{
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat: @"MM/dd/yyyy"];
     NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
     
     NSString *query = [NSString stringWithFormat: @"update meds set completed = 1, end_date = '%@' where med_name = '%@' and chem_name = '%@'", dateString, med.medName, med.chemName];
     [self.dbManager executeQuery:query];
+    
     query = [NSString stringWithFormat: @"delete from  today_meds where med_name = '%@' and chem_name = '%@'", med.medName, med.chemName];
     [self.dbManager executeQuery:query];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
+}
+
+- (IBAction)deleteRecord:(id)sender {
+    NSString *query = [NSString stringWithFormat: @"delete from  meds where med_name = '%@' and chem_name = '%@'", med.medName, med.chemName];
+    [self.dbManager executeQuery:query];
+    
+    query = [NSString stringWithFormat: @"delete from  today_meds where med_name = '%@' and chem_name = '%@'", med.medName, med.chemName];
+    [self.dbManager executeQuery:query];
+    
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
 }
 
 #pragma mark Data Setup 
@@ -245,13 +271,6 @@
     
 }
 
-#pragma mark  - Helper Methods
--(CGFloat)window_height{
-    return [UIScreen mainScreen].applicationFrame.size.height;
-}
 
--(CGFloat)window_width{
-    return [UIScreen mainScreen].applicationFrame.size.width;
-}
 
 @end

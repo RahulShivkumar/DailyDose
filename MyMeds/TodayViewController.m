@@ -230,6 +230,7 @@
         med.subName = subName;
         med.dosage = dosage;
         med.amPm = amPm;
+        med.expired = NO;
         //     med.type = type;
         if(actualTime > 12.5){
             actualTime -= 12;
