@@ -10,7 +10,7 @@
             <objects>
                 <navigationController id="iVt-SZ-WOR" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="5Nu-Cd-eEh"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DQx-tJ-d3v" customClass="CRGradientNavigationBar">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DQx-tJ-d3v">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

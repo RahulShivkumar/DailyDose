@@ -15,8 +15,8 @@
 @end
 
 #define uid @"uid"
-#define bgColor [UIColor colorWithRed:142/255.0 green:178/255.0 blue:197/255.0 alpha:1.0]
-#define bgColor2 [UIColor colorWithRed:142/255.0 green:178/255.0 blue:197/255.0 alpha:1.0]
+#define kBGColor [UIColor colorWithRed:229/255.0 green:98/255.0 blue:92/255.0 alpha:1.0]
+
 
 @implementation AddMedViewController
 
@@ -40,11 +40,8 @@
     times = [[NSMutableArray alloc] init];
     amPm = [[NSMutableArray alloc] init];
     //[self.view setBackgroundColor:bgColor];
-    
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = self.view.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[bgColor CGColor], (id)[bgColor2 CGColor], nil];
-    [self.view.layer insertSublayer:gradient atIndex:0];
+ 
+    [self.view setBackgroundColor:kBGColor];
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:self.scrollView];
@@ -131,9 +128,9 @@
     [self.scrollView  addSubview:days];
     
     dayPicker = [[DayPicker alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.45 + 20, [Constants window_width], [Constants window_height]/10)
-                                           andBG:bgColor
+                                           andBG:kBGColor
                                            andTc:[UIColor whiteColor]
-                                          andHtc:bgColor
+                                          andHtc:kBGColor
                                            andHl:[UIColor whiteColor]
                                     andTextviews:[NSMutableArray arrayWithObjects:medName, chemName, dosageNum, nil]];
     [self.scrollView  addSubview:dayPicker];

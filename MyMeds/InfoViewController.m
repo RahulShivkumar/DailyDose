@@ -52,11 +52,9 @@
     }
     
     
-    if(med.completed){
-        [self.view setBackgroundColor:kBGColor2];
-   } else {
-       [self.view setBackgroundColor:kBGColor];
-   }
+
+    [self.view setBackgroundColor:kBGColor];
+
     
     close = [[UIButton alloc]initWithFrame:CGRectMake(0, 15, 60, 40)];
     [close.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];

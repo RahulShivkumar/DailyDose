@@ -275,6 +275,7 @@
     }
     
     compAnalyzer = [[ComplianceAnalyzer alloc] initWithFrame:CGRectMake(0, 0, 375, 375)];
+    [compAnalyzer setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:compAnalyzer];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];

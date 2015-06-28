@@ -189,7 +189,12 @@
         [self.imgIcon setAlpha:1];
         [self.imgIcon setCenter:CGPointMake(CGRectGetWidth(self.bounds)/2, CGRectGetHeight(self.bounds)/2)];
     } completion:^(BOOL finished) {
-        
+//        CABasicAnimation *fillColorAnimation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
+//        fillColorAnimation.duration = 0.5f;
+//        fillColorAnimation.fromValue = (id)[[UIColor clearColor] CGColor];
+//        fillColorAnimation.toValue = (id)self.circleLayer.strokeColor;
+//        [self.circleLayer addAnimation:fillColorAnimation forKey:@"fillColor"];
+//        [self.circleLayer setFillColor:self.circleLayer.strokeColor];
     }];
 }
 
