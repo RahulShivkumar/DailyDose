@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupViews];
+    [self generateData];
     // Do any additional setup after loading the view.
 }
 
@@ -78,7 +79,7 @@
     [name setTextColor:[UIColor whiteColor]];
     [self.scrollView addSubview:name];
 
-    medName = [[UITextField alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.12 + 20, [Constants window_width], [Constants window_height]/15)];
+    medName = [[MPGTextField alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.12 + 20, [Constants window_width], [Constants window_height]/15)];
     [medName setBackgroundColor:[UIColor clearColor]];
     [medName setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:25]];
     [medName setTextColor:[UIColor whiteColor]];
@@ -94,7 +95,7 @@
     [generic setTextColor:[UIColor whiteColor]];
     [self.scrollView  addSubview:generic];
     
-    chemName = [[UITextField alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.23 + 20, [Constants window_width], [Constants window_height]/15)];
+    chemName = [[MPGTextField alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.23 + 20, [Constants window_width], [Constants window_height]/15)];
     [chemName setBackgroundColor:[UIColor clearColor]];
     [chemName setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:25]];
     [chemName setTintColor:[UIColor whiteColor]];
@@ -260,6 +261,25 @@
     [medName resignFirstResponder];
     [chemName resignFirstResponder];
     [dosageNum resignFirstResponder];
+}
+
+
+#pragma mark - MPGTextfield Delegate
+- (NSArray *)dataForPopoverInTextField:(MPGTextField *)textField
+{
+    return data;
+}
+
+
+- (BOOL)textFieldShouldSelect:(MPGTextField *)textField
+{
+    return YES;
+}
+
+
+- (void)textField:(MPGTextField *)textField didEndEditingWithSelection:(NSDictionary *)result
+{
+  
 }
 
 
@@ -453,4 +473,24 @@
     [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
 }
 
+#pragma mark - Setup Data 
+- (void)generateData {
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // Add code here to do background processing
+        //
+        //
+        NSError* err = nil;
+        data = [[NSMutableArray alloc] init];
+
+        NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"sample_data" ofType:@"json"];
+        NSArray* contents = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath] options:kNilOptions error:&err];
+        dispatch_async( dispatch_get_main_queue(), ^{
+            // Add code here to update the UI/send notifications based on the
+            // results of the background processing
+            [contents enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                [data addObject:[NSDictionary dictionaryWithObjectsAndKeys:[[obj objectForKey:@"first_name"] stringByAppendingString:[NSString stringWithFormat:@" %@", [obj objectForKey:@"last_name"]]], @"DisplayText", [obj objectForKey:@"email"], @"DisplaySubText",obj,@"CustomObject", nil]];
+            }];
+        });
+    });
+}
 @end

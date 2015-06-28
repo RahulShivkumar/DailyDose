@@ -11,8 +11,8 @@
 #import "DBManager.h"
 #import "RMDateSelectionViewController.h"
 #import "Constants.h"
-
-@interface AddMedViewController : UIViewController<UITextFieldDelegate, RMDateSelectionViewControllerDelegate>{
+#import "MPGTextField.h"
+@interface AddMedViewController : UIViewController<UITextFieldDelegate, RMDateSelectionViewControllerDelegate, MPGTextFieldDelegate>{
     UIButton *cancel;
     UIButton *done;
     UILabel *addMed;
@@ -23,8 +23,10 @@
     UILabel *time;
     UILabel *notes;
     
-    UITextField *medName;
-    UITextField *chemName;
+    NSMutableArray *data;
+    
+    MPGTextField *medName;
+    MPGTextField *chemName;
     UITextField *dosageNum;
     UITextField *tView;
     
@@ -51,6 +53,8 @@
 
 - (void)manipulateTime;
 - (void)addTimeWithHour:(NSString *)hour andMins:(NSString *)mins andAmPm:(NSString *)ampm;
+
+- (void)generateData;
 
 - (IBAction)setDate:(id)sender;
 - (IBAction)closeWindow:(id)sender;
