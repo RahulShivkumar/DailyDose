@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "StrikeThroughLabel.h"
-#import "Medication.h"
+#import "TodayMedication.h"
+#import "Constants.h"
 
 @protocol StrikeDelegate
 - (void)strikeDelegate:(id)sender;
@@ -27,7 +28,7 @@
     StrikeThroughLabel *chemLabel;
     StrikeThroughLabel *timeLabel;
     UIView *mainView;
-    Medication *medication;
+    TodayMedication *medication;
     
     UIGestureRecognizer* panRecognizer;
     
@@ -36,11 +37,10 @@
     @public UIButton *postpone;
 }
 @property (nonatomic, assign) id  <StrikeDelegate> delegate;
-@property (nonatomic, strong) DBManager *dbManager;
-- (void)setMed:(Medication*)med;
+
+- (void)setMed:(TodayMedication*)med;
 - (void)setPannable;
 - (void)removePannable;
-- (CGFloat) window_width;
 - (void)closeCell;
 - (void)undo;
 - (void)uiUndo;

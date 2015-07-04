@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <DBAccess/DBAccess.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, DBDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UINavigationController *navController;

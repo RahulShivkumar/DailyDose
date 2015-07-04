@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/MedsCell.m"
-            timestampString = "457065013.860062"
+            timestampString = "457657447.334616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "-handlePan:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/AppDelegate.m"
-            timestampString = "457068954.185124"
+            timestampString = "457503856.015541"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
             landmarkName = "-applicationWillResignActive:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/MedsCell.m"
-            timestampString = "457065013.860062"
+            timestampString = "457657447.334616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
             landmarkName = "-handlePan:"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,7 +58,39 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/MedsCell.m"
-            timestampString = "457065013.860062"
+            timestampString = "457657447.334616"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "-handlePan:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/MedsCell.m"
+            timestampString = "457657447.334616"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "-handlePan:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/MedsCell.m"
+            timestampString = "457657447.334616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "184"
@@ -74,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/MedsCell.m"
-            timestampString = "457065013.860062"
+            timestampString = "457657447.334616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
             landmarkName = "-handlePan:"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/MedsCell.m"
-            timestampString = "457065013.860062"
+            timestampString = "457657447.334616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "-handlePan:"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,43 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/MedsCell.m"
-            timestampString = "457065013.860062"
+            timestampString = "457657447.334616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
-            landmarkName = "-handlePan:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/MedsCell.m"
-            timestampString = "457065013.860062"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
-            landmarkName = "-handlePan:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/MedsCell.m"
-            timestampString = "457065013.860062"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
+            startingLineNumber = "272"
+            endingLineNumber = "272"
             landmarkName = "-closeCell"
             landmarkType = "5">
          </BreakpointContent>
@@ -285,7 +285,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "170"
             endingLineNumber = "170"
-            landmarkName = "-runQuery:isQueryExecutable:"
+            landmarkName = "-loadDataFromDB:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -318,22 +318,6 @@
             startingLineNumber = "38"
             endingLineNumber = "38"
             landmarkName = "-initWithDate:andCurrentDate:andView:andVC:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
-            landmarkName = "-setDataInArray:andToday:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -381,7 +365,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
             endingLineNumber = "66"
-            landmarkName = "-copyDatabaseIntoDocumentsDirectory"
+            landmarkName = "-runQuery:isQueryExecutable:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -392,11 +376,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "-setupTodayArrays:"
             landmarkType = "5">
          </BreakpointContent>
@@ -408,11 +392,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457142823.590864"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "374"
-            endingLineNumber = "374"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
             landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -424,11 +408,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457142823.590864"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
             landmarkName = "-numberOfSectionsInTableView:"
             landmarkType = "5">
          </BreakpointContent>
@@ -440,11 +424,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457142823.590864"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
+            startingLineNumber = "313"
+            endingLineNumber = "313"
             landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -472,11 +456,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457659608.572411"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "-setupMeds"
             landmarkType = "5">
          </BreakpointContent>
@@ -488,75 +472,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "-setupTodayArrays:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457142823.590864"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "577"
-            endingLineNumber = "577"
-            landmarkName = "-delay:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457142823.590864"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "574"
-            endingLineNumber = "574"
-            landmarkName = "-delay:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457142823.590864"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
-            landmarkName = "-setDataInArray:andToday:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-setupSqlDefaults:"
             landmarkType = "5">
          </BreakpointContent>
@@ -568,11 +488,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "-setupTodayArrays:"
             landmarkType = "5">
          </BreakpointContent>
@@ -584,11 +504,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "-setupTodayArrays:"
             landmarkType = "5">
          </BreakpointContent>
@@ -616,11 +536,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457659608.572411"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
             landmarkName = "-setupMeds"
             landmarkType = "5">
          </BreakpointContent>
@@ -632,11 +552,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "-setupSqlDefaults:"
             landmarkType = "5">
          </BreakpointContent>
@@ -648,11 +568,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "-setupTodayArrays:"
             landmarkType = "5">
          </BreakpointContent>
@@ -664,11 +584,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "-setupSqlDefaults:"
             landmarkType = "5">
          </BreakpointContent>
@@ -680,27 +600,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "209"
-            endingLineNumber = "209"
-            landmarkName = "-setDataInArray:andToday:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-setupSqlDefaults:"
             landmarkType = "5">
          </BreakpointContent>
@@ -712,11 +616,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "-setupTodayArrays:"
             landmarkType = "5">
          </BreakpointContent>
@@ -728,11 +632,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457142823.590864"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "385"
-            endingLineNumber = "385"
+            startingLineNumber = "325"
+            endingLineNumber = "325"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -744,27 +648,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
-            landmarkName = "-setDataInArray:andToday:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457142823.590864"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "477"
-            endingLineNumber = "477"
+            startingLineNumber = "421"
+            endingLineNumber = "421"
             landmarkName = "-menuButtonClicked:"
             landmarkType = "5">
          </BreakpointContent>
@@ -776,11 +664,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457659608.572411"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "-setupMeds"
             landmarkType = "5">
          </BreakpointContent>
@@ -792,11 +680,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457659608.572411"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "-setupMeds"
             landmarkType = "5">
          </BreakpointContent>
@@ -808,60 +696,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "-setupSqlDefaults:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457142823.590864"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "476"
-            endingLineNumber = "476"
+            startingLineNumber = "420"
+            endingLineNumber = "420"
             landmarkName = "-menuButtonClicked:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "-setupSqlDefaults:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "-setupSqlDefaults:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -935,38 +775,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "208"
-            endingLineNumber = "208"
-            landmarkName = "-setDataInArray:andToday:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
-            landmarkName = "-setDataInArray:andToday:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "MyMeds/NotificationManager.m"
             timestampString = "449012396.048626"
             startingColumnNumber = "9223372036854775807"
@@ -1000,11 +808,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/InfoViewController.m"
-            timestampString = "457143127.827602"
+            timestampString = "457637093.345534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "-setupDaysTaken"
             landmarkType = "5">
          </BreakpointContent>
@@ -1016,11 +824,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/InfoViewController.m"
-            timestampString = "457143127.827602"
+            timestampString = "457637093.345534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "-setupDaysTaken"
             landmarkType = "5">
          </BreakpointContent>
@@ -1032,11 +840,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/InfoViewController.m"
-            timestampString = "457143127.827602"
+            timestampString = "457637093.345534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
             landmarkName = "-setupDaysTaken"
             landmarkType = "5">
          </BreakpointContent>
@@ -1048,11 +856,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/InfoViewController.m"
-            timestampString = "457143127.827602"
+            timestampString = "457637093.345534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "-setupDaysTaken"
             landmarkType = "5">
          </BreakpointContent>
@@ -1064,11 +872,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/MedsCell.m"
-            timestampString = "457065013.860062"
+            timestampString = "457657447.334616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "-handlePan:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1080,108 +888,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/MedsCell.m"
-            timestampString = "457065013.860062"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
-            landmarkName = "-complete"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457142823.590864"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
-            landmarkName = "-setDataInArray:andToday:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457142823.590864"
+            timestampString = "457657447.334616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "256"
             endingLineNumber = "256"
-            landmarkName = "-setDataInArray:andToday:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/InfoViewController.m"
-            timestampString = "457143127.827602"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
-            landmarkName = "-endCourse:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/InfoViewController.m"
-            timestampString = "457143127.827602"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "-getDates"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/InfoViewController.m"
-            timestampString = "457143127.827602"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
-            landmarkName = "-getDates"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/InfoViewController.m"
-            timestampString = "457143127.827602"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "-getDates"
+            landmarkName = "-complete"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1208,11 +920,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457142823.590864"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "651"
-            endingLineNumber = "651"
+            startingLineNumber = "581"
+            endingLineNumber = "581"
             landmarkName = "-appReturnsActive"
             landmarkType = "5">
          </BreakpointContent>
@@ -1224,11 +936,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457142823.590864"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "652"
-            endingLineNumber = "652"
+            startingLineNumber = "582"
+            endingLineNumber = "582"
             landmarkName = "-appReturnsActive"
             landmarkType = "5">
          </BreakpointContent>
@@ -1240,11 +952,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "-setupSqlDefaults:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1256,11 +968,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "-setupSqlDefaults:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1272,11 +984,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "-setupSqlDefaults:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1288,11 +1000,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457659608.572411"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "-didReceiveMemoryWarning"
             landmarkType = "5">
          </BreakpointContent>
@@ -1304,7 +1016,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "194"
@@ -1320,7 +1032,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "197"
@@ -1336,7 +1048,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "201"
@@ -1352,11 +1064,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/AddMedViewController.m"
-            timestampString = "457151028.759185"
+            timestampString = "457661795.467134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "410"
-            endingLineNumber = "410"
+            startingLineNumber = "420"
+            endingLineNumber = "420"
             landmarkName = "-setupLocalNotifs"
             landmarkType = "5">
          </BreakpointContent>
@@ -1368,11 +1080,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/AddMedViewController.m"
-            timestampString = "457151028.759185"
+            timestampString = "457661795.467134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "434"
-            endingLineNumber = "434"
+            startingLineNumber = "444"
+            endingLineNumber = "444"
             landmarkName = "-initLocalNotif:andDay:andTime:andDayIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1384,7 +1096,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "198"
@@ -1400,11 +1112,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/AddMedViewController.m"
-            timestampString = "457151028.759185"
+            timestampString = "457661795.467134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "472"
-            endingLineNumber = "472"
+            startingLineNumber = "482"
+            endingLineNumber = "482"
             landmarkName = "-initLocalNotif:andDay:andTime:andDayIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1416,11 +1128,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/AddMedViewController.m"
-            timestampString = "457151028.759185"
+            timestampString = "457661795.467134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "469"
-            endingLineNumber = "469"
+            startingLineNumber = "479"
+            endingLineNumber = "479"
             landmarkName = "-initLocalNotif:andDay:andTime:andDayIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1432,11 +1144,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/AddMedViewController.m"
-            timestampString = "457151028.759185"
+            timestampString = "457661795.467134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "407"
-            endingLineNumber = "407"
+            startingLineNumber = "417"
+            endingLineNumber = "417"
             landmarkName = "-setupLocalNotifs"
             landmarkType = "5">
          </BreakpointContent>
@@ -1448,11 +1160,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/AddMedViewController.m"
-            timestampString = "457151028.759185"
+            timestampString = "457661795.467134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "401"
-            endingLineNumber = "401"
+            startingLineNumber = "411"
+            endingLineNumber = "411"
             landmarkName = "-setupLocalNotifs"
             landmarkType = "5">
          </BreakpointContent>
@@ -1464,11 +1176,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/AddMedViewController.m"
-            timestampString = "457151028.759185"
+            timestampString = "457661795.467134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "455"
-            endingLineNumber = "455"
+            startingLineNumber = "465"
+            endingLineNumber = "465"
             landmarkName = "-initLocalNotif:andDay:andTime:andDayIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1480,11 +1192,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/AddMedViewController.m"
-            timestampString = "457151028.759185"
+            timestampString = "457661795.467134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "402"
-            endingLineNumber = "402"
+            startingLineNumber = "412"
+            endingLineNumber = "412"
             landmarkName = "-setupLocalNotifs"
             landmarkType = "5">
          </BreakpointContent>
@@ -1496,11 +1208,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/AddMedViewController.m"
-            timestampString = "457151028.759185"
+            timestampString = "457661795.467134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "413"
-            endingLineNumber = "413"
+            startingLineNumber = "423"
+            endingLineNumber = "423"
             landmarkName = "-setupLocalNotifs"
             landmarkType = "5">
          </BreakpointContent>
@@ -1512,11 +1224,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/AddMedViewController.m"
-            timestampString = "457151028.759185"
+            timestampString = "457661795.467134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "409"
-            endingLineNumber = "409"
+            startingLineNumber = "419"
+            endingLineNumber = "419"
             landmarkName = "-setupLocalNotifs"
             landmarkType = "5">
          </BreakpointContent>
@@ -1528,11 +1240,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/AddMedViewController.m"
-            timestampString = "457151028.759185"
+            timestampString = "457661795.467134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "408"
-            endingLineNumber = "408"
+            startingLineNumber = "418"
+            endingLineNumber = "418"
             landmarkName = "-setupLocalNotifs"
             landmarkType = "5">
          </BreakpointContent>
@@ -1544,11 +1256,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/EditMedsController.m"
-            timestampString = "457080182.010291"
+            timestampString = "457596192.953129"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "-setupDayPicker"
             landmarkType = "5">
          </BreakpointContent>
@@ -1576,11 +1288,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/InfoViewController.m"
-            timestampString = "457143127.827602"
+            timestampString = "457637093.345534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
             landmarkName = "-editMeds:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1592,11 +1304,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/InfoViewController.m"
-            timestampString = "457143127.827602"
+            timestampString = "457637093.345534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
             landmarkName = "-editMeds:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1608,11 +1320,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/EditMedsController.m"
-            timestampString = "457080182.010291"
+            timestampString = "457596192.953129"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
             landmarkName = "-setupDayPicker"
             landmarkType = "5">
          </BreakpointContent>
@@ -1624,11 +1336,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/AddMedViewController.m"
-            timestampString = "457151028.759185"
+            timestampString = "457661795.467134"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "411"
-            endingLineNumber = "411"
+            startingLineNumber = "421"
+            endingLineNumber = "421"
             landmarkName = "-setupLocalNotifs"
             landmarkType = "5">
          </BreakpointContent>
@@ -1639,60 +1351,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMeds/MissedViewController.m"
-            timestampString = "456896272.246417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "-taken:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/MissedViewController.m"
-            timestampString = "456896272.246417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "-taken:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/MissedViewController.m"
-            timestampString = "456896272.246417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
-            landmarkName = "@implementation MissedViewController"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "-setupSqlDefaults:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1704,11 +1368,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457132997.978253"
+            timestampString = "457659608.572411"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1816,28 +1480,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457142823.590864"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "483"
-            endingLineNumber = "483"
+            startingLineNumber = "427"
+            endingLineNumber = "427"
             landmarkName = "-menuButtonClicked:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/MissedViewController.m"
-            timestampString = "456896272.246417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
-            landmarkName = "-delaySingleMed:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1912,11 +1560,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/EditMedsController.m"
-            timestampString = "457129062.293171"
+            timestampString = "457596192.953129"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "365"
-            endingLineNumber = "365"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
             landmarkName = "-addTimeWithHour:andMins:andAmPm:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1928,11 +1576,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/EditMedsController.m"
-            timestampString = "457080182.010291"
+            timestampString = "457596192.953129"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
             landmarkName = "-setupTimes"
             landmarkType = "5">
          </BreakpointContent>
@@ -1943,204 +1591,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMeds/EditMedsController.m"
-            timestampString = "457129062.293171"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
-            landmarkName = "-done:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/EditMedsController.m"
-            timestampString = "457129062.293171"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "408"
-            endingLineNumber = "408"
-            landmarkName = "-done:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/EditMedsController.m"
-            timestampString = "457129062.293171"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "398"
-            endingLineNumber = "398"
-            landmarkName = "-done:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/MissedViewController.m"
-            timestampString = "456896272.246417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/MissedViewController.m"
-            timestampString = "456896272.246417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
-            landmarkName = "-skip:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/MissedViewController.m"
-            timestampString = "456896272.246417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "-delay:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/MissedViewController.m"
-            timestampString = "456896272.246417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "214"
-            endingLineNumber = "214"
-            landmarkName = "-loadInfo:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/MissedViewController.m"
-            timestampString = "456896272.246417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
-            landmarkName = "-delaySingleMed:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/MissedViewController.m"
-            timestampString = "456896272.246417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
-            landmarkName = "-skipSingleMed:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/MissedViewController.m"
-            timestampString = "456896272.246417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "-taken:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/MissedViewController.m"
-            timestampString = "456896272.246417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "304"
-            endingLineNumber = "304"
-            landmarkName = "-strikeDelegate:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyMeds/MissedViewController.m"
-            timestampString = "456896272.246417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
-            landmarkName = "-strikeDelegate:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "MyMeds/MedsCell.m"
-            timestampString = "457065013.860062"
+            timestampString = "457657447.334616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "-complete"
             landmarkType = "5">
          </BreakpointContent>
@@ -2168,11 +1624,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457142823.590864"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "556"
-            endingLineNumber = "556"
+            startingLineNumber = "500"
+            endingLineNumber = "500"
             landmarkName = "-delay:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2184,11 +1640,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457142823.590864"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "596"
-            endingLineNumber = "596"
+            startingLineNumber = "526"
+            endingLineNumber = "526"
             landmarkName = "-undo:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2229,28 +1685,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMeds/OverviewViewController.m"
-            timestampString = "457081348.282365"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "-setDataInArray:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "MyMeds/InfoViewController.m"
-            timestampString = "457129155.946363"
+            timestampString = "457598264.007956"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -2262,11 +1702,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/TodayViewController.m"
-            timestampString = "457142823.590864"
+            timestampString = "457662272.166602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
             landmarkName = "-setupViews"
             landmarkType = "5">
          </BreakpointContent>
@@ -2278,11 +1718,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/InfoViewController.m"
-            timestampString = "457130035.638246"
+            timestampString = "457598264.007956"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "-setupView"
             landmarkType = "5">
          </BreakpointContent>
@@ -2294,11 +1734,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/InfoViewController.m"
-            timestampString = "457143127.827602"
+            timestampString = "457599222.379068"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "-setupDaysTaken"
             landmarkType = "5">
          </BreakpointContent>
@@ -2310,12 +1750,570 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyMeds/MedsCell.m"
-            timestampString = "457165844.111457"
+            timestampString = "457657447.334616"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
+            startingLineNumber = "282"
+            endingLineNumber = "282"
             landmarkName = "-undo"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/AppDelegate.m"
+            timestampString = "457331904.237933"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/AddMedViewController.m"
+            timestampString = "457661795.467134"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "401"
+            endingLineNumber = "401"
+            landmarkName = "-setupLocalNotifs"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/OverviewViewController.m"
+            timestampString = "457596326.923212"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-setupMeds:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/AddMedViewController.m"
+            timestampString = "457661795.467134"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
+            landmarkName = "-done:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/AddMedViewController.m"
+            timestampString = "457661795.467134"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "356"
+            endingLineNumber = "356"
+            landmarkName = "-done:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/InfoViewController.m"
+            timestampString = "457598264.007956"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "-setupView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/InfoViewController.m"
+            timestampString = "457598264.007956"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "-setupView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/InfoViewController.m"
+            timestampString = "457637093.345534"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "-setupTime"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/InfoViewController.m"
+            timestampString = "457637093.345534"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
+            landmarkName = "-setupTime"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/InfoViewController.m"
+            timestampString = "457598257.02465"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "-initWithMed:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/InfoViewController.m"
+            timestampString = "457598293.881948"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "-initWithMed:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/InfoViewController.m"
+            timestampString = "457599222.379068"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "-setupDaysTaken"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/InfoViewController.m"
+            timestampString = "457599222.379068"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "-setupDaysTaken"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/EditMedsController.m"
+            timestampString = "457599203.108574"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "-initWithMed:andDays:andTime:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/EditMedsController.m"
+            timestampString = "457636533.233448"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "333"
+            endingLineNumber = "333"
+            landmarkName = "-manipulateTime"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/EditMedsController.m"
+            timestampString = "457636543.203999"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
+            landmarkName = "-createButton"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/EditMedsController.m"
+            timestampString = "457636632.769163"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "231"
+            endingLineNumber = "231"
+            landmarkName = "-setupTimes"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/EditMedsController.m"
+            timestampString = "457636662.134987"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-setupView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/EditMedsController.m"
+            timestampString = "457636681.759559"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "-setupView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/EditMedsController.m"
+            timestampString = "457636690.16423"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "-setupView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/EditMedsController.m"
+            timestampString = "457636725.700462"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "-setupView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/EditMedsController.m"
+            timestampString = "457637104.442298"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "-setupView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/EditMedsController.m"
+            timestampString = "457637105.401879"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "-setupView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/EditMedsController.m"
+            timestampString = "457637106.813661"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "-setupView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/InfoViewController.m"
+            timestampString = "457638568.574897"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
+            landmarkName = "-endCourse:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/InfoViewController.m"
+            timestampString = "457639014.98626"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
+            landmarkName = "-deleteRecord:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/TodayViewController.m"
+            timestampString = "457662272.166602"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
+            landmarkName = "-setupTodayArrays:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/TodayViewController.m"
+            timestampString = "457662272.166602"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "-setupSqlDefaults:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/TodayViewController.m"
+            timestampString = "457662272.166602"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "-setupSqlDefaults:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/AddMedViewController.m"
+            timestampString = "457661795.467134"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
+            landmarkName = "-done:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/AddMedViewController.m"
+            timestampString = "457661795.467134"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "387"
+            endingLineNumber = "387"
+            landmarkName = "-done:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/TodayViewController.m"
+            timestampString = "457662272.166602"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "-setupTodayArrays:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/TodayViewController.m"
+            timestampString = "457662272.166602"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "-setupSqlDefaults:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/EditMedsController.m"
+            timestampString = "457658976.14708"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "403"
+            endingLineNumber = "403"
+            landmarkName = "-done:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/TodayViewController.m"
+            timestampString = "457662272.166602"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

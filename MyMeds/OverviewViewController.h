@@ -7,27 +7,25 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DBManager.h"
+#import <DBAccess/DBAccess.h>
 #import "Constants.h"
 
+
 @interface OverviewViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
-    NSMutableArray *meds;
-    NSArray *animalIndexTitles;
+    DBResultSet *meds;
 }
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *add;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *timeline;
 
 @property (nonatomic, strong) UITableView *medsView;
 
-@property (nonatomic, strong) DBManager *dbManager;
-
 @property (nonatomic, strong) UISearchBar *searchBar;
 
 - (void)setupViews;
 
-- (void)setupMeds:(int)completed;
-- (NSMutableArray *)setDataInArray:(NSArray *)temp;
+- (void)setupMeds:(int)expired;
 
 - (IBAction)addMedication:(id)sender;
 - (IBAction)changeTimeline:(id)sender;

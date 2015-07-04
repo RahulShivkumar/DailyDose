@@ -67,46 +67,39 @@
 
 #pragma mark - Set Up Medication 
 //Method called to setup meds based on selection current/past
-- (void)setupMeds:(int)completed {
-    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
-    meds = [[NSMutableArray alloc]init];
-    
-    NSString *query = [NSString stringWithFormat: @"select distinct  med_name, chem_name, dosage, completed, type from meds where completed = %d order by med_name", completed];
-    
-    NSArray *temp = [self.dbManager loadDataFromDB:query];
-    meds = [self setDataInArray:temp];
+- (void)setupMeds:(int)expired {
+    meds = [[[CoreMedication query] whereWithFormat:@"expired = %d",expired] fetch];
     [self.medsView reloadData];
-
 }
 
 
-//Method called to convert SQLData to Array
-- (NSMutableArray *)setDataInArray:(NSArray *)temp{
-    NSMutableArray *tempMutable = [[NSMutableArray alloc] init];
-    for(int i = 0; i < [temp count]; i++){
-        NSString *medName = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"med_name"]];
-        NSString *chemName = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"chem_name"]];
-        NSString *dosage = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"dosage"]];
-        NSString *subName = [chemName stringByAppendingString:@" - "];
-        subName = [subName stringByAppendingString:dosage];
-        
-        NSString *completed = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"completed"]];
-        int intCompleted = [completed intValue];
-        
-        Medication *med = [[Medication alloc]initWithName:medName andChemName:chemName];
-        med.subName = subName;
-        med.dosage = dosage;
-        
-        if (intCompleted == 1){
-            [med setExpired:YES];
-        } else {
-            [med setCompleted:NO];
-        }
-        
-        [tempMutable addObject:med];
-    }
-    return tempMutable;
-}
+////Method called to convert SQLData to Array
+//- (NSMutableArray *)setDataInArray:(NSArray *)temp{
+//    NSMutableArray *tempMutable = [[NSMutableArray alloc] init];
+//    for(int i = 0; i < [temp count]; i++){
+//        NSString *medName = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"med_name"]];
+//        NSString *chemName = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"chem_name"]];
+//        NSString *dosage = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"dosage"]];
+//        NSString *subName = [chemName stringByAppendingString:@" - "];
+//        subName = [subName stringByAppendingString:dosage];
+//        
+//        NSString *completed = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"completed"]];
+//        int intCompleted = [completed intValue];
+//        
+//        Medication *med = [[Medication alloc]initWithName:medName andChemName:chemName];
+//        med.subName = subName;
+//        med.dosage = dosage;
+//        
+//        if (intCompleted == 1){
+//            [med setExpired:YES];
+//        } else {
+//            [med setCompleted:NO];
+//        }
+//        
+//        [tempMutable addObject:med];
+//    }
+//    return tempMutable;
+//}
 
 
 #pragma mark - Table view delegate methods
@@ -117,10 +110,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    Medication *med = [meds objectAtIndex:indexPath.row];
+    CoreMedication *med = [meds objectAtIndex:indexPath.row];
+    
     [cell.textLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:[Constants window_height]/8 * 0.4]];
     [cell.textLabel setTextColor:[UIColor colorWithRed:94/255.0 green:94/255.0 blue:94/255.0 alpha:1.0]];
-    [cell.textLabel setText:med.medName];
+    [cell.textLabel setText:med.genName];
+    
     return cell;
 }
 
@@ -149,9 +144,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    Medication *med;
-    med = [meds objectAtIndex:indexPath.row];
-    InfoViewController *infoVC = [[InfoViewController alloc] initWithMed:med];
+    CoreMedication *cm;
+    cm = [meds objectAtIndex:indexPath.row];
+    InfoViewController *infoVC = [[InfoViewController alloc] initWithMed:cm];
     [self.navigationController presentViewController:infoVC animated:YES completion:nil];
 }
 
@@ -160,10 +155,10 @@
 //Method called to change the timeline 
 - (IBAction)changeTimeline:(id)sender {
     if(self.timeline.selectedSegmentIndex == 0){
-        [self setupMeds:0];
+        [self setupMeds:NO];
     }
     else{
-        [self setupMeds:1];
+        [self setupMeds:YES];
     }
 }
 

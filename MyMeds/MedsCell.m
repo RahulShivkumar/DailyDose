@@ -28,7 +28,6 @@
 }
 
 - (void)setViews{
-    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
     
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     //Set the buttons here
@@ -86,11 +85,26 @@
     [self setBackgroundColor:[UIColor whiteColor]];
     
 }
-- (void)setMed:(Medication *)med{
-    [medLabel setText:med.medName];
-    [chemLabel setText:med.subName];
-    [timeLabel setText:med.time];
-    if(med.completed){
+- (void)setMed:(TodayMedication *)med{
+    [medLabel setText:med.coreMed.genName];
+    [chemLabel setText:med.coreMed.chemName];
+    
+    float actualTime = med.time;
+    if(actualTime > 12.5){
+        actualTime -= 12;
+    }
+    
+    NSString *timeString = [NSString stringWithFormat:@"%d",(int)actualTime];
+    
+    if(actualTime == (int) actualTime){
+        timeString = [timeString stringByAppendingString:@":00"];
+    } else {
+        timeString = [timeString stringByAppendingString:@":30"];
+    }
+    
+    [timeLabel setText:timeString];
+    
+    if(med.taken){
         medLabel.strikethrough = YES;
         chemLabel.strikethrough = YES;
         timeLabel.strikethrough = YES;
@@ -145,7 +159,7 @@
         [info setHidden:YES];
         [undo setHidden:YES];
         [postpone setHidden:YES];
-        if(!medication.completed){
+        if(!medication.taken){
 //            id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
 //            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Taken"
 //                                                                  action:@"Regular"
@@ -241,9 +255,9 @@
 
 - (void)complete{
     // mark the item as complete and update the UI state
-    NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 1 where rowid = %f",  medication.med_id];
-    [self.dbManager executeQuery:query];
-    [medication setCompleted:YES];
+    medication.taken = YES;
+    [medication commit];
+    
     [self uiComplete];
 }
 
@@ -265,9 +279,8 @@
 }
 
 - (void)undo{
-    NSString *query = [NSString stringWithFormat: @"update today_meds set completed = 0 where med_name = '%@' and chem_name = '%@' and time = '%d'",  medication.medName, medication.chemName, medication.actualTime];
-    [self.dbManager executeQuery:query];
-    [medication setCompleted:NO];
+    medication.taken = NO;
+    [medication commit];
     [self uiUndo];
 }
 

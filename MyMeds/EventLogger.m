@@ -10,24 +10,19 @@
 
 @implementation EventLogger
 
-- (id)initWithMedName:(NSString *)medName andEventName:(NSString *)eventName{
+- (id)initWithMedName:(NSString *)medName andEventName:(NSString *)eventName andMedTime:(int)medTime{
     self = [super init];
     if (self) {
         mName = medName;
         eName = eventName;
-        self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
+        time = medTime;
     }
     return self;
 }
 
 
 - (void)log {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat: @"MM/dd/yyyy"];
-    NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
-
-    NSString *query = [NSString stringWithFormat: @"insert into analytics(med_name, date, event) values ('%@', '%@', '%@') ",  mName, dateString, eName];
-    [self.dbManager executeQuery:query];
+ 
     
     //TO-DO Store in the cloud 
 }

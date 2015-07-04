@@ -344,33 +344,44 @@
 
 //Method called when "done" button is hit. Creates new entries for meds into meds and today_meds.
 - (IBAction)done:(id)sender {
-    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
-    NSInteger hour;
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:[NSDate date]];
-    hour = [components hour];
+    NSInteger hour = [Constants getCurrentHour];
     
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat: @"MM/dd/yyyy"];
-    NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
-
     if([times count] != 0 && medName.text && medName.text.length > 0 && chemName.text && chemName.text.length > 0 && dosageNum.text && dosageNum.text.length > 0){
         
         //Setup Local Notifications on a separate thread
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                 [self setupLocalNotifs];
         });
-        int completed;
-            
+        
+        //First Create our CoreMed
+        CoreMedication *coreMed = [CoreMedication new];
+        coreMed.genName = medName.text;
+        coreMed.chemName = chemName.text;
+        coreMed.expired = NO;
+        coreMed.dosage = dosageNum.text;
+        coreMed.startDate = [NSDate date];
+        [coreMed commit];
+        
             for (int i = 0; i < [times count]; i++){
-                NSString *query = [NSString stringWithFormat: @"insert into meds(med_name, chem_name, dosage, time, ampm, monday, tuesday, wednesday, thursday, friday, saturday, sunday, completed, start_date) values ('%@', '%@', '%@', %f, '%@', '%d', %d, %d, %d, %d, %d, %d, 0, '%@')", medName.text, chemName.text, dosageNum.text, [[times objectAtIndex:i] floatValue], [amPm objectAtIndex:i], [[dayPicker.days objectForKey:@"mon"] intValue],[[dayPicker.days objectForKey:@"tue"] intValue], [[dayPicker.days objectForKey:@"wed"] intValue], [[dayPicker.days objectForKey:@"thur"] intValue], [[dayPicker.days objectForKey:@"fri"] intValue], [[dayPicker.days objectForKey:@"sat"] intValue], [[dayPicker.days objectForKey:@"sun"] intValue], dateString];
-                [self.dbManager executeQuery:query];
+                Medication *med = [Medication new];
+                med.coreMed = coreMed;
+                med.time = [[times objectAtIndex:i] floatValue];
+                med.monday = (BOOL)[[dayPicker.days objectForKey:@"mon"] intValue];
+                med.tuesday = (BOOL)[[dayPicker.days objectForKey:@"tue"] intValue];
+                med.wednesday = (BOOL)[[dayPicker.days objectForKey:@"wed"] intValue];
+                med.thursday = (BOOL)[[dayPicker.days objectForKey:@"thur"] intValue];
+                med.friday = (BOOL)[[dayPicker.days objectForKey:@"fri"] intValue];
+                med.saturday = (BOOL)[[dayPicker.days objectForKey:@"sat"] intValue];
+                med.sunday = (BOOL)[[dayPicker.days objectForKey:@"sun"] intValue];
                 
-                //TO-DO fix bug where med is added to today's meds table
-//                if(hour <= [[times objectAtIndex:i] floatValue]){
-                    completed = 0;
-                    query = [NSString stringWithFormat: @"insert into today_meds(med_name, chem_name, dosage, time, ampm, completed) values ('%@', '%@', '%@', %f, '%@', %d)",medName.text, chemName.text, dosageNum.text, [[times objectAtIndex:i] floatValue],  [amPm objectAtIndex:i], completed];
-                    [self.dbManager executeQuery:query];
-              //  }
+                [med commit];
+                
+                //TO-DO Check the day too to ensure it is added correctly
+                if(hour <= [[times objectAtIndex:i] floatValue]){
+                    TodayMedication *todayMed = [TodayMedication new];
+                    [todayMed createFromMedication:med];
+                    [todayMed commit];
+                }
 
             }
         [self dismissViewControllerAnimated:YES
@@ -387,7 +398,6 @@
 
 #pragma mark - Setup Local Notifs
 //Method called to setup local notifications
-//TO DO - Fix this method logic
 - (void)setupLocalNotifs {
     NSArray *daysOfWeek = [[NSArray alloc] initWithObjects:@"sun", @"mon", @"tue", @"wed", @"thur", @"fri", @"sat", nil];
     BOOL flag = NO;

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DBManager.h"
 
 
 @interface AnalyzeViewController : UIViewController <UITextFieldDelegate>{
@@ -19,8 +18,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *time;
 @property (weak, nonatomic) IBOutlet UITextField *ampm;
 @property (weak, nonatomic) IBOutlet UITextField *type;
-
-@property (nonatomic, strong) DBManager *dbManager;
 
 @property (weak, nonatomic) IBOutlet UISwitch *monday;
 @property (weak, nonatomic) IBOutlet UISwitch *tuesday;

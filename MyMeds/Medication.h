@@ -7,45 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DBManager.h"
+#import <DBAccess/DBAccess.h>
+#import "CoreMedication.h"
 
-@interface Medication : NSObject
+@interface Medication : DBObject
 
-@property (nonatomic, copy) NSString *medName;
-@property (nonatomic, copy) NSString *chemName;
-@property (nonatomic, copy) NSString *subName;
-@property (nonatomic, copy) NSString *dosage;
-@property (nonatomic, copy) NSString *time;
-@property (nonatomic, copy) NSString *rxid;
-@property (nonatomic, copy) NSString *amPm;
-@property (nonatomic, copy) NSString *type;
+@property (nonatomic, strong) CoreMedication *coreMed;
+@property (nonatomic, strong) NSString *rxid;
+@property (nonatomic, strong) NSString *type;
 
-@property (nonatomic)int actualTime;
-
-@property (nonatomic, copy) NSDate *startDate;
-@property (nonatomic, copy) NSDate *endDate;
+@property (nonatomic) float time;
 
 @property (nonatomic) int dispense;
 @property (nonatomic) int refill;
 @property (nonatomic) int quantity;
 
-@property (nonatomic) double med_id;
+@property (nonatomic) BOOL monday;
+@property (nonatomic) BOOL tuesday;
+@property (nonatomic) BOOL wednesday;
+@property (nonatomic) BOOL thursday;
+@property (nonatomic) BOOL friday;
+@property (nonatomic) BOOL saturday;
+@property (nonatomic) BOOL sunday;
 
-@property (nonatomic) BOOL completed;
-@property (nonatomic) BOOL expired;
-@property (nonatomic) BOOL mon;
-@property (nonatomic) BOOL tue;
-@property (nonatomic) BOOL wed;
-@property (nonatomic) BOOL thurs;
-@property (nonatomic) BOOL fri;
-@property (nonatomic) BOOL sat;
-@property (nonatomic) BOOL sun;
-
-@property (nonatomic, strong) DBManager *dbManager;
-
-// Returns an Medication item initialised with the given text.
--(id)initWithName:(NSString*)text andChemName:(NSString*)chem;
-// Returns an Medication item initialised with the given text.
-+(id)initWithName:(NSString*)text andChemName:(NSString*)chem;
 
 @end

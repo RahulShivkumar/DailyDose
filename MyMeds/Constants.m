@@ -12,18 +12,19 @@
 
 @implementation Constants
 
-+(CGFloat)window_height{
+#pragma mark - Get height and width of window
++(CGFloat)window_height {
     return [UIScreen mainScreen].applicationFrame.size.height;
 }
 
 
-+(CGFloat)window_width{
++(CGFloat)window_width {
     return [UIScreen mainScreen].applicationFrame.size.width;
 }
 
 
 #pragma mark - Compare Dates
-+(BOOL)compareDate:(NSDate*)date1 withOtherdate:(NSDate*)date2{
++(BOOL)compareDate:(NSDate*)date1 withOtherdate:(NSDate*)date2 {
     
     NSCalendar *cal = [NSCalendar currentCalendar];
     NSDateComponents *components = [cal components:(NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:date1];
@@ -48,7 +49,17 @@
 }
 
 
-+ (UIColor*)getNavBarColor{
+#pragma mark - Get NavBarColor
++ (UIColor*)getNavBarColor {
     return kNavBarColor;
 }
+
+
+#pragma mark - Get Current Hour
++ (NSInteger)getCurrentHour {
+     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:[NSDate date]];
+    
+    return [components hour];
+}
+
 @end

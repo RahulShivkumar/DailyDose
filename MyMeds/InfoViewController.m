@@ -16,10 +16,9 @@
 @implementation InfoViewController
 
 
--(id)initWithMed:(Medication*)medication{
+-(id)initWithMed:(CoreMedication*)medication{
     if (self = [super init]) {
-        med = medication;
-        self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
+        cm = medication;
     }
     return self;
 }
@@ -63,7 +62,7 @@
     [self.view addSubview:close];
     [close addTarget:self action:@selector(closeWindow:) forControlEvents:UIControlEventTouchUpInside];
     
-    if (! med.expired){
+    if (cm.expired == 0){
         edit = [[UIButton alloc]initWithFrame:CGRectMake([Constants window_width] - 60, 15, 60, 40)];
         [edit.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
         [edit setTitle:@"Edit" forState:UIControlStateNormal];
@@ -82,13 +81,13 @@
     medLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, [Constants window_height]* 0.05, [Constants window_width] - 10, [Constants window_height]*0.2)];
     [medLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:42]];
     [medLabel setTextColor:kTextColor];
-    [medLabel setText:med.medName];
+    [medLabel setText:cm.genName];
     [self.view addSubview:medLabel];
     
     chemLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, [Constants window_height]* 0.155, [Constants window_width] - 10, [Constants window_height]*0.145)];
     [chemLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:22]];
     [chemLabel setTextColor:kTextColor];
-    [chemLabel setText:[@"- " stringByAppendingString:med.chemName]];
+    [chemLabel setText:[@"- " stringByAppendingString:cm.chemName]];
     [self.view addSubview:chemLabel];
     
     //Caculate medlabel's text size and use that
@@ -96,7 +95,7 @@
     description = [[UILabel alloc]initWithFrame:CGRectMake(textSize.width + 30, [Constants window_height]* 0.09, [Constants window_width] - 10, [Constants window_height]*0.145)];
     [description setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:22]];
     [description setTextColor:kTextColor];
-    [description setText:med.dosage];
+    [description setText:cm.dosage];
     [self.view addSubview:description];
     
     startDate = [[UILabel alloc]initWithFrame:CGRectMake(30, [Constants window_height]* 0.210, [Constants window_width] - 10, [Constants window_height]*0.145)];
@@ -125,7 +124,7 @@
     [endMed.layer setBorderWidth:1.0];
     [endMed.layer setBorderColor:kTextColor.CGColor];
     
-    if (med.expired){
+    if (cm.expired){
         [endMed setTitle:@"Delete Record" forState:UIControlStateNormal];
         [endMed addTarget:self
                    action:@selector(deleteRecord:)
@@ -146,24 +145,16 @@
 }
 
 -(void)getDates{
-    NSDateFormatter *dateFormat;
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat: @"MM/dd/yyyy"];
-    NSString *query = [NSString stringWithFormat: @"select start_date from meds where med_name = '%@'", med.medName];
-    NSArray *temp = [self.dbManager loadDataFromDB:query];
-    NSString *tempDate = [[temp objectAtIndex:0] objectAtIndex:0];
-    med.startDate = [dateFormat dateFromString:tempDate];
-    [startDate setText:[@"- Start Date: " stringByAppendingString:tempDate]];
+    [startDate setText:[@"- Start Date: " stringByAppendingString:[dateFormat stringFromDate:cm.startDate]]];
     
     //End Date detection
-    query = [NSString stringWithFormat: @"select end_date from meds where med_name = '%@'", med.medName];
-    temp = [self.dbManager loadDataFromDB:query];
-    if([temp count] == 0){
+    if (cm.endDate == nil){
         [endDate setText:@"- End Date: N/A"];
     }
     else{
-        tempDate = [[temp objectAtIndex:0] objectAtIndex:0];
-        [endDate setText:[@"- End Date: " stringByAppendingString:tempDate]];
-        med.endDate = [dateFormat dateFromString:tempDate];
+        [endDate setText:[@"- End Date: " stringByAppendingString:[dateFormat stringFromDate:cm.endDate]]];
     }
 
     
@@ -176,9 +167,11 @@
     [daysTaken setText:@"- Days Taken:"];
     [self.view addSubview:daysTaken];
     
-    NSString *query = [NSString stringWithFormat: @"select sunday, monday, tuesday, wednesday, thursday, friday, saturday from meds where med_name = '%@' limit 1", med.medName];
-    NSArray *temp = [self.dbManager loadDataFromDB:query];
+    DBResultSet *temp = [[[[Medication query] whereWithFormat:@"coreMed = %@", cm] limit:1] fetch];
+    Medication *tempMed = [temp objectAtIndex:0];
+    NSArray *tempBools = [[NSArray alloc] initWithObjects:[NSNumber numberWithBool:tempMed.sunday], [NSNumber numberWithBool:tempMed.monday], [NSNumber numberWithBool:tempMed.tuesday],[NSNumber numberWithBool:tempMed.wednesday], [NSNumber numberWithBool:tempMed.thursday], [NSNumber numberWithBool:tempMed.friday], [NSNumber numberWithBool:tempMed.saturday], nil];
     NSMutableArray *days = [[NSMutableArray alloc] initWithObjects:@"S", @"M",@"T",@"W",@"Th",@"F", @"S", nil];
+    
     for (int i = 0; i < 7; i ++){
         UILabel *day = [[UILabel alloc] initWithFrame:CGRectMake(158 + i * 0.072 * [Constants window_width] , [Constants window_height]* 0.375, [Constants window_width] * 0.072 , [Constants window_width] * 0.072)];
         [day setText:[days objectAtIndex:i]];
@@ -186,10 +179,9 @@
         [day setTextAlignment:NSTextAlignmentCenter];
         [day setTextColor:kTextColor];
         
-        NSString *tempDay = [[temp objectAtIndex:0] objectAtIndex:i];
-        int tempValue = [tempDay intValue];
-        [daySchedule addObject:tempDay];
-        if(tempValue == 1){
+        [daySchedule addObject:[tempBools objectAtIndex:i]];
+        
+        if([tempBools objectAtIndex:i] == [NSNumber numberWithBool:YES]){
             [day.layer setBorderWidth:1.0];
             [day.layer setCornerRadius:day.frame.size.width/2.0];
             [day.layer setBorderColor:kTextColor.CGColor];
@@ -200,33 +192,47 @@
 
 -(void)setupTime{
     times = [[NSMutableArray alloc] init];
-    NSString *query = [NSString stringWithFormat: @"select time, ampm from meds where med_name = '%@' and chem_name = '%@' order by ampm, time", med.medName, med.chemName];
-    NSArray *temp = [self.dbManager loadDataFromDB:query];
+ 
+    DBResultSet *temp = [[[Medication query] whereWithFormat:@"coreMed = %@", cm] fetch];
     
-    for(int i = 0; i < [temp count]; i ++){
-        NSString *tempTime = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"time"]];
-         NSString *amPm = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"ampm"]];
-        float actualTime = [tempTime floatValue];
+    int i = 0;
+    
+    for(Medication *m in temp){
+        
+
+        float actualTime = m.time;
         if(actualTime > 12.5){
             actualTime -= 12;
         }
+        
         NSString *timeString = [NSString stringWithFormat:@"%d",(int)actualTime];
+        
         if(actualTime == (int) actualTime){
             timeString = [timeString stringByAppendingString:@":00"];
-        }
-        else{
+        } else {
             timeString = [timeString stringByAppendingString:@":30"];
         }
         
-        [times addObject:[timeString stringByAppendingString:[@" " stringByAppendingString:amPm]]
-         ];
-        
         time = [[UILabel alloc]initWithFrame:CGRectMake([Constants window_width]/2.0, [Constants window_height]* 0.38 + 0.05 * i * [Constants window_height], [Constants window_width]/2.0-10, [Constants window_height]*0.2)];
+        
+        if (m.time >= 12){
+            [times addObject:[timeString stringByAppendingString:[@" " stringByAppendingString:@"PM"]]
+             ];
+            [time setText:[timeString stringByAppendingString:@"PM"]];
+        } else{
+            [times addObject:[timeString stringByAppendingString:[@" " stringByAppendingString:@"AM"]]
+             ];
+            [time setText:[timeString stringByAppendingString:@"AM"]];
+        }
+        
+
         [time setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:25]];
         [time setTextColor:kTextColor];
-        [time setText:[timeString stringByAppendingString:amPm]];
         [time setTextAlignment:NSTextAlignmentRight];
+        
         [self.view addSubview:time];
+
+        i++;
         
     }
     
@@ -235,32 +241,25 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)editMeds:(id)sender{
-    EditMedsController *editMedsController = [[EditMedsController alloc] initWithMed:med andDays:daySchedule andTime:times];
+    EditMedsController *editMedsController = [[EditMedsController alloc] initWithMed:cm andDays:daySchedule andTime:times];
     [editMedsController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     [self presentViewController:editMedsController animated:YES completion:nil];
 }
 
 - (IBAction)endCourse:(id)sender{
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat: @"MM/dd/yyyy"];
-    NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
-    
-    NSString *query = [NSString stringWithFormat: @"update meds set completed = 1, end_date = '%@' where med_name = '%@' and chem_name = '%@'", dateString, med.medName, med.chemName];
-    [self.dbManager executeQuery:query];
-    
-    query = [NSString stringWithFormat: @"delete from  today_meds where med_name = '%@' and chem_name = '%@'", med.medName, med.chemName];
-    [self.dbManager executeQuery:query];
+
+    cm.expired = 1;
+    cm.endDate = [NSDate date];
+    [cm commit];
     
     [self dismissViewControllerAnimated:YES
                              completion:nil];
 }
 
 - (IBAction)deleteRecord:(id)sender {
-    NSString *query = [NSString stringWithFormat: @"delete from  meds where med_name = '%@' and chem_name = '%@'", med.medName, med.chemName];
-    [self.dbManager executeQuery:query];
     
-    query = [NSString stringWithFormat: @"delete from  today_meds where med_name = '%@' and chem_name = '%@'", med.medName, med.chemName];
-    [self.dbManager executeQuery:query];
+    [[[[Medication query] whereWithFormat:@"coreMed = %@", cm] fetch] removeAll];
+    [cm remove];
     
     [self dismissViewControllerAnimated:YES
                              completion:nil];

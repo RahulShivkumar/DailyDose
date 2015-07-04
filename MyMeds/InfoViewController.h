@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Medication.h"
-#import "DBManager.h"
 #import "Constants.h"
 #import "EditMedsController.h"
+#import "Medication.h"
+#import "TodayMedication.h"
 
 @interface InfoViewController : UIViewController{
     UIButton *close;
@@ -27,13 +28,12 @@
     UILabel *time;
     
     UIView *underLine1;
-    Medication *med;
+    
+    CoreMedication *cm;
     
     NSMutableArray *daySchedule;
     NSMutableArray *times;
 }
-
-@property (nonatomic, strong) DBManager *dbManager;
 
 - (void)setupView;
 - (void)setupData;
@@ -43,6 +43,6 @@
 - (IBAction)endCourse:(id)sender;
 - (IBAction)deleteRecord:(id)sender;
 
--(id)initWithMed:(Medication*)medication;
+-(id)initWithMed:(CoreMedication*)medication;
 
 @end

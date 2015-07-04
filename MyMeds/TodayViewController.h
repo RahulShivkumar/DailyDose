@@ -7,18 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <DBAccess/DBAccess.h>
 #import "MenuController.h"
-#import "DBManager.h"
 #import "Constants.h"
 #import "ComplianceAnalyzer.h"
+#import "TodayMedication.h"
 
 @interface TodayViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MenuControllerDelegate>{
-    NSMutableArray *amMeds;
-    NSMutableArray *pmMeds;
-    NSMutableArray *futureAmMeds;
-    NSMutableArray *futurePmMeds;
+    
+    DBResultSet *amMeds;
+    DBResultSet *pmMeds;
+    
+//    NSMutableArray *futureAmMeds;
+//    NSMutableArray *futurePmMeds;
+    
     NSMutableArray *header;
-    NSMutableArray *missedMeds;
+    
+    DBResultSet *missedMeds;
     
     NSArray *medsArray;
     
@@ -34,11 +39,9 @@
 }
 
 @property (nonatomic, strong) UITableView *medsView;
-@property (nonatomic, strong) DBManager *dbManager;
 
 - (void)setupSqlDefaults:(NSDate*)date;
 - (void)setupTodayArrays:(NSDate *)date;
-- (NSMutableArray *)setDataInArray:(NSArray *)temp andToday:(BOOL)today;
 - (void)setupMeds;
 
 - (void)setupViews;
@@ -58,6 +61,8 @@
 - (BOOL)tabBarIsVisible;
 - (UIStatusBarStyle)preferredStatusBarStyle;
 - (void)appReturnsActive;
+
+- (DBResultSet*)createTodayMedsArray:(DBResultSet*)meds;
 
 @end
 

@@ -7,15 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DBManager.h"
 
 @interface EventLogger : NSObject {
     NSString *mName;
     NSString *eName;
+    int time;
 }
 
-@property (nonatomic, strong) DBManager *dbManager;
-
-- (id)initWithMedName:(NSString *)medName andEventName:(NSString *)eName;
+- (id)initWithMedName:(NSString *)medName andEventName:(NSString *)eName andMedTime:(int)medTime;
 - (void)log;
 @end

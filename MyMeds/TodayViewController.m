@@ -31,6 +31,12 @@
     [super viewDidLoad];
 }
 
+- (void)clearData{
+    [[[Medication query] fetch] removeAll];
+    [[[TodayMedication query] fetch] removeAll];
+    [[[CoreMedication query] fetch] removeAll];
+}
+
 //Methods called in viewDidAppear so that the views are refreshed
 -(void)viewDidAppear:(BOOL)animated{
     
@@ -42,6 +48,7 @@
     current = [NSDate date];
     future = NO;
     futureDate = current;
+   // [self clearData];
     [self setupMeds];
     [self setupViews];
 }
@@ -70,9 +77,12 @@
         if(!date){
             [self setupSqlDefaults:current];
         } else if ([Constants compareDate:current withOtherdate:date]){
-            [self setupTodayArrays:current];
-        } else {
+            //----------------------------------------------------
+            //TO DO : Calculate missed meds over the missed meds
+            //----------------------------------------------------
             [self setupSqlDefaults:current];
+        } else {
+            [self setupTodayArrays:current];
         }
     } else {
         [self setupSqlDefaults:futureDate];
@@ -82,52 +92,50 @@
 
 //Method called when a new day's meds are setup. Sql call takes data from the meds table and puts into the "today_meds" table
 - (void)setupSqlDefaults:(NSDate*)date{
-    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init] ;
     [dateFormatter setDateFormat:@"EEEE"];
     NSString *dayOfWeek = [dateFormatter stringFromDate:date];
     
-    NSString *query = [NSString stringWithFormat: @"select med_name, chem_name, dosage, time, ampm, type from meds where %@ = 1 and ampm = 'AM' and completed = 0 order by time",dayOfWeek];
+    NSString *query = [NSString stringWithFormat:@"%@ = 1 and time < 12", [dayOfWeek lowercaseString]];
+    NSString *query2 = [NSString stringWithFormat:@"%@ = 1 and time >= 12", [dayOfWeek lowercaseString]];
     
-    NSArray *temp = [self.dbManager loadDataFromDB:query];
-    amMeds = [self setDataInArray:temp andToday:NO];
+    amMeds = [[[Medication query] where:query] fetch];
+    pmMeds = [[[Medication query] where:query2] fetch];
     
-    query = [NSString stringWithFormat: @"select med_name, chem_name, dosage, time, ampm, type from meds where %@ = 1 and ampm = 'PM' and completed = 0 order by time",dayOfWeek];
-    
-    
-    temp = [self.dbManager loadDataFromDB:query];
-    pmMeds = [self setDataInArray:temp andToday:NO];
     
     if(!future){
+        [[[TodayMedication query] fetch] removeAll];
+        
         [[NSUserDefaults standardUserDefaults] setObject:current forKey:@"Date"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         //Clear Today_Meds and load it with new data
-        query = [NSString stringWithFormat: @"delete from today_meds"];
-        [self.dbManager executeQuery:query];
+       
         
         
         //Store stuff in today's table
-        for (int i = 0; i < [amMeds count]; i ++){
-            Medication *med = [amMeds objectAtIndex:i];
-            //Need to change the model a bit
-            query = [NSString stringWithFormat: @"insert into today_meds(med_name, chem_name, dosage, time, type, ampm, completed) values ('%@', '%@', '%@', %d, '%@', '%@', 0)",med.medName, med.chemName, med.dosage, med.actualTime, med.type, med.amPm];
-            [self.dbManager executeQuery:query];
+        for (Medication *m in amMeds){
+            TodayMedication *tm = [TodayMedication new];
+            [tm createFromMedication:m];
+            [tm commit];
         }
         
-        for (int i = 0; i < [pmMeds count]; i ++){
-            Medication *med = [pmMeds objectAtIndex:i];
-            //Need to change the model a bit
-            query = [NSString stringWithFormat: @"insert into today_meds(med_name, chem_name, dosage, time, type, ampm, completed) values ('%@', '%@', '%@', %d, '%@', '%@', 0)",med.medName, med.chemName, med.dosage, med.actualTime, med.type, med.amPm];
-            [self.dbManager executeQuery:query];
+        for (Medication *m in pmMeds){
+            TodayMedication *tm = [TodayMedication new];
+            [tm createFromMedication:m];
+            [tm commit];
         }
         
         [self setupTodayArrays:date];
         
-    } else {
         
-        header = [[NSMutableArray alloc]init];
+    } else {
+        //Convert all the meds to today meds
+        amMeds = [self createTodayMedsArray:amMeds];
+        pmMeds = [self createTodayMedsArray:pmMeds];
+        
+        header = [[NSMutableArray alloc] init];
         if([amMeds count] == 0 && [pmMeds count] == 0){
             
         } else if([amMeds count] == 0){
@@ -146,48 +154,40 @@
 //Method called to setup amMeds and pmMeds arrays from today_meds table
 - (void)setupTodayArrays:(NSDate *)date {
     header = [[NSMutableArray alloc]init];
-    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
-    
-    [amMeds removeAllObjects];
-    [pmMeds removeAllObjects];
-    
-    missedMeds = [[NSMutableArray alloc] init];
     
     NSInteger hour;
     if(!future){
-        NSDateComponents *components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:[NSDate date]];
-        hour= [components hour];
+        hour= [Constants getCurrentHour];
     }
     else {
         hour = 0;
     }
     
     //Get am and pm meds from today's sql table
-    NSString *query = [NSString stringWithFormat: @"select rowid, med_name, chem_name, dosage, time, ampm, completed from today_meds where  time >= %ld and ampm = 'AM' order by time", (long)hour - 1];
-    NSArray *temp = [self.dbManager loadDataFromDB:query];
-    amMeds = [self setDataInArray:temp andToday:YES];
+    amMeds = [[[TodayMedication query] where:@"time < 12"] fetch];
     
-    query = [NSString stringWithFormat: @"select rowid, med_name, chem_name, dosage, time, ampm, completed from today_meds where time >= %ld and ampm = 'PM' order by time", (long)hour - 1];
-    temp = [self.dbManager loadDataFromDB:query];
-    pmMeds = [self setDataInArray:temp andToday:YES];
+
+    pmMeds = [[[TodayMedication query] where:@"time >= 12"] fetch] ;
     
     //First lets see if there are any missed meds today
     if([Constants compareDate:[NSDate date] withOtherdate:date]){
-        NSString *query = [NSString stringWithFormat: @"select rowid, med_name, chem_name, dosage, time, ampm, completed from today_meds where  time < %d and completed = 0 order by time", (int)hour - 1];
-        NSArray *temp = [self.dbManager loadDataFromDB:query];
-        missedMeds = [self setDataInArray:temp andToday:YES];
+        missedMeds = [[[TodayMedication query] whereWithFormat:@"time < %ld and completed = 0", (long)hour - 1] fetch];
         
-        if([missedMeds count] > 0){
-            //Launch missed meds view
-            MissedViewController *missedVC = [[MissedViewController alloc] initWithMeds:missedMeds
-                                                                                andHour:(int)hour-1];
-            
-            [self.navigationController presentViewController:missedVC
-                                                    animated:NO
-                                                  completion:nil];
-        }
+//        if([missedMeds count] > 0){
+//            //Launch missed meds view
+//            MissedViewController *missedVC = [[MissedViewController alloc] initWithMeds:missedMeds
+//                                                                                andHour:(int)hour-1];
+//            
+//            [self.navigationController presentViewController:missedVC
+//                                                    animated:NO
+//                                                  completion:nil];
+//        }
     }
     
+    for (Medication *m in amMeds){
+        TodayMedication *tm = [TodayMedication new];
+        [tm createFromMedication:m];
+    }
     if([amMeds count] == 0 && [pmMeds count] == 0){
         
     } else if([amMeds count] == 0){
@@ -204,68 +204,6 @@
 }
 
 
-//Method used for converting SQL results into an array
-- (NSMutableArray *)setDataInArray:(NSArray *)temp andToday:(BOOL)today{
-    NSMutableArray *tempMutable = [[NSMutableArray alloc] init];
-    
-    for(int i = 0; i < [temp count]; i++){
-        NSString *medName = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"med_name"]];
-        
-        NSString *chemName = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"chem_name"]];
-        
-        NSString *dosage = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"dosage"]];
-        
-        NSString *amPm = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"ampm"]];
-        
-        //   NSString *type = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"type"]];
-        NSString *subName = [chemName stringByAppendingString:@" - "];
-        subName = [subName stringByAppendingString:dosage];
-        
-        Medication *med = [[Medication alloc]initWithName:medName andChemName:chemName];
-        NSString *tempTime = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"time"]];
-        
-        float actualTime = [tempTime floatValue];
-        med.actualTime = actualTime;
-        
-        med.subName = subName;
-        med.dosage = dosage;
-        med.amPm = amPm;
-        med.expired = NO;
-        //     med.type = type;
-        if(actualTime > 12.5){
-            actualTime -= 12;
-        }
-        
-        NSString *time = [NSString stringWithFormat:@"%d",(int)actualTime];
-        if(actualTime == (int) actualTime){
-            time = [time stringByAppendingString:@":00"];
-        } else {
-            time = [time stringByAppendingString:@":30"];
-        }
-        
-        [med setTime:time];
-        
-        //If its today we need to get two more rows!
-        if(today){
-            NSString *rowid = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"rowid"]];
-            
-            NSString *completed = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"completed"]];
-            med.med_id = [rowid intValue];
-            
-            if([completed intValue] == 1){
-                med.completed = YES;
-            } else {
-                med.completed = NO;
-            }
-            
-        }
-        
-        [tempMutable addObject:med];
-    }
-    
-    return tempMutable;
-}
-
 
 #pragma mark - Setup Views
 //Method called to setup views
@@ -281,6 +219,7 @@
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.view setFrame:CGRectMake(0, 0, [Constants window_width], [Constants window_height])];
+    
 //    if([amMeds count] == 0 && [pmMeds count] == 0 && [Constants compareDate:[NSDate date] withOtherdate:futureDate]){
 //        UIImageView *completedImage = [[UIImageView alloc] initWithFrame:CGRectMake(([Constants window_width] - 300)/2, 50, 300, 311)];
 //        [completedImage setImage:[UIImage imageNamed:@"completed"]];
@@ -294,6 +233,7 @@
 //        
 //    }
 //    else {
+    
     self.medsView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
     
     UITapGestureRecognizer *singleFingerTap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
@@ -397,7 +337,7 @@
     [cell->postpone addTarget:self action:@selector(delay:) forControlEvents:UIControlEventTouchUpInside];
     [cell->undo addTarget:self action:@selector(undo:) forControlEvents:UIControlEventTouchUpInside];
     
-    Medication * med;
+    TodayMedication * med;
     
     // set the text
     if([[header objectAtIndex:indexPath.section]  isEqual: @"AM"]){
@@ -408,8 +348,12 @@
     
     [cell setMed:med];
     
-    if(med.completed){
-        [cell uiComplete];
+    if (!future){
+        if(med.taken){
+            [cell uiComplete];
+        } else {
+            [cell uiUndo];
+        }
     } else {
         [cell uiUndo];
     }
@@ -481,7 +425,7 @@
     }
     
     [self setupMeds];
-    //[self setupViews];
+ //   [self setupViews];
 }
 
 
@@ -545,7 +489,7 @@
         med = [pmMeds objectAtIndex:indexPath.row];
     }
     
-    InfoViewController *infoVC = [[InfoViewController alloc] initWithMed:med];
+    InfoViewController *infoVC = [[InfoViewController alloc] initWithMed:med.coreMed];
     [self.navigationController presentViewController:infoVC
                                             animated:YES
                                           completion:^{[cell closeCell];}];
@@ -569,23 +513,9 @@
         med = [pmMeds objectAtIndex:indexPath.row];
     }
     
-    if (med.actualTime < 23){
-        NSString *query;
-        //Convert to PM if its past 12!
-        if(med.actualTime >= 11 && [med.amPm  isEqual: @"AM"]){
-            query = [NSString stringWithFormat: @"update today_meds set time = %d, ampm ='PM' where rowid = %f", med.actualTime + 1, med.med_id];
-        } else {
-            query = [NSString stringWithFormat: @"update today_meds set time = %d where rowid = %f", med.actualTime + 1, med.med_id];
-        }
-        
-        [self.dbManager executeQuery:query];
-        
-//        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-//        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Delay"
-//                                                              action:@"Regular"
-//                                                               label:med.medName
-//                                                               value:[NSNumber numberWithInt:med.actualTime]] build]];
-    }
+    med.time += 1;
+    
+    [med commit];
 
     [self setupTodayArrays:current];
     [self.medsView reloadData];
@@ -599,7 +529,7 @@
     
     MedsCell *cell = (MedsCell*)[self.medsView cellForRowAtIndexPath:indexPath];
     
-    Medication *med;
+    TodayMedication *med;
     
     if([[header objectAtIndex:indexPath.section]  isEqual: @"AM"]){
         med = [amMeds objectAtIndex:indexPath.row];
@@ -608,7 +538,7 @@
         med = [pmMeds objectAtIndex:indexPath.row];
     }
     
-    if (med.completed){
+    if (med.taken){
         //Complete med
         [cell closeCell];
         [cell undo];
@@ -617,7 +547,7 @@
 //        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Undo"
 //                                                              action:@"Regular"
 //                                                               label:med.medName
-//                                                               value:[NSNumber numberWithInt:med.actualTime]] build]];
+//                                                               value:[NSNumber numberWithInt:med.time]] build]];
 
     } else {
         //Incomplete med
@@ -628,7 +558,7 @@
 //        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Taken"
 //                                                              action:@"Regular"
 //                                                               label:med.medName
-//                                                               value:[NSNumber numberWithInt:med.actualTime]] build]];
+//                                                               value:[NSNumber numberWithInt:med.time]] build]];
 
     }
 }
@@ -658,5 +588,20 @@
     [self setupViews];
 }
 
+
+#pragma mark - Convert Meds to Today Meds
+- (DBResultSet*)createTodayMedsArray:(DBResultSet*)meds{
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    
+    for (Medication *m in meds){
+        TodayMedication *tm = [TodayMedication new];
+        [tm createFromMedication:m];
+        [temp addObject:tm];
+    }
+    //[meds removeAll];
+    
+    DBResultSet *newdDBRS = (DBResultSet*)[NSArray arrayWithArray:temp];
+    return newdDBRS;
+}
 
 @end

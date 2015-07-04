@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "RMDateSelectionViewController.h"
 #import "DayPicker.h"
-#import "DBManager.h"
 #import "Constants.h"
 #import "Medication.h"
+#import "CoreMedication.h"
+#import "TodayMedication.h"
 
 @interface EditMedsController : UIViewController <UITextFieldDelegate, RMDateSelectionViewControllerDelegate>{
     UIButton *cancel;
@@ -24,7 +25,8 @@
     UILabel *time;
     UILabel *notes;
     
-    Medication * med;
+    CoreMedication *cm;
+    
     UITextField *medName;
     UITextField *chemName;
     UITextField *dosageNum;
@@ -44,8 +46,6 @@
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
-@property (nonatomic, strong) DBManager *dbManager;
-
 @property (nonatomic, strong) NSMutableArray *dayShedule;
 @property (nonatomic, strong) NSMutableArray *times;
 
@@ -56,7 +56,12 @@
 
 -(void)addTimeWithHour:(NSString *)hour andMins:(NSString *)mins andAmPm:(NSString *)ampm;
 
--(id)initWithMed:(Medication*)medication andDays:(NSMutableArray *)daySchedule andTime:(NSMutableArray *)timeSchedule;
+-(id)initWithMed:(CoreMedication*)medication andDays:(NSMutableArray *)daySchedule andTime:(NSMutableArray *)timeSchedule;
+
+-(void)decrementLocalNotifs;
+- (void)setupLocalNotifs;
+- (void)initLocalNotif:(int)number andDay:(NSString *)day andTime:(NSString*)timeString andDayIndex:(int)dayIndex;
+
 
 -(IBAction)closeWindow:(id)sender;
 

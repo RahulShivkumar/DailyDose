@@ -19,10 +19,9 @@
 
 @implementation EditMedsController
 
--(id)initWithMed:(Medication*)medication andDays:(NSMutableArray *)daySchedule andTime:(NSMutableArray *)timeSchedule{
+-(id)initWithMed:(CoreMedication*)medication andDays:(NSMutableArray *)daySchedule andTime:(NSMutableArray *)timeSchedule{
     if (self = [super init]) {
-        med = medication;
-        self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
+        cm = medication;
         self.dayShedule = daySchedule;
         self.times = timeSchedule;
 
@@ -91,7 +90,7 @@
     [medName setTintColor:[UIColor whiteColor]];
     [medName setDelegate:self];
     [medName.layer setSublayerTransform:CATransform3DMakeTranslation(7, 0, 0)];
-    [medName setText:med.medName];
+    [medName setText:cm.genName];
     [self addTextViewBorder:medName];
     [self.scrollView  addSubview:medName];
     
@@ -108,7 +107,7 @@
     [chemName setTintColor:[UIColor whiteColor]];
     [chemName.layer setSublayerTransform:CATransform3DMakeTranslation(7, 0, 0)];
     [chemName setDelegate:self];
-    [chemName setText:med.chemName];
+    [chemName setText:cm.chemName];
     [self addTextViewBorder:chemName];
     [self.scrollView  addSubview:chemName];
     
@@ -125,7 +124,7 @@
     [dosageNum setTintColor:[UIColor whiteColor]];
     [dosageNum.layer setSublayerTransform:CATransform3DMakeTranslation(7, 0, 0)];
     [dosageNum setDelegate:self];
-    [dosageNum setText:med.dosage];
+    [dosageNum setText:cm.dosage];
     [self addTextViewBorder:dosageNum];
     [self.scrollView  addSubview:dosageNum];
     
@@ -389,33 +388,49 @@
 }
 
 - (IBAction)done:(id)sender{
-    self.dbManager = [[DBManager alloc] initWithDatabaseFilename:@"dailydosedb.sql"];
+
     NSInteger hour;
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:[NSDate date]];
-    hour= [components hour];
+    hour = [components hour];
     
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat: @"MM/dd/yyyy"];
-    NSString *dateString = [dateFormat stringFromDate:[NSDate date]];
     if([times count] != 0 && medName.text && medName.text.length > 0 && chemName.text && chemName.text.length > 0 && dosageNum.text && dosageNum.text.length > 0){
         
+        //Setup Local Notifications on a separate thread
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self setupLocalNotifs];
+        });
+        
+        
+        //Delete all meds
+        [[[[Medication query] whereWithFormat:@"coreMed = %@", cm]  fetch] removeAll];
+        
+        //Change coreMed
+        cm.genName = medName.text;
+        cm.chemName = chemName.text;
+        cm.dosage = dosageNum.text;
+        [cm commit];
+        
         for (int i = 0; i < [times count]; i++){
-            NSString *ampm = @"AM";
-            if((int)[times objectAtIndex:i] > 12){
-                ampm = @"PM";
+            
+            Medication *medication = [Medication new];
+            medication.coreMed = cm;
+            medication.time = [[times objectAtIndex:i] floatValue];
+            medication.monday = (BOOL)[[dayPicker.days objectForKey:@"mon"] intValue];
+            medication.tuesday = (BOOL)[[dayPicker.days objectForKey:@"tue"] intValue];
+            medication.wednesday = (BOOL)[[dayPicker.days objectForKey:@"wed"] intValue];
+            medication.thursday = (BOOL)[[dayPicker.days objectForKey:@"thur"] intValue];
+            medication.friday = (BOOL)[[dayPicker.days objectForKey:@"fri"] intValue];
+            medication.saturday = (BOOL)[[dayPicker.days objectForKey:@"sat"] intValue];
+            medication.sunday = (BOOL)[[dayPicker.days objectForKey:@"sun"] intValue];
+            
+            [medication commit];
+            
+            //TO-DO Check the day too to ensure it is added correctly
+            if(hour <= [[times objectAtIndex:i] floatValue]){
+                TodayMedication *todayMed = [TodayMedication new];
+                [todayMed createFromMedication:medication];
+                [todayMed commit];
             }
-            
-            
-            
-            NSString *query = [NSString stringWithFormat: @"update meds  set med_name = '%@', chem_name = '%@', dosage = '%@', time = %f, ampm = '%@', monday = %d, tuesday = %d, wednesday = %d, thursday = %d, friday = %d, saturday = %d, sunday = %d, completed = 0, start_date = '%@' where med_name = '%@' and time = %f", medName.text, chemName.text, dosageNum.text, [[times objectAtIndex:i] floatValue], [amPm objectAtIndex:i], [[dayPicker.days objectForKey:@"mon"] intValue],[[dayPicker.days objectForKey:@"tue"] intValue], [[dayPicker.days objectForKey:@"wed"] intValue], [[dayPicker.days objectForKey:@"thur"] intValue], [[dayPicker.days objectForKey:@"fri"] intValue], [[dayPicker.days objectForKey:@"sat"] intValue], [[dayPicker.days objectForKey:@"sun"] intValue], dateString, med.medName, [[oldTimes objectAtIndex:i] floatValue]];
-            [self.dbManager executeQuery:query];
-            
-//            if(hour <= [[times objectAtIndex:i] floatValue]){
-//                completed = 0;
-//                query = [NSString stringWithFormat: @"update today_meds med_name, chem_name, dosage, time, ampm, completed) values ('%@', '%@', '%@', %f, '%@', %d)",medName.text, chemName.text, dosageNum.text, [[times objectAtIndex:i] floatValue],  [amPm objectAtIndex:i], completed];
-//                [self.dbManager executeQuery:query];
-//            }
-            
         }
         [self dismissViewControllerAnimated:YES completion:nil];
     }
@@ -426,5 +441,91 @@
     
 }
 
+#pragma mark - Setup Local Notifs
+//Method called to setup local notifications
+- (void)setupLocalNotifs {
+    NSArray *daysOfWeek = [[NSArray alloc] initWithObjects:@"sun", @"mon", @"tue", @"wed", @"thur", @"fri", @"sat", nil];
+    BOOL flag = NO;
+    for (int j = 0; j < [times count]; j++){
+        for (NSString *day in daysOfWeek){
+            if([[dayPicker.days objectForKey:day] intValue] == 1){
+                UIApplication *app = [UIApplication sharedApplication];
+                NSArray *eventArray = [app scheduledLocalNotifications];
+                for (int i=0; i<[eventArray count]; i++)
+                {
+                    UILocalNotification *oneEvent = [eventArray objectAtIndex:i];
+                    NSDictionary *userInfoCurrent = oneEvent.userInfo;
+                    NSString *identifier = [userInfoCurrent objectForKey:uid];
+                    NSString *prefix = [day stringByAppendingString:[NSString stringWithFormat:@"%@",[times objectAtIndex:j]]];
+                    
+                    if ([identifier hasPrefix:prefix])
+                    {
+                        flag = YES;
+                        [app cancelLocalNotification:oneEvent];
+                        int number = [[identifier substringFromIndex:[prefix length]] intValue];
+                        
+                        [self initLocalNotif:number andDay:day
+                                     andTime:[NSString stringWithFormat:@"%@",[times objectAtIndex:j]]
+                                 andDayIndex:(int)[daysOfWeek indexOfObject:day]];
+                        
+                        break;
+                    }
+                }
+                if (!flag){
+                    int number = 0;
+                    [self initLocalNotif:number andDay:day
+                                 andTime:[NSString stringWithFormat:@"%@", [times objectAtIndex:j]]
+                             andDayIndex:(int)[daysOfWeek indexOfObject:day]];
+                    
+                }
+                
+            }
+        }
+    }
+}
+
+
+//Method called to create the local notifications
+- (void)initLocalNotif:(int)number andDay:(NSString *)day andTime:(NSString*)timeString andDayIndex:(int)dayIndex {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *now = [NSDate date];
+    
+    NSDateComponents *componentsForFireDate = [calendar components:(NSYearCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit| NSSecondCalendarUnit | NSWeekdayCalendarUnit) fromDate: now];
+    [componentsForFireDate setWeekday: dayIndex] ;
+    
+    float timeFloat = [timeString floatValue];
+    int minute = 0;
+    if (timeFloat != (int)timeFloat){
+        timeFloat = (int)timeFloat;
+        minute = 30;
+    }
+    [componentsForFireDate setHour: timeFloat] ;
+    [componentsForFireDate setMinute:minute] ;
+    [componentsForFireDate setSecond:0] ;
+    
+    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
+    localNotification.fireDate = [calendar dateFromComponents:componentsForFireDate];
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    [f setNumberStyle:NSNumberFormatterSpellOutStyle];
+    number += 1;
+    NSString *s = [f stringFromNumber:[NSNumber numberWithInt:number]];
+    NSString *alertBody;
+    
+    if (number == 1) {
+        alertBody = [s stringByAppendingString:@" med!"];
+    } else {
+        alertBody = [s stringByAppendingString:@" meds!"];
+    }
+    
+    localNotification.alertBody = [@"Time to take " stringByAppendingString:alertBody];
+    localNotification.timeZone = [NSTimeZone defaultTimeZone];
+    localNotification.repeatInterval = NSWeekCalendarUnit;
+    
+    NSString *key = [timeString stringByAppendingString:[NSString stringWithFormat:@"%d", number]];
+    key = [day stringByAppendingString:key];
+    
+    [localNotification setUserInfo:[NSDictionary dictionaryWithObject:key forKey:uid]];
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
 
 @end

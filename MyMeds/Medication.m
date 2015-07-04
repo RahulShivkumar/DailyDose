@@ -10,17 +10,6 @@
 
 @implementation Medication
 
-- (id)initWithName:(NSString*)text andChemName:(NSString*)chem{
-    if (self = [super init]) {
-		self.medName = text;
-        self.chemName = chem;
-    }
-    return self;
-}
-
-+ (id)initWithName:(NSString*)text andChemName:(NSString*)chem {
-    return [[Medication alloc] initWithName:text andChemName:chem];
-}
-
+@dynamic coreMed, rxid, type, time, dispense, refill, quantity, monday, tuesday, wednesday, thursday, friday, saturday, sunday;
 
 @end

@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "DayPicker.h"
-#import "DBManager.h"
 #import "RMDateSelectionViewController.h"
 #import "Constants.h"
 #import "MPGTextField.h"
+#import "Medication.h"
+#import "TodayMedication.h"
+#import "CoreMedication.h"
+
 @interface AddMedViewController : UIViewController<UITextFieldDelegate, RMDateSelectionViewControllerDelegate, MPGTextFieldDelegate>{
     UIButton *cancel;
     UIButton *done;
@@ -42,7 +45,6 @@
 }
 
 @property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) DBManager *dbManager;
 
 - (void)setupViews;
 - (void)addTextViewBorder:(UITextField*)textView;

@@ -12,6 +12,10 @@
 #import "HistoryViewController.h"
 #import "AnalyzeViewController.h"
 #import "SettingsViewController.h"
+#import "Amplitude.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 
 @interface AppDelegate ()
 
@@ -22,13 +26,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]) {
-        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeSound categories:nil]];
-    }
+        [[Amplitude instance] initializeApiKey:@"447c4970cf194fb88634f03525740d0a"];
     
+        [Fabric with:@[CrashlyticsKit]];
     
-    return YES;
+        [DBAccess setDelegate:self];
+        [DBAccess openDatabaseNamed:@"dailydose"];
+    
+        return YES;
     
 }
 
