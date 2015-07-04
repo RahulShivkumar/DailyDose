@@ -10,6 +10,7 @@
 #import "StrikeThroughLabel.h"
 #import "TodayMedication.h"
 #import "Constants.h"
+#import "EventLogger.h"
 
 @protocol StrikeDelegate
 - (void)strikeDelegate:(id)sender;

@@ -12,7 +12,7 @@
 		B71815AE1B3F47FE0081AFC9 /* ComplianceAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = B71815AD1B3F47FE0081AFC9 /* ComplianceAnalyzer.m */; };
 		B71815B11B3F4A370081AFC9 /* ComplianceCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = B71815B01B3F4A370081AFC9 /* ComplianceCircle.m */; };
 		B7196A4B1B4644110014DF3B /* CoreMedication.m in Sources */ = {isa = PBXBuildFile; fileRef = B7196A4A1B4644110014DF3B /* CoreMedication.m */; };
-		B7196A4E1B478B670014DF3B /* Events.m in Sources */ = {isa = PBXBuildFile; fileRef = B7196A4D1B478B670014DF3B /* Events.m */; };
+		B7196A4E1B478B670014DF3B /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = B7196A4D1B478B670014DF3B /* Event.m */; };
 		B7275DB71AC259030016D085 /* RMDateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7275DB61AC259030016D085 /* RMDateSelectionViewController.m */; };
 		B7322A471A8AD3720057B916 /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7322A461A8AD3720057B916 /* MenuController.m */; };
 		B73A94241B42546900590D79 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73A94221B42546900590D79 /* Fabric.framework */; };
@@ -86,8 +86,8 @@
 		B71815B01B3F4A370081AFC9 /* ComplianceCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplianceCircle.m; sourceTree = "<group>"; };
 		B7196A491B4644110014DF3B /* CoreMedication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreMedication.h; sourceTree = "<group>"; };
 		B7196A4A1B4644110014DF3B /* CoreMedication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreMedication.m; sourceTree = "<group>"; };
-		B7196A4C1B478B670014DF3B /* Events.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Events.h; sourceTree = "<group>"; };
-		B7196A4D1B478B670014DF3B /* Events.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Events.m; sourceTree = "<group>"; };
+		B7196A4C1B478B670014DF3B /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		B7196A4D1B478B670014DF3B /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		B7275DB51AC259030016D085 /* RMDateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDateSelectionViewController.h; sourceTree = "<group>"; };
 		B7275DB61AC259030016D085 /* RMDateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDateSelectionViewController.m; sourceTree = "<group>"; };
 		B7322A451A8AD3720057B916 /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
@@ -203,6 +203,10 @@
 		B70CC8181AED8BA40042F1CE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B7A669521B40C27500AE7566 /* EventLogger.h */,
+				B7A669531B40C27500AE7566 /* EventLogger.m */,
+				B7196A4C1B478B670014DF3B /* Event.h */,
+				B7196A4D1B478B670014DF3B /* Event.m */,
 				B73A942C1B44F4AA00590D79 /* TodayMedication.h */,
 				B73A942D1B44F4AA00590D79 /* TodayMedication.m */,
 				B7AAC02B1A834A1300BC6B2C /* Medication.h */,
@@ -278,8 +282,6 @@
 			children = (
 				B7988D5E1A7B350A0061DF8C /* MedsCell.h */,
 				B7988D5F1A7B350A0061DF8C /* MedsCell.m */,
-				B7196A4C1B478B670014DF3B /* Events.h */,
-				B7196A4D1B478B670014DF3B /* Events.m */,
 				B7988D621A7B38C50061DF8C /* StrikeThroughLabel.h */,
 				B7988D631A7B38C50061DF8C /* StrikeThroughLabel.m */,
 			);
@@ -289,8 +291,6 @@
 		B78E711F1B3E3CE900D4350F /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				B7A669521B40C27500AE7566 /* EventLogger.h */,
-				B7A669531B40C27500AE7566 /* EventLogger.m */,
 				B70CC81B1AED8E9B0042F1CE /* Constants.h */,
 				B70CC81C1AED8E9B0042F1CE /* Constants.m */,
 			);
@@ -558,7 +558,7 @@
 				B71815AE1B3F47FE0081AFC9 /* ComplianceAnalyzer.m in Sources */,
 				B70CC81D1AED8E9B0042F1CE /* Constants.m in Sources */,
 				B755187F1B00337600CE23A3 /* AZNotification.m in Sources */,
-				B7196A4E1B478B670014DF3B /* Events.m in Sources */,
+				B7196A4E1B478B670014DF3B /* Event.m in Sources */,
 				B73A942E1B44F4AA00590D79 /* TodayMedication.m in Sources */,
 				B75A08EE1AB945D8009D2056 /* DayPicker.m in Sources */,
 				B7BF61AF1A8B25EF00F08413 /* CalendarButton.m in Sources */,

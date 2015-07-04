@@ -257,7 +257,7 @@
     // mark the item as complete and update the UI state
     medication.taken = YES;
     [medication commit];
-    
+    [EventLogger logAction:@"taken" andMedication:medication.coreMed andTime:medication.time];
     [self uiComplete];
 }
 

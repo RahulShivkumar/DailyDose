@@ -26,7 +26,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-        [[Amplitude instance] initializeApiKey:@"447c4970cf194fb88634f03525740d0a"];
+        [[Amplitude instance] initializeApiKey:@"447c4970cf194fb88634f03525740d0a" userId:[self getUserID]];
     
         [Fabric with:@[CrashlyticsKit]];
     
@@ -57,6 +57,17 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (NSString*)getUserID {
+    // Create universally unique identifier (object)
+    CFUUIDRef uuidObject = CFUUIDCreate(kCFAllocatorDefault);
+    
+    // Get the string representation of CFUUID object.
+    NSString *uuidStr = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuidObject);
+    CFRelease(uuidObject);
+    
+    return uuidStr;
 }
 
 @end

@@ -15,8 +15,11 @@
 + (CGFloat)window_width;
 
 + (BOOL)compareDate:(NSDate*)date1 withOtherdate:(NSDate*)date2;
+
 + (void)setupNavbar:(UIViewController*)parentController;
 + (UIColor*)getNavBarColor;
+
 + (NSInteger)getCurrentHour;
++ (NSInteger)getCurrentMinute;
 
 @end

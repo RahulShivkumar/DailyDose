@@ -62,4 +62,11 @@
     return [components hour];
 }
 
+
++ (NSInteger)getCurrentMinute {
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:[NSDate date]];
+    
+    return [components minute];
+}
+
 @end
