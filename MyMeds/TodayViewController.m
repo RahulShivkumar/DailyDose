@@ -77,12 +77,13 @@
         if(!date){
             [self setupSqlDefaults:current];
         } else if ([Constants compareDate:current withOtherdate:date]){
+
+            [self setupTodayArrays:current];
+        } else {
             //----------------------------------------------------
             //TO DO : Calculate missed meds over the missed meds
             //----------------------------------------------------
             [self setupSqlDefaults:current];
-        } else {
-            [self setupTodayArrays:current];
         }
     } else {
         [self setupSqlDefaults:futureDate];
@@ -163,11 +164,13 @@
         hour = 0;
     }
     
+    NSString *query = [NSString stringWithFormat:@"time > %d and time < 12", (int)hour -1];
+    NSString *query2 = [NSString stringWithFormat:@"time > %d and time >= 12", (int)hour -1];
     //Get am and pm meds from today's sql table
-    amMeds = [[[TodayMedication query] where:@"time < 12"] fetch];
+    amMeds = [[[TodayMedication query] where:query] fetch];
     
 
-    pmMeds = [[[TodayMedication query] where:@"time >= 12"] fetch] ;
+    pmMeds = [[[TodayMedication query] where:query2] fetch] ;
     
     //First lets see if there are any missed meds today
     if([Constants compareDate:[NSDate date] withOtherdate:date]){
