@@ -348,10 +348,8 @@
     
     if([times count] != 0 && medName.text && medName.text.length > 0 && chemName.text && chemName.text.length > 0 && dosageNum.text && dosageNum.text.length > 0){
         
-        //Setup Local Notifications on a separate thread
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [self setupLocalNotifs];
-        });
+        //Setup Local Notifications
+        [NotificationScheduler setupLocalNotifsWithDictionary:dayPicker.days andTimes:times];
         
         //First Create our CoreMed
         CoreMedication *coreMed = [CoreMedication new];
@@ -396,92 +394,8 @@
 }
 
 
-#pragma mark - Setup Local Notifs
-//Method called to setup local notifications
-- (void)setupLocalNotifs {
-    NSArray *daysOfWeek = [[NSArray alloc] initWithObjects:@"sun", @"mon", @"tue", @"wed", @"thur", @"fri", @"sat", nil];
-    BOOL flag = NO;
-    for (int j = 0; j < [times count]; j++){
-        for (NSString *day in daysOfWeek){
-            if([[dayPicker.days objectForKey:day] intValue] == 1){
-                UIApplication *app = [UIApplication sharedApplication];
-                NSArray *eventArray = [app scheduledLocalNotifications];
-                for (int i=0; i<[eventArray count]; i++)
-                {
-                    UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
-                    NSDictionary *userInfoCurrent = oneEvent.userInfo;
-                    NSString *identifier = [userInfoCurrent objectForKey:uid];
-                    NSString *prefix = [day stringByAppendingString:[NSString stringWithFormat:@"%@",[times objectAtIndex:j]]];
-
-                    if ([identifier hasPrefix:prefix])
-                    {
-                        flag = YES;
-                        [app cancelLocalNotification:oneEvent];
-                        int number = [[identifier substringFromIndex:[prefix length]] intValue];
-                        
-                        [self initLocalNotif:number andDay:day
-                                     andTime:[NSString stringWithFormat:@"%@",[times objectAtIndex:j]]
-                                 andDayIndex:(int)[daysOfWeek indexOfObject:day]];
-                        
-                        break;
-                    }
-                }
-                if (!flag){
-                    int number = 0;
-                    [self initLocalNotif:number andDay:day
-                                 andTime:[NSString stringWithFormat:@"%@", [times objectAtIndex:j]]
-                             andDayIndex:(int)[daysOfWeek indexOfObject:day]];
-                    
-                }
-                
-            }
-        }
-    }
-}
 
 
-//Method called to create the local notifications
-- (void)initLocalNotif:(int)number andDay:(NSString *)day andTime:(NSString*)timeString andDayIndex:(int)dayIndex {
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDate *now = [NSDate date];
-    
-    NSDateComponents *componentsForFireDate = [calendar components:(NSYearCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit| NSSecondCalendarUnit | NSWeekdayCalendarUnit) fromDate: now];
-    [componentsForFireDate setWeekday: dayIndex] ;
-    
-    float timeFloat = [timeString floatValue];
-    int minute = 0;
-    if (timeFloat != (int)timeFloat){
-        timeFloat = (int)timeFloat;
-        minute = 30;
-    }
-    [componentsForFireDate setHour: timeFloat] ;
-    [componentsForFireDate setMinute:minute] ;
-    [componentsForFireDate setSecond:0] ;
-    
-    UILocalNotification* localNotification = [[UILocalNotification alloc] init];
-    localNotification.fireDate = [calendar dateFromComponents:componentsForFireDate];
-    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-    [f setNumberStyle:NSNumberFormatterSpellOutStyle];
-    number += 1;
-    NSString *s = [f stringFromNumber:[NSNumber numberWithInt:number]];
-    NSString *alertBody;
-    
-    if (number == 1) {
-        alertBody = [s stringByAppendingString:@" med!"];
-    } else {
-        alertBody = [s stringByAppendingString:@" meds!"];
-    }
-    
-    localNotification.alertBody = [@"Time to take " stringByAppendingString:alertBody];
-    localNotification.timeZone = [NSTimeZone defaultTimeZone];
-    localNotification.repeatInterval = NSWeekCalendarUnit;
-    
-    NSString *key = [timeString stringByAppendingString:[NSString stringWithFormat:@"%d", number]];
-    key = [day stringByAppendingString:key];
-    
-    [localNotification setUserInfo:[NSDictionary dictionaryWithObject:key forKey:uid]];
-    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-}
 
 #pragma mark - Setup Data 
 - (void)generateData {

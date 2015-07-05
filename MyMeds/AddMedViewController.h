@@ -14,6 +14,7 @@
 #import "Medication.h"
 #import "TodayMedication.h"
 #import "CoreMedication.h"
+#import "NotificationScheduler.h"
 
 @interface AddMedViewController : UIViewController<UITextFieldDelegate, RMDateSelectionViewControllerDelegate, MPGTextFieldDelegate>{
     UIButton *cancel;
@@ -62,7 +63,5 @@
 - (IBAction)closeWindow:(id)sender;
 - (IBAction)done:(id)sender;
 
-- (void)setupLocalNotifs;
-- (void)initLocalNotif:(int)number andDay:(NSString *)day andTime:(NSString*)timeString andDayIndex:(int)dayIndex;
 
 @end

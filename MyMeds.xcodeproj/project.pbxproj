@@ -13,6 +13,7 @@
 		B71815B11B3F4A370081AFC9 /* ComplianceCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = B71815B01B3F4A370081AFC9 /* ComplianceCircle.m */; };
 		B7196A4B1B4644110014DF3B /* CoreMedication.m in Sources */ = {isa = PBXBuildFile; fileRef = B7196A4A1B4644110014DF3B /* CoreMedication.m */; };
 		B7196A4E1B478B670014DF3B /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = B7196A4D1B478B670014DF3B /* Event.m */; };
+		B7212D6D1B49E042005C89B8 /* NotificationScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = B7212D6C1B49E042005C89B8 /* NotificationScheduler.m */; };
 		B7275DB71AC259030016D085 /* RMDateSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7275DB61AC259030016D085 /* RMDateSelectionViewController.m */; };
 		B7322A471A8AD3720057B916 /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7322A461A8AD3720057B916 /* MenuController.m */; };
 		B73A94241B42546900590D79 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73A94221B42546900590D79 /* Fabric.framework */; };
@@ -88,6 +89,8 @@
 		B7196A4A1B4644110014DF3B /* CoreMedication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreMedication.m; sourceTree = "<group>"; };
 		B7196A4C1B478B670014DF3B /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		B7196A4D1B478B670014DF3B /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		B7212D6B1B49E042005C89B8 /* NotificationScheduler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationScheduler.h; sourceTree = "<group>"; };
+		B7212D6C1B49E042005C89B8 /* NotificationScheduler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationScheduler.m; sourceTree = "<group>"; };
 		B7275DB51AC259030016D085 /* RMDateSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMDateSelectionViewController.h; sourceTree = "<group>"; };
 		B7275DB61AC259030016D085 /* RMDateSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMDateSelectionViewController.m; sourceTree = "<group>"; };
 		B7322A451A8AD3720057B916 /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
@@ -291,6 +294,8 @@
 		B78E711F1B3E3CE900D4350F /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				B7212D6B1B49E042005C89B8 /* NotificationScheduler.h */,
+				B7212D6C1B49E042005C89B8 /* NotificationScheduler.m */,
 				B70CC81B1AED8E9B0042F1CE /* Constants.h */,
 				B70CC81C1AED8E9B0042F1CE /* Constants.m */,
 			);
@@ -548,6 +553,7 @@
 				B7A2750E1B40F927008F2BD4 /* AMPDeviceInfo.m in Sources */,
 				B7C27E201A76AA8100DFB416 /* AppDelegate.m in Sources */,
 				B7196A4B1B4644110014DF3B /* CoreMedication.m in Sources */,
+				B7212D6D1B49E042005C89B8 /* NotificationScheduler.m in Sources */,
 				B772FC4E1AFD60A2001CB237 /* EditMedsController.m in Sources */,
 				B7C27E231A76AA8100DFB416 /* TodayViewController.m in Sources */,
 				B7C27E1D1A76AA8100DFB416 /* main.m in Sources */,

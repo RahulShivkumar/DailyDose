@@ -12,6 +12,7 @@
 #import "Constants.h"
 #import "ComplianceAnalyzer.h"
 #import "TodayMedication.h"
+#import "EventLogger.h"
 
 @interface TodayViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MenuControllerDelegate>{
     

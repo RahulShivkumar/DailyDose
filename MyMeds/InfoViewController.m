@@ -8,7 +8,6 @@
 
 #import "InfoViewController.h"
 
-
 #define kBGColor [UIColor colorWithRed:229/255.0 green:98/255.0 blue:92/255.0 alpha:1.0]
 #define kBGColor2 [UIColor colorWithRed:249/255.0 green:191/255.0 blue:118/255.0 alpha:1.0]
 #define kTextColor [UIColor whiteColor]
@@ -199,11 +198,13 @@
     
     for(Medication *m in temp){
         
-
+        [times addObject:[NSNumber numberWithFloat:m.time]];
+        
         float actualTime = m.time;
         if(actualTime > 12.5){
             actualTime -= 12;
         }
+        
         
         NSString *timeString = [NSString stringWithFormat:@"%d",(int)actualTime];
         
@@ -237,20 +238,36 @@
     }
     
 }
+
+
 - (IBAction)closeWindow:(id)sender{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
 - (IBAction)editMeds:(id)sender{
-    EditMedsController *editMedsController = [[EditMedsController alloc] initWithMed:cm andDays:daySchedule andTime:times];
+    
+    EditMedsController *editMedsController = [[EditMedsController alloc] initWithMed:cm
+                                                                             andDays:daySchedule
+                                                                             andTime:times];
     [editMedsController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-    [self presentViewController:editMedsController animated:YES completion:nil];
+    
+    [self presentViewController:editMedsController
+                       animated:YES
+                     completion:nil];
 }
 
 - (IBAction)endCourse:(id)sender{
 
+    //Lets remove it from TodayMeds
+    [[[[TodayMedication query] whereWithFormat:@"coreMed = %@", cm] fetch] removeAll];
+    
     cm.expired = 1;
     cm.endDate = [NSDate date];
     [cm commit];
+    
+    //Remove from local notification
+    [NotificationScheduler removeLocalNotificationWithCoreMedication:cm AndTimes:times];
     
     [self dismissViewControllerAnimated:YES
                              completion:nil];
@@ -259,15 +276,11 @@
 - (IBAction)deleteRecord:(id)sender {
     
     [[[[Medication query] whereWithFormat:@"coreMed = %@", cm] fetch] removeAll];
+    [[[[TodayMedication query] whereWithFormat:@"coreMed = %@", cm] fetch] removeAll];
     [cm remove];
     
     [self dismissViewControllerAnimated:YES
                              completion:nil];
-}
-
-#pragma mark Data Setup 
--(void)setupData{
-    
 }
 
 

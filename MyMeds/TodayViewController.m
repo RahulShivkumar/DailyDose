@@ -26,16 +26,34 @@
 
 @implementation TodayViewController
 
+#pragma mark - Test Methods
+- (void)clearData{
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    [[[Medication query] fetch] removeAll];
+    [[[TodayMedication query] fetch] removeAll];
+    [[[CoreMedication query] fetch] removeAll];
+}
+
+
+- (void)checkNotifications {
+    UIApplication *app = [UIApplication sharedApplication];
+    NSArray *eventArray = [app scheduledLocalNotifications];
+    for (int i = 0; i < [eventArray count]; i++)
+    {
+        UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
+        NSDictionary *userInfoCurrent = oneEvent.userInfo;
+        NSString *identifier = [userInfoCurrent objectForKey:@"uid"];
+        NSLog(@"%@", identifier);
+    }
+}
+
+
+
 #pragma mark - Lifecycle
 -(void)viewDidLoad {
     [super viewDidLoad];
 }
 
-- (void)clearData{
-    [[[Medication query] fetch] removeAll];
-    [[[TodayMedication query] fetch] removeAll];
-    [[[CoreMedication query] fetch] removeAll];
-}
 
 //Methods called in viewDidAppear so that the views are refreshed
 -(void)viewDidAppear:(BOOL)animated{
@@ -48,7 +66,8 @@
     current = [NSDate date];
     future = NO;
     futureDate = current;
-   // [self clearData];
+    //[self clearData];
+    [self checkNotifications];
     [self setupMeds];
     [self setupViews];
 }
@@ -98,6 +117,9 @@
     [dateFormatter setDateFormat:@"EEEE"];
     NSString *dayOfWeek = [dateFormatter stringFromDate:date];
     
+     //----------------------------------------------------
+    //TO DO - Check for expired
+     //----------------------------------------------------
     NSString *query = [NSString stringWithFormat:@"%@ = 1 and time < 12", [dayOfWeek lowercaseString]];
     NSString *query2 = [NSString stringWithFormat:@"%@ = 1 and time >= 12", [dayOfWeek lowercaseString]];
     
@@ -492,6 +514,8 @@
         med = [pmMeds objectAtIndex:indexPath.row];
     }
     
+    [EventLogger logAction:@"info" andMedication:med.coreMed andTime:med.time];
+    
     InfoViewController *infoVC = [[InfoViewController alloc] initWithMed:med.coreMed];
     [self.navigationController presentViewController:infoVC
                                             animated:YES
@@ -516,6 +540,8 @@
         med = [pmMeds objectAtIndex:indexPath.row];
     }
     
+    [EventLogger logAction:@"delay" andMedication:med.coreMed andTime:med.time];
+    
     med.time += 1;
     
     [med commit];
@@ -536,8 +562,7 @@
     
     if([[header objectAtIndex:indexPath.section]  isEqual: @"AM"]){
         med = [amMeds objectAtIndex:indexPath.row];
-    }
-    else {
+    } else {
         med = [pmMeds objectAtIndex:indexPath.row];
     }
     
@@ -545,24 +570,11 @@
         //Complete med
         [cell closeCell];
         [cell undo];
-        
-//        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-//        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Undo"
-//                                                              action:@"Regular"
-//                                                               label:med.medName
-//                                                               value:[NSNumber numberWithInt:med.time]] build]];
 
     } else {
         //Incomplete med
         [cell closeCell];
         [cell complete];
-        
-//        id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-//        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Taken"
-//                                                              action:@"Regular"
-//                                                               label:med.medName
-//                                                               value:[NSNumber numberWithInt:med.time]] build]];
-
     }
 }
 

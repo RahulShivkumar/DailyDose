@@ -12,6 +12,7 @@
 #import "EditMedsController.h"
 #import "Medication.h"
 #import "TodayMedication.h"
+#import "NotificationScheduler.h"
 
 @interface InfoViewController : UIViewController{
     UIButton *close;
@@ -36,7 +37,6 @@
 }
 
 - (void)setupView;
-- (void)setupData;
 
 - (IBAction)closeWindow:(id)sender;
 - (IBAction)editMeds:(id)sender;
