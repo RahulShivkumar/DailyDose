@@ -158,7 +158,7 @@
 
     
 }
--(void)setupDaysTaken{
+- (void)setupDaysTaken{
     daySchedule = [[NSMutableArray alloc] init];
     UILabel *daysTaken = [[UILabel alloc] initWithFrame:CGRectMake(30, [Constants window_height]* 0.320, [Constants window_width] *0.6, [Constants window_height]*0.145)];
     [daysTaken setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:22]];
@@ -200,36 +200,14 @@
         
         [times addObject:[NSNumber numberWithFloat:m.time]];
         
-        float actualTime = m.time;
-        if(actualTime > 12.5){
-            actualTime -= 12;
-        }
-        
-        
-        NSString *timeString = [NSString stringWithFormat:@"%d",(int)actualTime];
-        
-        if(actualTime == (int) actualTime){
-            timeString = [timeString stringByAppendingString:@":00"];
-        } else {
-            timeString = [timeString stringByAppendingString:@":30"];
-        }
+
         
         time = [[UILabel alloc]initWithFrame:CGRectMake([Constants window_width]/2.0, [Constants window_height]* 0.38 + 0.05 * i * [Constants window_height], [Constants window_width]/2.0-10, [Constants window_height]*0.2)];
-        
-        if (m.time >= 12){
-            [times addObject:[timeString stringByAppendingString:[@" " stringByAppendingString:@"PM"]]
-             ];
-            [time setText:[timeString stringByAppendingString:@"PM"]];
-        } else{
-            [times addObject:[timeString stringByAppendingString:[@" " stringByAppendingString:@"AM"]]
-             ];
-            [time setText:[timeString stringByAppendingString:@"AM"]];
-        }
-        
 
         [time setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:25]];
         [time setTextColor:kTextColor];
         [time setTextAlignment:NSTextAlignmentRight];
+        [time setText:[Constants convertTimeToString:m.time]];
         
         [self.view addSubview:time];
 

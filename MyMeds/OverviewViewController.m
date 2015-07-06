@@ -144,9 +144,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    CoreMedication *cm;
-    cm = [meds objectAtIndex:indexPath.row];
-    InfoViewController *infoVC = [[InfoViewController alloc] initWithMed:cm];
+    InfoViewController *infoVC = [[InfoViewController alloc] initWithMed:[meds objectAtIndex:indexPath.row]];
     [self.navigationController presentViewController:infoVC animated:YES completion:nil];
 }
 

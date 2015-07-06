@@ -22,4 +22,6 @@
 + (NSInteger)getCurrentHour;
 + (NSInteger)getCurrentMinute;
 
++ (NSString*)convertTimeToString:(float)t;
+
 @end

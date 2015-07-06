@@ -69,4 +69,31 @@
     return [components minute];
 }
 
+#pragma mark - Convert Time to String 
++ (NSString*)convertTimeToString:(float)t {
+    
+    int t2 = t;
+    
+    if(t2 > 12.5){
+        t2 -= 12;
+    }
+    
+    NSString *timeString = [NSString stringWithFormat:@"%d",(int)t2];
+    
+    
+    if(t == (int)t){
+        timeString = [timeString stringByAppendingString:@":00"];
+    } else {
+        timeString = [timeString stringByAppendingString:@":30"];
+    }
+    
+    if (t >= 12){
+        timeString = [timeString stringByAppendingString:[@" " stringByAppendingString:@"PM"]];
+    } else{
+        timeString = [timeString stringByAppendingString:[@" " stringByAppendingString:@"AM"]];
+    }
+    
+    return timeString;
+}
+
 @end

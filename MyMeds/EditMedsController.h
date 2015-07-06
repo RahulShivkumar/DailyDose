@@ -13,6 +13,7 @@
 #import "Medication.h"
 #import "CoreMedication.h"
 #import "TodayMedication.h"
+#import "NotificationScheduler.h"
 
 @interface EditMedsController : UIViewController <UITextFieldDelegate, RMDateSelectionViewControllerDelegate>{
     UIButton *cancel;
@@ -39,7 +40,6 @@
     NSMutableArray *timePickers;
     NSMutableArray *times;
     NSMutableArray *oldTimes;
-    NSMutableArray *amPm;
     
     int selectedTag;
 }
@@ -47,22 +47,15 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 
 @property (nonatomic, strong) NSMutableArray *dayShedule;
-@property (nonatomic, strong) NSMutableArray *times;
 
--(void)setupView;
--(void)createButton;
--(void)dismissKeyboard;
--(void)manipulateTime;
+- (id)initWithMed:(CoreMedication*)medication andDays:(NSMutableArray *)daySchedule andTime:(NSMutableArray *)timeSchedule;
 
--(void)addTimeWithHour:(NSString *)hour andMins:(NSString *)mins andAmPm:(NSString *)ampm;
+- (void)setupView;
+- (void)createButton;
+- (void)dismissKeyboard;
+- (void)manipulateTime;
 
--(id)initWithMed:(CoreMedication*)medication andDays:(NSMutableArray *)daySchedule andTime:(NSMutableArray *)timeSchedule;
+- (IBAction)closeWindow:(id)sender;
 
--(void)decrementLocalNotifs;
-- (void)setupLocalNotifs;
-- (void)initLocalNotif:(int)number andDay:(NSString *)day andTime:(NSString*)timeString andDayIndex:(int)dayIndex;
-
-
--(IBAction)closeWindow:(id)sender;
 
 @end
