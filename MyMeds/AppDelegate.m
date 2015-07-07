@@ -33,6 +33,12 @@
         [DBAccess setDelegate:self];
         [DBAccess openDatabaseNamed:@"dailydose"];
     
+        //Ask for notifications permission
+        if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]) {
+            [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeSound|UIUserNotificationTypeBadge
+                                                                                                                  categories:nil]];
+        }
+    
         return YES;
     
 }

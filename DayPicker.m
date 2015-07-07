@@ -73,65 +73,60 @@
 }
 
 
--(IBAction)sun:(id)sender{
+- (IBAction)sun:(id)sender{
     [sun addHighlight];
     sun.selected  = !sun.selected;
     if(sun.selected){
         [self.days setObject:[NSNumber numberWithInt:1] forKey:@"sun"];
-    }
-    else{
+    } else {
         [self.days setObject:[NSNumber numberWithInt:0] forKey:@"sun"];
     }
     [self hideTviews];
 }
 
 
--(IBAction)mon:(id)sender{
+- (IBAction)mon:(id)sender{
     [mon addHighlight];
     mon.selected  = !mon.selected;
     if(mon.selected){
         [self.days setObject:[NSNumber numberWithInt:1] forKey:@"mon"];
-    }
-    else{
+    } else {
         [self.days setObject:[NSNumber numberWithInt:0] forKey:@"mon"];
     }
     [self hideTviews];
 }
 
 
--(IBAction)tue:(id)sender{
+- (IBAction)tue:(id)sender{
     [tue addHighlight];
     tue.selected  = !tue.selected;
     if(tue.selected){
         [self.days setObject:[NSNumber numberWithInt:1] forKey:@"tue"];
-    }
-    else{
+    } else {
         [self.days setObject:[NSNumber numberWithInt:0] forKey:@"tue"];
     }
     [self hideTviews];
 }
 
 
--(IBAction)wed:(id)sender{
+- (IBAction)wed:(id)sender{
     [wed addHighlight];
     wed.selected  = !wed.selected;
     if(wed.selected){
         [self.days setObject:[NSNumber numberWithInt:1] forKey:@"wed"];
-    }
-    else{
+    } else {
         [self.days setObject:[NSNumber numberWithInt:0] forKey:@"wed"];
     }
     [self hideTviews];
 }
 
 
--(IBAction)thur:(id)sender{
+- (IBAction)thur:(id)sender{
     [thur addHighlight];
     thur.selected  = !thur.selected;
     if(thur.selected){
         [self.days setObject:[NSNumber numberWithInt:1] forKey:@"thur"];
-    }
-    else{
+    } else {
         [self.days setObject:[NSNumber numberWithInt:0] forKey:@"thur"];
     }
     [self hideTviews];
@@ -143,8 +138,7 @@
     fri.selected  = !fri.selected;
     if(fri.selected){
         [self.days setObject:[NSNumber numberWithInt:1] forKey:@"fri"];
-    }
-    else{
+    } else {
         [self.days setObject:[NSNumber numberWithInt:0] forKey:@"fri"];
     }
     [self hideTviews];
@@ -156,8 +150,7 @@
     sat.selected  = !sat.selected;
     if(sat.selected){
         [self.days setObject:[NSNumber numberWithInt:1] forKey:@"sat"];
-    }
-    else{
+    } else {
         [self.days setObject:[NSNumber numberWithInt:0] forKey:@"sat"];
     }
     [self hideTviews];

@@ -22,30 +22,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
    // [self.view setBackgroundColor:[UIColor colorWithRed:122/255.0 green:0/255.0 blue:38/255.0 alpha:1.0]];
-    [self setFakeImage];
 
 }
 
-- (void)setFakeImage{
-    [Constants setupNavbar:self];
-    [self.navigationItem setTitle:@"Analyze"];
 
-    
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 375, [Constants window_height] - 89)];
-    [scrollView setScrollEnabled:YES];
-    [self.view addSubview:scrollView];
-    
-  
-    UIImageView *analyze = [[UIImageView alloc] initWithFrame:CGRectMake(0, 15, 320, 648)];
-    [analyze setImage:[UIImage imageNamed:@"fakeanalyze"]];
-    
-    UIView *pageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 375, 824)];
-    [pageView addSubview:analyze];
-    
-    [scrollView setContentSize:pageView.frame.size];
-    [scrollView addSubview:pageView];
-
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

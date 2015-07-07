@@ -15,17 +15,17 @@
 #pragma mark - Add Local Notification
 + (void)setupLocalNotifsWithDictionary:(NSMutableDictionary*)days andTimes:(NSMutableArray*)times {
     //Run in a separate thread so it doesn't block up the UI
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSArray *daysOfWeek = [[NSArray alloc] initWithObjects:@"sun", @"mon", @"tue", @"wed", @"thur", @"fri", @"sat", nil];
         
-        BOOL flag = NO;
+
         
         for (int j = 0; j < [times count]; j++){
             
             for (NSString *day in daysOfWeek){
                 
                 if([[days objectForKey:day] intValue] == 1){
-                    
+                    BOOL flag = NO;
                     UIApplication *app = [UIApplication sharedApplication];
                     NSArray *eventArray = [app scheduledLocalNotifications];
                     
@@ -60,7 +60,7 @@
                 }
             }
         }
-    });
+//    });
 }
 
 
@@ -112,16 +112,14 @@
 # pragma mark - Remove Local Notification
 + (void)removeLocalNotificationWithCoreMedication:(CoreMedication*)cm AndTimes:(NSMutableArray*)times{
     //Run in a separate thread so it doesn't block up the UI
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     
         Medication *med = [[[[[Medication query] whereWithFormat:@"coreMed = %@", cm] limit:1] fetch] objectAtIndex:0];
         
         NSArray *daysOfWeek = [[NSArray alloc] initWithObjects:@"sun", @"mon", @"tue", @"wed", @"thur", @"fri", @"sat", nil];
         
         NSArray *daysValues = [[NSArray alloc] initWithObjects:[NSNumber numberWithBool:med.sunday], [NSNumber numberWithBool:med.monday], [NSNumber numberWithBool:med.tuesday], [NSNumber numberWithBool:med.wednesday], [NSNumber numberWithBool:med.thursday], [NSNumber numberWithBool:med.friday], [NSNumber numberWithBool:med.saturday], nil];
-        
-        BOOL flag = NO;
-        
+                
         for (int j = 0; j < [times count]; j++){
             
             for (int i = 0; i < [daysOfWeek count]; i++){
@@ -142,7 +140,6 @@
                         
                         if ([identifier hasPrefix:prefix])
                         {
-                            flag = YES;
                             [app cancelLocalNotification:oneEvent];
                             int number = [[identifier substringFromIndex:[prefix length]] intValue];
                             
@@ -157,7 +154,7 @@
                 }
             }
         }
-    });
+//    });
 }
 
 
@@ -199,9 +196,9 @@
         localNotification.timeZone = [NSTimeZone defaultTimeZone];
         localNotification.repeatInterval = NSWeekCalendarUnit;
         
-        NSLog(@"%@", [day stringByAppendingString:timeString]);
-        NSLog(@"%@", localNotification.alertBody);
-        
+       // NSLog(@"%@", [day stringByAppendingString:timeString]);
+       // NSLog(@"%@", localNotification.alertBody);
+       
         NSString *key = [timeString stringByAppendingString:[NSString stringWithFormat:@"%d", number]];
         key = [day stringByAppendingString:key];
         

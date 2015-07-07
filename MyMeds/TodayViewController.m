@@ -189,10 +189,10 @@
     NSString *query = [NSString stringWithFormat:@"time > %d and time < 12", (int)hour -1];
     NSString *query2 = [NSString stringWithFormat:@"time > %d and time >= 12", (int)hour -1];
     //Get am and pm meds from today's sql table
-    amMeds = [[[TodayMedication query] where:query] fetch];
+    amMeds = [[[[TodayMedication query] where:query] orderBy:@"time"] fetch];
     
 
-    pmMeds = [[[TodayMedication query] where:query2] fetch] ;
+    pmMeds = [[[[TodayMedication query] where:query2] orderBy:@"time"] fetch] ;
     
     //First lets see if there are any missed meds today
     if([Constants compareDate:[NSDate date] withOtherdate:date]){

@@ -367,13 +367,11 @@
     if([times count] != 0 && medName.text && medName.text.length > 0 && chemName.text && chemName.text.length > 0 && dosageNum.text && dosageNum.text.length > 0){
         
         //Setup Local Notifications on a separate thread
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//            [self setupLocalNotifs];
-//        });
-//        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [NotificationScheduler removeLocalNotificationWithCoreMedication:cm AndTimes:oldTimes];
+            [NotificationScheduler setupLocalNotifsWithDictionary:dayPicker.days andTimes:times];
+        });
         
-        [NotificationScheduler removeLocalNotificationWithCoreMedication:cm AndTimes:oldTimes];
-        [NotificationScheduler setupLocalNotifsWithDictionary:dayPicker.days andTimes:times];
         
         //Delete all meds
         [[[[Medication query] whereWithFormat:@"coreMed = %@", cm]  fetch] removeAll];
