@@ -114,41 +114,10 @@
             <point key="canvasLocation" x="830" y="1031"/>
         </scene>
         <!--Settings-->
-        <scene sceneID="Oro-42-oyW">
-            <objects>
-                <viewController id="PRP-Ru-ow1" customClass="SettingsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="f1s-qS-DNM"/>
-                        <viewControllerLayoutGuide type="bottom" id="Cv6-Vd-m0g"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="mac-3R-6aW">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sjr-64-z7x">
-                                <rect key="frame" x="141" y="131" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="209-PM-X6z"/>
-                    <navigationItem key="navigationItem" id="fc5-jz-aXq">
-                        <barButtonItem key="leftBarButtonItem" title="Clear" id="9KV-LK-AXr"/>
-                        <barButtonItem key="rightBarButtonItem" title="Sync" id="yhH-3n-ndN"/>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E9m-Tm-bMs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1094" y="1178"/>
-        </scene>
-        <!--Item-->
         <scene sceneID="ZON-xR-olU">
             <objects>
                 <navigationController id="a35-bg-92M" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="6T7-QJ-QEl"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="6T7-QJ-QEl"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="f8t-e6-4P6">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -157,7 +126,7 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="PRP-Ru-ow1" kind="relationship" relationship="rootViewController" id="9he-Ut-70v"/>
+                        <segue destination="xh2-CA-NLB" kind="relationship" relationship="rootViewController" id="KoA-Ja-vR0"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GSQ-ff-Bcw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -226,6 +195,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Vd-Rb-ZCn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="184" y="1248"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="4fr-cX-gHy">
+            <objects>
+                <tableViewController id="xh2-CA-NLB" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="58" sectionHeaderHeight="10" sectionFooterHeight="10" id="PgJ-dZ-dC3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="564"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection headerTitle="Feedback" id="NCJ-Uh-3eY">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="b5T-c9-lW8" style="IBUITableViewCellStyleDefault" id="lFV-u9-y40" customClass="BOButtonTableViewCell">
+                                        <rect key="frame" x="0.0" y="79" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lFV-u9-y40" id="zqI-2N-5DY">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Send Feedback" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="b5T-c9-lW8">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="xh2-CA-NLB" id="uAQ-ri-XS1"/>
+                            <outlet property="delegate" destination="xh2-CA-NLB" id="VAs-8s-HCB"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Settings" id="Dv0-lB-S5X"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="613"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="footerTitlesColor">
+                            <color key="value" white="0.0" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="headerTitlesColor">
+                            <color key="value" white="0.0" alpha="0.45000000000000001" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="buttonCell" destination="lFV-u9-y40" id="cPy-o9-30y"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Im-35-u8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1175" y="1055.5"/>
         </scene>
     </scenes>
     <resources>

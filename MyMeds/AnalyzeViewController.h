@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constants.h"
+#import "BEMSimpleLineGraphView.h"
+#import "EventLogger.h"
 
 
-@interface AnalyzeViewController : UIViewController <UITextFieldDelegate>{
-
+@interface AnalyzeViewController : UIViewController <BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate>{
+    
 }
 
-
+@property(strong, nonatomic)BEMSimpleLineGraphView *complianceGraph;
+- (void)setupViews;
 
 @end

@@ -32,6 +32,7 @@
     [[[Medication query] fetch] removeAll];
     [[[TodayMedication query] fetch] removeAll];
     [[[CoreMedication query] fetch] removeAll];
+    [[[Event query] fetch] removeAll];
 }
 
 
@@ -67,7 +68,7 @@
     future = NO;
     futureDate = current;
     //[self clearData];
-    [self checkNotifications];
+    //[self checkNotifications];
     [self setupMeds];
     [self setupViews];
 }
@@ -99,9 +100,7 @@
 
             [self setupTodayArrays:current];
         } else {
-            //----------------------------------------------------
-            //TO DO : Calculate missed meds over the missed meds
-            //----------------------------------------------------
+            [EventLogger logMissedMedsFromDate:date toDate:current];
             [self setupSqlDefaults:current];
         }
     } else {
@@ -113,9 +112,7 @@
 //Method called when a new day's meds are setup. Sql call takes data from the meds table and puts into the "today_meds" table
 - (void)setupSqlDefaults:(NSDate*)date{
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init] ;
-    [dateFormatter setDateFormat:@"EEEE"];
-    NSString *dayOfWeek = [dateFormatter stringFromDate:date];
+    NSString *dayOfWeek = [Constants getCurrentDayFromDate:date];
     
      //----------------------------------------------------
     //TO DO - Check for expired
@@ -186,27 +183,26 @@
         hour = 0;
     }
     
-    NSString *query = [NSString stringWithFormat:@"time > %d and time < 12", (int)hour -1];
-    NSString *query2 = [NSString stringWithFormat:@"time > %d and time >= 12", (int)hour -1];
     //Get am and pm meds from today's sql table
+    NSString *query = [NSString stringWithFormat:@"time > %d and time < 12", (int)hour -1];
     amMeds = [[[[TodayMedication query] where:query] orderBy:@"time"] fetch];
-    
-
-    pmMeds = [[[[TodayMedication query] where:query2] orderBy:@"time"] fetch] ;
+    query = [NSString stringWithFormat:@"time > %d and time >= 12", (int)hour -1];
+    pmMeds = [[[[TodayMedication query] where:query] orderBy:@"time"] fetch] ;
     
     //First lets see if there are any missed meds today
     if([Constants compareDate:[NSDate date] withOtherdate:date]){
-        missedMeds = [[[TodayMedication query] whereWithFormat:@"time < %ld and completed = 0", (long)hour - 1] fetch];
+       query = [NSString stringWithFormat:@"time < %d and taken = 0", (int)hour - 1];
+        missedMeds = [[[TodayMedication query] where:query] fetch];
         
-//        if([missedMeds count] > 0){
-//            //Launch missed meds view
-//            MissedViewController *missedVC = [[MissedViewController alloc] initWithMeds:missedMeds
-//                                                                                andHour:(int)hour-1];
-//            
-//            [self.navigationController presentViewController:missedVC
-//                                                    animated:NO
-//                                                  completion:nil];
-//        }
+        if([missedMeds count] > 0){
+            //Launch missed meds view
+            MissedViewController *missedVC = [[MissedViewController alloc] initWithMeds:missedMeds
+                                                                                andHour:(long)hour-1];
+            
+            [self.navigationController presentViewController:missedVC
+                                                    animated:NO
+                                                  completion:nil];
+        }
     }
     
     for (Medication *m in amMeds){
@@ -238,7 +234,7 @@
         [subview removeFromSuperview];
     }
     
-    compAnalyzer = [[ComplianceAnalyzer alloc] initWithFrame:CGRectMake(0, 0, 375, 375)];
+    compAnalyzer = [[ComplianceAnalyzer alloc] initWithFrame:CGRectMake(0, 0, [Constants window_width], [Constants window_width])];
     [compAnalyzer setBackgroundColor:[UIColor whiteColor]];
     [self.view addSubview:compAnalyzer];
     
@@ -312,7 +308,7 @@
                                                                      style:UIBarButtonItemStylePlain
                                                                     target:self
                                                                     action:@selector(showCompliance)];
-    [personButton setImage:[UIImage imageNamed:@"personIcon"]];
+    [personButton setImage:[UIImage imageNamed:@"circle"]];
     attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName ,nil];
     [personButton setTitleTextAttributes:attributes forState:UIControlStateNormal];
     [self.navigationItem setLeftBarButtonItem:personButton];
@@ -398,8 +394,8 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, self.navigationController.view.frame.size.height/28.4)];
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 2, tableView.frame.size.width, self.navigationController.view.frame.size.height/28.4 - 4)];
-    [label setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 6, tableView.frame.size.width, self.navigationController.view.frame.size.height/28.4 - 4)];
+    [label setFont:[UIFont fontWithName:@"HelveticaNeue" size:20]];
     
     if ([[header objectAtIndex:section] isEqual: @"AM"]){
         [label setText:@"AM"];
@@ -426,7 +422,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20;
+    return 30;
 }
 
 
@@ -456,12 +452,14 @@
 
 #pragma mark - Move Table View
 - (void)showCompliance{
-    if(pushed){
-        [self moveTableUp];
-        pushed = NO;
-    } else {
-        [self moveTableDown];
-        pushed = YES;
+    if([amMeds count] > 0 || [pmMeds count] > 0){
+        if(pushed){
+            [self moveTableUp];
+            pushed = NO;
+        } else {
+            [self moveTableDown];
+            pushed = YES;
+        }
     }
 }
 
@@ -540,7 +538,7 @@
         med = [pmMeds objectAtIndex:indexPath.row];
     }
     
-    [EventLogger logAction:@"delay" andMedication:med.coreMed andTime:med.time];
+    [EventLogger logAction:@"delayed" andMedication:med.coreMed andTime:med.time];
     
     med.time += 1;
     
@@ -580,7 +578,17 @@
 
 #pragma mark - UI Helpers
 - (void)showMenu{
-    [sideBar showMenu];
+    if (pushed){
+        [UIView animateWithDuration:0.3 animations:^(){
+            [self.medsView setFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
+            //[self.medsView reloadData];
+        }
+                         completion:^(BOOL finished){
+                             [sideBar showMenu];
+                         }];
+    } else {
+        [sideBar showMenu];
+    }
 }
 
 

@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong) CoreMedication *cm;
 
-@property (nonatomic, strong) NSDate *timeStamp;
+@property (nonatomic) long long timeStamp;
 
 @property (nonatomic)float timeDelta;
 @property (nonatomic)int time;

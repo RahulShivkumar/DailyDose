@@ -26,20 +26,27 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-        [[Amplitude instance] initializeApiKey:@"447c4970cf194fb88634f03525740d0a" userId:[self getUserID]];
+    NSString *UUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"UUID"];
+    if (!UUID){
+        [[Amplitude instance] initializeApiKey:@"de776c175b0c3c95f1ff1fbdbcf9a544" userId:[self getUserID]];
+       // NSLog(@"%@", [self getUserID]);
+    } else {
+        [[Amplitude instance] initializeApiKey:@"de776c175b0c3c95f1ff1fbdbcf9a544" userId:UUID];
+        //NSLog(@"%@", UUID);
+    }
     
-        [Fabric with:@[CrashlyticsKit]];
-    
-        [DBAccess setDelegate:self];
-        [DBAccess openDatabaseNamed:@"dailydose"];
-    
-        //Ask for notifications permission
-        if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]) {
-            [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeSound|UIUserNotificationTypeBadge
-                                                                                                                  categories:nil]];
-        }
-    
-        return YES;
+    [Fabric with:@[CrashlyticsKit]];
+
+    [DBAccess setDelegate:self];
+    [DBAccess openDatabaseNamed:@"dailydose"];
+
+    //Ask for notifications permission
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]) {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeSound|UIUserNotificationTypeBadge
+                                                                                                              categories:nil]];
+    }
+
+    return YES;
     
 }
 
@@ -73,6 +80,9 @@
     // Get the string representation of CFUUID object.
     NSString *uuidStr = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuidObject);
     CFRelease(uuidObject);
+    
+    [[NSUserDefaults standardUserDefaults] setObject:uuidStr forKey:@"UUID"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     return uuidStr;
 }

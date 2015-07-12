@@ -86,7 +86,7 @@
     [medName setTintColor:[UIColor whiteColor]];
     [medName setDelegate:self];
     [medName.layer setSublayerTransform:CATransform3DMakeTranslation(7, 0, 0)];
-    [self addTextViewBorder:medName];
+    [Constants addTextViewBorder:medName withColor:[UIColor whiteColor]];
     [self.scrollView  addSubview:medName];
     
     generic = [[UILabel alloc]initWithFrame:CGRectMake(7, [Constants window_height] * 0.23, 150, 20)];
@@ -103,7 +103,7 @@
     [chemName.layer setSublayerTransform:CATransform3DMakeTranslation(7, 0, 0)];
     
     [chemName setDelegate:self];
-    [self addTextViewBorder:chemName];
+    [Constants addTextViewBorder:chemName withColor:[UIColor whiteColor]];
     [self.scrollView  addSubview:chemName];
     
     dosage = [[UILabel alloc]initWithFrame:CGRectMake(7, [Constants window_height] * 0.34, 150, 20)];
@@ -119,7 +119,7 @@
     [dosageNum setTextColor:[UIColor whiteColor]];
     [dosageNum.layer setSublayerTransform:CATransform3DMakeTranslation(7, 0, 0)];
     [dosageNum setDelegate:self];
-    [self addTextViewBorder:dosageNum];
+    [Constants addTextViewBorder:dosageNum withColor:[UIColor whiteColor]];
     [self.scrollView  addSubview:dosageNum];
     
     days = [[UILabel alloc]initWithFrame:CGRectMake(7, [Constants window_height] * 0.45, 150, 20)];
@@ -154,7 +154,7 @@
     [timePicker setBackgroundColor:[UIColor clearColor]];
     [timePicker setTag:0];
     [timePicker addTarget:self action:@selector(setDate:) forControlEvents:UIControlEventTouchUpInside];
-    [self addButtonBorder:timePicker];
+    [Constants addButtonBorder:timePicker];
     
     datePicker = [RMDateSelectionViewController dateSelectionController];
     [datePicker setDelegate:self];
@@ -170,22 +170,6 @@
     
     [self.scrollView addGestureRecognizer:tap];
   //  [dayPicker addGestureRecognizer:tap];
-}
-
-
-- (void)addTextViewBorder:(UITextField*)textView {
-    CALayer *bottomBorder = [CALayer layer];
-    bottomBorder.frame = CGRectMake(0.0f, textView.frame.size.height - 1, textView.frame.size.width, 1.0f);
-    bottomBorder.backgroundColor = [UIColor whiteColor].CGColor;
-    [textView.layer addSublayer:bottomBorder];
-}
-
-
-- (void)addButtonBorder:(UIButton*)button {
-    CALayer *bottomBorder = [CALayer layer];
-    bottomBorder.frame = CGRectMake(0.0f, button.frame.size.height - 1, button.frame.size.width, 1.0f);
-    bottomBorder.backgroundColor = [UIColor whiteColor].CGColor;
-    [button.layer addSublayer:bottomBorder];
 }
 
 
@@ -240,7 +224,7 @@
         forControlEvents:UIControlEventTouchUpInside];
     
     [timePickers addObject:newButton];
-    [self addButtonBorder:newButton];
+    [Constants addButtonBorder:newButton];
     [self.scrollView addSubview:newButton];
     
     //Set up Scrolling
@@ -279,7 +263,9 @@
 
 - (void)textField:(MPGTextField *)textField didEndEditingWithSelection:(NSDictionary *)result
 {
-  
+    
+    [medName setText:[result objectForKey:@"DisplayText"]];
+    [chemName setText:[result objectForKey:@"DisplaySubText"]];
 }
 
 
@@ -344,46 +330,40 @@
 
 //Method called when "done" button is hit. Creates new entries for meds into meds and today_meds.
 - (IBAction)done:(id)sender {
-    NSInteger hour = [Constants getCurrentHour];
     
     if([times count] != 0 && medName.text && medName.text.length > 0 && chemName.text && chemName.text.length > 0 && dosageNum.text && dosageNum.text.length > 0){
         
         //Setup Local Notifications
         [NotificationScheduler setupLocalNotifsWithDictionary:dayPicker.days andTimes:times];
         
-        //First Create our CoreMed
-        CoreMedication *coreMed = [CoreMedication new];
-        coreMed.genName = medName.text;
-        coreMed.chemName = chemName.text;
-        coreMed.expired = NO;
-        coreMed.dosage = dosageNum.text;
-        coreMed.startDate = [NSDate date];
-        [coreMed commit];
+        //First check if Core med exists
+        NSString *query = [NSString stringWithFormat:@"genName = '%@' and chemName = '%@'", medName.text, chemName.text];
+        set = [[[CoreMedication query] where:query] fetch];
         
-            for (int i = 0; i < [times count]; i++){
-                Medication *med = [Medication new];
-                med.coreMed = coreMed;
-                med.time = [[times objectAtIndex:i] floatValue];
-                med.monday = (BOOL)[[dayPicker.days objectForKey:@"mon"] intValue];
-                med.tuesday = (BOOL)[[dayPicker.days objectForKey:@"tue"] intValue];
-                med.wednesday = (BOOL)[[dayPicker.days objectForKey:@"wed"] intValue];
-                med.thursday = (BOOL)[[dayPicker.days objectForKey:@"thur"] intValue];
-                med.friday = (BOOL)[[dayPicker.days objectForKey:@"fri"] intValue];
-                med.saturday = (BOOL)[[dayPicker.days objectForKey:@"sat"] intValue];
-                med.sunday = (BOOL)[[dayPicker.days objectForKey:@"sun"] intValue];
-                
-                [med commit];
-                
-                //TO-DO Check the day too to ensure it is added correctly
-                if(hour <= [[times objectAtIndex:i] floatValue]){
-                    TodayMedication *todayMed = [TodayMedication new];
-                    [todayMed createFromMedication:med];
-                    [todayMed commit];
-                }
+        if ([set count] == 0) {
+            
+            CoreMedication *coreMed = [CoreMedication new];
+            coreMed.genName = medName.text;
+            coreMed.chemName = chemName.text;
+            coreMed.expired = NO;
+            coreMed.dosage = dosageNum.text;
+            coreMed.startDate = [NSDate date];
+            [coreMed commit];
+            [self addMeds:coreMed];
+            
+        } else {
+            
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"This Medication is already present!"
+                                                              message:@"Would you like to replace the current information with this new information?"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                                    otherButtonTitles:@"Replace", nil];
+            
+            [message show];
+            
+        }
+        
 
-            }
-        [self dismissViewControllerAnimated:YES
-                                 completion:nil];
     }
     else{
          [AZNotification showNotificationWithTitle:@"Please Add All Information!"
@@ -394,27 +374,79 @@
 }
 
 
+- (void)addMeds:(CoreMedication *)coreMed {
+    NSInteger hour = [Constants getCurrentHour];
+    
+    for (int i = 0; i < [times count]; i++){
+        Medication *med = [Medication new];
+        med.coreMed = coreMed;
+        med.time = [[times objectAtIndex:i] floatValue];
+        med.monday = (BOOL)[[dayPicker.days objectForKey:@"monday"] intValue];
+        med.tuesday = (BOOL)[[dayPicker.days objectForKey:@"tuesday"] intValue];
+        med.wednesday = (BOOL)[[dayPicker.days objectForKey:@"wednesday"] intValue];
+        med.thursday = (BOOL)[[dayPicker.days objectForKey:@"thursday"] intValue];
+        med.friday = (BOOL)[[dayPicker.days objectForKey:@"friday"] intValue];
+        med.saturday = (BOOL)[[dayPicker.days objectForKey:@"saturday"] intValue];
+        med.sunday = (BOOL)[[dayPicker.days objectForKey:@"sunday"] intValue];
+        
+        [med commit];
+        
+        NSString *today = [Constants getCurrentDayFromDate:[NSDate date]];
+        if(hour <= [[times objectAtIndex:i] floatValue] && (BOOL)[dayPicker.days objectForKey:[today lowercaseString]]){
+            TodayMedication *todayMed = [TodayMedication new];
+            [todayMed createFromMedication:med];
+            [todayMed commit];
+        }
+        
+    }
+    [self dismissViewControllerAnimated:YES
+                             completion:nil];
+    
+}
 
-
-
-#pragma mark - Setup Data 
+#pragma mark - Setup Data
 - (void)generateData {
     dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // Add code here to do background processing
-        //
-        //
+
         NSError* err = nil;
         data = [[NSMutableArray alloc] init];
 
-        NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"sample_data" ofType:@"json"];
+        NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"drugsdb" ofType:@"json"];
         NSArray* contents = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath] options:kNilOptions error:&err];
         dispatch_async( dispatch_get_main_queue(), ^{
-            // Add code here to update the UI/send notifications based on the
-            // results of the background processing
             [contents enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                [data addObject:[NSDictionary dictionaryWithObjectsAndKeys:[[obj objectForKey:@"first_name"] stringByAppendingString:[NSString stringWithFormat:@" %@", [obj objectForKey:@"last_name"]]], @"DisplayText", [obj objectForKey:@"email"], @"DisplaySubText",obj,@"CustomObject", nil]];
+                [data addObject:[NSDictionary dictionaryWithObjectsAndKeys:[obj objectForKey:@"first_name"], @"DisplayText", [obj objectForKey:@"last_name"], @"DisplaySubText",obj,@"CustomObject", nil]];
             }];
         });
     });
+}
+
+
+#pragma mark - UIAlertview delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if([title isEqualToString:@"Cancel"]) {
+        [self dismissViewControllerAnimated:YES
+                                 completion:nil];
+    } else {
+        
+        
+        CoreMedication *coreMed = [set objectAtIndex:0];
+        
+        [[[[Medication query] whereWithFormat:@"coreMed = %@", coreMed] fetch] removeAll];
+        [[[[TodayMedication query] whereWithFormat:@"coreMed = %@", coreMed] fetch] removeAll];
+        
+        coreMed.genName = medName.text;
+        coreMed.chemName = chemName.text;
+        coreMed.expired = NO;
+        coreMed.dosage = dosageNum.text;
+        coreMed.startDate = [NSDate date];
+        [coreMed commit];
+        
+        [self addMeds:coreMed];
+    }
+
 }
 @end

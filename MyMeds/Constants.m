@@ -48,7 +48,12 @@
     [parentController.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 }
 
-
++ (void)setupMailNavBar {
+    [[UINavigationBar appearance] setTranslucent:NO];
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleDefault];
+    [[UINavigationBar appearance] setBarTintColor:kNavBarColor];
+    [UINavigationBar appearance].titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:NSForegroundColorAttributeName];
+}
 #pragma mark - Get NavBarColor
 + (UIColor*)getNavBarColor {
     return kNavBarColor;
@@ -69,7 +74,18 @@
     return [components minute];
 }
 
-#pragma mark - Convert Time to String 
++ (int)getCurrentDay {
+    NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *comp = [cal components:NSWeekdayCalendarUnit fromDate:[NSDate date]];
+    return (int)[comp weekday];
+}
+
++ (NSString*)getCurrentDayFromDate:(NSDate*)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init] ;
+    [dateFormatter setDateFormat:@"EEEE"];
+    return [dateFormatter stringFromDate:date];
+}
+#pragma mark - Convert Time to String
 + (NSString*)convertTimeToString:(float)t {
     
     int t2 = t;
@@ -94,6 +110,23 @@
     }
     
     return timeString;
+}
+
+#pragma mark - Add borders 
+
++ (void)addTextViewBorder:(UITextField*)textView withColor:(UIColor*)color {
+    CALayer *bottomBorder = [CALayer layer];
+    bottomBorder.frame = CGRectMake(0.0f, textView.frame.size.height - 1, textView.frame.size.width, 1.0f);
+    bottomBorder.backgroundColor = color.CGColor;
+    [textView.layer addSublayer:bottomBorder];
+}
+
+
++ (void)addButtonBorder:(UIButton*)button {
+    CALayer *bottomBorder = [CALayer layer];
+    bottomBorder.frame = CGRectMake(0.0f, button.frame.size.height - 1, button.frame.size.width, 1.0f);
+    bottomBorder.backgroundColor = [UIColor whiteColor].CGColor;
+    [button.layer addSublayer:bottomBorder];
 }
 
 @end

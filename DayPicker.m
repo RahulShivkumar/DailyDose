@@ -22,49 +22,49 @@
     self = [super initWithFrame:frame];
     if(self){
         [self setBackgroundColor:bg];
-        self.days = [[NSMutableDictionary alloc] initWithObjectsAndKeys: [NSNumber numberWithInt:0], @"mon",[NSNumber numberWithInt:0], @"tue", [NSNumber numberWithInt:0], @"wed", [NSNumber numberWithInt:0], @"thur", [NSNumber numberWithInt:0], @"fri", [NSNumber numberWithInt:0], @"sat", [NSNumber numberWithInt:0], @"sun", nil];
+        self.days = [[NSMutableDictionary alloc] initWithObjectsAndKeys: [NSNumber numberWithInt:0], @"monday",[NSNumber numberWithInt:0], @"tuesday", [NSNumber numberWithInt:0], @"wednesdaynesday", [NSNumber numberWithInt:0], @"thursday", [NSNumber numberWithInt:0], @"friday", [NSNumber numberWithInt:0], @"saturday", [NSNumber numberWithInt:0], @"sunday", nil];
         
-        sun = [[DayPickerButton alloc] initWithFrame:CGRectMake(0, 5, self.frame.size.width/7, self.frame.size.height - 10) andTitle:@"S"];
-        [sun addTextColor:tc andHighlightTextColor:htc];
-        [sun addHighlightColor:hl];
-        [sun addTarget:self action:@selector(sun:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:sun];
+        sunday = [[DayPickerButton alloc] initWithFrame:CGRectMake(0, 5, self.frame.size.width/7, self.frame.size.height - 10) andTitle:@"S"];
+        [sunday addTextColor:tc andHighlightTextColor:htc];
+        [sunday addHighlightColor:hl];
+        [sunday addTarget:self action:@selector(sunday:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:sunday];
         
-        mon = [[DayPickerButton alloc] initWithFrame:CGRectMake(self.frame.size.width/7, 5, self.frame.size.width/7, self.frame.size.height - 10) andTitle:@"M"];
-        [mon addTextColor:tc andHighlightTextColor:htc];
-        [mon addHighlightColor:hl];
-        [mon addTarget:self action:@selector(mon:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:mon];
+        monday = [[DayPickerButton alloc] initWithFrame:CGRectMake(self.frame.size.width/7, 5, self.frame.size.width/7, self.frame.size.height - 10) andTitle:@"M"];
+        [monday addTextColor:tc andHighlightTextColor:htc];
+        [monday addHighlightColor:hl];
+        [monday addTarget:self action:@selector(monday:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:monday];
         
-        tue = [[DayPickerButton alloc] initWithFrame:CGRectMake(2*self.frame.size.width/7, 5, self.frame.size.width/7, self.frame.size.height - 10) andTitle:@"T"];
-        [tue addTextColor:tc andHighlightTextColor:htc];
-        [tue addHighlightColor:hl];
-        [tue addTarget:self action:@selector(tue:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:tue];
+        tuesday = [[DayPickerButton alloc] initWithFrame:CGRectMake(2*self.frame.size.width/7, 5, self.frame.size.width/7, self.frame.size.height - 10) andTitle:@"T"];
+        [tuesday addTextColor:tc andHighlightTextColor:htc];
+        [tuesday addHighlightColor:hl];
+        [tuesday addTarget:self action:@selector(tuesday:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:tuesday];
         
-        wed = [[DayPickerButton alloc] initWithFrame:CGRectMake(3*self.frame.size.width/7, 5, self.frame.size.width/7, self.frame.size.height - 10) andTitle:@"W"];
-        [wed addTextColor:tc andHighlightTextColor:htc];
-        [wed addHighlightColor:hl];
-        [wed addTarget:self action:@selector(wed:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:wed];
+        wednesday = [[DayPickerButton alloc] initWithFrame:CGRectMake(3*self.frame.size.width/7, 5, self.frame.size.width/7, self.frame.size.height - 10) andTitle:@"W"];
+        [wednesday addTextColor:tc andHighlightTextColor:htc];
+        [wednesday addHighlightColor:hl];
+        [wednesday addTarget:self action:@selector(wednesday:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:wednesday];
         
-        thur = [[DayPickerButton alloc] initWithFrame:CGRectMake(4*self.frame.size.width/7, 5, self.frame.size.width/7, self.frame.size.height - 10) andTitle:@"Th"];
-        [thur addTextColor:tc andHighlightTextColor:htc];
-        [thur addHighlightColor:hl];
-        [thur addTarget:self action:@selector(thur:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:thur];
+        thursday = [[DayPickerButton alloc] initWithFrame:CGRectMake(4*self.frame.size.width/7, 5, self.frame.size.width/7, self.frame.size.height - 10) andTitle:@"Th"];
+        [thursday addTextColor:tc andHighlightTextColor:htc];
+        [thursday addHighlightColor:hl];
+        [thursday addTarget:self action:@selector(thursday:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:thursday];
         
-        fri = [[DayPickerButton alloc] initWithFrame:CGRectMake(5*self.frame.size.width/7, 5, self.frame.size.width/7, self.frame.size.height - 10) andTitle:@"F"];
-        [fri addTextColor:tc andHighlightTextColor:htc];
-        [fri addHighlightColor:hl];
-        [fri addTarget:self action:@selector(fri:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:fri];
+        friday = [[DayPickerButton alloc] initWithFrame:CGRectMake(5*self.frame.size.width/7, 5, self.frame.size.width/7, self.frame.size.height - 10) andTitle:@"F"];
+        [friday addTextColor:tc andHighlightTextColor:htc];
+        [friday addHighlightColor:hl];
+        [friday addTarget:self action:@selector(friday:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:friday];
         
-        sat = [[DayPickerButton alloc] initWithFrame:CGRectMake(6*self.frame.size.width/7, 5, self.frame.size.width/7, self.frame.size.height - 10) andTitle:@"S"];
-        [sat addTextColor:tc andHighlightTextColor:htc];
-        [sat addHighlightColor:hl];
-        [sat addTarget:self action:@selector(sat:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:sat];
+        saturday = [[DayPickerButton alloc] initWithFrame:CGRectMake(6*self.frame.size.width/7, 5, self.frame.size.width/7, self.frame.size.height - 10) andTitle:@"S"];
+        [saturday addTextColor:tc andHighlightTextColor:htc];
+        [saturday addHighlightColor:hl];
+        [saturday addTarget:self action:@selector(saturday:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:saturday];
         
         tviews = tViews;
 
@@ -73,85 +73,85 @@
 }
 
 
-- (IBAction)sun:(id)sender{
-    [sun addHighlight];
-    sun.selected  = !sun.selected;
-    if(sun.selected){
-        [self.days setObject:[NSNumber numberWithInt:1] forKey:@"sun"];
+- (IBAction)sunday:(id)sender{
+    [sunday addHighlight];
+    sunday.selected  = !sunday.selected;
+    if(sunday.selected){
+        [self.days setObject:[NSNumber numberWithInt:1] forKey:@"sunday"];
     } else {
-        [self.days setObject:[NSNumber numberWithInt:0] forKey:@"sun"];
+        [self.days setObject:[NSNumber numberWithInt:0] forKey:@"sunday"];
     }
     [self hideTviews];
 }
 
 
-- (IBAction)mon:(id)sender{
-    [mon addHighlight];
-    mon.selected  = !mon.selected;
-    if(mon.selected){
-        [self.days setObject:[NSNumber numberWithInt:1] forKey:@"mon"];
+- (IBAction)monday:(id)sender{
+    [monday addHighlight];
+    monday.selected  = !monday.selected;
+    if(monday.selected){
+        [self.days setObject:[NSNumber numberWithInt:1] forKey:@"monday"];
     } else {
-        [self.days setObject:[NSNumber numberWithInt:0] forKey:@"mon"];
+        [self.days setObject:[NSNumber numberWithInt:0] forKey:@"monday"];
     }
     [self hideTviews];
 }
 
 
-- (IBAction)tue:(id)sender{
-    [tue addHighlight];
-    tue.selected  = !tue.selected;
-    if(tue.selected){
-        [self.days setObject:[NSNumber numberWithInt:1] forKey:@"tue"];
+- (IBAction)tuesday:(id)sender{
+    [tuesday addHighlight];
+    tuesday.selected  = !tuesday.selected;
+    if(tuesday.selected){
+        [self.days setObject:[NSNumber numberWithInt:1] forKey:@"tuesday"];
     } else {
-        [self.days setObject:[NSNumber numberWithInt:0] forKey:@"tue"];
+        [self.days setObject:[NSNumber numberWithInt:0] forKey:@"tuesday"];
     }
     [self hideTviews];
 }
 
 
-- (IBAction)wed:(id)sender{
-    [wed addHighlight];
-    wed.selected  = !wed.selected;
-    if(wed.selected){
-        [self.days setObject:[NSNumber numberWithInt:1] forKey:@"wed"];
+- (IBAction)wednesday:(id)sender{
+    [wednesday addHighlight];
+    wednesday.selected  = !wednesday.selected;
+    if(wednesday.selected){
+        [self.days setObject:[NSNumber numberWithInt:1] forKey:@"wednesday"];
     } else {
-        [self.days setObject:[NSNumber numberWithInt:0] forKey:@"wed"];
+        [self.days setObject:[NSNumber numberWithInt:0] forKey:@"wednesday"];
     }
     [self hideTviews];
 }
 
 
-- (IBAction)thur:(id)sender{
-    [thur addHighlight];
-    thur.selected  = !thur.selected;
-    if(thur.selected){
-        [self.days setObject:[NSNumber numberWithInt:1] forKey:@"thur"];
+- (IBAction)thursday:(id)sender{
+    [thursday addHighlight];
+    thursday.selected  = !thursday.selected;
+    if(thursday.selected){
+        [self.days setObject:[NSNumber numberWithInt:1] forKey:@"thursday"];
     } else {
-        [self.days setObject:[NSNumber numberWithInt:0] forKey:@"thur"];
+        [self.days setObject:[NSNumber numberWithInt:0] forKey:@"thursday"];
     }
     [self hideTviews];
 }
 
 
--(IBAction)fri:(id)sender{
-    [fri addHighlight];
-    fri.selected  = !fri.selected;
-    if(fri.selected){
-        [self.days setObject:[NSNumber numberWithInt:1] forKey:@"fri"];
+-(IBAction)friday:(id)sender{
+    [friday addHighlight];
+    friday.selected  = !friday.selected;
+    if(friday.selected){
+        [self.days setObject:[NSNumber numberWithInt:1] forKey:@"friday"];
     } else {
-        [self.days setObject:[NSNumber numberWithInt:0] forKey:@"fri"];
+        [self.days setObject:[NSNumber numberWithInt:0] forKey:@"friday"];
     }
     [self hideTviews];
 }
 
 
--(IBAction)sat:(id)sender{
-    [sat addHighlight];
-    sat.selected  = !sat.selected;
-    if(sat.selected){
-        [self.days setObject:[NSNumber numberWithInt:1] forKey:@"sat"];
+-(IBAction)saturday:(id)sender{
+    [saturday addHighlight];
+    saturday.selected  = !saturday.selected;
+    if(saturday.selected){
+        [self.days setObject:[NSNumber numberWithInt:1] forKey:@"saturday"];
     } else {
-        [self.days setObject:[NSNumber numberWithInt:0] forKey:@"sat"];
+        [self.days setObject:[NSNumber numberWithInt:0] forKey:@"saturday"];
     }
     [self hideTviews];
 }

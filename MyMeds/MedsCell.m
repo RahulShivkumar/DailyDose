@@ -160,11 +160,6 @@
         [undo setHidden:YES];
         [postpone setHidden:YES];
         if(!medication.taken){
-//            id <GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-//            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"Taken"
-//                                                                  action:@"Regular"
-//                                                                   label:medication.medName
-//                                                                   value:[NSNumber numberWithInt:medication.actualTime]] build]];
             [self complete];
    
         }
@@ -281,6 +276,7 @@
 - (void)undo{
     medication.taken = NO;
     [medication commit];
+    [EventLogger logAction:@"undo" andMedication:medication.coreMed andTime:medication.time];
     [self uiUndo];
 }
 

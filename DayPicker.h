@@ -10,13 +10,13 @@
 #import "DayPickerButton.h"
 
 @interface DayPicker : UIView{
-    DayPickerButton *sun;
-    DayPickerButton *mon;
-    DayPickerButton *tue;
-    DayPickerButton *wed;
-    DayPickerButton *thur;
-    DayPickerButton *fri;
-    DayPickerButton *sat;
+    DayPickerButton *sunday;
+    DayPickerButton *monday;
+    DayPickerButton *tuesday;
+    DayPickerButton *wednesday;
+    DayPickerButton *thursday;
+    DayPickerButton *friday;
+    DayPickerButton *saturday;
     
     NSMutableArray *tviews;
 }
@@ -25,12 +25,12 @@
 
 - (id)initWithFrame:(CGRect)frame andBG:(UIColor*)bg andTc:(UIColor*)tc andHtc:(UIColor*)htc andHl:(UIColor*)hl andTextviews:(NSMutableArray *)tViews;
 
-- (IBAction)sun:(id)sender;
-- (IBAction)mon:(id)sender;
-- (IBAction)tue:(id)sender;
-- (IBAction)wed:(id)sender;
-- (IBAction)thur:(id)sender;
-- (IBAction)fri:(id)sender;
-- (IBAction)sat:(id)sender;
+- (IBAction)sunday:(id)sender;
+- (IBAction)monday:(id)sender;
+- (IBAction)tuesday:(id)sender;
+- (IBAction)wednesday:(id)sender;
+- (IBAction)thursday:(id)sender;
+- (IBAction)friday:(id)sender;
+- (IBAction)saturday:(id)sender;
 
 @end

@@ -1,9 +1,9 @@
 //
 //  Medication.m
-//  ClearStyle
+//  MyMeds
 //
-//  Created by Fahim Farook on 22/9/12.
-//  Copyright (c) 2012 RookSoft Pte. Ltd. All rights reserved.
+//  Created by Rahul Shivkumar on 7/1/15.
+//  Copyright (c) 2015 test. All rights reserved.
 //
 
 #import "Medication.h"

@@ -89,7 +89,7 @@
     [medName setDelegate:self];
     [medName.layer setSublayerTransform:CATransform3DMakeTranslation(7, 0, 0)];
     [medName setText:cm.genName];
-    [self addTextViewBorder:medName];
+    [Constants addTextViewBorder:medName withColor:[UIColor whiteColor]];
     [self.scrollView  addSubview:medName];
     
     generic = [[UILabel alloc]initWithFrame:CGRectMake(7, [Constants window_height] * 0.23, 150, 20)];
@@ -106,7 +106,7 @@
     [chemName.layer setSublayerTransform:CATransform3DMakeTranslation(7, 0, 0)];
     [chemName setDelegate:self];
     [chemName setText:cm.chemName];
-    [self addTextViewBorder:chemName];
+    [Constants addTextViewBorder:chemName withColor:[UIColor whiteColor]];
     [self.scrollView  addSubview:chemName];
     
     dosage = [[UILabel alloc]initWithFrame:CGRectMake(7, [Constants window_height] * 0.34, 150, 20)];
@@ -123,7 +123,7 @@
     [dosageNum.layer setSublayerTransform:CATransform3DMakeTranslation(7, 0, 0)];
     [dosageNum setDelegate:self];
     [dosageNum setText:cm.dosage];
-    [self addTextViewBorder:dosageNum];
+    [Constants addTextViewBorder:dosageNum withColor:[UIColor whiteColor]];
     [self.scrollView  addSubview:dosageNum];
     
     days = [[UILabel alloc]initWithFrame:CGRectMake(7, [Constants window_height] * 0.45, 150, 20)];
@@ -160,7 +160,7 @@
     [timePicker setBackgroundColor:[UIColor clearColor]];
     [timePicker setTag:0];
     [timePicker addTarget:self action:@selector(setDate:) forControlEvents:UIControlEventTouchUpInside];
-    [self addButtonBorder:timePicker];
+    [Constants addButtonBorder:timePicker];
     
     datePicker = [RMDateSelectionViewController dateSelectionController];
     [datePicker setDelegate:self];
@@ -182,44 +182,30 @@
     
 }
 
-- (void)addTextViewBorder:(UITextField*)textView{
-    CALayer *bottomBorder = [CALayer layer];
-    bottomBorder.frame = CGRectMake(0.0f, textView.frame.size.height - 1, textView.frame.size.width, 1.0f);
-    bottomBorder.backgroundColor = [UIColor whiteColor].CGColor;
-    [textView.layer addSublayer:bottomBorder];
-}
-
-- (void)addButtonBorder:(UIButton*)button{
-    CALayer *bottomBorder = [CALayer layer];
-    bottomBorder.frame = CGRectMake(0.0f, button.frame.size.height - 1, button.frame.size.width, 1.0f);
-    bottomBorder.backgroundColor = [UIColor whiteColor].CGColor;
-    [button.layer addSublayer:bottomBorder];
-}
-
 #pragma mark - Setup Day Picker
 - (void)setupDayPicker{
     for(int i = 0; i < 7; i++){
         if ([self.dayShedule[i] intValue] == 1){
             if(i == 0){
-                [dayPicker sun:nil];
+                [dayPicker sunday:nil];
             }
             else if (i == 1){
-                [dayPicker mon:nil];
+                [dayPicker monday:nil];
             }
             else if (i == 2){
-                [dayPicker tue:nil];
+                [dayPicker tuesday:nil];
             }
             else if (i == 3){
-                [dayPicker wed:nil];
+                [dayPicker wednesday:nil];
             }
             else if (i == 4){
-                [dayPicker thur:nil];
+                [dayPicker thursday:nil];
             }
             else if (i == 5){
-                [dayPicker fri:nil];
+                [dayPicker friday:nil];
             }
             else if (i == 6){
-                [dayPicker sat:nil];
+                [dayPicker saturday:nil];
             }
         }
     }
@@ -256,7 +242,7 @@
     [newButton setTag:(int)[timePickers count]];
     [newButton addTarget:self action:@selector(setDate:) forControlEvents:UIControlEventTouchUpInside];
     [timePickers addObject:newButton];
-    [self addButtonBorder:newButton];
+    [Constants addButtonBorder:newButton];
     
     //Set up Scrolling
     if (CGRectGetMaxY(self.scrollView.frame) < CGRectGetMaxY(newButton.frame)){
@@ -388,18 +374,18 @@
             Medication *medication = [Medication new];
             medication.coreMed = cm;
             medication.time = [[times objectAtIndex:i] floatValue];
-            medication.monday = (BOOL)[[dayPicker.days objectForKey:@"mon"] intValue];
-            medication.tuesday = (BOOL)[[dayPicker.days objectForKey:@"tue"] intValue];
-            medication.wednesday = (BOOL)[[dayPicker.days objectForKey:@"wed"] intValue];
-            medication.thursday = (BOOL)[[dayPicker.days objectForKey:@"thur"] intValue];
-            medication.friday = (BOOL)[[dayPicker.days objectForKey:@"fri"] intValue];
-            medication.saturday = (BOOL)[[dayPicker.days objectForKey:@"sat"] intValue];
-            medication.sunday = (BOOL)[[dayPicker.days objectForKey:@"sun"] intValue];
+            medication.monday = (BOOL)[[dayPicker.days objectForKey:@"monday"] intValue];
+            medication.tuesday = (BOOL)[[dayPicker.days objectForKey:@"tuesday"] intValue];
+            medication.wednesday = (BOOL)[[dayPicker.days objectForKey:@"wednesday"] intValue];
+            medication.thursday = (BOOL)[[dayPicker.days objectForKey:@"thursday"] intValue];
+            medication.friday = (BOOL)[[dayPicker.days objectForKey:@"friday"] intValue];
+            medication.saturday = (BOOL)[[dayPicker.days objectForKey:@"saturday"] intValue];
+            medication.sunday = (BOOL)[[dayPicker.days objectForKey:@"sunday"] intValue];
             
             [medication commit];
             
-            //TO-DO Check the day too to ensure it is added correctly
-            if(hour <= [[times objectAtIndex:i] floatValue]){
+            NSString *today = [Constants getCurrentDayFromDate:[NSDate date]];
+            if(hour <= [[times objectAtIndex:i] floatValue] && (BOOL)[dayPicker.days objectForKey:[today lowercaseString]]){
                 TodayMedication *todayMed = [TodayMedication new];
                 [todayMed createFromMedication:medication];
                 [todayMed commit];

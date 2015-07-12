@@ -16,7 +16,7 @@
 #import "CoreMedication.h"
 #import "NotificationScheduler.h"
 
-@interface AddMedViewController : UIViewController<UITextFieldDelegate, RMDateSelectionViewControllerDelegate, MPGTextFieldDelegate>{
+@interface AddMedViewController : UIViewController<UITextFieldDelegate, RMDateSelectionViewControllerDelegate, MPGTextFieldDelegate, UIAlertViewDelegate>{
     UIButton *cancel;
     UIButton *done;
     UILabel *addMed;
@@ -43,19 +43,21 @@
     NSMutableArray *amPm;
     
     int selectedTag;
+    
+    DBResultSet *set;
 }
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
 - (void)setupViews;
-- (void)addTextViewBorder:(UITextField*)textView;
-- (void)addButtonBorder:(UIButton*)button;
 
 - (void)createButton;
 - (void)dismissKeyboard;
 
 - (void)manipulateTime;
 - (void)addTimeWithHour:(NSString *)hour andMins:(NSString *)mins andAmPm:(NSString *)ampm;
+
+- (void)addMeds:(CoreMedication *)coreMed;
 
 - (void)generateData;
 

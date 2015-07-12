@@ -1,6 +1,6 @@
 //
 //  MenuController.h
-//  CDSideBar
+//  
 //
 //  Created by Rahul Shivkumar on 9/11/14.
 //  Copyright (c) 2015 Rahul Shivkumar. All rights reserved.
@@ -36,9 +36,11 @@
 @property (nonatomic, retain) id<MenuControllerDelegate> delegate;
 
 - (MenuController*)initWithDate:(NSDate *)start andCurrentDate:(NSDate *)current andView:(UIView*)view andVC:(TodayViewController*)viewController;
+
 - (void)showMenu;
 - (void)dismissMenu;
--(BOOL)compareDate:(NSDate*)date1 withOtherdate:(NSDate*)date2;
+
+- (BOOL)compareDate:(NSDate*)date1 withOtherdate:(NSDate*)date2;
 
 
 @end

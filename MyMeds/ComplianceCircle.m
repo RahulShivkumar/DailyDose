@@ -37,7 +37,7 @@
     _strokeColor = strokeColor;
 }
 
--(void)setLineWidthValue:(float)lineWidthTemp
+- (void)setLineWidthValue:(float)lineWidthTemp
 {
     self.lineWidth = lineWidthTemp;
 }
@@ -108,10 +108,31 @@
     [self.lineLayerBottomToHide setOpacity:0];
     [self.layer addSublayer:self.lineLayerBottomToHide];
     
+    self.property = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetWidth(self.bounds)/4, CGRectGetWidth(self.bounds)-20, 20)];
+    [self.property setTextAlignment:NSTextAlignmentCenter];
+    [self.property setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:16]];
+    [self.property setAlpha:0];
+    [self addSubview:self.property];
+    
+    self.value = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetWidth(self.bounds)/4 + 20, CGRectGetWidth(self.bounds)-20, 40)];
+    [self.value setTextAlignment:NSTextAlignmentCenter];
+    [self.value setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:35]];
+    [self.value setAlpha:0];
+    [self addSubview:self.value];
+    
     [UIView setAnimationDelegate:self];
 }
 
--(void)setIconButton:(UIImage *)icon withType:(NSInteger)type withColor:(UIColor*)color
+- (void)setValue:(NSString*)value andProperty:(NSString*)property andTextColor:(UIColor*)textColor
+{
+    [self.property setTextColor:textColor];
+    [self.property setText:property];
+    
+    [self.value setTextColor:textColor];
+    [self.value setText:value];
+}
+
+- (void)setIconButton:(UIImage *)icon withType:(NSInteger)type withColor:(UIColor*)color
 {
     self.imgIcon = [[UIImageView alloc] initWithImage:icon];
     [self.imgIcon setFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds)-CGRectGetWidth(self.bounds)/2, CGRectGetHeight(self.bounds)-CGRectGetHeight(self.bounds)/2)];
@@ -135,8 +156,8 @@
     [self addSubview:self.imgIcon];
 }
 
--(void)addAction:(SEL)selector
-{
+
+-(void)addAction:(SEL)selector {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:selector];
     [self addGestureRecognizer:tap];
 }
@@ -187,6 +208,8 @@
     
     [UIView animateWithDuration:0.5 delay:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
         [self.imgIcon setAlpha:1];
+        [self.property setAlpha:1];
+        [self.value setAlpha:1];
         [self.imgIcon setCenter:CGPointMake(CGRectGetWidth(self.bounds)/2, CGRectGetHeight(self.bounds)/2)];
     } completion:^(BOOL finished) {
 //        CABasicAnimation *fillColorAnimation = [CABasicAnimation animationWithKeyPath:@"fillColor"];
