@@ -21,9 +21,10 @@
 }
 
 + (void)logAction:(NSString*)action andMedication:(CoreMedication*)cm andTime:(int)time;
-+ (void)undoLogWithAction:(NSString*)action andMedication:(CoreMedication*)cm andTime:(int)time;
 
 + (NSDictionary*)getComplianceAnalyzerMetrics;
++ (NSMutableDictionary*)getGraphMetrics;
+
 + (void)logMissedMedsFromDate:(NSDate*)fromDate toDate:(NSDate*)toDate;
 
 

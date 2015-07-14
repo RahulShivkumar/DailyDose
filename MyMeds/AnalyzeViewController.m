@@ -71,12 +71,21 @@
     
     self.complianceGraph.enableReferenceAxisFrame = YES;
     
-    [self.complianceGraph setDataSource:self];
-    [self.complianceGraph setDelegate:self];
-    
     [graphView addSubview:self.complianceGraph];
     
+    [self setupData];
+    
  //   [EventLogger getComplianceAnalyzerMetrics];
+}
+
+- (void)setupData{
+    values = [EventLogger getGraphMetrics];
+    keys = [values allKeys];
+    //Reverse the array 
+    keys = [[keys reverseObjectEnumerator] allObjects];
+    
+    [self.complianceGraph setDataSource:self];
+    [self.complianceGraph setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,25 +98,17 @@
 
 #pragma mark  - Graph Delegate Methods 
 - (NSInteger)numberOfPointsInLineGraph:(BEMSimpleLineGraphView *)graph {
-    return 7; // Number of points in the graph.
+    return [keys count]; // Number of points in the graph.
 }
 
 
 - (CGFloat)lineGraph:(BEMSimpleLineGraphView *)graph valueForPointAtIndex:(NSInteger)index {
-    if (index == 0){
-        return 50;
-    } else if (index == 1){
-        return 70;
-    } else if (index == 2) {
-        return 80;
-    }
-    return 10; // The value of the point on the Y-Axis for the index.
+    return [[values objectForKey:[keys objectAtIndex:index]] intValue]; // The value of the point on the Y-Axis for the index.
 }
 
 
 - (NSString *)lineGraph:(BEMSimpleLineGraphView *)graph labelOnXAxisForIndex:(NSInteger)index {
-    if ((index % 2) == 0) return @"Jul 22";
-    else return @"";
+    return [keys objectAtIndex:index];
 }
 
 @end

@@ -13,10 +13,11 @@
 
 
 @interface AnalyzeViewController : UIViewController <BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate>{
-    
+    NSMutableDictionary *values;
+    NSArray *keys;
 }
 
 @property(strong, nonatomic)BEMSimpleLineGraphView *complianceGraph;
 - (void)setupViews;
-
+- (void)setupData;
 @end

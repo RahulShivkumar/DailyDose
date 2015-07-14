@@ -27,14 +27,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     NSString *UUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"UUID"];
-    if (!UUID){
-        [[Amplitude instance] initializeApiKey:@"de776c175b0c3c95f1ff1fbdbcf9a544" userId:[self getUserID]];
+//    if (!UUID){
+        [[Amplitude instance] initializeApiKey:@"6173840dbe787b3041206d97de06b633" userId:[self getUserID]];
        // NSLog(@"%@", [self getUserID]);
-    } else {
-        [[Amplitude instance] initializeApiKey:@"de776c175b0c3c95f1ff1fbdbcf9a544" userId:UUID];
-        //NSLog(@"%@", UUID);
-    }
-    
+//    } else {
+//        [[Amplitude instance] initializeApiKey:@"6173840dbe787b3041206d97de06b633" userId:UUID];
+//        //NSLog(@"%@", UUID);
+//    }
+//    
     [Fabric with:@[CrashlyticsKit]];
 
     [DBAccess setDelegate:self];

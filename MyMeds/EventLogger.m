@@ -24,16 +24,12 @@
         [event commit];
         
         //Remote Logging
-        NSDictionary *eventProperties = [[NSDictionary alloc] initWithObjects:@[cm.genName, cm.chemName, [NSNumber numberWithInt:event.time],  [NSNumber numberWithFloat:event.timeDelta], [NSDate date]]
-                                                                      forKeys:@[@"gen_name", @"chem_name", @"time", @"time_delta", @"time_stamp"]];
+        NSDictionary *eventProperties = [[NSDictionary alloc] initWithObjects:@[[NSNumber numberWithInt:event.time],  [NSNumber numberWithFloat:event.timeDelta], [NSDate date]]
+                                                                      forKeys:@[@"time", @"time_delta", @"time_stamp"]];
         [Amplitude logEvent:action withEventProperties:eventProperties];
     });
 }
 
-+ (void)undoLogWithAction:(NSString*)action andMedication:(CoreMedication*)cm andTime:(int)time{
-    
-    
-}
 
 + (NSDictionary*)getComplianceAnalyzerMetrics {
     int currentDay = [Constants getCurrentDay];
@@ -64,6 +60,55 @@
     float compliance = (takenMeds - 0.2 *delayedMeds)/(takenMeds + missedMeds) * 100.0;
     
     return [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", (int)compliance], @"compliance", [NSString stringWithFormat:@"%d", (int)delayedMeds], @"delayed", [NSString stringWithFormat:@"%d", (int)missedMeds], @"missed", nil];
+}
+
+
++ (NSMutableDictionary*)getGraphMetrics{
+    
+    NSMutableDictionary *results = [[NSMutableDictionary alloc] init];
+    NSDate *movingDate = [NSDate date];
+    for (int i = 0 ; i < 4 ; i ++) {
+        float requiredTimeLapse = 7;
+        if (i == 0){
+            int currentDay = [Constants getCurrentDay];
+            float requiredTimeLapse = currentDay - 1;
+            
+            //If its a sunday
+            if (requiredTimeLapse == 0){
+                int currentHour = (int)[Constants getCurrentHour];
+                //Just present missed meds for the day
+                requiredTimeLapse = currentHour/24;
+            }
+        }
+        long long sevenDaysAgo =  [[movingDate dateByAddingTimeInterval:-requiredTimeLapse*24*60*60] timeIntervalSince1970];
+        long long current = [movingDate timeIntervalSince1970];
+        NSString *query = [NSString stringWithFormat:@"timeStamp >= %lld and timeStamp <= %lld and action = 'missed'", sevenDaysAgo, current];
+        int missedMeds = [[[Event query] where:query] count];
+        
+        query = [NSString stringWithFormat:@"timeStamp >= %lld and timeStamp <= %lld and action = 'delayed'", sevenDaysAgo, current];
+        int delayedMeds = [[[Event query] where:query] count];
+        
+        query = [NSString stringWithFormat:@"timeStamp >= %lld and timeStamp <= %lld and action = 'taken'", sevenDaysAgo, current];
+        int takenMeds = [[[Event query] where:query] count];
+        
+        //Consider the undo commands
+        query = [NSString stringWithFormat:@"timeStamp >= %lld and timeStamp <= %lld and action = 'undo'", sevenDaysAgo, current];
+        takenMeds = takenMeds - [[[Event query] where:query] count];
+        
+        float compliance = (takenMeds - 0.2 *delayedMeds)/(takenMeds + missedMeds) * 100.0;
+        
+        if ((int)compliance < 0){
+            compliance = 0;
+        }
+        
+        movingDate = [NSDate dateWithTimeIntervalSince1970:sevenDaysAgo];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateStyle:NSDateFormatterMediumStyle];
+        [formatter setDateFormat:@"MMM dd"];
+        
+        [results setValue:[NSNumber numberWithInt:(int)compliance] forKey:[formatter stringFromDate:movingDate]];
+    }
+    return results;
 }
 
 
