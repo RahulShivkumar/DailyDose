@@ -13,6 +13,8 @@
 #import "Amplitude.h"
 #import "TodayMedication.h"
 #import "Medication.h"
+#import "GraphData.h"
+
 
 @interface EventLogger : NSObject {
     NSString *mName;
@@ -23,7 +25,7 @@
 + (void)logAction:(NSString*)action andMedication:(CoreMedication*)cm andTime:(int)time;
 
 + (NSDictionary*)getComplianceAnalyzerMetrics;
-+ (NSMutableDictionary*)getGraphMetrics;
++ (NSMutableArray*)getGraphMetrics;
 
 + (void)logMissedMedsFromDate:(NSDate*)fromDate toDate:(NSDate*)toDate;
 

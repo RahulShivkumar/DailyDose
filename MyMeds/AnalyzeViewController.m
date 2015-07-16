@@ -19,6 +19,7 @@
 
 @implementation AnalyzeViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -27,9 +28,11 @@
 
 }
 
+
 - (void)viewWillAppear:(BOOL)animated {
     [self setupViews];
 }
+
 
 - (void)setupViews {
     [Constants setupNavbar:self];
@@ -81,15 +84,18 @@
  //   [EventLogger getComplianceAnalyzerMetrics];
 }
 
+
 - (void)setupData{
-    values = [EventLogger getGraphMetrics];
-    keys = [values allKeys];
-    //Reverse the array 
-    keys = [[keys reverseObjectEnumerator] allObjects];
+    data = [[NSMutableArray alloc] init];
+    data = [EventLogger getGraphMetrics];
+    
+    //This line is dubious - Check it out
+    data = (NSMutableArray*)[[data reverseObjectEnumerator] allObjects];
     
     [self.complianceGraph setDataSource:self];
     [self.complianceGraph setDelegate:self];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -97,21 +103,21 @@
 }
 
 
-
-
 #pragma mark  - Graph Delegate Methods 
 - (NSInteger)numberOfPointsInLineGraph:(BEMSimpleLineGraphView *)graph {
-    return [keys count]; // Number of points in the graph.
+    return [data count]; // Number of points in the graph.
 }
 
 
 - (CGFloat)lineGraph:(BEMSimpleLineGraphView *)graph valueForPointAtIndex:(NSInteger)index {
-    return [[values objectForKey:[keys objectAtIndex:index]] intValue]; // The value of the point on the Y-Axis for the index.
+    GraphData *gd = [data objectAtIndex:index];
+    return gd.compliance;
 }
 
 
 - (NSString *)lineGraph:(BEMSimpleLineGraphView *)graph labelOnXAxisForIndex:(NSInteger)index {
-    return [keys objectAtIndex:index];
+    GraphData *gd = [data objectAtIndex:index];
+    return gd.date;
 }
 
 - (void)lineGraph:(BEMSimpleLineGraphView *)graph didTouchGraphWithClosestIndex:(NSInteger)index {

@@ -63,9 +63,9 @@
 }
 
 
-+ (NSMutableDictionary*)getGraphMetrics{
++ (NSMutableArray*)getGraphMetrics{
     
-    NSMutableDictionary *results = [[NSMutableDictionary alloc] init];
+    NSMutableArray *results = [[NSMutableArray alloc] init];
     NSDate *movingDate = [NSDate date];
     for (int i = 0 ; i < 4 ; i ++) {
         float requiredTimeLapse = 7;
@@ -106,7 +106,10 @@
         [formatter setDateStyle:NSDateFormatterMediumStyle];
         [formatter setDateFormat:@"MMM dd"];
         
-        [results setValue:[NSNumber numberWithInt:(int)compliance] forKey:[formatter stringFromDate:movingDate]];
+        GraphData *gd = [GraphData new];
+        [gd setDate:[formatter stringFromDate:movingDate]];
+        [gd setCompliance:(int)compliance];
+        [results addObject:gd];
     }
     return results;
 }

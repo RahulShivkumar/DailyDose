@@ -10,11 +10,12 @@
 #import "Constants.h"
 #import "BEMSimpleLineGraphView.h"
 #import "EventLogger.h"
+#import "GraphData.h"
 
 
 @interface AnalyzeViewController : UIViewController <BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate>{
-    NSMutableDictionary *values;
-    NSArray *keys;
+    NSMutableArray *data;
+    
 }
 
 @property(strong, nonatomic)BEMSimpleLineGraphView *complianceGraph;

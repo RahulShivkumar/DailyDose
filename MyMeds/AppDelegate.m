@@ -28,7 +28,7 @@
     NSString *UUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"UUID"];
     if (!UUID){
         [[Amplitude instance] initializeApiKey:@"6173840dbe787b3041206d97de06b633" userId:[self getUserID]];
-        NSLog(@"%@", [self getUserID]);
+        //NSLog(@"%@", [self getUserID]);
     } else {
         [[Amplitude instance] initializeApiKey:@"6173840dbe787b3041206d97de06b633" userId:UUID];
         //NSLog(@"%@", UUID);

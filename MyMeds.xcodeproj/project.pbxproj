@@ -26,6 +26,7 @@
 		B75A08F11AB9DC79009D2056 /* DayPickerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A08F01AB9DC79009D2056 /* DayPickerButton.m */; };
 		B75FAD681A9FBE140094ACE5 /* MissedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B75FAD671A9FBE140094ACE5 /* MissedViewController.m */; };
 		B764A1941AB9041B0068A119 /* AddMedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B764A1931AB9041B0068A119 /* AddMedViewController.m */; };
+		B7698C081B576CF1008B6AFA /* GraphData.m in Sources */ = {isa = PBXBuildFile; fileRef = B7698C071B576CF1008B6AFA /* GraphData.m */; };
 		B772FC4E1AFD60A2001CB237 /* EditMedsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B772FC4D1AFD60A2001CB237 /* EditMedsController.m */; };
 		B7988D601A7B350A0061DF8C /* MedsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7988D5F1A7B350A0061DF8C /* MedsCell.m */; };
 		B7988D641A7B38C50061DF8C /* StrikeThroughLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7988D631A7B38C50061DF8C /* StrikeThroughLabel.m */; };
@@ -118,6 +119,8 @@
 		B75FAD671A9FBE140094ACE5 /* MissedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissedViewController.m; sourceTree = "<group>"; };
 		B764A1921AB9041B0068A119 /* AddMedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMedViewController.h; sourceTree = "<group>"; };
 		B764A1931AB9041B0068A119 /* AddMedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMedViewController.m; sourceTree = "<group>"; };
+		B7698C061B576CF1008B6AFA /* GraphData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphData.h; sourceTree = "<group>"; };
+		B7698C071B576CF1008B6AFA /* GraphData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphData.m; sourceTree = "<group>"; };
 		B772FC4C1AFD60A2001CB237 /* EditMedsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMedsController.h; sourceTree = "<group>"; };
 		B772FC4D1AFD60A2001CB237 /* EditMedsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMedsController.m; sourceTree = "<group>"; };
 		B78439171B0C6A4E00507D0A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -244,6 +247,8 @@
 			children = (
 				B7A669521B40C27500AE7566 /* EventLogger.h */,
 				B7A669531B40C27500AE7566 /* EventLogger.m */,
+				B7698C061B576CF1008B6AFA /* GraphData.h */,
+				B7698C071B576CF1008B6AFA /* GraphData.m */,
 				B7196A4C1B478B670014DF3B /* Event.h */,
 				B7196A4D1B478B670014DF3B /* Event.m */,
 				B73A942C1B44F4AA00590D79 /* TodayMedication.h */,
@@ -613,6 +618,7 @@
 				B7988D601A7B350A0061DF8C /* MedsCell.m in Sources */,
 				B7A669541B40C27500AE7566 /* EventLogger.m in Sources */,
 				B764A1941AB9041B0068A119 /* AddMedViewController.m in Sources */,
+				B7698C081B576CF1008B6AFA /* GraphData.m in Sources */,
 				B7B43F171B51B7220063FEA3 /* BEMPermanentPopupView.m in Sources */,
 				B7A275101B40F927008F2BD4 /* Amplitude.m in Sources */,
 				B7A275121B40F927008F2BD4 /* AMPLocationManagerDelegate.m in Sources */,
