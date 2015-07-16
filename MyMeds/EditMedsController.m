@@ -7,7 +7,6 @@
 //
 
 #import "EditMedsController.h"
-#import "AZNotification.h"
 
 @interface EditMedsController ()
 
@@ -393,7 +392,7 @@
         }
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
-        [AZNotification showNotificationWithTitle:@"Please Add All Information!" controller:self notificationType:AZNotificationTypeWarning];
+//        [AZNotification showNotificationWithTitle:@"Please Add All Information!" controller:self notificationType:AZNotificationTypeWarning];
     }
     
 }

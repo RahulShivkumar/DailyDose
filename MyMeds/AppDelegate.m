@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "TodayViewController.h"
 #import "OverviewViewController.h"
-#import "HistoryViewController.h"
 #import "AnalyzeViewController.h"
 #import "SettingsViewController.h"
 #import "Amplitude.h"
@@ -27,14 +26,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     NSString *UUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"UUID"];
-//    if (!UUID){
+    if (!UUID){
         [[Amplitude instance] initializeApiKey:@"6173840dbe787b3041206d97de06b633" userId:[self getUserID]];
-       // NSLog(@"%@", [self getUserID]);
-//    } else {
-//        [[Amplitude instance] initializeApiKey:@"6173840dbe787b3041206d97de06b633" userId:UUID];
-//        //NSLog(@"%@", UUID);
-//    }
-//    
+        NSLog(@"%@", [self getUserID]);
+    } else {
+        [[Amplitude instance] initializeApiKey:@"6173840dbe787b3041206d97de06b633" userId:UUID];
+        //NSLog(@"%@", UUID);
+    }
+//
     [Fabric with:@[CrashlyticsKit]];
 
     [DBAccess setDelegate:self];

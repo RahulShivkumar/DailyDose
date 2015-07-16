@@ -22,9 +22,6 @@
 		B73A942B1B44F36E00590D79 /* DBAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73A94291B44F36E00590D79 /* DBAccess.framework */; };
 		B73A942E1B44F4AA00590D79 /* TodayMedication.m in Sources */ = {isa = PBXBuildFile; fileRef = B73A942D1B44F4AA00590D79 /* TodayMedication.m */; };
 		B73A942F1B44F4AA00590D79 /* TodayMedication.m in Sources */ = {isa = PBXBuildFile; fileRef = B73A942D1B44F4AA00590D79 /* TodayMedication.m */; };
-		B755187F1B00337600CE23A3 /* AZNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = B755187A1B00337600CE23A3 /* AZNotification.m */; };
-		B75518801B00337600CE23A3 /* AZNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = B755187C1B00337600CE23A3 /* AZNotificationView.m */; };
-		B75518811B00337600CE23A3 /* UIColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B755187E1B00337600CE23A3 /* UIColor+Additions.m */; };
 		B75A08EE1AB945D8009D2056 /* DayPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A08ED1AB945D8009D2056 /* DayPicker.m */; };
 		B75A08F11AB9DC79009D2056 /* DayPickerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A08F01AB9DC79009D2056 /* DayPickerButton.m */; };
 		B75FAD681A9FBE140094ACE5 /* MissedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B75FAD671A9FBE140094ACE5 /* MissedViewController.m */; };
@@ -72,7 +69,6 @@
 		B7C27E461A76AB0700DFB416 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7C27E451A76AB0700DFB416 /* UIKit.framework */; };
 		B7C27E491A76AB2600DFB416 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B7C27E471A76AB2600DFB416 /* libsqlite3.0.dylib */; };
 		B7C27E4A1A76AB2600DFB416 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B7C27E481A76AB2600DFB416 /* libsqlite3.dylib */; };
-		B7C27E511A76E63200DFB416 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C27E501A76E63200DFB416 /* HistoryViewController.m */; };
 		B7C27E571A76E65A00DFB416 /* AnalyzeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7C27E561A76E65A00DFB416 /* AnalyzeViewController.m */; };
 		B7F011E11B4E366C0055D419 /* drugsdb.json in Resources */ = {isa = PBXBuildFile; fileRef = B7F011E01B4E366C0055D419 /* drugsdb.json */; };
 		B7FC56FD1B0E4BAC00A1828A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FC56FC1B0E4BAC00A1828A /* CoreData.framework */; };
@@ -114,12 +110,6 @@
 		B73A94291B44F36E00590D79 /* DBAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DBAccess.framework; path = MyMedsTests/DBAccess.framework; sourceTree = SOURCE_ROOT; };
 		B73A942C1B44F4AA00590D79 /* TodayMedication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayMedication.h; sourceTree = "<group>"; };
 		B73A942D1B44F4AA00590D79 /* TodayMedication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayMedication.m; sourceTree = "<group>"; };
-		B75518791B00337600CE23A3 /* AZNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZNotification.h; sourceTree = "<group>"; };
-		B755187A1B00337600CE23A3 /* AZNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZNotification.m; sourceTree = "<group>"; };
-		B755187B1B00337600CE23A3 /* AZNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AZNotificationView.h; sourceTree = "<group>"; };
-		B755187C1B00337600CE23A3 /* AZNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AZNotificationView.m; sourceTree = "<group>"; };
-		B755187D1B00337600CE23A3 /* UIColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Additions.h"; sourceTree = "<group>"; };
-		B755187E1B00337600CE23A3 /* UIColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Additions.m"; sourceTree = "<group>"; };
 		B75A08EC1AB945D8009D2056 /* DayPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DayPicker.h; path = ../DayPicker.h; sourceTree = "<group>"; };
 		B75A08ED1AB945D8009D2056 /* DayPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DayPicker.m; path = ../DayPicker.m; sourceTree = "<group>"; };
 		B75A08EF1AB9DC79009D2056 /* DayPickerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayPickerButton.h; sourceTree = "<group>"; };
@@ -212,8 +202,6 @@
 		B7C27E451A76AB0700DFB416 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B7C27E471A76AB2600DFB416 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		B7C27E481A76AB2600DFB416 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		B7C27E4F1A76E63200DFB416 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
-		B7C27E501A76E63200DFB416 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		B7C27E551A76E65A00DFB416 /* AnalyzeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalyzeViewController.h; sourceTree = "<group>"; };
 		B7C27E561A76E65A00DFB416 /* AnalyzeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyzeViewController.m; sourceTree = "<group>"; };
 		B7F011E01B4E366C0055D419 /* drugsdb.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = drugsdb.json; sourceTree = "<group>"; };
@@ -288,8 +276,6 @@
 				B7C27E561A76E65A00DFB416 /* AnalyzeViewController.m */,
 				B764A1921AB9041B0068A119 /* AddMedViewController.h */,
 				B764A1931AB9041B0068A119 /* AddMedViewController.m */,
-				B7C27E4F1A76E63200DFB416 /* HistoryViewController.h */,
-				B7C27E501A76E63200DFB416 /* HistoryViewController.m */,
 				B7C27E241A76AA8100DFB416 /* OverviewViewController.h */,
 				B7C27E251A76AA8100DFB416 /* OverviewViewController.m */,
 				B7A1FD4C1A8298D40003CD52 /* InfoViewController.h */,
@@ -313,19 +299,6 @@
 				B71815B01B3F4A370081AFC9 /* ComplianceCircle.m */,
 			);
 			name = "Compliance Rating";
-			sourceTree = "<group>";
-		};
-		B75518681B002FE600CE23A3 /* Notification Toast */ = {
-			isa = PBXGroup;
-			children = (
-				B75518791B00337600CE23A3 /* AZNotification.h */,
-				B755187A1B00337600CE23A3 /* AZNotification.m */,
-				B755187B1B00337600CE23A3 /* AZNotificationView.h */,
-				B755187C1B00337600CE23A3 /* AZNotificationView.m */,
-				B755187D1B00337600CE23A3 /* UIColor+Additions.h */,
-				B755187E1B00337600CE23A3 /* UIColor+Additions.m */,
-			);
-			name = "Notification Toast";
 			sourceTree = "<group>";
 		};
 		B76766E61A794BBA0048AA04 /* Strikethrough Control */ = {
@@ -452,7 +425,6 @@
 				B7B632781B3F8EA6008DBE12 /* Suggestion Textfield */,
 				B71815B21B3F4E170081AFC9 /* Compliance Rating */,
 				B78E711F1B3E3CE900D4350F /* Constants */,
-				B75518681B002FE600CE23A3 /* Notification Toast */,
 				B70CC81A1AED8C940042F1CE /* View Controllers */,
 				B70CC8191AED8C470042F1CE /* Day Picker */,
 				B70CC8181AED8BA40042F1CE /* Models */,
@@ -668,10 +640,8 @@
 				B7A2750C1B40F927008F2BD4 /* AMPConstants.m in Sources */,
 				B7B43F001B519F1F0063FEA3 /* BOTimeTableViewCell.m in Sources */,
 				B7275DB71AC259030016D085 /* RMDateSelectionViewController.m in Sources */,
-				B75518801B00337600CE23A3 /* AZNotificationView.m in Sources */,
 				B71815AE1B3F47FE0081AFC9 /* ComplianceAnalyzer.m in Sources */,
 				B70CC81D1AED8E9B0042F1CE /* Constants.m in Sources */,
-				B755187F1B00337600CE23A3 /* AZNotification.m in Sources */,
 				B7B43F151B51B7220063FEA3 /* BEMLine.m in Sources */,
 				B7B43EFE1B519F1F0063FEA3 /* BOSwitchTableViewCell.m in Sources */,
 				B7B43F011B519F1F0063FEA3 /* BOChoiceTableViewCell.m in Sources */,
@@ -686,8 +656,6 @@
 				B7C27E571A76E65A00DFB416 /* AnalyzeViewController.m in Sources */,
 				B75FAD681A9FBE140094ACE5 /* MissedViewController.m in Sources */,
 				B75A08F11AB9DC79009D2056 /* DayPickerButton.m in Sources */,
-				B7C27E511A76E63200DFB416 /* HistoryViewController.m in Sources */,
-				B75518811B00337600CE23A3 /* UIColor+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

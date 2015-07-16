@@ -7,7 +7,6 @@
 //
 
 #import "AddMedViewController.h"
-#import "AZNotification.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface AddMedViewController ()
@@ -366,8 +365,8 @@
 
     }
     else{
-         [AZNotification showNotificationWithTitle:@"Please Add All Information!"
-                                        controller:self notificationType:AZNotificationTypeWarning];
+//         [AZNotification showNotificationWithTitle:@"Please Add All Information!"
+//                                        controller:self notificationType:AZNotificationTypeWarning];
     }
     
     

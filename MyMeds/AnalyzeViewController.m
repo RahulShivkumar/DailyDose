@@ -71,6 +71,9 @@
     
     self.complianceGraph.enableReferenceAxisFrame = YES;
     
+    self.complianceGraph.enablePopUpReport = YES;
+    self.complianceGraph.enableTouchReport = YES;
+    
     [graphView addSubview:self.complianceGraph];
     
     [self setupData];
@@ -110,5 +113,11 @@
 - (NSString *)lineGraph:(BEMSimpleLineGraphView *)graph labelOnXAxisForIndex:(NSInteger)index {
     return [keys objectAtIndex:index];
 }
+
+- (void)lineGraph:(BEMSimpleLineGraphView *)graph didTouchGraphWithClosestIndex:(NSInteger)index {
+    // Here you could change the text of a UILabel with the value of the closest index for example.
+}
+
+
 
 @end
