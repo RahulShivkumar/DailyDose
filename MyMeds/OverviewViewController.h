@@ -8,12 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import <DBAccess/DBAccess.h>
+#import <TesseractOCR/TesseractOCR.h>
+#import <GPUImage/GPUImage.h>
+#import "ImageProcessor.h"
 #import "Constants.h"
+#import "UIImage+OrientationFix.h"
 
 
-@interface OverviewViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
+
+@interface OverviewViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, G8TesseractDelegate, ImageProcessorDelegate>{
     DBResultSet *meds;
+    UIImageView *imgView;
 }
+
+@property (strong, nonatomic) UIImagePickerController * imagePickerController;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *add;
 
@@ -29,7 +37,7 @@
 
 - (IBAction)addMedication:(id)sender;
 - (IBAction)changeTimeline:(id)sender;
-- (IBAction)toggleSearch:(id)sender;
+- (IBAction)openCamera:(id)sender;
 
 
 

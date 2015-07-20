@@ -37,6 +37,32 @@
 
 
 - (void)checkNotifications {
+//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//    NSDate *now = [NSDate date];
+//    
+//    NSDateComponents *componentsForFireDate = [calendar components:(NSYearCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit| NSSecondCalendarUnit | NSWeekdayCalendarUnit) fromDate: now];
+//    [componentsForFireDate setTimeZone:[NSTimeZone localTimeZone]];
+//    [componentsForFireDate setWeekday: 1] ;
+//    
+//  
+//    [componentsForFireDate setHour:14] ;
+//    [componentsForFireDate setMinute:46] ;
+//    [componentsForFireDate setSecond:0] ;
+//    
+//    UILocalNotification *notification = [[UILocalNotification alloc] init];
+//    //Set the title of the notification
+//    notification.alertBody = @"My Title";
+//    //Set the text of the notification
+//
+//    //Schedule the notification to be delivered 20 seconds after execution
+//    notification.fireDate = [calendar dateFromComponents:componentsForFireDate];
+//    
+//    notification.repeatInterval = NSCalendarUnitWeekOfYear;
+//    
+//    //Get the default notification center and schedule delivery
+//    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+
+    NSLog(@"%@", @"Notifications Check");
     UIApplication *app = [UIApplication sharedApplication];
     NSArray *eventArray = [app scheduledLocalNotifications];
     for (int i = 0; i < [eventArray count]; i++)
@@ -44,7 +70,7 @@
         UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
         NSDictionary *userInfoCurrent = oneEvent.userInfo;
         NSString *identifier = [userInfoCurrent objectForKey:@"uid"];
-        NSLog(@"%@", identifier);
+        NSLog(@"%@", oneEvent.fireDate);
     }
 }
 
@@ -67,6 +93,7 @@
     current = [NSDate date];
     future = NO;
     futureDate = current;
+    
     //[self clearData];
     //[self checkNotifications];
     [self setupMeds];
@@ -512,7 +539,7 @@
         med = [pmMeds objectAtIndex:indexPath.row];
     }
     
-    [EventLogger logAction:@"info" andMedication:med.coreMed andTime:med.time];
+    [EventLogger logAction:@"missed" andMedication:med.coreMed andTime:med.time];
     
     InfoViewController *infoVC = [[InfoViewController alloc] initWithMed:med.coreMed];
     [self.navigationController presentViewController:infoVC

@@ -26,6 +26,7 @@
 
 + (NSDictionary*)getComplianceAnalyzerMetrics;
 + (NSMutableArray*)getGraphMetrics;
++ (NSMutableDictionary*)getTopFiveMissedMeds;
 
 + (void)logMissedMedsFromDate:(NSDate*)fromDate toDate:(NSDate*)toDate;
 

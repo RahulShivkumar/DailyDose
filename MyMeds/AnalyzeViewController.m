@@ -82,11 +82,13 @@
     [self setupData];
     
  //   [EventLogger getComplianceAnalyzerMetrics];
+    //Display the top 5 meds UI
 }
 
 
 - (void)setupData{
     data = [[NSMutableArray alloc] init];
+    topMeds = [[NSMutableDictionary alloc] init];
     data = [EventLogger getGraphMetrics];
     
     //This line is dubious - Check it out
@@ -94,6 +96,12 @@
     
     [self.complianceGraph setDataSource:self];
     [self.complianceGraph setDelegate:self];
+    
+    //Setup Top 5 Meds
+    topMeds = [EventLogger getTopFiveMissedMeds];
+    tmt = [[TopMedsTable alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.42 - 44, [Constants window_width], [Constants window_height] * 0.58 - 44) andData:topMeds];
+    [self.view addSubview:tmt];
+    
 }
 
 

@@ -25,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
 }
 
 
@@ -35,9 +36,10 @@
     if(self.timeline.selectedSegmentIndex == 1){
         index = 1;
     }
-    
+
     [self setupMeds:index];
     [self setupViews];
+   
 }
 
 
@@ -57,6 +59,8 @@
     [self.medsView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.medsView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.medsView];
+
+
     
     [Constants setupNavbar:self];
 }
@@ -149,7 +153,76 @@
 }
 
 
+
+#pragma mark - UIImagePickerDelegate
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [[picker presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    // Access the uncropped image from info dictionary
+    UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    UIImage *fixedImage = [image imageWithFixedOrientation];
+    
+    [ImageProcessor sharedProcessor].delegate = self;
+    [[ImageProcessor sharedProcessor] processImage:fixedImage];
+//    G8Tesseract *tesseract = [[G8Tesseract alloc] initWithLanguage:@"eng"];
+//    tesseract.delegate = self;
+//    
+//    [tesseract setImage:image];
+//    [tesseract recognize];
+//    NSLog(@"%@", [tesseract recognizedText]);
+    
+    [[picker presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+    
+    
+}
+
+
+- (UIImage *)preprocessedImageForTesseract:(G8Tesseract *)tesseract sourceImage:(UIImage *)sourceImage {
+    
+    // Give the filteredImage to Tesseract instead of the original one,
+    // allowing us to bypass the internal thresholding step.
+    // filteredImage will be sent immediately to the recognition step
+    
+    //sourceImage = [ImageProcessor processImage:sourceImage];
+    return sourceImage;
+}
+
+#pragma mark - ImageProcessor Delegate 
+- (void)imageProcessorFinishedProcessingWithImage:(UIImage *)outputImage {
+    imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 44, [Constants window_width], [Constants window_height] - 44)];
+    [self.view addSubview:imgView];
+    [imgView setImage:outputImage];
+    
+    G8Tesseract *tesseract = [[G8Tesseract alloc] initWithLanguage:@"eng"];
+    tesseract.delegate = self;
+    [tesseract setImage:outputImage];
+    [tesseract recognize];
+    NSLog(@"%@", [tesseract recognizedText]);
+}
+
 #pragma mark - IBActions
+//Method called for camera logic
+- (void)openCamera:(id)sender {
+//    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])  {
+//        
+//        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+//        
+//        imagePicker.sourceType =  UIImagePickerControllerSourceTypeCamera;
+//        imagePicker.delegate = self;
+//        imagePicker.editing = NO;
+//        
+//        [self presentViewController:imagePicker animated:YES completion:nil];
+//    }
+//    else {
+//        //TO-DO Alert saying Camera not accessible :(
+//    }
+}
+
+
 //Method called to change the timeline 
 - (IBAction)changeTimeline:(id)sender {
     if(self.timeline.selectedSegmentIndex == 0){

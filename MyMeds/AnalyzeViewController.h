@@ -11,10 +11,13 @@
 #import "BEMSimpleLineGraphView.h"
 #import "EventLogger.h"
 #import "GraphData.h"
+#import "TopMedsTable.h"
 
 
 @interface AnalyzeViewController : UIViewController <BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate>{
     NSMutableArray *data;
+    NSMutableDictionary *topMeds;
+    TopMedsTable *tmt;
     
 }
 

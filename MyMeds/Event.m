@@ -10,6 +10,6 @@
 
 @implementation Event
 
-@dynamic action, cm, timeStamp, timeDelta;
+@dynamic action, cm, medName, timeStamp, timeDelta;
 
 @end

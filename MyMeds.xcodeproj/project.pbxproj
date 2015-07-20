@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B700AB1D1A7ECE280034EF14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B700AB1C1A7ECE280034EF14 /* Main.storyboard */; };
+		B708D8541B5AF41C0080B22B /* TopMedsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B708D8531B5AF41C0080B22B /* TopMedsTable.m */; };
 		B70CC81D1AED8E9B0042F1CE /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = B70CC81C1AED8E9B0042F1CE /* Constants.m */; };
 		B71815AE1B3F47FE0081AFC9 /* ComplianceAnalyzer.m in Sources */ = {isa = PBXBuildFile; fileRef = B71815AD1B3F47FE0081AFC9 /* ComplianceAnalyzer.m */; };
 		B71815B11B3F4A370081AFC9 /* ComplianceCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = B71815B01B3F4A370081AFC9 /* ComplianceCircle.m */; };
@@ -25,8 +26,11 @@
 		B75A08EE1AB945D8009D2056 /* DayPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A08ED1AB945D8009D2056 /* DayPicker.m */; };
 		B75A08F11AB9DC79009D2056 /* DayPickerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A08F01AB9DC79009D2056 /* DayPickerButton.m */; };
 		B75FAD681A9FBE140094ACE5 /* MissedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B75FAD671A9FBE140094ACE5 /* MissedViewController.m */; };
+		B76070E71B58C5840075176B /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B76070E61B58C5840075176B /* CoreImage.framework */; };
+		B76070EA1B5A11CA0075176B /* ImageProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = B76070E91B5A11CA0075176B /* ImageProcessor.m */; };
 		B764A1941AB9041B0068A119 /* AddMedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B764A1931AB9041B0068A119 /* AddMedViewController.m */; };
 		B7698C081B576CF1008B6AFA /* GraphData.m in Sources */ = {isa = PBXBuildFile; fileRef = B7698C071B576CF1008B6AFA /* GraphData.m */; };
+		B7698C0E1B587870008B6AFA /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = B7698C0D1B587870008B6AFA /* tessdata */; };
 		B772FC4E1AFD60A2001CB237 /* EditMedsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B772FC4D1AFD60A2001CB237 /* EditMedsController.m */; };
 		B7988D601A7B350A0061DF8C /* MedsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7988D5F1A7B350A0061DF8C /* MedsCell.m */; };
 		B7988D641A7B38C50061DF8C /* StrikeThroughLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7988D631A7B38C50061DF8C /* StrikeThroughLabel.m */; };
@@ -41,6 +45,7 @@
 		B7A275131B40F927008F2BD4 /* AMPLocationManagerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A275091B40F927008F2BD4 /* AMPLocationManagerDelegate.m */; };
 		B7A275141B40F927008F2BD4 /* AMPURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A2750B1B40F927008F2BD4 /* AMPURLConnection.m */; };
 		B7A275151B40F927008F2BD4 /* AMPURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A2750B1B40F927008F2BD4 /* AMPURLConnection.m */; };
+		B7A5FBF81B5A1BCF00C7BAC8 /* UIImage+OrientationFix.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A5FBF71B5A1BCF00C7BAC8 /* UIImage+OrientationFix.m */; };
 		B7A669541B40C27500AE7566 /* EventLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A669531B40C27500AE7566 /* EventLogger.m */; };
 		B7AAC02D1A834A1300BC6B2C /* Medication.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AAC02C1A834A1300BC6B2C /* Medication.m */; };
 		B7B43EE21B50E5340063FEA3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B43EE11B50E5340063FEA3 /* MessageUI.framework */; };
@@ -76,6 +81,7 @@
 		B7FC56FE1B0E4BBB00A1828A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B784391B1B0C6A6500507D0A /* SystemConfiguration.framework */; };
 		B7FC57001B0E4BC400A1828A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FC56FF1B0E4BC400A1828A /* libz.dylib */; };
 		B7FC574E1B0E67C000A1828A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B78439171B0C6A4E00507D0A /* CoreGraphics.framework */; };
+		DE625C21B5DC066FB66F3E9D /* libPods-MyMeds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DABABB42CDEFE8B0B3D15C42 /* libPods-MyMeds.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,7 +95,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0FC923A9822149BE2568773D /* Pods-MyMeds.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMeds.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyMeds/Pods-MyMeds.release.xcconfig"; sourceTree = "<group>"; };
+		ACC3A71BA209F925CAB7A00B /* Pods-MyMeds.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMeds.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyMeds/Pods-MyMeds.debug.xcconfig"; sourceTree = "<group>"; };
 		B700AB1C1A7ECE280034EF14 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		B708D8521B5AF41C0080B22B /* TopMedsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopMedsTable.h; sourceTree = "<group>"; };
+		B708D8531B5AF41C0080B22B /* TopMedsTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopMedsTable.m; sourceTree = "<group>"; };
 		B70CC81B1AED8E9B0042F1CE /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		B70CC81C1AED8E9B0042F1CE /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		B71815AC1B3F47FE0081AFC9 /* ComplianceAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplianceAnalyzer.h; sourceTree = "<group>"; };
@@ -117,10 +127,14 @@
 		B75A08F01AB9DC79009D2056 /* DayPickerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayPickerButton.m; sourceTree = "<group>"; };
 		B75FAD661A9FBE140094ACE5 /* MissedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MissedViewController.h; sourceTree = "<group>"; };
 		B75FAD671A9FBE140094ACE5 /* MissedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MissedViewController.m; sourceTree = "<group>"; };
+		B76070E61B58C5840075176B /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		B76070E81B5A11CA0075176B /* ImageProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProcessor.h; sourceTree = "<group>"; };
+		B76070E91B5A11CA0075176B /* ImageProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProcessor.m; sourceTree = "<group>"; };
 		B764A1921AB9041B0068A119 /* AddMedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMedViewController.h; sourceTree = "<group>"; };
 		B764A1931AB9041B0068A119 /* AddMedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMedViewController.m; sourceTree = "<group>"; };
 		B7698C061B576CF1008B6AFA /* GraphData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphData.h; sourceTree = "<group>"; };
 		B7698C071B576CF1008B6AFA /* GraphData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphData.m; sourceTree = "<group>"; };
+		B7698C0D1B587870008B6AFA /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		B772FC4C1AFD60A2001CB237 /* EditMedsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMedsController.h; sourceTree = "<group>"; };
 		B772FC4D1AFD60A2001CB237 /* EditMedsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMedsController.m; sourceTree = "<group>"; };
 		B78439171B0C6A4E00507D0A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -144,6 +158,8 @@
 		B7A275091B40F927008F2BD4 /* AMPLocationManagerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPLocationManagerDelegate.m; sourceTree = "<group>"; };
 		B7A2750A1B40F927008F2BD4 /* AMPURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMPURLConnection.h; sourceTree = "<group>"; };
 		B7A2750B1B40F927008F2BD4 /* AMPURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMPURLConnection.m; sourceTree = "<group>"; };
+		B7A5FBF61B5A1BCF00C7BAC8 /* UIImage+OrientationFix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+OrientationFix.h"; sourceTree = "<group>"; };
+		B7A5FBF71B5A1BCF00C7BAC8 /* UIImage+OrientationFix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+OrientationFix.m"; sourceTree = "<group>"; };
 		B7A669521B40C27500AE7566 /* EventLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLogger.h; sourceTree = "<group>"; };
 		B7A669531B40C27500AE7566 /* EventLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLogger.m; sourceTree = "<group>"; };
 		B7AAC02B1A834A1300BC6B2C /* Medication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Medication.h; sourceTree = "<group>"; };
@@ -210,6 +226,7 @@
 		B7F011E01B4E366C0055D419 /* drugsdb.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = drugsdb.json; sourceTree = "<group>"; };
 		B7FC56FC1B0E4BAC00A1828A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B7FC56FF1B0E4BC400A1828A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		DABABB42CDEFE8B0B3D15C42 /* libPods-MyMeds.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyMeds.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,10 +234,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B76070E71B58C5840075176B /* CoreImage.framework in Frameworks */,
+				B7FC57001B0E4BC400A1828A /* libz.dylib in Frameworks */,
 				B7B43EE21B50E5340063FEA3 /* MessageUI.framework in Frameworks */,
 				B7FC574E1B0E67C000A1828A /* CoreGraphics.framework in Frameworks */,
 				B73A94251B42546900590D79 /* Crashlytics.framework in Frameworks */,
-				B7FC57001B0E4BC400A1828A /* libz.dylib in Frameworks */,
 				B7FC56FE1B0E4BBB00A1828A /* SystemConfiguration.framework in Frameworks */,
 				B73A94241B42546900590D79 /* Fabric.framework in Frameworks */,
 				B7FC56FD1B0E4BAC00A1828A /* CoreData.framework in Frameworks */,
@@ -228,6 +246,7 @@
 				B7C27E491A76AB2600DFB416 /* libsqlite3.0.dylib in Frameworks */,
 				B7C27E4A1A76AB2600DFB416 /* libsqlite3.dylib in Frameworks */,
 				B7C27E461A76AB0700DFB416 /* UIKit.framework in Frameworks */,
+				DE625C21B5DC066FB66F3E9D /* libPods-MyMeds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +261,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		242B009D10F9BDC6E6571E81 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ACC3A71BA209F925CAB7A00B /* Pods-MyMeds.debug.xcconfig */,
+				0FC923A9822149BE2568773D /* Pods-MyMeds.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		2AAF50DC8A86054416DB9095 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B76070E61B58C5840075176B /* CoreImage.framework */,
+				DABABB42CDEFE8B0B3D15C42 /* libPods-MyMeds.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B708D8551B5AF85F0080B22B /* Image Processor */ = {
+			isa = PBXGroup;
+			children = (
+				B7A5FBF61B5A1BCF00C7BAC8 /* UIImage+OrientationFix.h */,
+				B7A5FBF71B5A1BCF00C7BAC8 /* UIImage+OrientationFix.m */,
+				B76070E81B5A11CA0075176B /* ImageProcessor.h */,
+				B76070E91B5A11CA0075176B /* ImageProcessor.m */,
+			);
+			name = "Image Processor";
+			sourceTree = "<group>";
+		};
 		B70CC8181AED8BA40042F1CE /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +457,8 @@
 				B7C27E191A76AA8100DFB416 /* MyMeds */,
 				B7C27E361A76AA8100DFB416 /* MyMedsTests */,
 				B7C27E181A76AA8100DFB416 /* Products */,
+				242B009D10F9BDC6E6571E81 /* Pods */,
+				2AAF50DC8A86054416DB9095 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -424,17 +474,15 @@
 		B7C27E191A76AA8100DFB416 /* MyMeds */ = {
 			isa = PBXGroup;
 			children = (
+				B7E4C06D1B5B321400EE5226 /* Custom Controls */,
+				B7E4C06B1B5B31D600EE5226 /* Custom Views */,
+				B708D8551B5AF85F0080B22B /* Image Processor */,
+				B7698C0D1B587870008B6AFA /* tessdata */,
 				B7B43F181B51B7260063FEA3 /* Graphing Library */,
-				B7B43F051B519F240063FEA3 /* Bohr Settings View */,
 				B7A275161B40FA73008F2BD4 /* Amplitude SDK */,
-				B7B632781B3F8EA6008DBE12 /* Suggestion Textfield */,
-				B71815B21B3F4E170081AFC9 /* Compliance Rating */,
 				B78E711F1B3E3CE900D4350F /* Constants */,
 				B70CC81A1AED8C940042F1CE /* View Controllers */,
-				B70CC8191AED8C470042F1CE /* Day Picker */,
 				B70CC8181AED8BA40042F1CE /* Models */,
-				B7E1C3651A8C0D9100C7FC83 /* Calendar Controls */,
-				B76766E61A794BBA0048AA04 /* Strikethrough Control */,
 				B7C27E1E1A76AA8100DFB416 /* AppDelegate.h */,
 				B7C27E1F1A76AA8100DFB416 /* AppDelegate.m */,
 				B700AB1C1A7ECE280034EF14 /* Main.storyboard */,
@@ -497,6 +545,36 @@
 			name = "Calendar Controls";
 			sourceTree = "<group>";
 		};
+		B7E4C06B1B5B31D600EE5226 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				B7E4C06C1B5B31FA00EE5226 /* Top Meds Control */,
+				B70CC8191AED8C470042F1CE /* Day Picker */,
+				B7E1C3651A8C0D9100C7FC83 /* Calendar Controls */,
+				B7B43F051B519F240063FEA3 /* Bohr Settings View */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
+		B7E4C06C1B5B31FA00EE5226 /* Top Meds Control */ = {
+			isa = PBXGroup;
+			children = (
+				B708D8521B5AF41C0080B22B /* TopMedsTable.h */,
+				B708D8531B5AF41C0080B22B /* TopMedsTable.m */,
+			);
+			name = "Top Meds Control";
+			sourceTree = "<group>";
+		};
+		B7E4C06D1B5B321400EE5226 /* Custom Controls */ = {
+			isa = PBXGroup;
+			children = (
+				B76766E61A794BBA0048AA04 /* Strikethrough Control */,
+				B71815B21B3F4E170081AFC9 /* Compliance Rating */,
+				B7B632781B3F8EA6008DBE12 /* Suggestion Textfield */,
+			);
+			name = "Custom Controls";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -504,10 +582,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B7C27E3D1A76AA8100DFB416 /* Build configuration list for PBXNativeTarget "MyMeds" */;
 			buildPhases = (
+				DC26C535E1ED5193BDC8B9D5 /* Check Pods Manifest.lock */,
 				B7C27E131A76AA8100DFB416 /* Sources */,
 				B7C27E141A76AA8100DFB416 /* Frameworks */,
 				B7C27E151A76AA8100DFB416 /* Resources */,
 				B73A94211B42542E00590D79 /* ShellScript */,
+				811C4551BDDA1788751E89CB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -580,6 +660,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7F011E11B4E366C0055D419 /* drugsdb.json in Resources */,
+				B7698C0E1B587870008B6AFA /* tessdata in Resources */,
 				B700AB1D1A7ECE280034EF14 /* Main.storyboard in Resources */,
 				B7C27E2B1A76AA8100DFB416 /* Images.xcassets in Resources */,
 			);
@@ -595,6 +676,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		811C4551BDDA1788751E89CB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyMeds/Pods-MyMeds-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B73A94211B42542E00590D79 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -607,6 +703,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Fabric.framework/run caf09784435bc8e8979d731e54dbf2b3c4da39dc 3c6397dcea5f10aafcf1832e383ec5c65889af03db47ea9c978e1d71011ce27a";
+		};
+		DC26C535E1ED5193BDC8B9D5 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -623,6 +734,7 @@
 				B7A275101B40F927008F2BD4 /* Amplitude.m in Sources */,
 				B7A275121B40F927008F2BD4 /* AMPLocationManagerDelegate.m in Sources */,
 				B7C27E261A76AA8100DFB416 /* OverviewViewController.m in Sources */,
+				B7A5FBF81B5A1BCF00C7BAC8 /* UIImage+OrientationFix.m in Sources */,
 				B7A1FD4E1A8298D40003CD52 /* InfoViewController.m in Sources */,
 				B7A275141B40F927008F2BD4 /* AMPURLConnection.m in Sources */,
 				B7B43F161B51B7220063FEA3 /* BEMAverageLine.m in Sources */,
@@ -645,6 +757,7 @@
 				B7B43F131B51B7220063FEA3 /* BEMSimpleLineGraphView.m in Sources */,
 				B7A2750C1B40F927008F2BD4 /* AMPConstants.m in Sources */,
 				B7B43F001B519F1F0063FEA3 /* BOTimeTableViewCell.m in Sources */,
+				B76070EA1B5A11CA0075176B /* ImageProcessor.m in Sources */,
 				B7275DB71AC259030016D085 /* RMDateSelectionViewController.m in Sources */,
 				B71815AE1B3F47FE0081AFC9 /* ComplianceAnalyzer.m in Sources */,
 				B70CC81D1AED8E9B0042F1CE /* Constants.m in Sources */,
@@ -654,6 +767,7 @@
 				B7196A4E1B478B670014DF3B /* Event.m in Sources */,
 				B73A942E1B44F4AA00590D79 /* TodayMedication.m in Sources */,
 				B75A08EE1AB945D8009D2056 /* DayPicker.m in Sources */,
+				B708D8541B5AF41C0080B22B /* TopMedsTable.m in Sources */,
 				B7B43F141B51B7220063FEA3 /* BEMCircle.m in Sources */,
 				B7BF61AF1A8B25EF00F08413 /* CalendarButton.m in Sources */,
 				B7B632771B3F8E9D008DBE12 /* MPGTextField.m in Sources */,
@@ -779,6 +893,7 @@
 		};
 		B7C27E3E1A76AA8100DFB416 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ACC3A71BA209F925CAB7A00B /* Pods-MyMeds.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -805,6 +920,7 @@
 		};
 		B7C27E3F1A76AA8100DFB416 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0FC923A9822149BE2568773D /* Pods-MyMeds.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

@@ -17,6 +17,7 @@
         event.cm = cm;
         event.action = action;
         event.time = time;
+        event.medName = [[[cm.genName stringByAppendingString:@"("] stringByAppendingString:cm.chemName] stringByAppendingString:@")"];;
         long long timeInMiliseconds = [[NSDate date] timeIntervalSince1970];
         event.timeStamp = timeInMiliseconds;
         //Negative time = time the med is taken after it should be
@@ -57,13 +58,44 @@
      query = [NSString stringWithFormat:@"timeStamp >= %lld and timeStamp <= %lld and action = 'undo'", sevenDaysAgo, current];
     takenMeds = takenMeds - [[[Event query] where:query] count];
     
-    float compliance = (takenMeds - 0.2 *delayedMeds)/(takenMeds + missedMeds) * 100.0;
+    float compliance = 0;
+    if (takenMeds + missedMeds != 0){
+        compliance = (takenMeds - 0.2 *delayedMeds)/(takenMeds + missedMeds) * 100.0;
+    }
     
     return [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", (int)compliance], @"compliance", [NSString stringWithFormat:@"%d", (int)delayedMeds], @"delayed", [NSString stringWithFormat:@"%d", (int)missedMeds], @"missed", nil];
 }
 
 
-+ (NSMutableArray*)getGraphMetrics{
++ (NSMutableDictionary*)getTopFiveMissedMeds {
+    //-------------------------------------------------------------
+    //Very shitty way of doing this, need a better way in the future
+    //-------------------------------------------------------------
+    
+    long long reqDate = [[[NSDate date] dateByAddingTimeInterval:-30*24*60*60] timeIntervalSince1970];
+    NSString *query = [NSString stringWithFormat:@"timeStamp > %lld and action = 'missed' ", reqDate];
+    NSDictionary *dict = [[[Event query] where:query] groupBy:@"medName"];
+    
+    //Sort meds in descending order (Not sure if this algorithm is efficient)
+    NSArray *blockSortedKeys = [dict keysSortedByValueUsingComparator: ^(id obj1, id obj2) {
+        // Switching the order of the operands reverses the sort direction
+        NSNumber *count1 = [NSNumber numberWithInt:(int)[(NSArray*)obj1 count]];
+        NSNumber *count2 = [NSNumber numberWithInt:(int)[(NSArray*)obj2 count]];
+        return [count2 compare:count1];
+    }];
+    
+    
+    NSMutableDictionary *top5Meds = [[NSMutableDictionary alloc] init];
+    for (int i = 0; i < 5 && i < [blockSortedKeys count]; i++){
+        //Get the value (count) for each med
+        int value = (int)[(NSArray*)[dict objectForKey:[blockSortedKeys objectAtIndex:i]] count];
+        top5Meds[[blockSortedKeys objectAtIndex:i]] = [NSNumber numberWithInt:value];
+    }
+    return top5Meds;
+}
+
+
++ (NSMutableArray*)getGraphMetrics {
     
     NSMutableArray *results = [[NSMutableArray alloc] init];
     NSDate *movingDate = [NSDate date];
@@ -71,7 +103,7 @@
         float requiredTimeLapse = 7;
         if (i == 0){
             int currentDay = [Constants getCurrentDay];
-            float requiredTimeLapse = currentDay - 1;
+            requiredTimeLapse = currentDay - 1;
             
             //If its a sunday
             if (requiredTimeLapse == 0){
@@ -102,6 +134,7 @@
         }
         
         movingDate = [NSDate dateWithTimeIntervalSince1970:sevenDaysAgo];
+        
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateStyle:NSDateFormatterMediumStyle];
         [formatter setDateFormat:@"MMM dd"];
