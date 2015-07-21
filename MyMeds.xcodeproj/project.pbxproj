@@ -30,7 +30,6 @@
 		B76070EA1B5A11CA0075176B /* ImageProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = B76070E91B5A11CA0075176B /* ImageProcessor.m */; };
 		B764A1941AB9041B0068A119 /* AddMedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B764A1931AB9041B0068A119 /* AddMedViewController.m */; };
 		B7698C081B576CF1008B6AFA /* GraphData.m in Sources */ = {isa = PBXBuildFile; fileRef = B7698C071B576CF1008B6AFA /* GraphData.m */; };
-		B7698C0E1B587870008B6AFA /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = B7698C0D1B587870008B6AFA /* tessdata */; };
 		B772FC4E1AFD60A2001CB237 /* EditMedsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B772FC4D1AFD60A2001CB237 /* EditMedsController.m */; };
 		B7988D601A7B350A0061DF8C /* MedsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7988D5F1A7B350A0061DF8C /* MedsCell.m */; };
 		B7988D641A7B38C50061DF8C /* StrikeThroughLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7988D631A7B38C50061DF8C /* StrikeThroughLabel.m */; };
@@ -79,9 +78,7 @@
 		B7F011E11B4E366C0055D419 /* drugsdb.json in Resources */ = {isa = PBXBuildFile; fileRef = B7F011E01B4E366C0055D419 /* drugsdb.json */; };
 		B7FC56FD1B0E4BAC00A1828A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FC56FC1B0E4BAC00A1828A /* CoreData.framework */; };
 		B7FC56FE1B0E4BBB00A1828A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B784391B1B0C6A6500507D0A /* SystemConfiguration.framework */; };
-		B7FC57001B0E4BC400A1828A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B7FC56FF1B0E4BC400A1828A /* libz.dylib */; };
 		B7FC574E1B0E67C000A1828A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B78439171B0C6A4E00507D0A /* CoreGraphics.framework */; };
-		DE625C21B5DC066FB66F3E9D /* libPods-MyMeds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DABABB42CDEFE8B0B3D15C42 /* libPods-MyMeds.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,7 +131,6 @@
 		B764A1931AB9041B0068A119 /* AddMedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMedViewController.m; sourceTree = "<group>"; };
 		B7698C061B576CF1008B6AFA /* GraphData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphData.h; sourceTree = "<group>"; };
 		B7698C071B576CF1008B6AFA /* GraphData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphData.m; sourceTree = "<group>"; };
-		B7698C0D1B587870008B6AFA /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		B772FC4C1AFD60A2001CB237 /* EditMedsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMedsController.h; sourceTree = "<group>"; };
 		B772FC4D1AFD60A2001CB237 /* EditMedsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMedsController.m; sourceTree = "<group>"; };
 		B78439171B0C6A4E00507D0A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -235,7 +231,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B76070E71B58C5840075176B /* CoreImage.framework in Frameworks */,
-				B7FC57001B0E4BC400A1828A /* libz.dylib in Frameworks */,
 				B7B43EE21B50E5340063FEA3 /* MessageUI.framework in Frameworks */,
 				B7FC574E1B0E67C000A1828A /* CoreGraphics.framework in Frameworks */,
 				B73A94251B42546900590D79 /* Crashlytics.framework in Frameworks */,
@@ -246,7 +241,6 @@
 				B7C27E491A76AB2600DFB416 /* libsqlite3.0.dylib in Frameworks */,
 				B7C27E4A1A76AB2600DFB416 /* libsqlite3.dylib in Frameworks */,
 				B7C27E461A76AB0700DFB416 /* UIKit.framework in Frameworks */,
-				DE625C21B5DC066FB66F3E9D /* libPods-MyMeds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,7 +471,6 @@
 				B7E4C06D1B5B321400EE5226 /* Custom Controls */,
 				B7E4C06B1B5B31D600EE5226 /* Custom Views */,
 				B708D8551B5AF85F0080B22B /* Image Processor */,
-				B7698C0D1B587870008B6AFA /* tessdata */,
 				B7B43F181B51B7260063FEA3 /* Graphing Library */,
 				B7A275161B40FA73008F2BD4 /* Amplitude SDK */,
 				B78E711F1B3E3CE900D4350F /* Constants */,
@@ -582,12 +575,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B7C27E3D1A76AA8100DFB416 /* Build configuration list for PBXNativeTarget "MyMeds" */;
 			buildPhases = (
-				DC26C535E1ED5193BDC8B9D5 /* Check Pods Manifest.lock */,
 				B7C27E131A76AA8100DFB416 /* Sources */,
 				B7C27E141A76AA8100DFB416 /* Frameworks */,
 				B7C27E151A76AA8100DFB416 /* Resources */,
 				B73A94211B42542E00590D79 /* ShellScript */,
-				811C4551BDDA1788751E89CB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -660,7 +651,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7F011E11B4E366C0055D419 /* drugsdb.json in Resources */,
-				B7698C0E1B587870008B6AFA /* tessdata in Resources */,
 				B700AB1D1A7ECE280034EF14 /* Main.storyboard in Resources */,
 				B7C27E2B1A76AA8100DFB416 /* Images.xcassets in Resources */,
 			);
@@ -676,21 +666,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		811C4551BDDA1788751E89CB /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyMeds/Pods-MyMeds-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B73A94211B42542E00590D79 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -703,21 +678,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Fabric.framework/run caf09784435bc8e8979d731e54dbf2b3c4da39dc 3c6397dcea5f10aafcf1832e383ec5c65889af03db47ea9c978e1d71011ce27a";
-		};
-		DC26C535E1ED5193BDC8B9D5 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -893,7 +853,6 @@
 		};
 		B7C27E3E1A76AA8100DFB416 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACC3A71BA209F925CAB7A00B /* Pods-MyMeds.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -908,10 +867,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/MyMeds/Flurry",
-					"$(PROJECT_DIR)/MyMeds",
-					/Users/Rahul/Downloads/GoogleAnalyticsServicesiOS_3.12,
+					"$(inerited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/MyMedsTests",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -920,7 +878,6 @@
 		};
 		B7C27E3F1A76AA8100DFB416 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0FC923A9822149BE2568773D /* Pods-MyMeds.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -936,9 +893,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/MyMeds/Flurry",
-					"$(PROJECT_DIR)/MyMeds",
-					/Users/Rahul/Downloads/GoogleAnalyticsServicesiOS_3.12,
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/MyMedsTests",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

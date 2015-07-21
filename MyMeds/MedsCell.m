@@ -31,21 +31,21 @@
     
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     //Set the buttons here
-    info = [[UIButton alloc] initWithFrame:CGRectMake(0.31 * [self window_width], self.frame.origin.y, 0.23 * [self window_width], [self window_height]/8)];
+    info = [[UIButton alloc] initWithFrame:CGRectMake(0.31 * [Constants window_width], self.frame.origin.y, 0.23 * [Constants window_width], [Constants window_height]/8)];
     [info.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:17]];
     [info setBackgroundColor:kInfoColor];
     [info setTitle:@"Info" forState:UIControlStateNormal];
     
-    undo = [[UIButton alloc] initWithFrame:CGRectMake(0.77 * [self window_width], self.frame.origin.y, 0.23 * [self window_width], [self window_height]/8)];
+    undo = [[UIButton alloc] initWithFrame:CGRectMake(0.77 * [Constants window_width], self.frame.origin.y, 0.23 * [Constants window_width], [Constants window_height]/8)];
     [undo.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:17]];
     [undo setBackgroundColor:kDoneColor];
     
-    postpone = [[UIButton alloc] initWithFrame:CGRectMake(0.54 * [self window_width], self.frame.origin.y, 0.23 * [self window_width], [self window_height]/8)];
+    postpone = [[UIButton alloc] initWithFrame:CGRectMake(0.54 * [Constants window_width], self.frame.origin.y, 0.23 * [Constants window_width], [Constants window_height]/8)];
     [postpone.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:17]];
     [postpone setBackgroundColor:kDelayColor];
     [postpone setTitle:@"Delay" forState:UIControlStateNormal];
     //Set mainView
-    mainView = [[UIView alloc] initWithFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, [self window_width],[self window_height]/8)];
+    mainView = [[UIView alloc] initWithFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y, [Constants window_width],[Constants window_height]/8)];
     [mainView setBackgroundColor:[UIColor whiteColor]];
 //    [self roundCornersOnView:mainView onTopLeft:YES topRight:NO bottomLeft:YES bottomRight:NO radius:20.0];
 //    [self roundCornersOnView:self onTopLeft:YES topRight:NO bottomLeft:YES bottomRight:NO radius:10.0];
@@ -65,7 +65,7 @@
     [chemLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:mainView.bounds.size.height * 0.28]];
     [chemLabel setTextColor:[UIColor colorWithRed:94/255.0 green:94/255.0 blue:94/255.0 alpha:1.0]];
     
-    timeLabel = [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(2.70*[self window_width]/4, mainView.bounds.size.height * 0.05, 1.2*[self window_width]/4, mainView.bounds.size.height-10)];
+    timeLabel = [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(2.70*[Constants window_width]/4, mainView.bounds.size.height * 0.05, 1.2*[Constants window_width]/4, mainView.bounds.size.height-10)];
     timeLabel.textColor = [UIColor blackColor];
     timeLabel.backgroundColor = [UIColor clearColor];
     [timeLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:mainView.bounds.size.height * 0.5]];
@@ -166,7 +166,7 @@
         
     }
     
-    if(velocity.x <= 0 && mainView.frame.origin.x < 0.31 * [self window_width]){
+    if(velocity.x <= 0 && mainView.frame.origin.x < 0.31 * [Constants window_width]){
         [info setHidden:NO];
         [undo setHidden:NO];
         [postpone setHidden:NO];
@@ -175,7 +175,7 @@
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         // if the gesture has just started, record the current center location
         _originalCenter = mainView.center;
-        if (_originalCenter.x <= -0.18 * [self window_width]){
+        if (_originalCenter.x <= -0.18 * [Constants window_width]){
             _closeMenu = YES;
         }
         else{
@@ -315,12 +315,6 @@
     
 }
 
-#pragma mark  - Helper Methods
--(CGFloat)window_width{
-    return [UIScreen mainScreen].applicationFrame.size.width;
-}
--(CGFloat)window_height{
-    return [UIScreen mainScreen].applicationFrame.size.height;
-}
+
 
 @end

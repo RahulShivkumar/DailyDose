@@ -160,17 +160,26 @@
 }
 //Method called to delay all missed meds
 - (IBAction)delay:(id)sender{
-    for (TodayMedication *tm in meds){
-        tm.time = hour + 2;
-        [tm commit];
+    if (hour + 2 < 24){
+        for (TodayMedication *tm in meds){
+            tm.time = hour + 2;
+            [tm commit];
+        }
+        
+        for (Medication *med in meds){
+            [EventLogger logAction:@"delayed" andMedication:med.coreMed andTime:med.time];
+        }
+        
+        [meds removeAllObjects];
+        [self checkCompleted];
+    } else {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Cannot Delay!"
+                                                          message:@"Delaying will send medication to the next day!"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"Ok"
+                                                otherButtonTitles:nil];
+        [message show];
     }
-    
-    for (Medication *med in meds){
-        [EventLogger logAction:@"delayed" andMedication:med.coreMed andTime:med.time];
-    }
-    
-    [meds removeAllObjects];
-    [self checkCompleted];
 }
 
 
@@ -211,21 +220,30 @@
     [cell closeCell];
     Medication *med = [meds objectAtIndex:indexPath.row];
 
-    med.time = hour + 2;
-    [med commit];
-    
-    [EventLogger logAction:@"delayed" andMedication:med.coreMed andTime:med.time];
-    
-    [meds removeObjectAtIndex:indexPath.row];
-    
-    [self.medsView beginUpdates];
-    
-    [self.medsView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil]
-                         withRowAnimation:UITableViewRowAnimationFade];
-    
-    [self.medsView endUpdates];
-    
-    [self checkCompleted];
+    if (hour + 2 < 24){
+        med.time = hour + 2;
+        [med commit];
+        
+        [EventLogger logAction:@"delayed" andMedication:med.coreMed andTime:med.time];
+        
+        [meds removeObjectAtIndex:indexPath.row];
+        
+        [self.medsView beginUpdates];
+        
+        [self.medsView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil]
+                             withRowAnimation:UITableViewRowAnimationFade];
+        
+        [self.medsView endUpdates];
+        
+        [self checkCompleted];
+    } else {
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Cannot Delay!"
+                                                          message:@"Delaying will send medication to the next day!"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"Ok"
+                                                otherButtonTitles:nil];
+        [message show];
+    }
 }
 
 

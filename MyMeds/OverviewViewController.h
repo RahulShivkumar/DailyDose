@@ -8,15 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <DBAccess/DBAccess.h>
-#import <TesseractOCR/TesseractOCR.h>
-#import <GPUImage/GPUImage.h>
+//#import <TesseractOCR/TesseractOCR.h>
 #import "ImageProcessor.h"
 #import "Constants.h"
 #import "UIImage+OrientationFix.h"
 
 
 
-@interface OverviewViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, G8TesseractDelegate, ImageProcessorDelegate>{
+@interface OverviewViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageProcessorDelegate>{
     DBResultSet *meds;
     UIImageView *imgView;
 }

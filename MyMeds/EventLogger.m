@@ -60,7 +60,7 @@
     
     float compliance = 0;
     if (takenMeds + missedMeds != 0){
-        compliance = (takenMeds - 0.2 *delayedMeds)/(takenMeds + missedMeds) * 100.0;
+        compliance = MAX(0, (takenMeds - 0.2 *delayedMeds)/(takenMeds + missedMeds) * 100.0);
     }
     
     return [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", (int)compliance], @"compliance", [NSString stringWithFormat:@"%d", (int)delayedMeds], @"delayed", [NSString stringWithFormat:@"%d", (int)missedMeds], @"missed", nil];

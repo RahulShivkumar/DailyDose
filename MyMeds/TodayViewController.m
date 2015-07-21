@@ -68,8 +68,8 @@
     for (int i = 0; i < [eventArray count]; i++)
     {
         UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
-        NSDictionary *userInfoCurrent = oneEvent.userInfo;
-        NSString *identifier = [userInfoCurrent objectForKey:@"uid"];
+        //NSDictionary *userInfoCurrent = oneEvent.userInfo;
+        //NSString *identifier = [userInfoCurrent objectForKey:@"uid"];
         NSLog(@"%@", oneEvent.fireDate);
     }
 }
@@ -211,15 +211,15 @@
     }
     
     //Get am and pm meds from today's sql table
-    NSString *query = [NSString stringWithFormat:@"time > %d and time < 12", (int)hour -1];
+    NSString *query = [NSString stringWithFormat:@"time > %f and time < 12", (float)hour -1];
     amMeds = [[[[TodayMedication query] where:query] orderBy:@"time"] fetch];
-    query = [NSString stringWithFormat:@"time > %d and time >= 12", (int)hour -1];
+    query = [NSString stringWithFormat:@"time > %f and time >= 12", (float)hour -1];
     pmMeds = [[[[TodayMedication query] where:query] orderBy:@"time"] fetch] ;
     
     //First lets see if there are any missed meds today
     if([Constants compareDate:[NSDate date] withOtherdate:date]){
        query = [NSString stringWithFormat:@"time < %d and taken = 0", (int)hour - 1];
-        missedMeds = [[[TodayMedication query] where:query] fetch];
+        missedMeds = [[[[TodayMedication query] where:query] orderBy:@"time"] fetch];
         
         if([missedMeds count] > 0){
             //Launch missed meds view
@@ -566,13 +566,22 @@
     }
     
     [EventLogger logAction:@"delayed" andMedication:med.coreMed andTime:med.time];
+    if (med.time < 23){
+        med.time += 1;
+        [med commit];
+        
+        [self setupTodayArrays:current];
+        [self.medsView reloadData];
+    } else{
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Cannot Delay!"
+                                                          message:@"Delaying will send medication to the next day!"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"Ok"
+                                                otherButtonTitles:nil];
+        [message show];
+    }
     
-    med.time += 1;
-    
-    [med commit];
-
-    [self setupTodayArrays:current];
-    [self.medsView reloadData];
+  
 }
 
 
@@ -628,8 +637,12 @@
     return UIStatusBarStyleLightContent;
 }
 
-#pragma mark - Refresh from BG
+#pragma mark - Background methods
 - (void)appReturnsActive{
+    if (sideBar.isOpen){
+        [sideBar dismissMenu];
+    }
+    
     current = [NSDate date];
     future = NO;
     futureDate = current;
@@ -637,6 +650,7 @@
     [self setupMeds];
     [self setupViews];
 }
+
 
 
 #pragma mark - Convert Meds to Today Meds

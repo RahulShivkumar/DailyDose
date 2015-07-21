@@ -17,6 +17,8 @@
 @interface AnalyzeViewController : UIViewController <BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate>{
     NSMutableArray *data;
     NSMutableDictionary *topMeds;
+    
+    UILabel *graphTitle;
     TopMedsTable *tmt;
     
 }

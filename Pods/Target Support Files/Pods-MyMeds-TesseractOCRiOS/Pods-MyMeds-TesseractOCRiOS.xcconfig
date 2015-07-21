@@ -1,3 +1,0 @@
-PODS_MYMEDS_TESSERACTOCRIOS_CLANG_CXX_LIBRARY = compiler-default
-PODS_MYMEDS_TESSERACTOCRIOS_LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/TesseractOCRiOS/TesseractOCR/lib" "$(PODS_ROOT)/TesseractOCRiOS/TesseractOCR/lib"
-PODS_MYMEDS_TESSERACTOCRIOS_OTHER_LDFLAGS = -weak_library /usr/lib/libstdc++.6.0.9.dylib -l"lept" -l"stdc++" -l"tesseract_all" -framework "Foundation" -framework "UIKit"
