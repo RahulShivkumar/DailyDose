@@ -365,8 +365,27 @@
 
     }
     else{
-//         [AZNotification showNotificationWithTitle:@"Please Add All Information!"
-//                                        controller:self notificationType:AZNotificationTypeWarning];
+        NSString *incomplete = @"Please complete required field(s):";
+        
+        if (!medName.text || medName.text.length == 0){
+            incomplete = [incomplete stringByAppendingString:@"\nMedication Name"];
+        }
+        if (!chemName.text || chemName.text.length == 0){
+            incomplete = [incomplete stringByAppendingString:@"\nChemical Name"];
+        }
+        if (!dosageNum.text || dosageNum.text.length == 0){
+            incomplete = [incomplete stringByAppendingString:@"\nDosage"];
+        }
+        if ([times count] == 0){
+            incomplete = [incomplete stringByAppendingString:@"\nTime Taken"];
+        }
+        
+        UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"Incomplete Form"
+                                                           message:incomplete
+                                                          delegate:nil
+                                                 cancelButtonTitle:nil
+                                                 otherButtonTitles:@"Continue", nil];
+        [theAlert show];
     }
     
     
