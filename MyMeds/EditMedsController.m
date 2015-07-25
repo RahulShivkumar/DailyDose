@@ -293,6 +293,12 @@
     
 }
 
+- (void)dismissKeyboard {
+    [medName resignFirstResponder];
+    [chemName resignFirstResponder];
+    [dosage resignFirstResponder];
+}
+
 #pragma mark - Manipulate time setup
 -(void)manipulateTime{
     NSCalendar *calendar = [NSCalendar currentCalendar];

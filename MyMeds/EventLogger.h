@@ -22,7 +22,7 @@
     int time;
 }
 
-+ (void)logAction:(NSString*)action andMedication:(CoreMedication*)cm andTime:(int)time;
++ (void)logAction:(NSString*)action andMedication:(CoreMedication*)cm andTime:(float)time;
 
 + (NSDictionary*)getComplianceAnalyzerMetrics;
 + (NSMutableArray*)getGraphMetrics;

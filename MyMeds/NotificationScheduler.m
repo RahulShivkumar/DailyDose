@@ -33,13 +33,13 @@
                         UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
                         NSDictionary *userInfoCurrent = oneEvent.userInfo;
                         NSString *identifier = [userInfoCurrent objectForKey:kUID];
-                        NSString *prefix = [day stringByAppendingString:[NSString stringWithFormat:@"%@",[times objectAtIndex:j]]];
+                        NSString *prefix = [day stringByAppendingString:[@"-" stringByAppendingString:[NSString stringWithFormat:@"%@",[times objectAtIndex:j]]]];
                         
                         if ([identifier hasPrefix:prefix])
                         {
                             flag = YES;
                             [app cancelLocalNotification:oneEvent];
-                            int number = [[identifier substringFromIndex:[prefix length]] intValue];
+                            int number = [[identifier substringFromIndex:[prefix length] + 1] intValue];
                             
                             [self initLocalNotif:number andDay:day
                                          andTime:[NSString stringWithFormat:@"%@",[times objectAtIndex:j]]
@@ -110,8 +110,10 @@
         notification.category = @"action_notifs";
     }
     
-    NSString *key = [timeString stringByAppendingString:[NSString stringWithFormat:@"%d", number]];
+    NSString *key = [timeString stringByAppendingString:[@"-" stringByAppendingString:[NSString stringWithFormat:@"%d", number]]];
+    day = [day stringByAppendingString:@"-"];
     key = [day stringByAppendingString:key];
+    NSLog(@"%@", key);
     
     [notification setUserInfo:[NSDictionary dictionaryWithObject:key forKey:kUID]];
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
@@ -191,11 +193,11 @@
     [delayAction setActivationMode:UIUserNotificationActivationModeForeground];
     [delayAction setDestructive:NO];
     
-    UIMutableUserNotificationCategory* deleteReplyCategory = [[UIMutableUserNotificationCategory alloc] init];
-    [deleteReplyCategory setIdentifier:@"action_notifs"];
-    [deleteReplyCategory setActions:@[delayAction, takenAction] forContext:UIUserNotificationActionContextDefault];
+    UIMutableUserNotificationCategory* takenDelayCategory = [[UIMutableUserNotificationCategory alloc] init];
+    [takenDelayCategory setIdentifier:@"action_notifs"];
+    [takenDelayCategory setActions:@[delayAction, takenAction] forContext:UIUserNotificationActionContextDefault];
     
-    NSSet* categories = [NSSet setWithArray:@[deleteReplyCategory]];
+    NSSet* categories = [NSSet setWithArray:@[takenDelayCategory]];
     UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert) categories:categories];
     [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     

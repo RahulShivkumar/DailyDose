@@ -10,7 +10,7 @@
 
 @implementation EventLogger
 
-+ (void)logAction:(NSString*)action andMedication:(CoreMedication*)cm andTime:(int)time{
++ (void)logAction:(NSString*)action andMedication:(CoreMedication*)cm andTime:(float)time{
     //Run it on a background thread so it doesn't choke the main thread
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         Event *event = [Event new];

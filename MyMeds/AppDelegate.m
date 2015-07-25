@@ -25,6 +25,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    // Testing interactive Notifications Code
     NSString *UUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"UUID"];
     if (!UUID){
         [[Amplitude instance] initializeApiKey:@"6173840dbe787b3041206d97de06b633" userId:[self getUserID]];
@@ -86,15 +87,34 @@
     return uuidStr;
 }
 
-- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler {
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler{
     
+    NSString *notifID = [notification.userInfo objectForKey:@"uid"];
+    NSLog(@"%@", notifID);
+    float time = [[notifID componentsSeparatedByString: @"-"][1] floatValue];
     if ([identifier isEqualToString:@"taken"]) {
-        
-       // NSLog(@"You chose action 1.");
+        DBResultSet *tms = [[[TodayMedication query] whereWithFormat:@"time = %f", time] fetch];
+        for (TodayMedication *tm in tms) {
+            tm.taken = YES;
+            [tm commit];
+            [EventLogger logAction:@"taken" andMedication:tm.coreMed andTime:time];
+        }
     }
     else if ([identifier isEqualToString:@"delayed"]) {
+        DBResultSet *tms = [[[TodayMedication query] whereWithFormat:@"time = %f", time] fetch];
+        for (TodayMedication *tm in tms) {
+            int hour = [Constants getCurrentHour];
+            if (hour + 1 < 24) {
+                tm.time = hour + 1;
+                [tm commit];
+                [EventLogger logAction:@"delayed" andMedication:tm.coreMed andTime:time];
+            } else {
+                // Log as missed or just ignore for now?
+            }
+            
+        }
         
-       // NSLog(@"You chose action 2.");
+       
     }
     if (completionHandler) {
         

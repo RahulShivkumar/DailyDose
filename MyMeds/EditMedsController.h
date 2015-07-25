@@ -52,6 +52,7 @@
 
 - (void)setupView;
 - (void)createButton;
+- (void)dismissKeyboard;
 - (void)manipulateTime;
 
 - (IBAction)closeWindow:(id)sender;

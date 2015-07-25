@@ -239,6 +239,11 @@
     return NO;
 }
 
+- (void)dismissKeyboard {
+    [medName resignFirstResponder];
+    [chemName resignFirstResponder];
+    [dosage resignFirstResponder];
+}
 
 
 
