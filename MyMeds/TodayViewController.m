@@ -1,10 +1,10 @@
-//
-//  TodayViewController.m
-//  MyMeds
-//
-//  Created by Rahul Shivkumar on 1/26/15.
-//  Copyright (c) 2015 test. All rights reserved.
-//
+// 
+//   TodayViewController.m
+//   MyMeds
+// 
+//   Created by Rahul Shivkumar on 1/26/15.
+//   Copyright (c) 2015 test. All rights reserved.
+// 
 
 #import "TodayViewController.h"
 #import "MedsCell.h"
@@ -37,30 +37,30 @@
 
 
 - (void)checkNotifications {
-//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-//    NSDate *now = [NSDate date];
-//    
-//    NSDateComponents *componentsForFireDate = [calendar components:(NSYearCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit| NSSecondCalendarUnit | NSWeekdayCalendarUnit) fromDate: now];
-//    [componentsForFireDate setTimeZone:[NSTimeZone localTimeZone]];
-//    [componentsForFireDate setWeekday: 1] ;
-//    
-//  
-//    [componentsForFireDate setHour:14] ;
-//    [componentsForFireDate setMinute:46] ;
-//    [componentsForFireDate setSecond:0] ;
-//    
-//    UILocalNotification *notification = [[UILocalNotification alloc] init];
-//    //Set the title of the notification
-//    notification.alertBody = @"My Title";
-//    //Set the text of the notification
-//
-//    //Schedule the notification to be delivered 20 seconds after execution
-//    notification.fireDate = [calendar dateFromComponents:componentsForFireDate];
-//    
-//    notification.repeatInterval = NSCalendarUnitWeekOfYear;
-//    
-//    //Get the default notification center and schedule delivery
-//    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+//     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//     NSDate *now = [NSDate date];
+//     
+//     NSDateComponents *componentsForFireDate = [calendar components:(NSYearCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit| NSSecondCalendarUnit | NSWeekdayCalendarUnit) fromDate: now];
+//     [componentsForFireDate setTimeZone:[NSTimeZone localTimeZone]];
+//     [componentsForFireDate setWeekday: 1] ;
+//     
+//   
+//     [componentsForFireDate setHour:14] ;
+//     [componentsForFireDate setMinute:46] ;
+//     [componentsForFireDate setSecond:0] ;
+//     
+//     UILocalNotification *notification = [[UILocalNotification alloc] init];
+//     // Set the title of the notification
+//     notification.alertBody = @"My Title";
+//     // Set the text of the notification
+// 
+//     // Schedule the notification to be delivered 20 seconds after execution
+//     notification.fireDate = [calendar dateFromComponents:componentsForFireDate];
+//     
+//     notification.repeatInterval = NSCalendarUnitWeekOfYear;
+//     
+//     // Get the default notification center and schedule delivery
+//     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 
     NSLog(@"%@", @"Notifications Check");
     UIApplication *app = [UIApplication sharedApplication];
@@ -68,8 +68,8 @@
     for (int i = 0; i < [eventArray count]; i++)
     {
         UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
-        //NSDictionary *userInfoCurrent = oneEvent.userInfo;
-        //NSString *identifier = [userInfoCurrent objectForKey:@"uid"];
+        // NSDictionary *userInfoCurrent = oneEvent.userInfo;
+        // NSString *identifier = [userInfoCurrent objectForKey:@"uid"];
         NSLog(@"%@", oneEvent.fireDate);
     }
 }
@@ -82,7 +82,7 @@
 }
 
 
-//Methods called in viewDidAppear so that the views are refreshed
+// Methods called in viewDidAppear so that the views are refreshed
 -(void)viewDidAppear:(BOOL)animated{
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -94,14 +94,14 @@
     future = NO;
     futureDate = current;
     
-    //[self clearData];
-    //[self checkNotifications];
+    // [self clearData];
+    // [self checkNotifications];
     [self setupMeds];
     [self setupViews];
 }
 
 
-//Move the table back up when the view disappears
+// Move the table back up when the view disappears
 - (void) viewWillDisappear:(BOOL)animated {
     [self moveTableUp];
     [super viewWillDisappear:animated];
@@ -110,17 +110,17 @@
 
 -(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    //  Dispose of any resources that can be recreated.
 }
 
 
 #pragma mark - Setup Meds
-//Meds setup method - Looks at current date selected and determines if its today or a future date
+// Meds setup method - Looks at current date selected and determines if its today or a future date
 - (void)setupMeds{
     NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:@"Date"];
     
     if(!future){
-        //First time setup
+        // First time setup
         if(!date){
             [self setupSqlDefaults:current];
         } else if ([Constants compareDate:current withOtherdate:date]){
@@ -136,14 +136,14 @@
 }
 
 
-//Method called when a new day's meds are setup. Sql call takes data from the meds table and puts into the "today_meds" table
+// Method called when a new day's meds are setup. Sql call takes data from the meds table and puts into the "today_meds" table
 - (void)setupSqlDefaults:(NSDate*)date{
     
     NSString *dayOfWeek = [Constants getCurrentDayFromDate:date];
     
-     //----------------------------------------------------
-    //TO DO - Check for expired
-     //----------------------------------------------------
+     // ----------------------------------------------------
+    // TO DO - Check for expired
+     // ----------------------------------------------------
     NSString *query = [NSString stringWithFormat:@"%@ = 1 and time < 12", [dayOfWeek lowercaseString]];
     NSString *query2 = [NSString stringWithFormat:@"%@ = 1 and time >= 12", [dayOfWeek lowercaseString]];
     
@@ -157,11 +157,11 @@
         [[NSUserDefaults standardUserDefaults] setObject:current forKey:@"Date"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        //Clear Today_Meds and load it with new data
+        // Clear Today_Meds and load it with new data
        
         
         
-        //Store stuff in today's table
+        // Store stuff in today's table
         for (Medication *m in amMeds){
             TodayMedication *tm = [TodayMedication new];
             [tm createFromMedication:m];
@@ -178,7 +178,7 @@
         
         
     } else {
-        //Convert all the meds to today meds
+        // Convert all the meds to today meds
         amMeds = [self createTodayMedsArray:amMeds];
         pmMeds = [self createTodayMedsArray:pmMeds];
         
@@ -198,7 +198,7 @@
 }
 
 
-//Method called to setup amMeds and pmMeds arrays from today_meds table
+// Method called to setup amMeds and pmMeds arrays from today_meds table
 - (void)setupTodayArrays:(NSDate *)date {
     header = [[NSMutableArray alloc]init];
     
@@ -210,19 +210,19 @@
         hour = 0;
     }
     
-    //Get am and pm meds from today's sql table
+    // Get am and pm meds from today's sql table
     NSString *query = [NSString stringWithFormat:@"time > %f and time < 12", (float)hour -1];
     amMeds = [[[[TodayMedication query] where:query] orderBy:@"time"] fetch];
     query = [NSString stringWithFormat:@"time > %f and time >= 12", (float)hour -1];
     pmMeds = [[[[TodayMedication query] where:query] orderBy:@"time"] fetch] ;
     
-    //First lets see if there are any missed meds today
+    // First lets see if there are any missed meds today
     if([Constants compareDate:[NSDate date] withOtherdate:date]){
        query = [NSString stringWithFormat:@"time < %d and taken = 0", (int)hour - 1];
         missedMeds = [[[[TodayMedication query] where:query] orderBy:@"time"] fetch];
         
         if([missedMeds count] > 0){
-            //Launch missed meds view
+            // Launch missed meds view
             MissedViewController *missedVC = [[MissedViewController alloc] initWithMeds:missedMeds
                                                                                 andHour:(long)hour-1];
             
@@ -254,9 +254,9 @@
 
 
 #pragma mark - Setup Views
-//Method called to setup views
+// Method called to setup views
 - (void)setupViews{
-    //Remove all subviews first
+    // Remove all subviews first
     for(UIView *subview in [self.view subviews]) {
         [subview removeFromSuperview];
     }
@@ -268,19 +268,19 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.view setFrame:CGRectMake(0, 0, [Constants window_width], [Constants window_height])];
     
-//    if([amMeds count] == 0 && [pmMeds count] == 0 && [Constants compareDate:[NSDate date] withOtherdate:futureDate]){
-//        UIImageView *completedImage = [[UIImageView alloc] initWithFrame:CGRectMake(([Constants window_width] - 300)/2, 50, 300, 311)];
-//        [completedImage setImage:[UIImage imageNamed:@"completed"]];
-//        UIView *bgImage = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Constants window_width], [Constants window_height])];
-//        [bgImage setBackgroundColor:[UIColor whiteColor]];
-//        [bgImage addSubview:completedImage];
-//        [self.view addSubview:bgImage];
-//        
-//    }
-//    else if([amMeds count] == 0 && [pmMeds count] == 0){
-//        
-//    }
-//    else {
+//     if([amMeds count] == 0 && [pmMeds count] == 0 && [Constants compareDate:[NSDate date] withOtherdate:futureDate]){
+//         UIImageView *completedImage = [[UIImageView alloc] initWithFrame:CGRectMake(([Constants window_width] - 300)/2, 50, 300, 311)];
+//         [completedImage setImage:[UIImage imageNamed:@"completed"]];
+//         UIView *bgImage = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Constants window_width], [Constants window_height])];
+//         [bgImage setBackgroundColor:[UIColor whiteColor]];
+//         [bgImage addSubview:completedImage];
+//         [self.view addSubview:bgImage];
+//         
+//     }
+//     else if([amMeds count] == 0 && [pmMeds count] == 0){
+//         
+//     }
+//     else {
     
     self.medsView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
     
@@ -295,14 +295,14 @@
     [self.medsView setSeparatorInset:UIEdgeInsetsZero];
     
     [self.view addSubview:self.medsView];
-//    }
+//     }
     [self setupTabBar];
     [self setupNavBar];
     [self setupCalendar];
 }
 
 
-//Method called to setup tabbar
+// Method called to setup tabbar
 - (void)setupTabBar{
     [self.tabBarController.tabBar setTintColor:TabBarColor];
     [self.tabBarController.tabBar setBackgroundColor:TabBarColor];
@@ -315,7 +315,7 @@
 }
 
 
-//Method called to setup navbar
+// Method called to setup navbar
 - (void)setupNavBar{
     
     [Constants setupNavbar:self];
@@ -342,7 +342,7 @@
 }
 
 
-//Method used to setup calendar
+// Method used to setup calendar
 - (void)setupCalendar{
     sideBar = [[MenuController alloc] initWithDate:[NSDate date]
                                     andCurrentDate:current
@@ -353,13 +353,13 @@
 
 #pragma mark - Table view delegate methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
+    //  Return the number of sections.
     return [header count];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
+    //  Return the number of rows in the section.
     if([[header objectAtIndex:section]  isEqual: @"AM"]){
         return [amMeds count];
     } else {
@@ -373,7 +373,7 @@
     
     if (cell == nil) {
         cell = [[MedsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        //cell.reuseIdentifier = @"cell";
+        // cell.reuseIdentifier = @"cell";
     }
     if([Constants compareDate:current withOtherdate:futureDate]){
         [cell setPannable];
@@ -387,7 +387,7 @@
     
     TodayMedication * med;
     
-    // set the text
+    //  set the text
     if([[header objectAtIndex:indexPath.section]  isEqual: @"AM"]){
         med = [amMeds objectAtIndex:indexPath.row];
     } else {
@@ -417,7 +417,7 @@
 }
 
 
-//Setup AM & PM headers
+// Setup AM & PM headers
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, self.navigationController.view.frame.size.height/28.4)];
@@ -473,7 +473,7 @@
     }
     
     [self setupMeds];
- //   [self setupViews];
+ //    [self setupViews];
 }
 
 
@@ -494,7 +494,7 @@
 - (void)moveTableUp{
     [UIView animateWithDuration:0.7 animations:^(){
         [self.medsView setFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
-        //[self.medsView reloadData];
+        // [self.medsView reloadData];
     }];
     [self.medsView setScrollEnabled:YES];
     
@@ -504,13 +504,13 @@
 - (void)moveTableDown{
     [compAnalyzer clearViews];
     [UIView animateWithDuration:0.7 animations:^(){
-        //297 for i5
+        // 297 for i5
         [self.medsView setFrame:CGRectMake(0, 350, [Constants window_width], self.medsView.frame.size.height)];
-        //[self.medsView reloadData];
+        // [self.medsView reloadData];
     }];
     [compAnalyzer animateViews];
     [self.medsView setScrollEnabled:NO];
-    // [self.medsView setBackgroundColor:[UIColor whiteColor]];
+    //  [self.medsView setBackgroundColor:[UIColor whiteColor]];
 }
 
 
@@ -519,14 +519,14 @@
         [self moveTableUp];
         pushed = NO;
     }
-    //Do stuff here...
+    // Do stuff here...
 }
 
 
 #pragma mark - IBActions
-//Method called to load info page
+// Method called to load info page
 - (IBAction)loadInfo:(id)sender{
-    //Get Button Position to detect which med to send
+    // Get Button Position to detect which med to send
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.medsView];
     NSIndexPath *indexPath = [self.medsView indexPathForRowAtPoint:buttonPosition];
     MedsCell *cell = (MedsCell*)[self.medsView cellForRowAtIndexPath:indexPath];
@@ -548,9 +548,9 @@
 }
 
 
-//Method called to delay med
+//  Method called to delay med
 - (IBAction)delay:(id)sender{
-    //Get Button Position to detect which med to send
+    // Get Button Position to detect which med to send
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.medsView];
     NSIndexPath *indexPath = [self.medsView indexPathForRowAtPoint:buttonPosition];
     
@@ -585,7 +585,7 @@
 }
 
 
-//Method called to undo "taken" med
+//  Method called to undo "taken" med
 - (IBAction)undo:(id)sender{
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.medsView];
     NSIndexPath *indexPath = [self.medsView indexPathForRowAtPoint:buttonPosition];
@@ -601,12 +601,12 @@
     }
     
     if (med.taken){
-        //Complete med
+        // Complete med
         [cell closeCell];
         [cell undo];
 
     } else {
-        //Incomplete med
+        // Incomplete med
         [cell closeCell];
         [cell complete];
     }
@@ -617,7 +617,7 @@
     if (pushed){
         [UIView animateWithDuration:0.3 animations:^(){
             [self.medsView setFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
-            //[self.medsView reloadData];
+            // [self.medsView reloadData];
         }
                          completion:^(BOOL finished){
                              [sideBar showMenu];
@@ -628,7 +628,7 @@
 }
 
 
-// know the current state
+//  know the current state
 - (BOOL)tabBarIsVisible {
     return self.tabBarController.tabBar.frame.origin.y < CGRectGetMaxY(self.view.frame);
 }
@@ -662,7 +662,7 @@
         [tm createFromMedication:m];
         [temp addObject:tm];
     }
-    //[meds removeAll];
+    // [meds removeAll];
     
     DBResultSet *newdDBRS = (DBResultSet*)[NSArray arrayWithArray:temp];
     return newdDBRS;

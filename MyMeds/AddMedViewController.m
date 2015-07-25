@@ -449,11 +449,18 @@
         [self dismissViewControllerAnimated:YES
                                  completion:nil];
     } else {
-        
-        
+        // Handle deleting the local notifications for existing med
         CoreMedication *coreMed = [set objectAtIndex:0];
         
-        [[[[Medication query] whereWithFormat:@"coreMed = %@", coreMed] fetch] removeAll];
+        DBResultSet *meds = [[[Medication query] whereWithFormat:@"coreMed = %@", coreMed] fetch];
+        NSMutableArray *t = [[NSMutableArray alloc] init];
+        for (Medication *med in meds){
+            [t addObject:[NSNumber numberWithFloat:med.time]];
+        }
+        [NotificationScheduler removeLocalNotificationWithCoreMedication:coreMed
+                                                                AndTimes:t];
+            
+        [meds removeAll];
         [[[[TodayMedication query] whereWithFormat:@"coreMed = %@", coreMed] fetch] removeAll];
         
         coreMed.genName = medName.text;
