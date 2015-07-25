@@ -9,6 +9,7 @@
 #import "NotificationScheduler.h"
 
 #define kUID @"uid"
+#define IS_OS_8_OR_LATER    ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
 @implementation NotificationScheduler
 
@@ -17,9 +18,7 @@
     //Run in a separate thread so it doesn't block up the UI
 //    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSArray *daysOfWeek = [[NSArray alloc] initWithObjects:@"sunday", @"monday", @"tuesday", @"wednesday", @"thursday", @"friday", @"saturday", nil];
-        
-
-        
+    
         for (int j = 0; j < [times count]; j++){
             
             for (NSString *day in daysOfWeek){
@@ -66,12 +65,12 @@
 
 //Method called to create the local notifications
 + (void)initLocalNotif:(int)number andDay:(NSString *)day andTime:(NSString*)timeString andDayIndex:(int)dayIndex {
+
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDate *now = [NSDate date];
     
     NSDateComponents *componentsForFireDate = [calendar components:(NSYearCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit| NSSecondCalendarUnit | NSWeekdayCalendarUnit) fromDate: now];
     [componentsForFireDate setTimeZone:[NSTimeZone localTimeZone]];
-    NSLog(@"%d", dayIndex);
     [componentsForFireDate setWeekday: dayIndex];
     
     float timeFloat = [timeString floatValue];
@@ -80,7 +79,7 @@
         timeFloat = (int)timeFloat;
         minute = 30;
     }
-    [componentsForFireDate setHour: timeFloat];
+    [componentsForFireDate setHour:timeFloat];
     [componentsForFireDate setMinute:minute];
     [componentsForFireDate setSecond:0];
     
@@ -104,6 +103,12 @@
     
     //Set the title of the notification
     notification.alertBody = [@"Time to take " stringByAppendingString:alertBody];
+    
+    // Check if its iOS 8 for Mutable Notifications
+    if (IS_OS_8_OR_LATER){
+        [NotificationScheduler registerMutableNotifications];
+        notification.category = @"action_notifs";
+    }
     
     NSString *key = [timeString stringByAppendingString:[NSString stringWithFormat:@"%d", number]];
     key = [day stringByAppendingString:key];
@@ -170,5 +175,33 @@
         [self initLocalNotif:number andDay:day andTime:timeString andDayIndex:dayIndex];
     }
 }
+
+
++ (void)registerMutableNotifications {
+
+    UIMutableUserNotificationAction* takenAction = [[UIMutableUserNotificationAction alloc] init];
+    [takenAction setIdentifier:@"taken"];
+    [takenAction setTitle:@"Taken"];
+    [takenAction setActivationMode:UIUserNotificationActivationModeBackground];
+    [takenAction setDestructive:YES];
+    
+    UIMutableUserNotificationAction* delayAction = [[UIMutableUserNotificationAction alloc] init];
+    [delayAction setIdentifier:@"delay"];
+    [delayAction setTitle:@"Delay"];
+    [delayAction setActivationMode:UIUserNotificationActivationModeForeground];
+    [delayAction setDestructive:NO];
+    
+    UIMutableUserNotificationCategory* deleteReplyCategory = [[UIMutableUserNotificationCategory alloc] init];
+    [deleteReplyCategory setIdentifier:@"action_notifs"];
+    [deleteReplyCategory setActions:@[delayAction, takenAction] forContext:UIUserNotificationActionContextDefault];
+    
+    NSSet* categories = [NSSet setWithArray:@[deleteReplyCategory]];
+    UIUserNotificationSettings* settings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert) categories:categories];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    
+
+}
+
+
 
 @end

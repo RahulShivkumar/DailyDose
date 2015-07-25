@@ -52,7 +52,6 @@
 - (void)setupViews;
 
 - (void)createButton;
-- (void)dismissKeyboard;
 
 - (void)manipulateTime;
 - (void)addTimeWithHour:(NSString *)hour andMins:(NSString *)mins andAmPm:(NSString *)ampm;

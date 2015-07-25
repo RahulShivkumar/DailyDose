@@ -292,11 +292,6 @@
     return NO;
     
 }
--(void)dismissKeyboard {
-    [medName resignFirstResponder];
-    [chemName resignFirstResponder];
-    [dosageNum resignFirstResponder];
-}
 
 #pragma mark - Manipulate time setup
 -(void)manipulateTime{

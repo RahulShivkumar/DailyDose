@@ -86,4 +86,20 @@
     return uuidStr;
 }
 
+- (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(NSDictionary *)userInfo completionHandler:(void (^)())completionHandler {
+    
+    if ([identifier isEqualToString:@"taken"]) {
+        
+       // NSLog(@"You chose action 1.");
+    }
+    else if ([identifier isEqualToString:@"delayed"]) {
+        
+       // NSLog(@"You chose action 2.");
+    }
+    if (completionHandler) {
+        
+        completionHandler();
+    }
+}
+
 @end

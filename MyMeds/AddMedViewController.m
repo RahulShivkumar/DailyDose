@@ -240,11 +240,6 @@
 }
 
 
-- (void)dismissKeyboard {
-    [medName resignFirstResponder];
-    [chemName resignFirstResponder];
-    [dosageNum resignFirstResponder];
-}
 
 
 #pragma mark - MPGTextfield Delegate
@@ -262,9 +257,12 @@
 
 - (void)textField:(MPGTextField *)textField didEndEditingWithSelection:(NSDictionary *)result
 {
-    
-    [medName setText:[result objectForKey:@"DisplayText"]];
-    [chemName setText:[result objectForKey:@"DisplaySubText"]];
+    // TO-DO See why NEW is actually popping up!
+    if ([result objectForKey:@"CustomObject"] == nil) {
+        [medName setText:[result objectForKey:@"DisplayText"]];
+        [chemName setText:[result objectForKey:@"DisplaySubText"]];
+    }
+   
 }
 
 
@@ -433,7 +431,7 @@
         NSArray* contents = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath] options:kNilOptions error:&err];
         dispatch_async( dispatch_get_main_queue(), ^{
             [contents enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                [data addObject:[NSDictionary dictionaryWithObjectsAndKeys:[obj objectForKey:@"first_name"], @"DisplayText", [obj objectForKey:@"last_name"], @"DisplaySubText",obj,@"CustomObject", nil]];
+                [data addObject:[NSDictionary dictionaryWithObjectsAndKeys:[obj objectForKey:@"med_name"], @"DisplayText", [obj objectForKey:@"chem_name"], @"DisplaySubText",nil]];
             }];
         });
     });
@@ -474,4 +472,7 @@
     }
 
 }
+
+
+
 @end
