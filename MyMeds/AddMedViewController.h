@@ -39,6 +39,7 @@
     RMDateSelectionViewController *datePicker;
     
     NSMutableArray *timePickers;
+    NSMutableArray *removeTimes;
     NSMutableArray *times;
     NSMutableArray *amPm;
     
@@ -61,7 +62,10 @@
 
 - (void)generateData;
 
+- (void)moveTimesUp:(int)index;
+
 - (IBAction)setDate:(id)sender;
+- (IBAction)removeDate:(id)sender;
 - (IBAction)closeWindow:(id)sender;
 - (IBAction)done:(id)sender;
 

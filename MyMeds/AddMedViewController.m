@@ -16,6 +16,11 @@
 #define uid @"uid"
 #define kBGColor [UIColor colorWithRed:229/255.0 green:98/255.0 blue:92/255.0 alpha:1.0]
 
+#define kTimePickerY [Constants window_height] * 0.60 + 18
+#define kTimePickerHeight [Constants window_height]/10
+
+#define kRemoveTimeX [Constants window_width] - 25
+
 
 @implementation AddMedViewController
 
@@ -37,8 +42,8 @@
 //Method called to setupviews
 - (void)setupViews {
     timePickers = [[NSMutableArray alloc] init];
+    removeTimes = [[NSMutableArray alloc] init];
     times = [[NSMutableArray alloc] init];
-    amPm = [[NSMutableArray alloc] init];
     //[self.view setBackgroundColor:bgColor];
  
     [self.view setBackgroundColor:kBGColor];
@@ -141,7 +146,7 @@
     [time setTextColor:[UIColor whiteColor]];
     [self.scrollView  addSubview:time];
     
-    timePicker = [[UIButton alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.60 + 20, [Constants window_width], [Constants window_height]/10)];
+    timePicker = [[UIButton alloc] initWithFrame:CGRectMake(0, kTimePickerY, [Constants window_width], kTimePickerHeight)];
     [timePicker setBackgroundColor:[UIColor whiteColor]];
     [timePicker setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [timePicker.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:30]];
@@ -158,9 +163,10 @@
     datePicker = [RMDateSelectionViewController dateSelectionController];
     [datePicker setDelegate:self];
     datePicker.datePicker.datePickerMode = UIDatePickerModeTime;
-     [self manipulateTime];
+    [self manipulateTime];
     [datePicker.datePicker setMinuteInterval:30];
     [timePickers addObject:timePicker];
+    
     [self.scrollView  addSubview:timePicker];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -204,9 +210,19 @@
 
 #pragma mark - Create new Button
 - (void)createButton {
+    
     UIButton *bottomBut = [timePickers objectAtIndex:[timePickers count] - 1];
     
-    UIButton *newButton = [[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(bottomBut.frame) + 2, [Constants window_width], [Constants window_height]/10)];
+    UIButton *removeTime = [[UIButton alloc] initWithFrame:CGRectMake(kRemoveTimeX, CGRectGetMinY(bottomBut.frame) + 5, 20, [Constants window_height]/10)];
+    [removeTime setImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];
+    [removeTime addTarget:self action:@selector(removeDate:) forControlEvents:UIControlEventTouchUpInside];
+    [removeTime setTag:[removeTimes count]];
+    
+    [removeTimes addObject:removeTime];
+    [self.scrollView addSubview:removeTime];
+    
+    
+    UIButton *newButton = [[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(bottomBut.frame) + 2, [Constants window_width], kTimePickerHeight)];
     
     [newButton setBackgroundColor:[UIColor whiteColor]];
     [newButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -314,15 +330,61 @@
     [times addObject:[NSNumber numberWithFloat:hr]];
 }
 
+#pragma mark - Move Times Up 
+- (void)moveTimesUp:(int)index {
+    // Remove Scrolling
+    if([timePickers count] < 5) {
+        // Scroll to top
+        [self.scrollView setContentOffset:CGPointZero animated:YES];
+        
+        // Remove Scrolling
+        [self.scrollView setScrollEnabled:NO];
+    }
+    for (int i = index; i < [timePickers count]; i++) {
+        UIButton *tp = [timePickers objectAtIndex:i];
+        [tp setTag:i];
+        UIButton *removeTime;
+        if (i < [removeTimes count]) {
+            removeTime = [removeTimes objectAtIndex:i];
+            [removeTime setTag:i];
+        }
+        [UIView animateWithDuration:0.1 animations:^(){
+            [tp setFrame:CGRectMake(0, kTimePickerY + 2 * i + kTimePickerHeight * i, [Constants window_width], kTimePickerHeight)];
+            
+            if (i < [removeTimes count]) {
+                [removeTime setFrame:CGRectMake(kRemoveTimeX, kTimePickerY + 7 * i + kTimePickerHeight * i, 20, kTimePickerHeight)];
+            }
+        }];
+    }
+}
+
 
 #pragma mark - IBActions
 //Method called when datePicker date is chosen
 - (IBAction)setDate:(id)sender {
-     UIButton *buttonClicked = (UIButton *)sender;
+    UIButton *buttonClicked = (UIButton *)sender;
     selectedTag = (int)buttonClicked.tag;
     [datePicker show];
 }
 
+
+- (IBAction)removeDate:(id)sender {
+    UIButton *buttonClicked = (UIButton *)sender;
+    
+    int clickedTag = (int)buttonClicked.tag;
+    
+    [times removeObjectAtIndex:clickedTag];
+    UIButton *removeTime = [removeTimes objectAtIndex:clickedTag];
+    [removeTime removeFromSuperview];
+    [removeTimes removeObjectAtIndex:clickedTag];
+    
+    UIButton *tp = [timePickers objectAtIndex:clickedTag];
+    [tp removeFromSuperview];
+    [timePickers removeObjectAtIndex:clickedTag];
+    
+    // Move Other Times Up
+    [self moveTimesUp:clickedTag];
+}
 
 //Method called to close window
 - (IBAction)closeWindow:(id)sender {
