@@ -27,7 +27,10 @@
     
     // Testing interactive Notifications Code
     NSString *UUID = [[NSUserDefaults standardUserDefaults] objectForKey:@"UUID"];
+    
     if (!UUID){
+        // If the app is deleted, we want to remove exisiting local notifications when a user re downloads
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
         [[Amplitude instance] initializeApiKey:@"6173840dbe787b3041206d97de06b633" userId:[self getUserID]];
         //NSLog(@"%@", [self getUserID]);
     } else {
@@ -103,9 +106,9 @@
     else if ([identifier isEqualToString:@"delayed"]) {
         DBResultSet *tms = [[[TodayMedication query] whereWithFormat:@"time = %f", time] fetch];
         for (TodayMedication *tm in tms) {
-            int hour = [Constants getCurrentHour];
-            if (hour + 1 < 24) {
-                tm.time = hour + 1;
+            int hour = (int)[Constants getCurrentHour];
+            if (hour + 2 < 24) {
+                tm.time = hour + 2;
                 [tm commit];
                 [EventLogger logAction:@"delayed" andMedication:tm.coreMed andTime:time];
             } else {

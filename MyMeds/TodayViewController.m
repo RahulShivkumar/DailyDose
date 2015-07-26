@@ -94,7 +94,7 @@
     future = NO;
     futureDate = current;
     
-    // [self clearData];
+    //[self clearData];
     // [self checkNotifications];
     [self setupMeds];
     [self setupViews];

@@ -38,13 +38,13 @@
     [Constants setupNavbar:self];
     [self.view setBackgroundColor:kBGColor];
     
-    graphTitle = [[UILabel alloc] initWithFrame:CGRectMake(17, 5, [Constants window_width], 20)];
+    graphTitle = [[UILabel alloc] initWithFrame:CGRectMake(17, 15, [Constants window_width], 20)];
     [graphTitle setText:@"COMPLIANCE %:"];
     [graphTitle setTextColor:[UIColor lightGrayColor]];
     [graphTitle setFont:[UIFont systemFontOfSize:12]];
     [self.view addSubview:graphTitle];
     
-    UIView *graphView = [[UIView alloc] initWithFrame:CGRectMake(5, 25, [Constants window_width] - 10, [Constants window_height] * 0.33)];
+    UIView *graphView = [[UIView alloc] initWithFrame:CGRectMake(5, 40, [Constants window_width] - 10, [Constants window_height] * 0.33)];
     [graphView setBackgroundColor:kGraphColor];
     [graphView.layer setCornerRadius:5];
     [self.view addSubview:graphView];
@@ -105,7 +105,7 @@
     
     //Setup Top 5 Meds
     topMeds = [EventLogger getTopFiveMissedMeds];
-    tmt = [[TopMedsTable alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.50 - 44, [Constants window_width], [Constants window_height] * 0.50 - 44) andData:topMeds];
+    tmt = [[TopMedsTable alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.33 + 55, [Constants window_width], [Constants window_height] * 0.66 - 129) andData:topMeds];
     [self.view addSubview:tmt];
     
 }

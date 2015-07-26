@@ -79,8 +79,8 @@
         timeFloat = (int)timeFloat;
         minute = 30;
     }
-    [componentsForFireDate setHour:timeFloat];
-    [componentsForFireDate setMinute:minute];
+    [componentsForFireDate setHour:13];
+    [componentsForFireDate setMinute:47];
     [componentsForFireDate setSecond:0];
     
     UILocalNotification *notification = [[UILocalNotification alloc] init];
@@ -188,7 +188,7 @@
     [takenAction setDestructive:YES];
     
     UIMutableUserNotificationAction* delayAction = [[UIMutableUserNotificationAction alloc] init];
-    [delayAction setIdentifier:@"delay"];
+    [delayAction setIdentifier:@"delayed"];
     [delayAction setTitle:@"Delay"];
     [delayAction setActivationMode:UIUserNotificationActivationModeForeground];
     [delayAction setDestructive:NO];
