@@ -37,6 +37,8 @@
     BOOL pushed;
     
     ComplianceAnalyzer *compAnalyzer;
+    
+    UIView *completedView;
 }
 
 @property (nonatomic, strong) UITableView *medsView;
@@ -48,6 +50,7 @@
 - (void)setupViews;
 - (void)setupTabBar;
 - (void)setupCalendar;
+- (void)setupEmptyStateWithImage:(NSString*)image AndText:(NSString*)text;
 
 - (void)showCompliance;
 - (void)moveTableUp;

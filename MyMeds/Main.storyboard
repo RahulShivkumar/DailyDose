@@ -80,12 +80,6 @@
                     <tabBarItem key="tabBarItem" title="Meds" image="pill" id="cPa-gy-q4n"/>
                     <navigationItem key="navigationItem" id="OEW-bh-buz">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" image="search" id="Daw-ma-fIe">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="openCamera:" destination="8rJ-Kc-sve" id="tc4-cT-cAw"/>
-                            </connections>
-                        </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="jtb-ad-wLM">
                             <rect key="frame" x="209" y="6" width="182" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -205,6 +199,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.95999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
+                            <tableViewSection headerTitle="Terms &amp; Conditions" id="Dgl-HE-RGy">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="rd3-2b-v3h" style="IBUITableViewCellStyleDefault" id="qKR-CH-mU7" customClass="BOButtonTableViewCell">
+                                        <rect key="frame" x="0.0" y="79" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qKR-CH-mU7" id="Lgw-7n-UHG">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="View Terms &amp; Conditions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rd3-2b-v3h">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Feedback" id="NCJ-Uh-3eY">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="b5T-c9-lW8" style="IBUITableViewCellStyleDefault" id="lFV-u9-y40" customClass="BOButtonTableViewCell">
@@ -255,7 +269,6 @@
         <image name="Analyze" width="25" height="25"/>
         <image name="pill" width="25" height="25"/>
         <image name="realtime_protection-50" width="32" height="32"/>
-        <image name="search" width="25" height="25"/>
         <image name="settings" width="25" height="25"/>
     </resources>
 </document>

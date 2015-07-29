@@ -40,7 +40,7 @@
     if (requiredTimeLapse == 0){
         int currentHour = (int)[Constants getCurrentHour];
         //Just present missed meds for the day
-        requiredTimeLapse = currentHour/24;
+        requiredTimeLapse = currentHour/24.0;
     }
     
     long long sevenDaysAgo =  [[[NSDate date] dateByAddingTimeInterval:-requiredTimeLapse*24*60*60] timeIntervalSince1970];
@@ -109,7 +109,7 @@
             if (requiredTimeLapse == 0){
                 int currentHour = (int)[Constants getCurrentHour];
                 //Just present missed meds for the day
-                requiredTimeLapse = currentHour/24;
+                requiredTimeLapse = currentHour/24.0;
             }
         }
         long long sevenDaysAgo =  [[movingDate dateByAddingTimeInterval:-requiredTimeLapse*24*60*60] timeIntervalSince1970];

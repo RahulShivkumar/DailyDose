@@ -41,6 +41,7 @@
                             [app cancelLocalNotification:oneEvent];
                             int number = [[identifier substringFromIndex:[prefix length] + 1] intValue];
                             
+                            number += 1;
                             [self initLocalNotif:number andDay:day
                                          andTime:[NSString stringWithFormat:@"%@",[times objectAtIndex:j]]
                                      andDayIndex:(int)[daysOfWeek indexOfObject:day] + 1];
@@ -49,7 +50,7 @@
                         }
                     }
                     if (!flag){
-                        int number = 0;
+                        int number = 1;
                         [self initLocalNotif:number andDay:day
                                      andTime:[NSString stringWithFormat:@"%@", [times objectAtIndex:j]]
                                  andDayIndex:(int)[daysOfWeek indexOfObject:day] + 1];
@@ -79,8 +80,8 @@
         timeFloat = (int)timeFloat;
         minute = 30;
     }
-    [componentsForFireDate setHour:13];
-    [componentsForFireDate setMinute:47];
+    [componentsForFireDate setHour:timeFloat];
+    [componentsForFireDate setMinute:minute];
     [componentsForFireDate setSecond:0];
     
     UILocalNotification *notification = [[UILocalNotification alloc] init];
@@ -91,7 +92,6 @@
     
     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     [f setNumberStyle:NSNumberFormatterSpellOutStyle];
-    number += 1;
     NSString *s = [f stringFromNumber:[NSNumber numberWithInt:number]];
     NSString *alertBody;
     
@@ -105,10 +105,8 @@
     notification.alertBody = [@"Time to take " stringByAppendingString:alertBody];
     
     // Check if its iOS 8 for Mutable Notifications
-    if (IS_OS_8_OR_LATER){
-        [NotificationScheduler registerMutableNotifications];
-        notification.category = @"action_notifs";
-    }
+
+    notification.category = @"action_notifs";
     
     NSString *key = [timeString stringByAppendingString:[@"-" stringByAppendingString:[NSString stringWithFormat:@"%d", number]]];
     day = [day stringByAppendingString:@"-"];
@@ -147,12 +145,12 @@
                         UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
                         NSDictionary *userInfoCurrent = oneEvent.userInfo;
                         NSString *identifier = [userInfoCurrent objectForKey:kUID];
-                        NSString *prefix = [day stringByAppendingString:[NSString stringWithFormat:@"%@",[times objectAtIndex:j]]];
+                        NSString *prefix = [day stringByAppendingString:[@"-" stringByAppendingString:[NSString stringWithFormat:@"%@",[times objectAtIndex:j]]]];
                         
                         if ([identifier hasPrefix:prefix])
                         {
                             [app cancelLocalNotification:oneEvent];
-                            int number = [[identifier substringFromIndex:[prefix length]] intValue];
+                            int number = [[identifier substringFromIndex:[prefix length] + 1] intValue];
                             
                             [self removeNotif:number andDay:day
                                          andTime:[NSString stringWithFormat:@"%@",[times objectAtIndex:j]]

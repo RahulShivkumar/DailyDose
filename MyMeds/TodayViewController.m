@@ -24,6 +24,12 @@
 #define TabBarBorderColor [UIColor colorWithRed:195/255.0 green:76/255.0 blue:60/255.0 alpha:1.0].CGColor
 #define TabBarBorderFrame CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 0.5f)
 
+#define kBGColor [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0]
+
+#define IS_NO_MEDS_TODAY [amMeds count] == 0 && [pmMeds count] == 0 && [Constants compareDate:[NSDate date] withOtherdate:futureDate]
+
+#define IS_NO_MEDS_FUTURE_DAY [amMeds count] == 0 && [pmMeds count] == 0
+
 @implementation TodayViewController
 
 #pragma mark - Test Methods
@@ -147,8 +153,8 @@
     NSString *query = [NSString stringWithFormat:@"%@ = 1 and time < 12", [dayOfWeek lowercaseString]];
     NSString *query2 = [NSString stringWithFormat:@"%@ = 1 and time >= 12", [dayOfWeek lowercaseString]];
     
-    amMeds = [[[Medication query] where:query] fetch];
-    pmMeds = [[[Medication query] where:query2] fetch];
+    amMeds = [[[[Medication query] where:query] orderBy:@"time" ] fetch];
+    pmMeds = [[[[Medication query] where:query2] orderBy:@"time"] fetch];
     
     
     if(!future){
@@ -184,7 +190,12 @@
         
         header = [[NSMutableArray alloc] init];
         if([amMeds count] == 0 && [pmMeds count] == 0){
-            
+            if(IS_NO_MEDS_TODAY){
+                [self setupEmptyStateWithImage:@"completed" AndText:@"Completed All Meds For Today!"];
+            }
+            else if(IS_NO_MEDS_FUTURE_DAY){
+                [self setupEmptyStateWithImage:@"nomedsday" AndText:@"No Meds For The Day!"];
+            }
         } else if([amMeds count] == 0){
             [header addObject:@"PM"];
         } else if ([pmMeds count] == 0){
@@ -237,7 +248,12 @@
         [tm createFromMedication:m];
     }
     if([amMeds count] == 0 && [pmMeds count] == 0){
-        
+        if(IS_NO_MEDS_TODAY){
+            [self setupEmptyStateWithImage:@"completed" AndText:@"Completed All Meds For Today!"];
+        }
+        else if(IS_NO_MEDS_FUTURE_DAY){
+            [self setupEmptyStateWithImage:@"nomedday" AndText:@"No Meds For The Day!"];
+        }
     } else if([amMeds count] == 0){
         [header addObject:@"PM"];
         [self.medsView reloadData];
@@ -268,34 +284,28 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.view setFrame:CGRectMake(0, 0, [Constants window_width], [Constants window_height])];
     
-//     if([amMeds count] == 0 && [pmMeds count] == 0 && [Constants compareDate:[NSDate date] withOtherdate:futureDate]){
-//         UIImageView *completedImage = [[UIImageView alloc] initWithFrame:CGRectMake(([Constants window_width] - 300)/2, 50, 300, 311)];
-//         [completedImage setImage:[UIImage imageNamed:@"completed"]];
-//         UIView *bgImage = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Constants window_width], [Constants window_height])];
-//         [bgImage setBackgroundColor:[UIColor whiteColor]];
-//         [bgImage addSubview:completedImage];
-//         [self.view addSubview:bgImage];
-//         
-//     }
-//     else if([amMeds count] == 0 && [pmMeds count] == 0){
-//         
-//     }
-//     else {
+     if(IS_NO_MEDS_TODAY){
+         [self setupEmptyStateWithImage:@"completed" AndText:@"Completed All Meds For Today!"];
+     }
+     else if(IS_NO_MEDS_FUTURE_DAY){
+         [self setupEmptyStateWithImage:@"nomedday" AndText:@"No Meds For The Day!"];
+     }
+     else {
     
-    self.medsView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
-    
-    UITapGestureRecognizer *singleFingerTap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
-    [self.medsView addGestureRecognizer:singleFingerTap];
-    
-    [self.medsView setDataSource:self];
-    [self.medsView setDelegate:self];
-    
-    [self.medsView setBackgroundColor:[UIColor whiteColor]];
-    [self.medsView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [self.medsView setSeparatorInset:UIEdgeInsetsZero];
-    
-    [self.view addSubview:self.medsView];
-//     }
+        self.medsView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
+        
+        UITapGestureRecognizer *singleFingerTap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        [self.medsView addGestureRecognizer:singleFingerTap];
+        
+        [self.medsView setDataSource:self];
+        [self.medsView setDelegate:self];
+        
+        [self.medsView setBackgroundColor:[UIColor whiteColor]];
+        [self.medsView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+        [self.medsView setSeparatorInset:UIEdgeInsetsZero];
+        
+        [self.view addSubview:self.medsView];
+     }
     [self setupTabBar];
     [self setupNavBar];
     [self setupCalendar];
@@ -351,6 +361,26 @@
 }
 
 
+// Method used to setup empty states
+- (void)setupEmptyStateWithImage:(NSString*)image AndText:(NSString*)text {
+    [completedView removeFromSuperview];
+    
+    completedView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.navigationController.view.frame.size.height - 44)];
+    [completedView setBackgroundColor:kBGColor];
+    
+    UIImageView *completedImage = [[UIImageView alloc] initWithFrame:CGRectMake([Constants window_width]/4, 110, [Constants window_width]/2, [Constants window_width]/2)];
+    [completedImage setImage:[UIImage imageNamed:image]];
+    UILabel *completedText = [[UILabel alloc] initWithFrame:CGRectMake(5, 120 + [Constants window_width]/2, [Constants window_width] - 10, 30)];
+    [completedText setTextAlignment:NSTextAlignmentCenter];
+    [completedText setText:text];
+    [completedText setTextColor:[UIColor lightGrayColor]];
+    [completedText setFont:[UIFont systemFontOfSize:20]];
+    
+    [completedView addSubview:completedText];
+    [completedView addSubview:completedImage];
+    
+    [self.view addSubview:completedView];
+}
 #pragma mark - Table view delegate methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     //  Return the number of sections.
@@ -473,20 +503,18 @@
     }
     
     [self setupMeds];
- //    [self setupViews];
+
 }
 
 
 #pragma mark - Move Table View
 - (void)showCompliance{
-    if([amMeds count] > 0 || [pmMeds count] > 0){
-        if(pushed){
-            [self moveTableUp];
-            pushed = NO;
-        } else {
-            [self moveTableDown];
-            pushed = YES;
-        }
+    if(pushed){
+        [self moveTableUp];
+        pushed = NO;
+    } else {
+        [self moveTableDown];
+        pushed = YES;
     }
 }
 
@@ -494,6 +522,7 @@
 - (void)moveTableUp{
     [UIView animateWithDuration:0.7 animations:^(){
         [self.medsView setFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
+        [completedView setFrame:CGRectMake(0, 0, [Constants window_width], self.view.frame.size.height)];
         // [self.medsView reloadData];
     }];
     [self.medsView setScrollEnabled:YES];
@@ -506,6 +535,7 @@
     [UIView animateWithDuration:0.7 animations:^(){
         // 297 for i5
         [self.medsView setFrame:CGRectMake(0, 350, [Constants window_width], self.medsView.frame.size.height)];
+        [completedView setFrame:CGRectMake(0, 350, [Constants window_width], self.view.frame.size.height)];
         // [self.medsView reloadData];
     }];
     [compAnalyzer animateViews];

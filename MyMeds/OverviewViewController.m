@@ -17,7 +17,7 @@
 @end
 
 
-#define kBGColor [UIColor colorWithRed:170/255.0 green:18/255.0 blue:22/255.0 alpha:1.0]
+#define kBGColor [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0]
 
 @implementation OverviewViewController
 
@@ -37,8 +37,8 @@
         index = 1;
     }
 
+    [Constants setupNavbar:self];
     [self setupMeds:index];
-    [self setupViews];
    
 }
 
@@ -60,12 +60,37 @@
     [self.medsView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.medsView];
 
-
-    
-    [Constants setupNavbar:self];
+    [self.medsView reloadData];
 }
 
 
+// Method used to setup empty states
+- (void)setupEmptyStateWithImage:(NSString*)image AndText:(NSString*)text AndSubText:(NSString*)subText {
+    [completedView removeFromSuperview];
+    
+    completedView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.navigationController.view.frame.size.height - 44)];
+    [completedView setBackgroundColor:kBGColor];
+    
+    UIImageView *completedImage = [[UIImageView alloc] initWithFrame:CGRectMake([Constants window_width]/4, 110, [Constants window_width]/2, [Constants window_width]/2)];
+    [completedImage setImage:[UIImage imageNamed:image]];
+    UILabel *completedText = [[UILabel alloc] initWithFrame:CGRectMake(0, 120 + [Constants window_width]/2, [Constants window_width], 30)];
+    [completedText setTextAlignment:NSTextAlignmentCenter];
+    [completedText setText:text];
+    [completedText setTextColor:[UIColor lightGrayColor]];
+    [completedText setFont:[UIFont systemFontOfSize:20]];
+    
+    UILabel *completedText2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 150 + [Constants window_width]/2, [Constants window_width], 30)];
+    [completedText2 setTextAlignment:NSTextAlignmentCenter];
+    [completedText2 setText:subText];
+    [completedText2 setTextColor:[UIColor lightGrayColor]];
+    [completedText2 setFont:[UIFont systemFontOfSize:20]];
+    
+    [completedView addSubview:completedText];
+    [completedView addSubview:completedText2];
+    [completedView addSubview:completedImage];
+    
+    [self.view addSubview:completedView];
+}
 
 
 
@@ -73,7 +98,12 @@
 //Method called to setup meds based on selection current/past
 - (void)setupMeds:(int)expired {
     meds = [[[CoreMedication query] whereWithFormat:@"expired = %d",expired] fetch];
-    [self.medsView reloadData];
+    if ([meds count] == 0 && expired == 0) {
+        [self setupEmptyStateWithImage:@"nomeds" AndText:@"No Meds Yet." AndSubText:@"Press The '+' button to add a med."];
+    }
+    else {
+        [self setupViews];
+    }
 }
 
 

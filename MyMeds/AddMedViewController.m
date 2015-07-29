@@ -327,7 +327,7 @@
     if([mins isEqualToString:@"30"]){
         hr = hr + 0.5;
     }
-    [times addObject:[NSNumber numberWithFloat:hr]];
+    times[selectedTag] = [NSNumber numberWithFloat:hr];
 }
 
 #pragma mark - Move Times Up 

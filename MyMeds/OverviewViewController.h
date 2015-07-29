@@ -18,6 +18,8 @@
 @interface OverviewViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageProcessorDelegate>{
     DBResultSet *meds;
     UIImageView *imgView;
+    
+    UIView *completedView;
 }
 
 @property (strong, nonatomic) UIImagePickerController * imagePickerController;
@@ -31,6 +33,8 @@
 @property (nonatomic, strong) UISearchBar *searchBar;
 
 - (void)setupViews;
+- (void)setupEmptyStateWithImage:(NSString*)image AndText:(NSString*)text AndSubText:(NSString*)subText;
+
 
 - (void)setupMeds:(int)expired;
 
