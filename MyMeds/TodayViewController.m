@@ -255,12 +255,15 @@
             [self setupEmptyStateWithImage:@"nomedday" AndText:@"No Meds For The Day!"];
         }
     } else if([amMeds count] == 0){
+        [self removeEmptyState];
         [header addObject:@"PM"];
         [self.medsView reloadData];
     } else if ([pmMeds count] == 0){
+        [self removeEmptyState];
         [header addObject:@"AM"];
         [self.medsView reloadData];
     } else {
+        [self removeEmptyState];
         [header addObject:@"AM"];
         [header addObject:@"PM"];
         [self.medsView reloadData];
@@ -291,19 +294,20 @@
          [self setupEmptyStateWithImage:@"nomedday" AndText:@"No Meds For The Day!"];
      }
      else {
-    
-        self.medsView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
         
+        [self removeEmptyState];
+        self.medsView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
+
         UITapGestureRecognizer *singleFingerTap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
         [self.medsView addGestureRecognizer:singleFingerTap];
-        
+
         [self.medsView setDataSource:self];
         [self.medsView setDelegate:self];
-        
+
         [self.medsView setBackgroundColor:[UIColor whiteColor]];
         [self.medsView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
         [self.medsView setSeparatorInset:UIEdgeInsetsZero];
-        
+
         [self.view addSubview:self.medsView];
      }
     [self setupTabBar];
@@ -380,6 +384,10 @@
     [completedView addSubview:completedImage];
     
     [self.view addSubview:completedView];
+}
+
+-(void)removeEmptyState {
+    [completedView removeFromSuperview];
 }
 #pragma mark - Table view delegate methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

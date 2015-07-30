@@ -51,6 +51,7 @@
 - (void)setupTabBar;
 - (void)setupCalendar;
 - (void)setupEmptyStateWithImage:(NSString*)image AndText:(NSString*)text;
+- (void)removeEmptyState;
 
 - (void)showCompliance;
 - (void)moveTableUp;
