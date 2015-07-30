@@ -111,7 +111,7 @@
     NSString *key = [timeString stringByAppendingString:[@"-" stringByAppendingString:[NSString stringWithFormat:@"%d", number]]];
     day = [day stringByAppendingString:@"-"];
     key = [day stringByAppendingString:key];
-    NSLog(@"%@", key);
+    //NSLog(@"%@", key);
     
     [notification setUserInfo:[NSDictionary dictionaryWithObject:key forKey:kUID]];
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];

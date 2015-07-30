@@ -216,8 +216,7 @@
     NSInteger hour;
     if(!future){
         hour= [Constants getCurrentHour];
-    }
-    else {
+    }   else {
         hour = 0;
     }
     
