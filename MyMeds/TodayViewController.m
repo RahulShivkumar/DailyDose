@@ -159,8 +159,13 @@
     if(!future){
         [[[TodayMedication query] fetch] removeAll];
         
-        [[NSUserDefaults standardUserDefaults] setObject:current forKey:@"Date"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
+        if([amMeds count] == 0 && [pmMeds count] == 0) {
+
+        }
+        else {
+            [[NSUserDefaults standardUserDefaults] setObject:current forKey:@"Date"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }
         
         // Clear Today_Meds and load it with new data
        
@@ -288,10 +293,12 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self.view setFrame:CGRectMake(0, 0, [Constants window_width], [Constants window_height])];
     
-     if(IS_NO_MEDS_TODAY){
+    NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:@"Date"];
+    if (!date){
+        [self setupEmptyStateWithImage:@"nomeds" AndText:@"No Meds Yet." AndSubText:@"Click the 'meds' tab to add meds"];
+    } else if(IS_NO_MEDS_TODAY){
          [self setupEmptyStateWithImage:@"completed" AndText:@"Completed All Meds For Today!" AndSubText:@""];
-     }
-     else if(IS_NO_MEDS_FUTURE_DAY){
+     } else if(IS_NO_MEDS_FUTURE_DAY){
          [self setupEmptyStateWithImage:@"nomedday" AndText:@"No Meds For The Day!" AndSubText:@""];
      }
      else {
