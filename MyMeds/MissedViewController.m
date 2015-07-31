@@ -9,8 +9,7 @@
 #import "MissedViewController.h"
 
 
-#define bgColor [UIColor colorWithRed:174/255.0 green:17/255.0 blue:20/255.0 alpha:1.0]
-#define bgColor2 [UIColor colorWithRed:244/255.0 green:136/255.0 blue:159/255.0 alpha:1.0]
+#define kBGColor [UIColor colorWithRed:194/255.0 green:59/255.0 blue:34/255.0 alpha:1.0]
 #define buttonFont [UIFont fontWithName:@"HelveticaNeue-Thin" size:18]
 
 @interface MissedViewController ()
@@ -50,10 +49,7 @@
     [title setTextColor:[UIColor whiteColor]];
     [self.view addSubview:title];
     
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = self.view.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[bgColor CGColor], (id)[bgColor2 CGColor], nil];
-    [self.view.layer insertSublayer:gradient atIndex:0];
+    [self.view setBackgroundColor:kBGColor];
     
     self.medsView = [[UITableView alloc] init];
     [self.medsView setDataSource:self];

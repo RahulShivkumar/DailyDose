@@ -8,7 +8,7 @@
 
 #import "Constants.h"
 
-#define kNavBarColor [UIColor colorWithRed:195/255.0 green:76/255.0 blue:60/255.0 alpha:1.0]
+#define kNavBarColor [UIColor colorWithRed:229/255.0 green:98/255.0 blue:92/255.0 alpha:1.0]
 
 @implementation Constants
 

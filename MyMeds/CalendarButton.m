@@ -8,12 +8,12 @@
 
 #import "CalendarButton.h"
 
-#define highlight [UIColor colorWithRed:195/255.0 green:76/255.0 blue:60/255.0 alpha:1.0]
+#define kHighlightColor [UIColor colorWithRed:229/255.0 green:98/255.0 blue:92/255.0 alpha:1.0]
 #define gray [UIColor colorWithRed:94/255.0 green:94/255.0 blue:94/255.0 alpha:1.0]
 
-#define bgFrame CGRectMake(self.frame.origin.x + 5, 0, 80, self.frame.size.height)
-#define dateFrame CGRectMake(0, 0, frame.size.width - 6, frame.size.height * 0.6)
-#define dayFrame CGRectMake(0 , frame.size.height * 0.6, frame.size.width , frame.size.height * 0.35)
+#define bgFrame CGRectMake(self.frame.origin.x + 5, 0, 80, 80)
+#define dateFrame CGRectMake(0, 5 , frame.size.width, frame.size.height * 0.6)
+#define dayFrame CGRectMake(0 , frame.size.height * 0.65, frame.size.width , frame.size.height * 0.35)
 
 @implementation CalendarButton
 - (id)initWithDate:(NSDate*)date andFrame:(CGRect)frame{
@@ -50,7 +50,7 @@
 
 - (void)addHighlight{
     bgView = [[UIView alloc] initWithFrame:bgFrame];
-    [bgView setBackgroundColor:highlight];
+    [bgView setBackgroundColor:kHighlightColor];
     bgView.layer.cornerRadius = 5.0;
     [self addSubview:bgView];
     [dateLabel setTextColor:[UIColor whiteColor]];

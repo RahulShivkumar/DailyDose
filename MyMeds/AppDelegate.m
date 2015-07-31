@@ -93,7 +93,6 @@
 - (void)application:(UIApplication *)application handleActionWithIdentifier:(NSString *)identifier forLocalNotification:(UILocalNotification *)notification completionHandler:(void (^)())completionHandler{
     
     NSString *notifID = [notification.userInfo objectForKey:@"uid"];
-    NSLog(@"%@", notifID);
     float time = [[notifID componentsSeparatedByString: @"-"][1] floatValue];
     if ([identifier isEqualToString:@"taken"]) {
         DBResultSet *tms = [[[TodayMedication query] whereWithFormat:@"time = %f", time] fetch];

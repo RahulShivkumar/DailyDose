@@ -21,7 +21,7 @@
 @end
 
 #define TabBarColor [UIColor colorWithRed:195/255.0 green:76/255.0 blue:60/255.0 alpha:1.0]
-#define TabBarBorderColor [UIColor colorWithRed:195/255.0 green:76/255.0 blue:60/255.0 alpha:1.0].CGColor
+#define kMainColor [UIColor colorWithRed:229/255.0 green:98/255.0 blue:92/255.0 alpha:1.0]
 #define TabBarBorderFrame CGRectMake(0.0f, 0.0f, self.view.frame.size.width, 0.5f)
 
 #define kBGColor [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0]
@@ -327,10 +327,10 @@
 // Method called to setup tabbar
 - (void)setupTabBar{
     [self.tabBarController.tabBar setTintColor:TabBarColor];
-    [self.tabBarController.tabBar setBackgroundColor:TabBarColor];
+    [self.tabBarController.tabBar setSelectedImageTintColor:kMainColor];
     CALayer *topBorder = [CALayer layer];
     [topBorder setFrame:TabBarBorderFrame];
-    [topBorder setBackgroundColor:TabBarBorderColor];
+    [topBorder setBackgroundColor:kMainColor.CGColor];
     [self.tabBarController.tabBar.layer addSublayer:topBorder];
     
     [self.tabBarController.tabBar setClipsToBounds:YES];
@@ -545,7 +545,7 @@
 - (void)moveTableUp{
     [UIView animateWithDuration:0.7 animations:^(){
         [self.medsView setFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
-        [completedView setFrame:CGRectMake(0, 0, [Constants window_width], self.view.frame.size.height)];
+        [completedView setFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
         // [self.medsView reloadData];
     }];
     [self.medsView setScrollEnabled:YES];
@@ -558,7 +558,7 @@
     [UIView animateWithDuration:0.7 animations:^(){
         // 297 for i5
         [self.medsView setFrame:CGRectMake(0, 350, [Constants window_width], self.medsView.frame.size.height)];
-        [completedView setFrame:CGRectMake(0, 350, [Constants window_width], self.view.frame.size.height)];
+        [completedView setFrame:CGRectMake(0, 350, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
         // [self.medsView reloadData];
     }];
     [compAnalyzer animateViews];
