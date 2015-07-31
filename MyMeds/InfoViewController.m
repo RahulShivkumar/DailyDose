@@ -77,7 +77,7 @@
     [medInfo setTextColor:kTextColor];
     [self.view addSubview:medInfo];
 //
-    medLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, [Constants window_height]* 0.05, [Constants window_width] - 10, [Constants window_height]*0.2)];
+    medLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, [Constants window_height]* 0.05, [Constants window_width]* 0.7, [Constants window_height]*0.2)];
     [medLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:42]];
     [medLabel setTextColor:kTextColor];
     [medLabel setText:cm.genName];

@@ -105,8 +105,10 @@
     notification.alertBody = [@"Time to take " stringByAppendingString:alertBody];
     
     // Check if its iOS 8 for Mutable Notifications
-
-    notification.category = @"action_notifs";
+    if IS_OS_8_OR_LATER {
+        [self registerMutableNotifications];
+        notification.category = @"action_notifs";
+    }
     
     NSString *key = [timeString stringByAppendingString:[@"-" stringByAppendingString:[NSString stringWithFormat:@"%d", number]]];
     day = [day stringByAppendingString:@"-"];

@@ -52,14 +52,14 @@
     
     
     //Set the labels
-    medLabel= [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(10, 0 ,self.bounds.size.width, mainView.bounds.size.height * 0.67)];
+    medLabel= [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(10, 0 ,self.bounds.size.width * 0.7, mainView.bounds.size.height * 0.67)];
     medLabel.textColor = [UIColor blackColor];
     medLabel.backgroundColor = [UIColor clearColor];
     [medLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:mainView.bounds.size.height * 0.4]];
-    [medLabel setAdjustsFontSizeToFitWidth:YES];
+    //[medLabel setAdjustsFontSizeToFitWidth:YES];
     [medLabel setTextColor:[UIColor colorWithRed:94/255.0 green:94/255.0 blue:94/255.0 alpha:1.0]];
     
-    chemLabel = [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(12, mainView.bounds.size.height * 0.37, self.bounds.size.width, mainView.bounds.size.height-10)];
+    chemLabel = [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(12, mainView.bounds.size.height * 0.37, self.bounds.size.width * 0.7, mainView.bounds.size.height-10)];
     chemLabel.textColor = [UIColor blackColor];
     chemLabel.backgroundColor = [UIColor clearColor];
     [chemLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:mainView.bounds.size.height * 0.28]];

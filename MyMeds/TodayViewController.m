@@ -27,7 +27,6 @@
 #define kBGColor [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0]
 
 #define IS_NO_MEDS_TODAY [amMeds count] == 0 && [pmMeds count] == 0 && [Constants compareDate:[NSDate date] withOtherdate:futureDate]
-
 #define IS_NO_MEDS_FUTURE_DAY [amMeds count] == 0 && [pmMeds count] == 0
 
 @implementation TodayViewController
@@ -190,11 +189,14 @@
         
         header = [[NSMutableArray alloc] init];
         if([amMeds count] == 0 && [pmMeds count] == 0){
-            if(IS_NO_MEDS_TODAY){
-                [self setupEmptyStateWithImage:@"completed" AndText:@"Completed All Meds For Today!"];
+            NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:@"Date"];
+            if (!date){
+                [self setupEmptyStateWithImage:@"nomeds" AndText:@"No Meds Yet." AndSubText:@"Click the 'meds' tab to add meds"];
             }
-            else if(IS_NO_MEDS_FUTURE_DAY){
-                [self setupEmptyStateWithImage:@"nomedsday" AndText:@"No Meds For The Day!"];
+            else if(IS_NO_MEDS_TODAY){
+                [self setupEmptyStateWithImage:@"completed" AndText:@"Completed All Meds For Today!" AndSubText:@""];
+            } else if(IS_NO_MEDS_FUTURE_DAY){
+                [self setupEmptyStateWithImage:@"nomedsday" AndText:@"No Meds For The Day!" AndSubText:@""];
             }
         } else if([amMeds count] == 0){
             [header addObject:@"PM"];
@@ -248,10 +250,10 @@
     }
     if([amMeds count] == 0 && [pmMeds count] == 0){
         if(IS_NO_MEDS_TODAY){
-            [self setupEmptyStateWithImage:@"completed" AndText:@"Completed All Meds For Today!"];
+            [self setupEmptyStateWithImage:@"completed" AndText:@"Completed All Meds For Today!" AndSubText:@""];
         }
         else if(IS_NO_MEDS_FUTURE_DAY){
-            [self setupEmptyStateWithImage:@"nomedday" AndText:@"No Meds For The Day!"];
+            [self setupEmptyStateWithImage:@"nomedday" AndText:@"No Meds For The Day!" AndSubText:@""];
         }
     } else if([amMeds count] == 0){
         [self removeEmptyState];
@@ -287,10 +289,10 @@
     [self.view setFrame:CGRectMake(0, 0, [Constants window_width], [Constants window_height])];
     
      if(IS_NO_MEDS_TODAY){
-         [self setupEmptyStateWithImage:@"completed" AndText:@"Completed All Meds For Today!"];
+         [self setupEmptyStateWithImage:@"completed" AndText:@"Completed All Meds For Today!" AndSubText:@""];
      }
      else if(IS_NO_MEDS_FUTURE_DAY){
-         [self setupEmptyStateWithImage:@"nomedday" AndText:@"No Meds For The Day!"];
+         [self setupEmptyStateWithImage:@"nomedday" AndText:@"No Meds For The Day!" AndSubText:@""];
      }
      else {
         
@@ -365,7 +367,7 @@
 
 
 // Method used to setup empty states
-- (void)setupEmptyStateWithImage:(NSString*)image AndText:(NSString*)text {
+- (void)setupEmptyStateWithImage:(NSString*)image AndText:(NSString*)text AndSubText:(NSString*)subText {
     [completedView removeFromSuperview];
     
     completedView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.navigationController.view.frame.size.height - 44)];
@@ -379,7 +381,14 @@
     [completedText setTextColor:[UIColor lightGrayColor]];
     [completedText setFont:[UIFont systemFontOfSize:20]];
     
+    UILabel *completedText2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 150 + [Constants window_width]/2, [Constants window_width], 30)];
+    [completedText2 setTextAlignment:NSTextAlignmentCenter];
+    [completedText2 setText:subText];
+    [completedText2 setTextColor:[UIColor lightGrayColor]];
+    [completedText2 setFont:[UIFont systemFontOfSize:20]];
+    
     [completedView addSubview:completedText];
+    [completedView addSubview:completedText2];
     [completedView addSubview:completedImage];
     
     [self.view addSubview:completedView];

@@ -50,7 +50,7 @@
 - (void)setupViews;
 - (void)setupTabBar;
 - (void)setupCalendar;
-- (void)setupEmptyStateWithImage:(NSString*)image AndText:(NSString*)text;
+- (void)setupEmptyStateWithImage:(NSString*)image AndText:(NSString*)text AndSubText:(NSString*)subText;
 - (void)removeEmptyState;
 
 - (void)showCompliance;
