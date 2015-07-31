@@ -487,6 +487,10 @@
     [view addSubview:label];
     [view setBackgroundColor:[Constants getNavBarColor]];
     
+    UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(0, 29, view.frame.size.width, 0.5)];
+    [separator setBackgroundColor:[UIColor darkGrayColor]];
+    [view addSubview:separator];
+    
     return view;
 }
 
