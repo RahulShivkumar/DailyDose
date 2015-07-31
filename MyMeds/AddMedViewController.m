@@ -475,7 +475,7 @@
         [med commit];
         
         NSString *today = [Constants getCurrentDayFromDate:[NSDate date]];
-        if((BOOL)[dayPicker.days objectForKey:[today lowercaseString]]){
+        if(hour <= [[times objectAtIndex:i] floatValue] && (BOOL)[dayPicker.days objectForKey:[today lowercaseString]]){
             TodayMedication *todayMed = [TodayMedication new];
             [todayMed createFromMedication:med];
             [todayMed commit];
