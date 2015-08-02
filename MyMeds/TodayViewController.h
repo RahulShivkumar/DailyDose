@@ -15,14 +15,10 @@
 #import "TodayMedication.h"
 #import "EventLogger.h"
 #import "MedsCell.h"
-<<<<<<< HEAD
 #import "MissedViewController.h"
-
-
-=======
 #import "RTWalkthroughPageViewController.h"
 #import "RTWalkthroughViewController.h"
->>>>>>> tyler-new
+
 
 @interface TodayViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MenuControllerDelegate, RTWalkthroughPageViewControllerDelegate, RTWalkthroughViewControllerDelegate>{
     

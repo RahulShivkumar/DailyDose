@@ -407,12 +407,7 @@
     [completedView removeFromSuperview];
 }
 
-- (void)addTutorial {
 
-  if ([amMeds count] + [pmMeds count] > 0) {
-        
-   }
-}
 #pragma mark - Table view delegate methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     //  Return the number of sections.

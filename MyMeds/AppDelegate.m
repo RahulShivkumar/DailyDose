@@ -58,10 +58,6 @@
         [self.window addSubview:pvc.view];
         [self.window makeKeyAndVisible];
         [pvc showLockScreenWithAnimation:YES withLogout:NO andLogoutTitle:nil];
-<<<<<<< HEAD
-
-=======
->>>>>>> tyler-new
     }
     
 
