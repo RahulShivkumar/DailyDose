@@ -18,7 +18,9 @@
     [Constants setupNavbar:self];
     [self.navigationItem setTitle:@"Settings"];
     
+    
     [self.securityCell setTarget:self action:@selector(securityToggle)];
+    [self setSecurityTitle];
 
     [self.buttonCell setTarget:self action:@selector(showButtonAlert)];
     self.buttonCell.defaultFooterTitle = @"© Klinik Solutions";
@@ -49,26 +51,34 @@
 
 
 - (void)securityToggle {
-    
-    LTHPasscodeViewController *hi = [LTHPasscodeViewController sharedUser];
+    LTHPasscodeViewController *pvc = [LTHPasscodeViewController sharedUser];
+    pvc.delegate = self;
     if ([LTHPasscodeViewController doesPasscodeExist] &&
         [LTHPasscodeViewController didPasscodeTimerEnd]) {
-        [hi showForDisablingPasscodeInViewController:self asModal:NO];
+        [pvc showForDisablingPasscodeInViewController:self asModal:NO];
     }else{
-        [hi showForEnablingPasscodeInViewController:self asModal:NO];
+        [pvc showForEnablingPasscodeInViewController:self asModal:NO];
     }
-    
-    
-    /*
+}
+
+- (void)setSecurityTitle {
     if ([LTHPasscodeViewController doesPasscodeExist] &&
         [LTHPasscodeViewController didPasscodeTimerEnd]) {
-        [[LTHPasscodeViewController sharedUser] showForDisablingPasscodeInViewController:self
-                                                                                 asModal:NO];
+        self.securityCell.textLabel.text = @"Disable Security Lock";
     }else{
-        [[LTHPasscodeViewController sharedUser] showForEnablingPasscodeInViewController:self
-                                                                                asModal:NO];
-    }*/
+        self.securityCell.textLabel.text = @"Enable Security Lock";
+    }
 }
+
+
+
+
+# pragma mark - LTHPasscodeViewController Delegates
+
+- (void)passcodeViewControllerWillClose {
+    [self setSecurityTitle];
+}
+
 
 
 #pragma mark - Mail Delegate 
@@ -76,6 +86,5 @@
     //Add an alert in case of failure
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 @end
