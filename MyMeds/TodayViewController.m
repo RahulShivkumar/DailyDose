@@ -769,7 +769,7 @@
     
     BOOL walkthrough = [[NSUserDefaults standardUserDefaults] boolForKey:@"walkthrough"];
     
-    if (YES) {
+    if (!walkthrough) {
         UIStoryboard *stb = [UIStoryboard storyboardWithName:@"Walkthrough" bundle:nil];
         RTWalkthroughViewController *walkthrough = [stb instantiateViewControllerWithIdentifier:@"walk"];
         
