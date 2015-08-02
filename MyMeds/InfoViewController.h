@@ -14,7 +14,7 @@
 #import "TodayMedication.h"
 #import "NotificationScheduler.h"
 
-@interface InfoViewController : UIViewController{
+@interface InfoViewController : UIViewController <UIAlertViewDelegate>{
     UIButton *close;
     UIButton *edit;
     UIButton *endMed;

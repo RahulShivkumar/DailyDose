@@ -228,7 +228,6 @@
 		B7C27E561A76E65A00DFB416 /* AnalyzeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnalyzeViewController.m; sourceTree = "<group>"; };
 		B7FC56FC1B0E4BAC00A1828A /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B7FC56FF1B0E4BC400A1828A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		DABABB42CDEFE8B0B3D15C42 /* libPods-MyMeds.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MyMeds.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,7 +273,6 @@
 			isa = PBXGroup;
 			children = (
 				B76070E61B58C5840075176B /* CoreImage.framework */,
-				DABABB42CDEFE8B0B3D15C42 /* libPods-MyMeds.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -406,6 +404,13 @@
 			name = "Passcode Control";
 			sourceTree = "<group>";
 		};
+		B7B118561B6DDE6400C79E2C /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Tutorial;
+			sourceTree = "<group>";
+		};
 		B7B43F051B519F240063FEA3 /* Bohr Settings View */ = {
 			isa = PBXGroup;
 			children = (
@@ -485,6 +490,7 @@
 		B7C27E191A76AA8100DFB416 /* MyMeds */ = {
 			isa = PBXGroup;
 			children = (
+				B7B118561B6DDE6400C79E2C /* Tutorial */,
 				B7B1184F1B6DB51800C79E2C /* Passcode Control */,
 				B7E4C06D1B5B321400EE5226 /* Custom Controls */,
 				B7E4C06B1B5B31D600EE5226 /* Custom Views */,

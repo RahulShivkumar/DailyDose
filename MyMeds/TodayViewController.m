@@ -7,11 +7,6 @@
 // 
 
 #import "TodayViewController.h"
-#import "MedsCell.h"
-#import "InfoViewController.h"
-#import "Medication.h"
-#import "MissedViewController.h"
-#import <QuartzCore/QuartzCore.h>
 
 
 
@@ -165,6 +160,8 @@
         else {
             [[NSUserDefaults standardUserDefaults] setObject:current forKey:@"Date"];
             [[NSUserDefaults standardUserDefaults] synchronize];
+            
+
         }
         
         // Clear Today_Meds and load it with new data
@@ -321,6 +318,7 @@
     [self setupTabBar];
     [self setupNavBar];
     [self setupCalendar];
+    [self addTutorial];
 }
 
 
@@ -402,8 +400,16 @@
     [self.view addSubview:completedView];
 }
 
--(void)removeEmptyState {
+
+- (void)removeEmptyState {
     [completedView removeFromSuperview];
+}
+
+- (void)addTutorial {
+
+  if ([amMeds count] + [pmMeds count] > 0) {
+        
+   }
 }
 #pragma mark - Table view delegate methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
