@@ -9,11 +9,14 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import "BOTableViewController.h"
+#import "LTHPasscodeViewController.h"
 #import "Constants.h"
 #import "Bohr.h"
 
 @interface SettingsViewController : BOTableViewController <MFMailComposeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet BOButtonTableViewCell *buttonCell;
+
+@property (weak, nonatomic) IBOutlet BOButtonTableViewCell *securityCell;
 
 @end

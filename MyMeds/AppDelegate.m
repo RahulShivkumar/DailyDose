@@ -48,6 +48,17 @@
         [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeSound|UIUserNotificationTypeBadge
                                                                                                               categories:nil]];
     }
+    
+    
+    
+    if ([LTHPasscodeViewController doesPasscodeExist] &&
+        [LTHPasscodeViewController didPasscodeTimerEnd]) {
+        LTHPasscodeViewController *hi = [LTHPasscodeViewController sharedUser];
+        //[[self navController] pushViewController:hi animated:YES];
+        [self.window addSubview:hi.view];
+        [self.window makeKeyAndVisible];
+        [hi showLockScreenWithAnimation:YES withLogout:NO andLogoutTitle:nil];
+    }
 
     return YES;
     
