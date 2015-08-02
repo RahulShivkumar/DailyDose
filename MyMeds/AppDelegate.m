@@ -11,9 +11,11 @@
 #import "OverviewViewController.h"
 #import "AnalyzeViewController.h"
 #import "SettingsViewController.h"
+#import "LTHPasscodeViewController.h"
 #import "Amplitude.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+
 
 
 @interface AppDelegate ()
@@ -21,7 +23,6 @@
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
@@ -49,15 +50,16 @@
                                                                                                               categories:nil]];
     }
     
-    
-    
+    //If passcode is enabled, show lock screen
     if ([LTHPasscodeViewController doesPasscodeExist] &&
         [LTHPasscodeViewController didPasscodeTimerEnd]) {
-        LTHPasscodeViewController *passCode = [LTHPasscodeViewController sharedUser];
-        [self.window addSubview:passCode.view];
+        LTHPasscodeViewController *pvc = [LTHPasscodeViewController sharedUser];
+        [self.window addSubview:pvc.view];
         [self.window makeKeyAndVisible];
-        [passCode showLockScreenWithAnimation:YES withLogout:NO andLogoutTitle:nil];
+        [pvc showLockScreenWithAnimation:YES withLogout:NO andLogoutTitle:nil];
+
     }
+    
 
     return YES;
     

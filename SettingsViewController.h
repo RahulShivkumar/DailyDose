@@ -13,7 +13,7 @@
 #import "Constants.h"
 #import "Bohr.h"
 
-@interface SettingsViewController : BOTableViewController <MFMailComposeViewControllerDelegate>
+@interface SettingsViewController : BOTableViewController <MFMailComposeViewControllerDelegate, LTHPasscodeViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet BOButtonTableViewCell *buttonCell;
 

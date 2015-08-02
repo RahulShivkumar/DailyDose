@@ -1564,10 +1564,10 @@ options:NSNumericSearch] != NSOrderedAscending)
 
 
 - (void)_loadKeychainDefaults {
-    _keychainPasscodeUsername = @"demoPasscode";
-    _keychainTimerStartUsername = @"demoPasscodeTimerStart";
-    _keychainServiceName = @"demoServiceName";
-    _keychainTimerDurationUsername = @"passcodeTimerDuration";
+    _keychainPasscodeUsername = @"medsPasscode";
+    _keychainTimerStartUsername = @"medsPasscodeTimerStart";
+    _keychainServiceName = @"medsServiceName";
+    _keychainTimerDurationUsername = @"medspasscodeTimerDuration";
 }
 
 
