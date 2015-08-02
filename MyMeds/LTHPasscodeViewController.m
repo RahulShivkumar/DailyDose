@@ -1445,7 +1445,7 @@ options:NSNumericSearch] != NSOrderedAscending)
 + (instancetype)sharedUser {
     __strong static LTHPasscodeViewController *sharedObject = nil;
     [sharedObject becomeFirstResponder];
-    
+    [sharedObject setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
 	static dispatch_once_t pred;
 	dispatch_once(&pred, ^{
 		sharedObject = [[self alloc] init];

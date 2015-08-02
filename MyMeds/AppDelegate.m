@@ -53,11 +53,10 @@
     
     if ([LTHPasscodeViewController doesPasscodeExist] &&
         [LTHPasscodeViewController didPasscodeTimerEnd]) {
-        LTHPasscodeViewController *hi = [LTHPasscodeViewController sharedUser];
-        //[[self navController] pushViewController:hi animated:YES];
-        [self.window addSubview:hi.view];
+        LTHPasscodeViewController *passCode = [LTHPasscodeViewController sharedUser];
+        [self.window addSubview:passCode.view];
         [self.window makeKeyAndVisible];
-        [hi showLockScreenWithAnimation:YES withLogout:NO andLogoutTitle:nil];
+        [passCode showLockScreenWithAnimation:YES withLogout:NO andLogoutTitle:nil];
     }
 
     return YES;
