@@ -90,6 +90,8 @@
 // Methods called in viewDidAppear so that the views are refreshed
 -(void)viewDidAppear:(BOOL)animated{
     
+    [self addTutorial];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(appReturnsActive) name:UIApplicationDidBecomeActiveNotification
                                                object:nil];
@@ -758,6 +760,37 @@
     
     DBResultSet *newdDBRS = (DBResultSet*)[NSArray arrayWithArray:temp];
     return [NSMutableArray arrayWithArray: newdDBRS];
+}
+
+#pragma mark - Add Tutorial 
+
+- (void)addTutorial {
+    
+    BOOL walkthrough = [[NSUserDefaults standardUserDefaults] boolForKey:@"walkthrough"];
+    
+    if (YES) {
+        UIStoryboard *stb = [UIStoryboard storyboardWithName:@"Walkthrough" bundle:nil];
+        RTWalkthroughViewController *walkthrough = [stb instantiateViewControllerWithIdentifier:@"walk"];
+        
+        RTWalkthroughPageViewController *pageOne = [stb instantiateViewControllerWithIdentifier:@"walk1"];
+        RTWalkthroughPageViewController *pageTwo = [stb instantiateViewControllerWithIdentifier:@"walk2"];
+        RTWalkthroughPageViewController *pageThree = [stb instantiateViewControllerWithIdentifier:@"walk3"];
+        
+        walkthrough.delegate = self;
+        [walkthrough addViewController:pageOne];
+        [walkthrough addViewController:pageTwo];
+        [walkthrough addViewController:pageThree];
+        
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"walkthrough"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [self presentViewController:walkthrough animated:YES completion:nil];
+    }
+}
+
+- (void)walkthroughControllerDidClose:(RTWalkthroughViewController *)controller {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

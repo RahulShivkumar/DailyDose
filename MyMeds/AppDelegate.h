@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <DBAccess/DBAccess.h>
+#import "RTWalkthroughPageViewController.h"
+#import "RTWalkthroughViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, DBDelegate>
 

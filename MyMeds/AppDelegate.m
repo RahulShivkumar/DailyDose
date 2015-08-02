@@ -16,7 +16,7 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
-
+#define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
 
 @interface AppDelegate ()
 
@@ -58,7 +58,6 @@
         [self.window makeKeyAndVisible];
         [pvc showLockScreenWithAnimation:YES withLogout:NO andLogoutTitle:nil];
     }
-    
 
     return YES;
     
@@ -134,5 +133,7 @@
         completionHandler();
     }
 }
+
+
 
 @end
