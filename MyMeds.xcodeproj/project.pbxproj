@@ -48,6 +48,8 @@
 		B7A5FBF81B5A1BCF00C7BAC8 /* UIImage+OrientationFix.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A5FBF71B5A1BCF00C7BAC8 /* UIImage+OrientationFix.m */; };
 		B7A669541B40C27500AE7566 /* EventLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B7A669531B40C27500AE7566 /* EventLogger.m */; };
 		B7AAC02D1A834A1300BC6B2C /* Medication.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AAC02C1A834A1300BC6B2C /* Medication.m */; };
+		B7B1184D1B6DB50F00C79E2C /* LTHKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B1184A1B6DB50F00C79E2C /* LTHKeychainUtils.m */; };
+		B7B1184E1B6DB50F00C79E2C /* LTHPasscodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B1184C1B6DB50F00C79E2C /* LTHPasscodeViewController.m */; };
 		B7B43EE21B50E5340063FEA3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B43EE11B50E5340063FEA3 /* MessageUI.framework */; };
 		B7B43EFC1B519F1F0063FEA3 /* BOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B43EE81B519F1E0063FEA3 /* BOTableViewController.m */; };
 		B7B43EFD1B519F1F0063FEA3 /* BOTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B43EEB1B519F1E0063FEA3 /* BOTableViewCell.m */; };
@@ -161,6 +163,10 @@
 		B7A669531B40C27500AE7566 /* EventLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventLogger.m; sourceTree = "<group>"; };
 		B7AAC02B1A834A1300BC6B2C /* Medication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Medication.h; sourceTree = "<group>"; };
 		B7AAC02C1A834A1300BC6B2C /* Medication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Medication.m; sourceTree = "<group>"; };
+		B7B118491B6DB50F00C79E2C /* LTHKeychainUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTHKeychainUtils.h; sourceTree = "<group>"; };
+		B7B1184A1B6DB50F00C79E2C /* LTHKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTHKeychainUtils.m; sourceTree = "<group>"; };
+		B7B1184B1B6DB50F00C79E2C /* LTHPasscodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTHPasscodeViewController.h; sourceTree = "<group>"; };
+		B7B1184C1B6DB50F00C79E2C /* LTHPasscodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTHPasscodeViewController.m; sourceTree = "<group>"; };
 		B7B43EE11B50E5340063FEA3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		B7B43EE61B519F1E0063FEA3 /* Bohr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bohr.h; sourceTree = "<group>"; };
 		B7B43EE71B519F1E0063FEA3 /* BOTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOTableViewController.h; sourceTree = "<group>"; };
@@ -389,6 +395,17 @@
 			name = "Amplitude SDK";
 			sourceTree = "<group>";
 		};
+		B7B1184F1B6DB51800C79E2C /* Passcode Control */ = {
+			isa = PBXGroup;
+			children = (
+				B7B118491B6DB50F00C79E2C /* LTHKeychainUtils.h */,
+				B7B1184A1B6DB50F00C79E2C /* LTHKeychainUtils.m */,
+				B7B1184B1B6DB50F00C79E2C /* LTHPasscodeViewController.h */,
+				B7B1184C1B6DB50F00C79E2C /* LTHPasscodeViewController.m */,
+			);
+			name = "Passcode Control";
+			sourceTree = "<group>";
+		};
 		B7B43F051B519F240063FEA3 /* Bohr Settings View */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,6 +485,7 @@
 		B7C27E191A76AA8100DFB416 /* MyMeds */ = {
 			isa = PBXGroup;
 			children = (
+				B7B1184F1B6DB51800C79E2C /* Passcode Control */,
 				B7E4C06D1B5B321400EE5226 /* Custom Controls */,
 				B7E4C06B1B5B31D600EE5226 /* Custom Views */,
 				B708D8551B5AF85F0080B22B /* Image Processor */,
@@ -688,6 +706,7 @@
 			files = (
 				B7988D601A7B350A0061DF8C /* MedsCell.m in Sources */,
 				B7A669541B40C27500AE7566 /* EventLogger.m in Sources */,
+				B7B1184D1B6DB50F00C79E2C /* LTHKeychainUtils.m in Sources */,
 				B764A1941AB9041B0068A119 /* AddMedViewController.m in Sources */,
 				B7698C081B576CF1008B6AFA /* GraphData.m in Sources */,
 				B7B43F171B51B7220063FEA3 /* BEMPermanentPopupView.m in Sources */,
@@ -712,6 +731,7 @@
 				B7C27E1D1A76AA8100DFB416 /* main.m in Sources */,
 				B7B43EFD1B519F1F0063FEA3 /* BOTableViewCell.m in Sources */,
 				B7322A471A8AD3720057B916 /* MenuController.m in Sources */,
+				B7B1184E1B6DB50F00C79E2C /* LTHPasscodeViewController.m in Sources */,
 				B7B43F041B519F1F0063FEA3 /* BOSetting.m in Sources */,
 				B7B43F031B519F1F0063FEA3 /* BOButtonTableViewCell.m in Sources */,
 				B7B43F131B51B7220063FEA3 /* BEMSimpleLineGraphView.m in Sources */,
