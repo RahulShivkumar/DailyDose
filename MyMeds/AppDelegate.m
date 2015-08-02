@@ -16,6 +16,7 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
+#define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
 
 
 @interface AppDelegate ()
@@ -57,7 +58,10 @@
         [self.window addSubview:pvc.view];
         [self.window makeKeyAndVisible];
         [pvc showLockScreenWithAnimation:YES withLogout:NO andLogoutTitle:nil];
+<<<<<<< HEAD
 
+=======
+>>>>>>> tyler-new
     }
     
 
@@ -135,5 +139,7 @@
         completionHandler();
     }
 }
+
+
 
 @end

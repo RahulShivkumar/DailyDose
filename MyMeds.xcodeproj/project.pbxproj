@@ -50,6 +50,18 @@
 		B7AAC02D1A834A1300BC6B2C /* Medication.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AAC02C1A834A1300BC6B2C /* Medication.m */; };
 		B7B1184D1B6DB50F00C79E2C /* LTHKeychainUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B1184A1B6DB50F00C79E2C /* LTHKeychainUtils.m */; };
 		B7B1184E1B6DB50F00C79E2C /* LTHPasscodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B1184C1B6DB50F00C79E2C /* LTHPasscodeViewController.m */; };
+		B7B118641B6E8F4F00C79E2C /* RTWalkthroughViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B118611B6E8F4F00C79E2C /* RTWalkthroughViewController.m */; };
+		B7B118651B6E8F4F00C79E2C /* RTWalkthroughPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B118631B6E8F4F00C79E2C /* RTWalkthroughPageViewController.m */; };
+		B7B118681B6E8F7600C79E2C /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7B118671B6E8F7600C79E2C /* Walkthrough.storyboard */; };
+		B7B118711B6E90AD00C79E2C /* bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B7B118691B6E90AD00C79E2C /* bg@2x.jpg */; };
+		B7B118721B6E90AD00C79E2C /* img3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1186A1B6E90AD00C79E2C /* img3@2x.png */; };
+		B7B118731B6E90AD00C79E2C /* iPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1186B1B6E90AD00C79E2C /* iPhone@2x.png */; };
+		B7B118741B6E90AD00C79E2C /* leftarrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1186C1B6E90AD00C79E2C /* leftarrow@2x.png */; };
+		B7B118751B6E90AD00C79E2C /* rightarrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1186D1B6E90AD00C79E2C /* rightarrow@2x.png */; };
+		B7B118761B6E90AD00C79E2C /* cloud1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1186E1B6E90AD00C79E2C /* cloud1@2x.png */; };
+		B7B118771B6E90AD00C79E2C /* cloud3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B1186F1B6E90AD00C79E2C /* cloud3@2x.png */; };
+		B7B118781B6E90AD00C79E2C /* iPhoneScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B7B118701B6E90AD00C79E2C /* iPhoneScreen@2x.png */; };
+		B7B1187B1B6E911400C79E2C /* RTCustomPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B1187A1B6E911400C79E2C /* RTCustomPageViewController.m */; };
 		B7B43EE21B50E5340063FEA3 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7B43EE11B50E5340063FEA3 /* MessageUI.framework */; };
 		B7B43EFC1B519F1F0063FEA3 /* BOTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B43EE81B519F1E0063FEA3 /* BOTableViewController.m */; };
 		B7B43EFD1B519F1F0063FEA3 /* BOTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B43EEB1B519F1E0063FEA3 /* BOTableViewCell.m */; };
@@ -167,6 +179,21 @@
 		B7B1184A1B6DB50F00C79E2C /* LTHKeychainUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTHKeychainUtils.m; sourceTree = "<group>"; };
 		B7B1184B1B6DB50F00C79E2C /* LTHPasscodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTHPasscodeViewController.h; sourceTree = "<group>"; };
 		B7B1184C1B6DB50F00C79E2C /* LTHPasscodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTHPasscodeViewController.m; sourceTree = "<group>"; };
+		B7B118601B6E8F4F00C79E2C /* RTWalkthroughViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTWalkthroughViewController.h; sourceTree = "<group>"; };
+		B7B118611B6E8F4F00C79E2C /* RTWalkthroughViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTWalkthroughViewController.m; sourceTree = "<group>"; };
+		B7B118621B6E8F4F00C79E2C /* RTWalkthroughPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTWalkthroughPageViewController.h; sourceTree = "<group>"; };
+		B7B118631B6E8F4F00C79E2C /* RTWalkthroughPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTWalkthroughPageViewController.m; sourceTree = "<group>"; };
+		B7B118671B6E8F7600C79E2C /* Walkthrough.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Walkthrough.storyboard; sourceTree = "<group>"; };
+		B7B118691B6E90AD00C79E2C /* bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "bg@2x.jpg"; sourceTree = "<group>"; };
+		B7B1186A1B6E90AD00C79E2C /* img3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img3@2x.png"; sourceTree = "<group>"; };
+		B7B1186B1B6E90AD00C79E2C /* iPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone@2x.png"; sourceTree = "<group>"; };
+		B7B1186C1B6E90AD00C79E2C /* leftarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leftarrow@2x.png"; sourceTree = "<group>"; };
+		B7B1186D1B6E90AD00C79E2C /* rightarrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rightarrow@2x.png"; sourceTree = "<group>"; };
+		B7B1186E1B6E90AD00C79E2C /* cloud1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloud1@2x.png"; sourceTree = "<group>"; };
+		B7B1186F1B6E90AD00C79E2C /* cloud3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloud3@2x.png"; sourceTree = "<group>"; };
+		B7B118701B6E90AD00C79E2C /* iPhoneScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhoneScreen@2x.png"; sourceTree = "<group>"; };
+		B7B118791B6E911400C79E2C /* RTCustomPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCustomPageViewController.h; sourceTree = "<group>"; };
+		B7B1187A1B6E911400C79E2C /* RTCustomPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCustomPageViewController.m; sourceTree = "<group>"; };
 		B7B43EE11B50E5340063FEA3 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		B7B43EE61B519F1E0063FEA3 /* Bohr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bohr.h; sourceTree = "<group>"; };
 		B7B43EE71B519F1E0063FEA3 /* BOTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BOTableViewController.h; sourceTree = "<group>"; };
@@ -404,9 +431,24 @@
 			name = "Passcode Control";
 			sourceTree = "<group>";
 		};
-		B7B118561B6DDE6400C79E2C /* Tutorial */ = {
+		B7B118661B6E8F5800C79E2C /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				B7B118691B6E90AD00C79E2C /* bg@2x.jpg */,
+				B7B1186A1B6E90AD00C79E2C /* img3@2x.png */,
+				B7B1186B1B6E90AD00C79E2C /* iPhone@2x.png */,
+				B7B1186C1B6E90AD00C79E2C /* leftarrow@2x.png */,
+				B7B1186D1B6E90AD00C79E2C /* rightarrow@2x.png */,
+				B7B1186E1B6E90AD00C79E2C /* cloud1@2x.png */,
+				B7B1186F1B6E90AD00C79E2C /* cloud3@2x.png */,
+				B7B118701B6E90AD00C79E2C /* iPhoneScreen@2x.png */,
+				B7B118671B6E8F7600C79E2C /* Walkthrough.storyboard */,
+				B7B118791B6E911400C79E2C /* RTCustomPageViewController.h */,
+				B7B1187A1B6E911400C79E2C /* RTCustomPageViewController.m */,
+				B7B118601B6E8F4F00C79E2C /* RTWalkthroughViewController.h */,
+				B7B118611B6E8F4F00C79E2C /* RTWalkthroughViewController.m */,
+				B7B118621B6E8F4F00C79E2C /* RTWalkthroughPageViewController.h */,
+				B7B118631B6E8F4F00C79E2C /* RTWalkthroughPageViewController.m */,
 			);
 			name = Tutorial;
 			sourceTree = "<group>";
@@ -490,7 +532,8 @@
 		B7C27E191A76AA8100DFB416 /* MyMeds */ = {
 			isa = PBXGroup;
 			children = (
-				B7B118561B6DDE6400C79E2C /* Tutorial */,
+
+				B7B118661B6E8F5800C79E2C /* Tutorial */,
 				B7B1184F1B6DB51800C79E2C /* Passcode Control */,
 				B7E4C06D1B5B321400EE5226 /* Custom Controls */,
 				B7E4C06B1B5B31D600EE5226 /* Custom Views */,
@@ -675,8 +718,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				B777650E1B63376000F85E00 /* drugsdb.json in Resources */,
+				B7B118681B6E8F7600C79E2C /* Walkthrough.storyboard in Resources */,
+				B7B118721B6E90AD00C79E2C /* img3@2x.png in Resources */,
+				B7B118741B6E90AD00C79E2C /* leftarrow@2x.png in Resources */,
 				B700AB1D1A7ECE280034EF14 /* Main.storyboard in Resources */,
 				B7C27E2B1A76AA8100DFB416 /* Images.xcassets in Resources */,
+				B7B118761B6E90AD00C79E2C /* cloud1@2x.png in Resources */,
+				B7B118781B6E90AD00C79E2C /* iPhoneScreen@2x.png in Resources */,
+				B7B118731B6E90AD00C79E2C /* iPhone@2x.png in Resources */,
+				B7B118711B6E90AD00C79E2C /* bg@2x.jpg in Resources */,
+				B7B118751B6E90AD00C79E2C /* rightarrow@2x.png in Resources */,
+				B7B118771B6E90AD00C79E2C /* cloud3@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,6 +784,7 @@
 				B7B43F021B519F1F0063FEA3 /* BOOptionTableViewCell.m in Sources */,
 				B7212D6D1B49E042005C89B8 /* NotificationScheduler.m in Sources */,
 				B772FC4E1AFD60A2001CB237 /* EditMedsController.m in Sources */,
+				B7B118651B6E8F4F00C79E2C /* RTWalkthroughPageViewController.m in Sources */,
 				B7B43EFC1B519F1F0063FEA3 /* BOTableViewController.m in Sources */,
 				B7C27E231A76AA8100DFB416 /* TodayViewController.m in Sources */,
 				B7C27E1D1A76AA8100DFB416 /* main.m in Sources */,
@@ -749,6 +802,7 @@
 				B70CC81D1AED8E9B0042F1CE /* Constants.m in Sources */,
 				B7B43F151B51B7220063FEA3 /* BEMLine.m in Sources */,
 				B7B43EFE1B519F1F0063FEA3 /* BOSwitchTableViewCell.m in Sources */,
+				B7B1187B1B6E911400C79E2C /* RTCustomPageViewController.m in Sources */,
 				B7B43F011B519F1F0063FEA3 /* BOChoiceTableViewCell.m in Sources */,
 				B7196A4E1B478B670014DF3B /* Event.m in Sources */,
 				B73A942E1B44F4AA00590D79 /* TodayMedication.m in Sources */,
@@ -758,6 +812,7 @@
 				B7BF61AF1A8B25EF00F08413 /* CalendarButton.m in Sources */,
 				B7B632771B3F8E9D008DBE12 /* MPGTextField.m in Sources */,
 				B7AAC02D1A834A1300BC6B2C /* Medication.m in Sources */,
+				B7B118641B6E8F4F00C79E2C /* RTWalkthroughViewController.m in Sources */,
 				B7988D641A7B38C50061DF8C /* StrikeThroughLabel.m in Sources */,
 				B7C27E571A76E65A00DFB416 /* AnalyzeViewController.m in Sources */,
 				B75FAD681A9FBE140094ACE5 /* MissedViewController.m in Sources */,

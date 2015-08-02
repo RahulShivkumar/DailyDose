@@ -15,11 +15,16 @@
 #import "TodayMedication.h"
 #import "EventLogger.h"
 #import "MedsCell.h"
+<<<<<<< HEAD
 #import "MissedViewController.h"
 
 
+=======
+#import "RTWalkthroughPageViewController.h"
+#import "RTWalkthroughViewController.h"
+>>>>>>> tyler-new
 
-@interface TodayViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MenuControllerDelegate>{
+@interface TodayViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MenuControllerDelegate, RTWalkthroughPageViewControllerDelegate, RTWalkthroughViewControllerDelegate>{
     
     NSMutableArray *amMeds;
     NSMutableArray *pmMeds;
@@ -70,6 +75,8 @@
 - (void)appReturnsActive;
 
 - (NSMutableArray*)createTodayMedsArray:(NSMutableArray*)meds;
+
+- (void)addTutorial;
 
 @end
 
