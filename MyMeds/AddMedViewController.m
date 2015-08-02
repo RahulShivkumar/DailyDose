@@ -428,8 +428,7 @@
         }
         
 
-    }
-    else{
+    } else {
         NSString *incomplete = @"Please complete required field(s):";
         
         if (!medName.text || medName.text.length == 0){

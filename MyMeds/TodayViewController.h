@@ -13,11 +13,12 @@
 #import "ComplianceAnalyzer.h"
 #import "TodayMedication.h"
 #import "EventLogger.h"
+#import "MedsCell.h"
 
 @interface TodayViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MenuControllerDelegate>{
     
-    DBResultSet *amMeds;
-    DBResultSet *pmMeds;
+    NSMutableArray *amMeds;
+    NSMutableArray *pmMeds;
     
 //    NSMutableArray *futureAmMeds;
 //    NSMutableArray *futurePmMeds;
@@ -67,7 +68,7 @@
 - (UIStatusBarStyle)preferredStatusBarStyle;
 - (void)appReturnsActive;
 
-- (DBResultSet*)createTodayMedsArray:(DBResultSet*)meds;
+- (NSMutableArray*)createTodayMedsArray:(NSMutableArray*)meds;
 
 @end
 

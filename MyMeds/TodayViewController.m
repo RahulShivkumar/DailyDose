@@ -152,8 +152,8 @@
     NSString *query = [NSString stringWithFormat:@"%@ = 1 and time < 12", [dayOfWeek lowercaseString]];
     NSString *query2 = [NSString stringWithFormat:@"%@ = 1 and time >= 12", [dayOfWeek lowercaseString]];
     
-    amMeds = [[[[Medication query] where:query] orderBy:@"time" ] fetch];
-    pmMeds = [[[[Medication query] where:query2] orderBy:@"time"] fetch];
+    amMeds = [NSMutableArray arrayWithArray:[[[[Medication query] where:query] orderBy:@"time" ] fetch]];
+    pmMeds = [NSMutableArray arrayWithArray:[[[[Medication query] where:query2] orderBy:@"time"] fetch]];
     
     
     if(!future){
@@ -229,9 +229,9 @@
     
     // Get am and pm meds from today's sql table
     NSString *query = [NSString stringWithFormat:@"time > %f and time < 12", (float)hour -1];
-    amMeds = [[[[TodayMedication query] where:query] orderBy:@"time"] fetch];
+    amMeds = [NSMutableArray arrayWithArray:[[[[TodayMedication query] where:query] orderBy:@"time"] fetch]];
     query = [NSString stringWithFormat:@"time > %f and time >= 12", (float)hour -1];
-    pmMeds = [[[[TodayMedication query] where:query] orderBy:@"time"] fetch] ;
+    pmMeds = [NSMutableArray arrayWithArray:[[[[TodayMedication query] where:query] orderBy:@"time"] fetch]];
     
     // First lets see if there are any missed meds today
     if([Constants compareDate:[NSDate date] withOtherdate:date]){
@@ -375,6 +375,7 @@
 
 // Method used to setup empty states
 - (void)setupEmptyStateWithImage:(NSString*)image AndText:(NSString*)text AndSubText:(NSString*)subText {
+    [self.medsView removeFromSuperview];
     [completedView removeFromSuperview];
     
     completedView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.navigationController.view.frame.size.height - 44)];
@@ -579,6 +580,40 @@
     // Do stuff here...
 }
 
+#pragma mark Strike Delegate
+//- (void)strikeDelegate:(id)sender{
+//    MedsCell *medCell = (MedsCell *)sender;
+//    NSIndexPath *indexPath = [self.medsView indexPathForCell:medCell];
+//    Medication *med;
+//    
+//    if (indexPath.section == 0 && [amMeds count] > 0){
+//        med = [amMeds objectAtIndex:indexPath.row];
+//        [amMeds removeObjectAtIndex:indexPath.row];
+//    } else {
+//        med = [pmMeds objectAtIndex:indexPath.row];
+//        [pmMeds removeObjectAtIndex:indexPath.row];
+//    }
+//  
+//    [[[[TodayMedication query] whereWithFormat:@"coreMed = %@", med.coreMed] fetch] removeAll]
+//    [EventLogger logAction:@"taken" andMedication:med.coreMed andTime:med.time];
+//    
+//    double delayInSeconds = 0.5;
+//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//        //code to be executed on the main queue after delay
+//        [self.medsView beginUpdates];
+//        
+//        [self.medsView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil]
+//                             withRowAnimation:UITableViewRowAnimationFade];
+//        
+//        [self.medsView endUpdates];
+//    });
+//    
+//    if ([amMeds count] == 0 && [pmMeds count] == 0) {
+//        [self setupEmptyStateWithImage:@"completed" AndText:@"Completed All Meds For Today!" AndSubText:@""];
+//    }
+//}
+
 
 #pragma mark - IBActions
 // Method called to load info page
@@ -711,7 +746,7 @@
 
 
 #pragma mark - Convert Meds to Today Meds
-- (DBResultSet*)createTodayMedsArray:(DBResultSet*)meds{
+- (NSMutableArray*)createTodayMedsArray:(NSMutableArray*)meds{
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     
     for (Medication *m in meds){
@@ -722,7 +757,7 @@
     // [meds removeAll];
     
     DBResultSet *newdDBRS = (DBResultSet*)[NSArray arrayWithArray:temp];
-    return newdDBRS;
+    return [NSMutableArray arrayWithArray: newdDBRS];
 }
 
 @end

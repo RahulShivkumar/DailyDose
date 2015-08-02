@@ -248,6 +248,7 @@
     }
 }
 
+
 - (void)complete{
     // mark the item as complete and update the UI state
     medication.taken = YES;
@@ -287,7 +288,7 @@
     [undo setTitle:@"Taken" forState:UIControlStateNormal];
 }
 
--(void)roundCornersOnView:(UIView *)view onTopLeft:(BOOL)tl topRight:(BOOL)tr bottomLeft:(BOOL)bl bottomRight:(BOOL)br radius:(float)radius {
+- (void)roundCornersOnView:(UIView *)view onTopLeft:(BOOL)tl topRight:(BOOL)tr bottomLeft:(BOOL)bl bottomRight:(BOOL)br radius:(float)radius {
     
     if (tl || tr || bl || br) {
         UIRectCorner corner = 0; //holds the corner
