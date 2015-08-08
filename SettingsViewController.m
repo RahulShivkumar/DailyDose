@@ -25,7 +25,8 @@
     [self.buttonCell setTarget:self action:@selector(showButtonAlert)];
     self.buttonCell.defaultFooterTitle = @"© Klinik Solutions";
     
-    
+    [self.privacyCell setTarget:self action:@selector(showPrivacyPolicy)];
+    [self.termsCell setTarget:self action:@selector(showTermsConditions)];
     
     [self.tableView setScrollEnabled:NO];
 }
@@ -46,6 +47,13 @@
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
         }];
 
+    } else {
+        UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"Emailed Not Enabled"
+                                                           message:@"Please enable your enable email through the default mail app"
+                                                          delegate:nil
+                                                 cancelButtonTitle:nil
+                                                 otherButtonTitles:@"Continue", nil];
+        [theAlert show];
     }
 }
 
@@ -71,7 +79,16 @@
 }
 
 
+- (void)showTermsConditions {
+    SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:@"http://klinik.io/terms"];
+    [self.navigationController pushViewController:webViewController animated:YES];
 
+}
+
+- (void)showPrivacyPolicy {
+    SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:@"http://klinik.io/privacy"];
+    [self.navigationController pushViewController:webViewController animated:YES];
+}
 
 # pragma mark - LTHPasscodeViewController Delegates
 

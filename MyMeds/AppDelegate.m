@@ -18,6 +18,7 @@
 
 #define ROOTVIEW [[[UIApplication sharedApplication] keyWindow] rootViewController]
 
+
 @interface AppDelegate ()
 
 @end
@@ -58,6 +59,7 @@
         [self.window makeKeyAndVisible];
         [pvc showLockScreenWithAnimation:YES withLogout:NO andLogoutTitle:nil];
     }
+    
 
     return YES;
     

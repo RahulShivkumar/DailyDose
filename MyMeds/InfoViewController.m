@@ -236,31 +236,55 @@
 }
 
 - (IBAction)endCourse:(id)sender{
+    UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"End Course?"
+                                                       message:@"Ending a course will remove it from your schedule and send it to 'past' meds"
+                                                      delegate:self
+                                             cancelButtonTitle:@"Cancel"
+                                             otherButtonTitles:@"End Course", nil];
+    [theAlert show];
 
-    //Lets remove it from TodayMeds
-    [[[[TodayMedication query] whereWithFormat:@"coreMed = %@", cm] fetch] removeAll];
-    
-    cm.expired = 1;
-    cm.endDate = [NSDate date];
-    [cm commit];
-    
-    //Remove from local notification
-    [NotificationScheduler removeLocalNotificationWithCoreMedication:cm AndTimes:times];
-    
-    [self dismissViewControllerAnimated:YES
-                             completion:nil];
 }
 
 - (IBAction)deleteRecord:(id)sender {
-    
-    [[[[Medication query] whereWithFormat:@"coreMed = %@", cm] fetch] removeAll];
-    [[[[TodayMedication query] whereWithFormat:@"coreMed = %@", cm] fetch] removeAll];
-    [cm remove];
-    
-    [self dismissViewControllerAnimated:YES
-                             completion:nil];
+    UIAlertView *theAlert = [[UIAlertView alloc] initWithTitle:@"Delete This Med?"
+                                                       message:@"Deleting this med will remove it permanently from the app"
+                                                      delegate:self
+                                             cancelButtonTitle:@"Cancel"
+                                             otherButtonTitles:@"Delete", nil];
+    [theAlert show];
+
 }
 
+
+#pragma mark - UIAlertview delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    if([title isEqualToString:@"End Course"]) {
+        //Lets remove it from TodayMeds
+        [[[[TodayMedication query] whereWithFormat:@"coreMed = %@", cm] fetch] removeAll];
+        
+        cm.expired = 1;
+        cm.endDate = [NSDate date];
+        [cm commit];
+        
+        //Remove from local notification
+        [NotificationScheduler removeLocalNotificationWithCoreMedication:cm AndTimes:times];
+        
+        [self dismissViewControllerAnimated:YES
+                                 completion:nil];
+        
+    } else if([title isEqualToString:@"Delete"]) {
+        [[[[Medication query] whereWithFormat:@"coreMed = %@", cm] fetch] removeAll];
+        [[[[TodayMedication query] whereWithFormat:@"coreMed = %@", cm] fetch] removeAll];
+        [cm remove];
+        
+        [self dismissViewControllerAnimated:YES
+                                 completion:nil];
+    }
+    
+}
 
 
 @end

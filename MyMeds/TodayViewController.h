@@ -8,23 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import <DBAccess/DBAccess.h>
+#import <QuartzCore/QuartzCore.h>
 #import "MenuController.h"
 #import "Constants.h"
 #import "ComplianceAnalyzer.h"
 #import "TodayMedication.h"
 #import "EventLogger.h"
 #import "MedsCell.h"
+#import "MissedViewController.h"
 #import "RTWalkthroughPageViewController.h"
 #import "RTWalkthroughViewController.h"
+
 
 @interface TodayViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MenuControllerDelegate, RTWalkthroughPageViewControllerDelegate, RTWalkthroughViewControllerDelegate>{
     
     NSMutableArray *amMeds;
     NSMutableArray *pmMeds;
-    
-//    NSMutableArray *futureAmMeds;
-//    NSMutableArray *futurePmMeds;
-    
     NSMutableArray *header;
     
     DBResultSet *missedMeds;
@@ -45,6 +44,7 @@
 }
 
 @property (nonatomic, strong) UITableView *medsView;
+
 
 - (void)setupSqlDefaults:(NSDate*)date;
 - (void)setupTodayArrays:(NSDate *)date;
