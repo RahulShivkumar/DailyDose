@@ -406,14 +406,24 @@
         
         if ([set count] == 0) {
             
-            CoreMedication *coreMed = [CoreMedication new];
+            coreMed = [CoreMedication new];
             coreMed.genName = medName.text;
             coreMed.chemName = chemName.text;
             coreMed.expired = NO;
             coreMed.dosage = dosageNum.text;
             coreMed.startDate = [NSDate date];
             [coreMed commit];
-            [self addMeds:coreMed];
+            
+            
+            
+            //If the user has not been asked yet, ask if they would like to allow local notifications.
+            if ([PermissionView showMe]){
+                PermissionView *pv = [[PermissionView alloc] init];
+                pv.delegate = self;
+                [self.view addSubview:pv];
+            }else{
+                [self addMeds:coreMed];
+            }
             
         } else {
             
@@ -456,12 +466,12 @@
 }
 
 
-- (void)addMeds:(CoreMedication *)coreMed {
+- (void)addMeds:(CoreMedication *)coreMedLocal {
     NSInteger hour = [Constants getCurrentHour];
     
     for (int i = 0; i < [times count]; i++){
         Medication *med = [Medication new];
-        med.coreMed = coreMed;
+        med.coreMed = coreMedLocal;
         med.time = [[times objectAtIndex:i] floatValue];
         med.monday = (BOOL)[[dayPicker.days objectForKey:@"monday"] intValue];
         med.tuesday = (BOOL)[[dayPicker.days objectForKey:@"tuesday"] intValue];
@@ -514,7 +524,7 @@
                                  completion:nil];
     } else {
         // Handle deleting the local notifications for existing med
-        CoreMedication *coreMed = [set objectAtIndex:0];
+        coreMed = [set objectAtIndex:0];
         
         DBResultSet *meds = [[[Medication query] whereWithFormat:@"coreMed = %@", coreMed] fetch];
         NSMutableArray *t = [[NSMutableArray alloc] init];
@@ -538,6 +548,14 @@
     }
 
 }
+
+
+#pragma mark - PermissionView delegate
+-(void)PermissionViewIsClosing{
+    NSLog(@"Closing the permission view");
+    [self addMeds:coreMed];
+}
+
 
 
 
