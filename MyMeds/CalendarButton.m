@@ -11,9 +11,9 @@
 #define kHighlightColor [UIColor colorWithRed:229/255.0 green:98/255.0 blue:92/255.0 alpha:1.0]
 #define gray [UIColor colorWithRed:94/255.0 green:94/255.0 blue:94/255.0 alpha:1.0]
 
-#define bgFrame CGRectMake(self.frame.origin.x + 9, 0, 70, 70)
-#define dateFrame CGRectMake(0, 5 , frame.size.width, frame.size.height * 0.6)
-#define dayFrame CGRectMake(0 , frame.size.height * 0.65, frame.size.width , frame.size.height * 0.35)
+#define bgFrame CGRectMake(self.frame.origin.x + 5, 0, 80, 65)
+#define dateFrame CGRectMake(0, 0 , frame.size.width, frame.size.height * 0.6)
+#define dayFrame CGRectMake(0 , frame.size.height * 0.60, frame.size.width , frame.size.height * 0.35)
 
 @implementation CalendarButton
 - (id)initWithDate:(NSDate*)date andFrame:(CGRect)frame{

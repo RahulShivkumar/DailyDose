@@ -43,7 +43,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEr-zB-euS" userLabel="Next">
-                                <rect key="frame" x="534" y="530" width="50" height="50"/>
+                                <rect key="frame" x="550" y="530" width="50" height="50"/>
                                 <state key="normal" image="rightarrow.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -52,12 +52,13 @@
                                 </connections>
                             </button>
                         </subviews>
+                        <color key="backgroundColor" red="0.97647058819999999" green="0.74901960779999999" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="JJV-op-rSU" secondAttribute="centerX" id="3FQ-Yc-qXy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4oX-Xj-2Xl" secondAttribute="trailing" id="7EC-fw-pg2"/>
                             <constraint firstAttribute="centerX" secondItem="4oX-Xj-2Xl" secondAttribute="centerX" id="8eJ-k9-7sZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IEr-zB-euS" secondAttribute="trailing" constant="-16" id="9k7-M8-ZZa"/>
                             <constraint firstItem="4oX-Xj-2Xl" firstAttribute="top" secondItem="N4y-CV-VgM" secondAttribute="bottom" constant="10" id="TAd-YH-JAB"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="IEr-zB-euS" secondAttribute="trailing" id="W3A-Rn-7QM"/>
                             <constraint firstItem="VXm-Ru-t4o" firstAttribute="top" secondItem="IEr-zB-euS" secondAttribute="bottom" constant="20" id="WfW-9I-7S1"/>
                             <constraint firstItem="3Ad-hv-8C6" firstAttribute="leading" secondItem="Xnf-dR-UXp" secondAttribute="leadingMargin" constant="-16" id="js7-xG-bvC"/>
                             <constraint firstItem="VXm-Ru-t4o" firstAttribute="top" secondItem="3Ad-hv-8C6" secondAttribute="bottom" constant="20" id="mv9-pb-u4d"/>

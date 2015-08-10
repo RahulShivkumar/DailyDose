@@ -23,12 +23,15 @@
     [self setSecurityTitle];
 
     [self.buttonCell setTarget:self action:@selector(showButtonAlert)];
-    self.buttonCell.defaultFooterTitle = @"© Klinik Solutions";
+    
     
     [self.privacyCell setTarget:self action:@selector(showPrivacyPolicy)];
     [self.termsCell setTarget:self action:@selector(showTermsConditions)];
+    self.privacyCell.defaultFooterTitle = @"© Klinik Solutions";
     
-    [self.tableView setScrollEnabled:NO];
+    [self.tutorialCell setTarget:self action:@selector(addTutorial)];
+    
+    [self.tableView setScrollEnabled:YES];
 }
 
 
@@ -80,13 +83,13 @@
 
 
 - (void)showTermsConditions {
-    SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:@"http://klinik.io/terms"];
+    SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:@"http://klinik.io/terms.html"];
     [self.navigationController pushViewController:webViewController animated:YES];
 
 }
 
 - (void)showPrivacyPolicy {
-    SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:@"http://klinik.io/privacy"];
+    SVWebViewController *webViewController = [[SVWebViewController alloc] initWithAddress:@"http://klinik.io/privacy.html"];
     [self.navigationController pushViewController:webViewController animated:YES];
 }
 
@@ -104,4 +107,30 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
+#pragma mark - Add Tutorial
+
+- (void)addTutorial {
+    UIStoryboard *stb = [UIStoryboard storyboardWithName:@"Walkthrough" bundle:nil];
+    RTWalkthroughViewController *walkthrough = [stb instantiateViewControllerWithIdentifier:@"walk"];
+    
+    RTWalkthroughPageViewController *pageOne = [stb instantiateViewControllerWithIdentifier:@"walk1"];
+    RTWalkthroughPageViewController *pageTwo = [stb instantiateViewControllerWithIdentifier:@"walk2"];
+    RTWalkthroughPageViewController *pageThree = [stb instantiateViewControllerWithIdentifier:@"walk3"];
+    
+    walkthrough.delegate = self;
+    [walkthrough addViewController:pageOne];
+    [walkthrough addViewController:pageTwo];
+    [walkthrough addViewController:pageThree];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"walkthrough"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self presentViewController:walkthrough animated:YES completion:nil];
+}
+
+- (void)walkthroughControllerDidClose:(RTWalkthroughViewController *)controller {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 @end
