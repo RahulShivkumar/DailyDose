@@ -169,7 +169,7 @@
 }
 
 
-//Method called to create the local notifications
+//Method called to remove med from local notification
 + (void)removeNotif:(int)number andDay:(NSString *)day andTime:(NSString*)timeString andDayIndex:(int)dayIndex {
     number -= 1;
     if (number != 0) {
@@ -179,6 +179,137 @@
 }
 
 
+#pragma mark - Alter Notifications Per Day
++ (void)alterNotificationsForTakenMed:(TodayMedication*)med {
+    int dayIndex = [Constants getCurrentDay];
+    NSArray *daysOfWeek = [[NSArray alloc] initWithObjects:@"sunday", @"monday", @"tuesday", @"wednesday", @"thursday", @"friday", @"saturday", nil];
+    
+    NSString *day = [daysOfWeek objectAtIndex:dayIndex];
+    
+    UIApplication *app = [UIApplication sharedApplication];
+    NSArray *eventArray = [app scheduledLocalNotifications];
+    
+    for (int i = 0; i < [eventArray count]; i++) {
+        UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
+        NSDictionary *userInfoCurrent = oneEvent.userInfo;
+        NSString *identifier = [userInfoCurrent objectForKey:kUID];
+        NSString *prefix = [day stringByAppendingString:[@"-" stringByAppendingString:[NSString stringWithFormat:@"%f",med.time]]];
+        NSString *completeKey = [prefix stringByAppendingString:@"-today"];
+        
+        if (identifier == completeKey){
+            //If we already have an "editted" notification for the day, lets just reduce the number from it
+            int number = [[identifier substringFromIndex:[prefix length] + 1] intValue];
+            number -= 1;
+            
+            [self scheduleTodayNotificationsWithNumber:number AndDay:day AndDayIndex:dayIndex AndTime:med.time];
+            
+        } else if ([identifier hasPrefix:prefix]) {
+            
+            NSString *alertMsg = oneEvent.alertBody;
+            [app cancelLocalNotification:oneEvent];
+            
+            
+            int number = [[identifier substringFromIndex:[prefix length] + 1] intValue];
+            number -= 1;
+            //First Lets change the notification for today.
+            if (number > 0) {
+                [self scheduleTodayNotificationsWithNumber:number AndDay:day AndDayIndex:dayIndex AndTime:med.time];
+            }
+            
+            //Now lets re-add the existing notification for a week from today
+            
+            NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+            NSDate *now = [[NSDate date] dateByAddingTimeInterval:7*24*60*60];
+            
+            NSDateComponents *componentsForFireDate = [calendar components:(NSYearCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit| NSSecondCalendarUnit | NSWeekdayCalendarUnit) fromDate: now];
+            [componentsForFireDate setTimeZone:[NSTimeZone localTimeZone]];
+            [componentsForFireDate setWeekday: dayIndex];
+            
+            float timeFloat = med.time;
+            int minute = 0;
+            if (timeFloat != (int)timeFloat){
+                timeFloat = (int)timeFloat;
+                minute = 30;
+            }
+            [componentsForFireDate setHour:timeFloat];
+            [componentsForFireDate setMinute:minute];
+            [componentsForFireDate setSecond:0];
+            
+            UILocalNotification *notification = [[UILocalNotification alloc] init];
+            
+            notification.fireDate = [calendar dateFromComponents:componentsForFireDate];
+            notification.repeatInterval = NSCalendarUnitWeekOfYear;
+            
+            
+            //Set the title of the notification
+            notification.alertBody = alertMsg;
+            
+            // Check if its iOS 8 for Mutable Notifications
+            if IS_OS_8_OR_LATER {
+                [self registerMutableNotifications];
+                notification.category = @"action_notifs";
+            }
+            
+            
+            [notification setUserInfo:[NSDictionary dictionaryWithObject:identifier forKey:kUID]];
+            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+            
+            
+            
+            break;
+        }
+    }
+}
+
++ (void)scheduleTodayNotificationsWithNumber:(int)number AndDay:(NSString*)day AndDayIndex:(int)dayIndex AndTime:(int)time{
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *now = [[NSDate date] dateByAddingTimeInterval:7*24*60*60];
+    
+    NSDateComponents *componentsForFireDate = [calendar components:(NSYearCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit| NSSecondCalendarUnit | NSWeekdayCalendarUnit) fromDate: now];
+    [componentsForFireDate setTimeZone:[NSTimeZone localTimeZone]];
+    [componentsForFireDate setWeekday: dayIndex];
+    
+    float timeFloat = time;
+    int minute = 0;
+    if (timeFloat != (int)timeFloat){
+        timeFloat = (int)timeFloat;
+        minute = 30;
+    }
+    [componentsForFireDate setHour:timeFloat];
+    [componentsForFireDate setMinute:minute];
+    [componentsForFireDate setSecond:0];
+    
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    
+    notification.fireDate = [calendar dateFromComponents:componentsForFireDate];
+    
+    //Set the title of the notification
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    [f setNumberStyle:NSNumberFormatterSpellOutStyle];
+    NSString *s = [f stringFromNumber:[NSNumber numberWithInt:number]];
+    NSString *alertBody;
+    
+    if (number == 1) {
+        alertBody = [s stringByAppendingString:@" med!"];
+    } else {
+        alertBody = [s stringByAppendingString:@" meds!"];
+    }
+    
+    // Check if its iOS 8 for Mutable Notifications
+    if IS_OS_8_OR_LATER {
+        [self registerMutableNotifications];
+        notification.category = @"action_notifs";
+    }
+    
+    NSString *key = [[NSString stringWithFormat:@"%d", time] stringByAppendingString:[@"-" stringByAppendingString:[NSString stringWithFormat:@"%d", number]]];
+    day = [day stringByAppendingString:@"-"];
+    key = [day stringByAppendingString:@"today"];
+    
+    [notification setUserInfo:[NSDictionary dictionaryWithObject:key forKey:kUID]];
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+}
+
+#pragma mark - Register Mutable Notifications for iOS8
 + (void)registerMutableNotifications {
 
     UIMutableUserNotificationAction* takenAction = [[UIMutableUserNotificationAction alloc] init];

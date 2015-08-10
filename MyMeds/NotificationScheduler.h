@@ -12,6 +12,7 @@
 #import "Medication.h"
 #import "DayPicker.h"
 #import "Constants.h"
+#import "TodayMedication.h"
 
 @interface NotificationScheduler : NSObject
 
