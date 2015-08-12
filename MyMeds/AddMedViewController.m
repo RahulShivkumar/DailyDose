@@ -397,8 +397,7 @@
     
     if([times count] != 0 && medName.text && medName.text.length > 0 && chemName.text && chemName.text.length > 0 && dosageNum.text && dosageNum.text.length > 0){
         
-        //Setup Local Notifications
-        [NotificationScheduler setupLocalNotifsWithDictionary:dayPicker.days andTimes:times];
+        
         
         //First check if Core med exists
         NSString *query = [NSString stringWithFormat:@"genName = '%@' and chemName = '%@'", medName.text, chemName.text];
@@ -416,14 +415,17 @@
             
             
             
-            //If the user has not been asked yet, ask if they would like to allow local notifications.
-            if ([PermissionView showMe]){
+            if ([PermissionView showPermissionView]) {
                 PermissionView *pv = [[PermissionView alloc] init];
                 pv.delegate = self;
                 [self.view addSubview:pv];
             }else{
+                [PermissionView neverShowPermissionView];
+                //Setup Local Notifications
+                [NotificationScheduler setupLocalNotifsWithDictionary:dayPicker.days andTimes:times];
                 [self addMeds:coreMed];
             }
+            
             
         } else {
             
@@ -551,8 +553,18 @@
 
 
 #pragma mark - PermissionView delegate
--(void)PermissionViewIsClosing{
-    NSLog(@"Closing the permission view");
+-(void)PermissionAllowed:(BOOL)allowed{
+    NSLog(@"GOOD");
+    
+    [NotificationScheduler setupLocalNotifsWithDictionary:dayPicker.days andTimes:times];
+    [self addMeds:coreMed];
+    
+}
+
+-(void)application:(UIApplication*)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
+    //Setup Local Notifications
+    NSLog(@"EXCELLENT!!!");
+    [NotificationScheduler setupLocalNotifsWithDictionary:dayPicker.days andTimes:times];
     [self addMeds:coreMed];
 }
 

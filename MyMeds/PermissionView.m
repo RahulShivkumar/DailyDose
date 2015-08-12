@@ -17,68 +17,58 @@
     int height = [UIScreen mainScreen].bounds.size.height;
     self = [super initWithFrame:[UIScreen mainScreen].bounds];
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(width/2-140, height/2-210, 280, 400)];
+    view = [[UIView alloc] initWithFrame:CGRectMake(width/2-140, height/2-210, 280, 400)];
     view.backgroundColor = [UIColor clearColor];
     view.layer.cornerRadius = 5;
     view.layer.masksToBounds = YES;
     
-    UIView *body = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 355)];
+    UIView *body = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 280, 355.5)];
     body.backgroundColor = [UIColor whiteColor];
     
-    UIButton *cancel = [[UIButton alloc] initWithFrame:CGRectMake(0, 356, 120, 43)];
+    UICustomButton *cancel = [[UICustomButton alloc] initWithFrame:CGRectMake(0, 356, 120, 43)];
     [cancel setTitle:@"Don't Use" forState:UIControlStateNormal];
     [cancel setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     cancel.backgroundColor = [UIColor whiteColor];
-    [cancel setShowsTouchWhenHighlighted:true];
     [cancel addTarget:self action:@selector(cancelClicked) forControlEvents:UIControlEventTouchUpInside];
     
-    UIButton *allow = [[UIButton alloc] initWithFrame:CGRectMake(121, 356, 159, 43)];
-    [allow setTitle:@"Use Notifications" forState:UIControlStateNormal];
+    //UIButton *allow = [[UIButton alloc] initWithFrame:CGRectMake(121, 356, 159, 43)];
+    UICustomButton *allow = [[UICustomButton alloc] initWithFrame:CGRectMake(0, 356, 280, 43)];
+    [allow setTitle:@"Continue" forState:UIControlStateNormal];
     [allow setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     allow.backgroundColor = [UIColor whiteColor];
-    [allow setShowsTouchWhenHighlighted:true];
     [allow addTarget:self action:@selector(allowClicked) forControlEvents:UIControlEventTouchUpInside];
     
-    
-    UILabel *title =[[UILabel alloc] initWithFrame:CGRectMake(10, 10, 260, 20)];
+    UILabel *title =[[UILabel alloc] initWithFrame:CGRectMake(10, 20, 260, 20)];
     title.text = @"Local Notifications";
+    title.textAlignment = NSTextAlignmentCenter;
+    title.font = [UIFont boldSystemFontOfSize:18.0];
     
-    UITextView *message = [[UITextView alloc] initWithFrame:CGRectMake(10, 30, 260, 70)];
-    message.text = @"Upon adding your first medication, we suggest that you allow local notifications. Swiping left on notifications allows you to control the app without unlocking your phone.";
+    UITextView *message = [[UITextView alloc] initWithFrame:CGRectMake(10, 40, 260, 60)];
+    message.text = @"Upon adding your first med, we suggest allowing notifications. This allows more flexible contol of med feedback!";
+    message.textAlignment = NSTextAlignmentCenter;
+    message.font = [UIFont systemFontOfSize:12.0];
+    message.selectable = false;
     
     UIImage *screenImage = [UIImage imageNamed:@"screen.png"];
-    UIImageView *screenImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 100, 260, 180)];
+    UIImageView *screenImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 110, 260, 160)];
     screenImageView.image = screenImage;
     
-    
-    
     UIImage *swipeImage = [UIImage imageNamed:@"swipe.png"];
-    UIImageView *swipeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 285, 260, 60)];
+    UIImageView *swipeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 275, 260, 73)];
     swipeImageView.image = swipeImage;
-    
-    
     
     [body addSubview:screenImageView];
     [body addSubview:swipeImageView];
     [body addSubview:title];
     [body addSubview:message];
     
-    
     [view addSubview:body];
-    [view addSubview:cancel];
+    //[view addSubview:cancel];
     [view addSubview:allow];
-    
-    
-    
-    UIButton  *hi = [[UIButton alloc] initWithFrame:CGRectMake(100, 100, 100, 20)];
-    [view addSubview:hi];
     
     [self addSubview:view];
     
     self.backgroundColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.2];
-    
-    
-    
     
     return self;
 }
@@ -90,32 +80,28 @@
 }
 
 -(void)cancelClicked{
-    [UIView animateWithDuration:0.3 animations:^{
-        self.alpha = 0.0;
-    }];
-    //[showMeOrNot setFalse];
-    [self.delegate PermissionViewIsClosing];
+    [showMeOrNot setFalse];
+    [self.delegate PermissionAllowed:false];
 }
 
 -(void)allowClicked{
-    [UIView animateWithDuration:0.3 animations:^{
-        self.alpha = 0.0;
-    }];
-    //if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]) {
+    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]) {
         [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeSound|UIUserNotificationTypeBadge
                                                                                                               categories:nil]];
         
-    //}
+    }
     [showMeOrNot setFalse];
-    [self.delegate PermissionViewIsClosing];
+    [self.delegate PermissionAllowed:true];
 }
 
 
-+(BOOL)showMe{
++ (BOOL)showPermissionView{
     return [showMeOrNot getValue];
 }
 
-
++ (void)neverShowPermissionView{
+    [showMeOrNot setFalse];
+}
 
 
 @end
@@ -125,9 +111,21 @@
 
 
 
+@implementation UICustomButton
 
+-(void)setHighlighted:(BOOL)highlighted{
+    [super setHighlighted:highlighted];
+    
+    if (highlighted) {
+        self.backgroundColor = [UIColor colorWithHue:0.0 saturation:0.0 brightness:0.9 alpha:1.0];
 
+    }
+    else {
+        self.backgroundColor = [UIColor whiteColor];
+    }
+}
 
+@end
 
 
 @implementation showMeOrNot
@@ -145,6 +143,35 @@
 }
 
 +(BOOL)getValue{
+    
+    
+    BOOL remoteNotificationsEnabled = false, noneEnabled,alertsEnabled, badgesEnabled, soundsEnabled;
+    
+    if ([[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        // iOS8+
+        remoteNotificationsEnabled = [UIApplication sharedApplication].isRegisteredForRemoteNotifications;
+        
+        UIUserNotificationSettings *userNotificationSettings = [UIApplication sharedApplication].currentUserNotificationSettings;
+        
+        noneEnabled = userNotificationSettings.types == UIUserNotificationTypeNone;
+        alertsEnabled = userNotificationSettings.types & UIUserNotificationTypeAlert;
+        badgesEnabled = userNotificationSettings.types & UIUserNotificationTypeBadge;
+        soundsEnabled = userNotificationSettings.types & UIUserNotificationTypeSound;
+        
+    } else {
+        // iOS7 and below
+        UIRemoteNotificationType enabledRemoteNotificationTypes = [UIApplication sharedApplication].enabledRemoteNotificationTypes;
+        
+        noneEnabled = enabledRemoteNotificationTypes == UIRemoteNotificationTypeNone;
+        alertsEnabled = enabledRemoteNotificationTypes & UIRemoteNotificationTypeAlert;
+        badgesEnabled = enabledRemoteNotificationTypes & UIRemoteNotificationTypeBadge;
+        soundsEnabled = enabledRemoteNotificationTypes & UIRemoteNotificationTypeSound;
+    }
+    
+    if (!noneEnabled){
+        return false;
+    }
+    
     int falsenum = [[[showMeOrNot query] where:@"showMe=0"] count];
     if (falsenum>0){
         return false;
@@ -154,4 +181,7 @@
 
 
 @end
+
+
+
 

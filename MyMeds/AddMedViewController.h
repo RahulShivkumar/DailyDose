@@ -17,7 +17,7 @@
 #import "NotificationScheduler.h"
 #import "PermissionView.h"
 
-@interface AddMedViewController : UIViewController<UITextFieldDelegate, RMDateSelectionViewControllerDelegate, MPGTextFieldDelegate, UIAlertViewDelegate, PermissionViewDelegate>{
+@interface AddMedViewController : UIViewController<UITextFieldDelegate, RMDateSelectionViewControllerDelegate, MPGTextFieldDelegate, UIAlertViewDelegate, PermissionViewDelegate, UIApplicationDelegate>{
     UIButton *cancel;
     UIButton *done;
     UILabel *addMed;

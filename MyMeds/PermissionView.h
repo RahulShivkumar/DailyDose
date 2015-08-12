@@ -7,33 +7,39 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <DBAccess/DBAccess.h>
 #import "NotificationScheduler.h"
 
 @protocol PermissionViewDelegate <NSObject>
 
-//@required
--(void)PermissionViewIsClosing;
+@required
+-(void)PermissionAllowed:(BOOL)allowed;
 
 @end
 
-@interface PermissionView : UIView
-
+@interface PermissionView : UIView <UIApplicationDelegate>
+{
+    UIView *view;
+}
 @property (nonatomic, weak) id <PermissionViewDelegate> delegate;
 
--(void)show;
+- (void)show;
 
--(void)cancelClicked;
+- (void)cancelClicked;
 
--(void)allowClicked;
+- (void)allowClicked;
 
-+(BOOL)showMe;
++ (BOOL)showPermissionView;
+
++ (void)neverShowPermissionView;
+
+@end
+
+@interface UICustomButton : UIButton
 
 @end
 
 
-
-@interface showMeOrNot : DBObject
+@interface showMeOrNot : DBObject <UIApplicationDelegate>
 
 @property BOOL showMe;
 
@@ -44,3 +50,6 @@
 +(BOOL)getValue;
 
 @end
+
+
+
