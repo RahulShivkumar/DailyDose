@@ -55,18 +55,18 @@
     [headerView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:headerView];
     
-    cancel = [[UIButton alloc]initWithFrame:CGRectMake(0, 15, 60, 40)];
-    [cancel.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15]];
+    
+    cancel = [UIButton buttonWithType:UIButtonTypeSystem];
     [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
-    [cancel.titleLabel setTextColor:[UIColor whiteColor]];
+    cancel.frame = CGRectMake(0, 15, 60, 40);
+    [cancel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [headerView addSubview:cancel];
     [cancel addTarget:self action:@selector(closeWindow:) forControlEvents:UIControlEventTouchUpInside];
     
-    done = [[UIButton alloc]initWithFrame:CGRectMake([Constants window_width]-60, 15, 60, 40)];
-    [addMed setTextAlignment:NSTextAlignmentRight];
-    [done.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
+    done = [UIButton buttonWithType:UIButtonTypeSystem];
     [done setTitle:@"Done" forState:UIControlStateNormal];
-    [done.titleLabel setTextColor:[UIColor whiteColor]];
+    done.frame = CGRectMake([Constants window_width]-60, 15, 60, 40);
+    [done setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [headerView addSubview:done];
     [done addTarget:self action:@selector(done:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -146,6 +146,20 @@
     [time setTextColor:[UIColor whiteColor]];
     [self.scrollView  addSubview:time];
     
+    
+    timePicker = [UIButton buttonWithType:UIButtonTypeSystem];
+    timePicker.frame = CGRectMake(0, kTimePickerY, [Constants window_width], kTimePickerHeight);
+    [timePicker setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [timePicker setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [timePicker setContentEdgeInsets:UIEdgeInsetsMake(0, 7, 0, 0)];
+    [timePicker setTag:0];
+    [timePicker.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:30]];
+    [timePicker addTarget:self action:@selector(setDate:) forControlEvents:UIControlEventTouchUpInside];
+    [timePicker setTitle:@"Add Time" forState:UIControlStateNormal];
+    [Constants addButtonBorder:timePicker];
+    
+    
+    /*
     timePicker = [[UIButton alloc] initWithFrame:CGRectMake(0, kTimePickerY, [Constants window_width], kTimePickerHeight)];
     [timePicker setBackgroundColor:[UIColor whiteColor]];
     [timePicker setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -159,7 +173,8 @@
     [timePicker setTag:0];
     [timePicker addTarget:self action:@selector(setDate:) forControlEvents:UIControlEventTouchUpInside];
     [Constants addButtonBorder:timePicker];
-    
+    */
+     
     datePicker = [RMDateSelectionViewController dateSelectionController];
     [datePicker setDelegate:self];
     datePicker.datePicker.datePickerMode = UIDatePickerModeTime;
