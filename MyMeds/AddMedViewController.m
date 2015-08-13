@@ -55,18 +55,18 @@
     [headerView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:headerView];
     
-    cancel = [[UIButton alloc]initWithFrame:CGRectMake(0, 15, 60, 40)];
-    [cancel.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15]];
+    
+    cancel = [UIButton buttonWithType:UIButtonTypeSystem];
     [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
-    [cancel.titleLabel setTextColor:[UIColor whiteColor]];
+    cancel.frame = CGRectMake(0, 15, 60, 40);
+    [cancel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [headerView addSubview:cancel];
     [cancel addTarget:self action:@selector(closeWindow:) forControlEvents:UIControlEventTouchUpInside];
     
-    done = [[UIButton alloc]initWithFrame:CGRectMake([Constants window_width]-60, 15, 60, 40)];
-    [addMed setTextAlignment:NSTextAlignmentRight];
-    [done.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
+    done = [UIButton buttonWithType:UIButtonTypeSystem];
     [done setTitle:@"Done" forState:UIControlStateNormal];
-    [done.titleLabel setTextColor:[UIColor whiteColor]];
+    done.frame = CGRectMake([Constants window_width]-60, 15, 60, 40);
+    [done setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [headerView addSubview:done];
     [done addTarget:self action:@selector(done:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -146,6 +146,20 @@
     [time setTextColor:[UIColor whiteColor]];
     [self.scrollView  addSubview:time];
     
+    
+    timePicker = [UIButton buttonWithType:UIButtonTypeSystem];
+    timePicker.frame = CGRectMake(0, kTimePickerY, [Constants window_width], kTimePickerHeight);
+    [timePicker setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [timePicker setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [timePicker setContentEdgeInsets:UIEdgeInsetsMake(0, 7, 0, 0)];
+    [timePicker setTag:0];
+    [timePicker.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:30]];
+    [timePicker addTarget:self action:@selector(setDate:) forControlEvents:UIControlEventTouchUpInside];
+    [timePicker setTitle:@"Add Time" forState:UIControlStateNormal];
+    [Constants addButtonBorder:timePicker];
+    
+    
+    /*
     timePicker = [[UIButton alloc] initWithFrame:CGRectMake(0, kTimePickerY, [Constants window_width], kTimePickerHeight)];
     [timePicker setBackgroundColor:[UIColor whiteColor]];
     [timePicker setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -159,7 +173,8 @@
     [timePicker setTag:0];
     [timePicker addTarget:self action:@selector(setDate:) forControlEvents:UIControlEventTouchUpInside];
     [Constants addButtonBorder:timePicker];
-    
+    */
+     
     datePicker = [RMDateSelectionViewController dateSelectionController];
     [datePicker setDelegate:self];
     datePicker.datePicker.datePickerMode = UIDatePickerModeTime;
@@ -397,8 +412,7 @@
     
     if([times count] != 0 && medName.text && medName.text.length > 0 && chemName.text && chemName.text.length > 0 && dosageNum.text && dosageNum.text.length > 0){
         
-        //Setup Local Notifications
-        [NotificationScheduler setupLocalNotifsWithDictionary:dayPicker.days andTimes:times];
+        
         
         //First check if Core med exists
         NSString *query = [NSString stringWithFormat:@"genName = '%@' and chemName = '%@'", medName.text, chemName.text];
@@ -406,14 +420,27 @@
         
         if ([set count] == 0) {
             
-            CoreMedication *coreMed = [CoreMedication new];
+            coreMed = [CoreMedication new];
             coreMed.genName = medName.text;
             coreMed.chemName = chemName.text;
             coreMed.expired = NO;
             coreMed.dosage = dosageNum.text;
             coreMed.startDate = [NSDate date];
             [coreMed commit];
-            [self addMeds:coreMed];
+            
+            
+            
+            if ([PermissionView showPermissionView]) {
+                PermissionView *pv = [[PermissionView alloc] init];
+                pv.delegate = self;
+                [self.view addSubview:pv];
+            }else{
+                [PermissionView neverShowPermissionView];
+                //Setup Local Notifications
+                [NotificationScheduler setupLocalNotifsWithDictionary:dayPicker.days andTimes:times];
+                [self addMeds:coreMed];
+            }
+            
             
         } else {
             
@@ -456,12 +483,12 @@
 }
 
 
-- (void)addMeds:(CoreMedication *)coreMed {
+- (void)addMeds:(CoreMedication *)coreMedLocal {
     NSInteger hour = [Constants getCurrentHour];
     
     for (int i = 0; i < [times count]; i++){
         Medication *med = [Medication new];
-        med.coreMed = coreMed;
+        med.coreMed = coreMedLocal;
         med.time = [[times objectAtIndex:i] floatValue];
         med.monday = (BOOL)[[dayPicker.days objectForKey:@"monday"] intValue];
         med.tuesday = (BOOL)[[dayPicker.days objectForKey:@"tuesday"] intValue];
@@ -514,7 +541,7 @@
                                  completion:nil];
     } else {
         // Handle deleting the local notifications for existing med
-        CoreMedication *coreMed = [set objectAtIndex:0];
+        coreMed = [set objectAtIndex:0];
         
         DBResultSet *meds = [[[Medication query] whereWithFormat:@"coreMed = %@", coreMed] fetch];
         NSMutableArray *t = [[NSMutableArray alloc] init];
@@ -538,6 +565,24 @@
     }
 
 }
+
+
+#pragma mark - PermissionView delegate
+-(void)PermissionAllowed:(BOOL)allowed{
+    NSLog(@"GOOD");
+    
+    [NotificationScheduler setupLocalNotifsWithDictionary:dayPicker.days andTimes:times];
+    [self addMeds:coreMed];
+    
+}
+
+-(void)application:(UIApplication*)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
+    //Setup Local Notifications
+    NSLog(@"EXCELLENT!!!");
+    [NotificationScheduler setupLocalNotifsWithDictionary:dayPicker.days andTimes:times];
+    [self addMeds:coreMed];
+}
+
 
 
 

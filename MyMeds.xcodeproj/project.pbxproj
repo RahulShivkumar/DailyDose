@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1946D4671B7772AC00BF2B3D /* PermissionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1946D4661B7772AC00BF2B3D /* PermissionView.m */; };
 		B700AB1D1A7ECE280034EF14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B700AB1C1A7ECE280034EF14 /* Main.storyboard */; };
 		B708D8541B5AF41C0080B22B /* TopMedsTable.m in Sources */ = {isa = PBXBuildFile; fileRef = B708D8531B5AF41C0080B22B /* TopMedsTable.m */; };
 		B70CC81D1AED8E9B0042F1CE /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = B70CC81C1AED8E9B0042F1CE /* Constants.m */; };
@@ -121,6 +122,8 @@
 
 /* Begin PBXFileReference section */
 		0FC923A9822149BE2568773D /* Pods-MyMeds.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMeds.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyMeds/Pods-MyMeds.release.xcconfig"; sourceTree = "<group>"; };
+		1946D4651B7772AC00BF2B3D /* PermissionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermissionView.h; sourceTree = "<group>"; };
+		1946D4661B7772AC00BF2B3D /* PermissionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PermissionView.m; sourceTree = "<group>"; };
 		ACC3A71BA209F925CAB7A00B /* Pods-MyMeds.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyMeds.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyMeds/Pods-MyMeds.debug.xcconfig"; sourceTree = "<group>"; };
 		B700AB1C1A7ECE280034EF14 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		B708D8521B5AF41C0080B22B /* TopMedsTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopMedsTable.h; sourceTree = "<group>"; };
@@ -320,6 +323,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		198197911B7698290042265E /* Ask Notification Permission */ = {
+			isa = PBXGroup;
+			children = (
+				1946D4651B7772AC00BF2B3D /* PermissionView.h */,
+				1946D4661B7772AC00BF2B3D /* PermissionView.m */,
+			);
+			name = "Ask Notification Permission";
+			sourceTree = "<group>";
+		};
 		242B009D10F9BDC6E6571E81 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -675,6 +687,7 @@
 		B7E4C06B1B5B31D600EE5226 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				198197911B7698290042265E /* Ask Notification Permission */,
 				B7E4C06C1B5B31FA00EE5226 /* Top Meds Control */,
 				B70CC8191AED8C470042F1CE /* Day Picker */,
 				B7E1C3651A8C0D9100C7FC83 /* Calendar Controls */,
@@ -853,6 +866,7 @@
 				B7B43F161B51B7220063FEA3 /* BEMAverageLine.m in Sources */,
 				B7B43EFF1B519F1F0063FEA3 /* BOTextTableViewCell.m in Sources */,
 				B71815B11B3F4A370081AFC9 /* ComplianceCircle.m in Sources */,
+				1946D4671B7772AC00BF2B3D /* PermissionView.m in Sources */,
 				B7A2750E1B40F927008F2BD4 /* AMPDeviceInfo.m in Sources */,
 				B7C27E201A76AA8100DFB416 /* AppDelegate.m in Sources */,
 				B7B43F081B519F730063FEA3 /* SettingsViewController.m in Sources */,
@@ -974,6 +988,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "a3a6d2eb-a890-422e-87e8-a57da534d19b";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1008,6 +1023,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "a3a6d2eb-a890-422e-87e8-a57da534d19b";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1034,7 +1050,7 @@
 					"$(PROJECT_DIR)/MyMedsTests",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "a3a6d2eb-a890-422e-87e8-a57da534d19b";
 			};
 			name = Debug;
 		};
@@ -1059,7 +1075,7 @@
 					"$(PROJECT_DIR)/MyMedsTests",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "a3a6d2eb-a890-422e-87e8-a57da534d19b";
 			};
 			name = Release;
 		};
