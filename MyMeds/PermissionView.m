@@ -11,7 +11,7 @@
 @implementation PermissionView
 
 
--(instancetype)init{
+- (instancetype)init{
     
     int width = [UIScreen mainScreen].bounds.size.width;
     int height = [UIScreen mainScreen].bounds.size.height;
@@ -44,7 +44,7 @@
     title.font = [UIFont boldSystemFontOfSize:18.0];
     
     UITextView *message = [[UITextView alloc] initWithFrame:CGRectMake(10, 40, 260, 60)];
-    message.text = @"Upon adding your first med, we suggest allowing notifications. This allows more flexible contol of med feedback!";
+    message.text = @"We suggest allowing notifications. This allows us to send you reminders & gives you better control over your meds!";
     message.textAlignment = NSTextAlignmentCenter;
     message.font = [UIFont systemFontOfSize:12.0];
     message.selectable = false;
@@ -132,17 +132,17 @@
 
 @dynamic showMe;
 
-+(void)setTrue{
++ (void)setTrue{
     
 }
 
-+(void)setFalse{
++ (void)setFalse{
     showMeOrNot *smon = [showMeOrNot new];
     smon.showMe = false;
     [smon commit];
 }
 
-+(BOOL)getValue{
++ (BOOL)getValue{
     
     
     BOOL remoteNotificationsEnabled = false, noneEnabled,alertsEnabled, badgesEnabled, soundsEnabled;

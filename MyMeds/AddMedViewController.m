@@ -569,7 +569,6 @@
 
 #pragma mark - PermissionView delegate
 -(void)PermissionAllowed:(BOOL)allowed{
-    NSLog(@"GOOD");
     
     [NotificationScheduler setupLocalNotifsWithDictionary:dayPicker.days andTimes:times];
     [self addMeds:coreMed];
@@ -578,7 +577,6 @@
 
 -(void)application:(UIApplication*)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
     //Setup Local Notifications
-    NSLog(@"EXCELLENT!!!");
     [NotificationScheduler setupLocalNotifsWithDictionary:dayPicker.days andTimes:times];
     [self addMeds:coreMed];
 }

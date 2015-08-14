@@ -323,13 +323,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		198197911B7698290042265E /* Ask Notification Permission */ = {
+		198197911B7698290042265E /* Notification Permission */ = {
 			isa = PBXGroup;
 			children = (
 				1946D4651B7772AC00BF2B3D /* PermissionView.h */,
 				1946D4661B7772AC00BF2B3D /* PermissionView.m */,
 			);
-			name = "Ask Notification Permission";
+			name = "Notification Permission";
 			sourceTree = "<group>";
 		};
 		242B009D10F9BDC6E6571E81 /* Pods */ = {
@@ -687,7 +687,7 @@
 		B7E4C06B1B5B31D600EE5226 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				198197911B7698290042265E /* Ask Notification Permission */,
+				198197911B7698290042265E /* Notification Permission */,
 				B7E4C06C1B5B31FA00EE5226 /* Top Meds Control */,
 				B70CC8191AED8C470042F1CE /* Day Picker */,
 				B7E1C3651A8C0D9100C7FC83 /* Calendar Controls */,
@@ -765,10 +765,11 @@
 				TargetAttributes = {
 					B7C27E161A76AA8100DFB416 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = GTD4A7A4VW;
+						DevelopmentTeam = 78Q6E8BW6Q;
 					};
 					B7C27E321A76AA8100DFB416 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = GTD4A7A4VW;
 						TestTargetID = B7C27E161A76AA8100DFB416;
 					};
 				};
@@ -1034,8 +1035,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1050,7 +1051,7 @@
 					"$(PROJECT_DIR)/MyMedsTests",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a3a6d2eb-a890-422e-87e8-a57da534d19b";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1059,8 +1060,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1075,7 +1076,7 @@
 					"$(PROJECT_DIR)/MyMedsTests",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a3a6d2eb-a890-422e-87e8-a57da534d19b";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -1083,6 +1084,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1099,6 +1102,7 @@
 					"$(PROJECT_DIR)/MyMeds",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyMeds.app/MyMeds";
 			};
 			name = Debug;
@@ -1107,6 +1111,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1119,6 +1125,7 @@
 					"$(PROJECT_DIR)/MyMeds",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyMeds.app/MyMeds";
 			};
 			name = Release;
