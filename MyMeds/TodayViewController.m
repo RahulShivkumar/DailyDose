@@ -617,7 +617,15 @@
     });
     
     if ([amMeds count] == 0 && [pmMeds count] == 0) {
-        [self setupEmptyStateWithImage:@"completed" AndText:@"Completed All Meds For Today!" AndSubText:@""];
+        
+        //This is not a good bit of code... This should be changed...
+        double delayInSeconds = 1.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self setupEmptyStateWithImage:@"completed" AndText:@"Completed All Meds For Today!" AndSubText:@""];
+        });
+        
+        
     }
 }
 
