@@ -588,7 +588,6 @@
 #pragma mark Strike Delegate
 - (void)strikeDelegate:(id)sender{
     
-    NSLog(@"StrikeThrough Detected");
     MedsCell *medCell = (MedsCell *)sender;
     NSIndexPath *indexPath = [self.medsView indexPathForCell:medCell];
     Medication *med;
