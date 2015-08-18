@@ -65,6 +65,7 @@
     NSLog(@"%@", @"Notifications Check");
     UIApplication *app = [UIApplication sharedApplication];
     NSArray *eventArray = [app scheduledLocalNotifications];
+    NSLog(@"%@", [NSDate date]);
     for (int i = 0; i < [eventArray count]; i++)
     {
         UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
@@ -96,8 +97,10 @@
     future = NO;
     futureDate = current;
     
+    
+    
     //[self clearData];
-    // [self checkNotifications];
+    [self checkNotifications];
     [self setupMeds];
     [self setupViews];
 }
