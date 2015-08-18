@@ -20,7 +20,7 @@
 #import "RTWalkthroughViewController.h"
 
 
-@interface TodayViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MenuControllerDelegate, RTWalkthroughPageViewControllerDelegate, RTWalkthroughViewControllerDelegate>{
+@interface TodayViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MenuControllerDelegate, RTWalkthroughPageViewControllerDelegate, RTWalkthroughViewControllerDelegate, StrikeDelegate>{
     
     NSMutableArray *amMeds;
     NSMutableArray *pmMeds;
