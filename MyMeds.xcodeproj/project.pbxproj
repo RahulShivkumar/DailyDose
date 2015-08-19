@@ -765,10 +765,11 @@
 				TargetAttributes = {
 					B7C27E161A76AA8100DFB416 = {
 						CreatedOnToolsVersion = 6.0;
-						DevelopmentTeam = 78Q6E8BW6Q;
+						DevelopmentTeam = GTD4A7A4VW;
 					};
 					B7C27E321A76AA8100DFB416 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = GTD4A7A4VW;
 						TestTargetID = B7C27E161A76AA8100DFB416;
 					};
 				};
@@ -1050,7 +1051,7 @@
 					"$(PROJECT_DIR)/MyMedsTests",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a3a6d2eb-a890-422e-87e8-a57da534d19b";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1075,7 +1076,7 @@
 					"$(PROJECT_DIR)/MyMedsTests",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a3a6d2eb-a890-422e-87e8-a57da534d19b";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -1083,6 +1084,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1099,6 +1102,7 @@
 					"$(PROJECT_DIR)/MyMeds",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyMeds.app/MyMeds";
 			};
 			name = Debug;
@@ -1107,6 +1111,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1119,6 +1125,7 @@
 					"$(PROJECT_DIR)/MyMeds",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyMeds.app/MyMeds";
 			};
 			name = Release;
