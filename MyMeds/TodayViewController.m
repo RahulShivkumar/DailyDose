@@ -65,6 +65,7 @@
     NSLog(@"%@", @"Notifications Check");
     UIApplication *app = [UIApplication sharedApplication];
     NSArray *eventArray = [app scheduledLocalNotifications];
+    NSLog(@"%@", [NSDate date]);
     for (int i = 0; i < [eventArray count]; i++)
     {
         UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
@@ -96,8 +97,10 @@
     future = NO;
     futureDate = current;
     
+    
+    
     //[self clearData];
-    // [self checkNotifications];
+    [self checkNotifications];
     [self setupMeds];
     [self setupViews];
 }
@@ -427,9 +430,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MedsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    [cell setDelegate:self];
     
     if (cell == nil) {
         cell = [[MedsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        [cell setDelegate:self];
         // cell.reuseIdentifier = @"cell";
     }
     if([Constants compareDate:current withOtherdate:futureDate]){
@@ -584,38 +589,48 @@
 }
 
 #pragma mark Strike Delegate
-//- (void)strikeDelegate:(id)sender{
-//    MedsCell *medCell = (MedsCell *)sender;
-//    NSIndexPath *indexPath = [self.medsView indexPathForCell:medCell];
-//    Medication *med;
-//    
-//    if (indexPath.section == 0 && [amMeds count] > 0){
-//        med = [amMeds objectAtIndex:indexPath.row];
-//        [amMeds removeObjectAtIndex:indexPath.row];
-//    } else {
-//        med = [pmMeds objectAtIndex:indexPath.row];
-//        [pmMeds removeObjectAtIndex:indexPath.row];
-//    }
-//  
-//    [[[[TodayMedication query] whereWithFormat:@"coreMed = %@", med.coreMed] fetch] removeAll]
-//    [EventLogger logAction:@"taken" andMedication:med.coreMed andTime:med.time];
-//    
-//    double delayInSeconds = 0.5;
-//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
-//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//        //code to be executed on the main queue after delay
-//        [self.medsView beginUpdates];
-//        
-//        [self.medsView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil]
-//                             withRowAnimation:UITableViewRowAnimationFade];
-//        
-//        [self.medsView endUpdates];
-//    });
-//    
-//    if ([amMeds count] == 0 && [pmMeds count] == 0) {
-//        [self setupEmptyStateWithImage:@"completed" AndText:@"Completed All Meds For Today!" AndSubText:@""];
-//    }
-//}
+- (void)strikeDelegate:(id)sender{
+    
+    MedsCell *medCell = (MedsCell *)sender;
+    NSIndexPath *indexPath = [self.medsView indexPathForCell:medCell];
+    Medication *med;
+    
+    if (indexPath.section == 0 && [amMeds count] > 0){
+        med = [amMeds objectAtIndex:indexPath.row];
+        [amMeds removeObjectAtIndex:indexPath.row];
+    } else {
+        med = [pmMeds objectAtIndex:indexPath.row];
+        [pmMeds removeObjectAtIndex:indexPath.row];
+    }
+  
+    [[[[TodayMedication query] whereWithFormat:@"coreMed = %@", med.coreMed] fetch] removeAll];
+    [EventLogger logAction:@"taken" andMedication:med.coreMed andTime:med.time];
+    
+    double delayInSeconds = 0.5;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        //code to be executed on the main queue after delay
+        [self.medsView beginUpdates];
+        
+        [self.medsView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil]
+                             withRowAnimation:UITableViewRowAnimationFade];
+        
+        [self.medsView endUpdates];
+        
+    });
+    
+    if ([amMeds count] == 0 && [pmMeds count] == 0) {
+        
+        //This is not a good bit of code... This should be changed...
+        double delayInSeconds = 1.0;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            [self setupEmptyStateWithImage:@"completed" AndText:@"Completed All Meds For Today!" AndSubText:@""];
+        });
+        
+        
+    }
+}
 
 
 #pragma mark - IBActions
@@ -625,6 +640,7 @@
     CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:self.medsView];
     NSIndexPath *indexPath = [self.medsView indexPathForRowAtPoint:buttonPosition];
     MedsCell *cell = (MedsCell*)[self.medsView cellForRowAtIndexPath:indexPath];
+    [cell setDelegate:self];
     
     Medication *med;
     

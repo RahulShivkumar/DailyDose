@@ -67,8 +67,10 @@
     [done setTitle:@"Done" forState:UIControlStateNormal];
     done.frame = CGRectMake([Constants window_width]-60, 15, 60, 40);
     [done setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [done setTitleColor:[UIColor colorWithHue:0.0 saturation:0.0 brightness:1.0 alpha:0.4] forState:UIControlStateDisabled];
     [headerView addSubview:done];
     [done addTarget:self action:@selector(done:) forControlEvents:UIControlEventTouchUpInside];
+    
     
     addMed = [[UILabel alloc]initWithFrame:CGRectMake([Constants window_width]/2 -100, 15, 200, 40)];
     [addMed setTextAlignment:NSTextAlignmentCenter];
@@ -158,22 +160,6 @@
     [timePicker setTitle:@"Add Time" forState:UIControlStateNormal];
     [Constants addButtonBorder:timePicker];
     
-    
-    /*
-    timePicker = [[UIButton alloc] initWithFrame:CGRectMake(0, kTimePickerY, [Constants window_width], kTimePickerHeight)];
-    [timePicker setBackgroundColor:[UIColor whiteColor]];
-    [timePicker setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [timePicker.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:30]];
-    [timePicker setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-    [timePicker setContentEdgeInsets:UIEdgeInsetsMake(0, 7, 0, 0)];
-    [timePicker setTitle:@"Add Time" forState:UIControlStateNormal];
-    [timePicker setTintColor:[UIColor whiteColor]];
-    [timePicker setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [timePicker setBackgroundColor:[UIColor clearColor]];
-    [timePicker setTag:0];
-    [timePicker addTarget:self action:@selector(setDate:) forControlEvents:UIControlEventTouchUpInside];
-    [Constants addButtonBorder:timePicker];
-    */
      
     datePicker = [RMDateSelectionViewController dateSelectionController];
     [datePicker setDelegate:self];
@@ -236,22 +222,17 @@
     [removeTimes addObject:removeTime];
     [self.scrollView addSubview:removeTime];
     
-    
-    UIButton *newButton = [[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(bottomBut.frame) + 2, [Constants window_width], kTimePickerHeight)];
-    
-    [newButton setBackgroundColor:[UIColor whiteColor]];
-    [newButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [newButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:30]];
+    UIButton *newButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    newButton.frame = CGRectMake(0, CGRectGetMaxY(bottomBut.frame) + 2, [Constants window_width], kTimePickerHeight);
+    [newButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [newButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [newButton setContentEdgeInsets:UIEdgeInsetsMake(0, 7, 0, 0)];
-    [newButton setTintColor:[UIColor whiteColor]];
-    [newButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [newButton setBackgroundColor:[UIColor clearColor]];
-    [newButton setTitle:@"Add Time" forState:UIControlStateNormal];
     [newButton setTag:(int)[timePickers count]];
+    [newButton.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:30]];
+    [newButton addTarget:self action:@selector(setDate:) forControlEvents:UIControlEventTouchUpInside];
+    [newButton setTitle:@"Add Time" forState:UIControlStateNormal];
+    [Constants addButtonBorder:newButton];
     
-    [newButton addTarget:self action:@selector(setDate:)
-        forControlEvents:UIControlEventTouchUpInside];
     
     [timePickers addObject:newButton];
     [Constants addButtonBorder:newButton];
