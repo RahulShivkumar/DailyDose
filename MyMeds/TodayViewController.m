@@ -220,7 +220,7 @@
 
 // Method called to setup amMeds and pmMeds arrays from today_meds table
 - (void)setupTodayArrays:(NSDate *)date {
-    header = [[NSMutableArray alloc]init];
+    header = [[NSMutableArray alloc] init];
     
     NSInteger hour;
     if(!future){
@@ -596,6 +596,7 @@
     NSIndexPath *indexPath = [self.medsView indexPathForCell:medCell];
     Medication *med;
     
+    
     if (indexPath.section == 0 && [amMeds count] > 0){
         med = [amMeds objectAtIndex:indexPath.row];
         [amMeds removeObjectAtIndex:indexPath.row];
@@ -603,8 +604,10 @@
         med = [pmMeds objectAtIndex:indexPath.row];
         [pmMeds removeObjectAtIndex:indexPath.row];
     }
+    
+    NSString *query = [NSString stringWithFormat:@"coreMed = %@ and time = %f", med.coreMed, med.time];
   
-    [[[[TodayMedication query] whereWithFormat:@"coreMed = %@", med.coreMed] fetch] removeAll];
+    [[[[TodayMedication query] where:query] fetch] removeAll];
     [EventLogger logAction:@"taken" andMedication:med.coreMed andTime:med.time];
     
     double delayInSeconds = 0.5;

@@ -48,4 +48,7 @@
 - (void)complete;
 - (void)uiComplete;
 
+- (void)undo;
+- (void)uiUndo;
+
 @end

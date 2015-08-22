@@ -275,19 +275,19 @@
      ];
 }
 
-//- (void)undo{
-//    medication.taken = NO;
-//    [medication commit];
-//    [EventLogger logAction:@"undo" andMedication:medication.coreMed andTime:medication.time];
-//    [self uiUndo];
-//}
-//
-//- (void)uiUndo{
-//    medLabel.strikethrough = NO;
-//    timeLabel.strikethrough = NO;
-//    chemLabel.strikethrough = NO;
-//    [undo setTitle:@"Taken" forState:UIControlStateNormal];
-//}
+- (void)undo{
+    medication.taken = NO;
+    [medication commit];
+    [EventLogger logAction:@"undo" andMedication:medication.coreMed andTime:medication.time];
+    [self uiUndo];
+}
+
+- (void)uiUndo{
+    medLabel.strikethrough = NO;
+    timeLabel.strikethrough = NO;
+    chemLabel.strikethrough = NO;
+    [undo setTitle:@"Taken" forState:UIControlStateNormal];
+}
 
 - (void)roundCornersOnView:(UIView *)view onTopLeft:(BOOL)tl topRight:(BOOL)tr bottomLeft:(BOOL)bl bottomRight:(BOOL)br radius:(float)radius {
     
