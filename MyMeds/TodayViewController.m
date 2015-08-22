@@ -461,9 +461,10 @@
     if (!future){
         if(med.taken){
             [cell uiComplete];
-        } else {
-            [cell uiUndo];
         }
+//        } else {
+//            [cell uiUndo];
+//        }
     } else {
         [cell uiUndo];
     }
@@ -711,16 +712,17 @@
         med = [pmMeds objectAtIndex:indexPath.row];
     }
     
-    if (med.taken){
-        // Complete med
-        [cell closeCell];
-        [cell undo];
-
-    } else {
+//    if (med.taken){
+//        // Complete med
+//        [cell closeCell];
+//        [cell undo];
+//
+//    }
+   // else {
         // Incomplete med
-        [cell closeCell];
-        [cell complete];
-    }
+    [cell closeCell];
+    [cell complete];
+   // }
 }
 
 #pragma mark - UI Helpers
@@ -782,7 +784,6 @@
 #pragma mark - Add Tutorial 
 
 - (void)addTutorial {
-    
     BOOL walkthrough = [[NSUserDefaults standardUserDefaults] boolForKey:@"walkthrough"];
     
     if (!walkthrough) {
@@ -806,7 +807,6 @@
 }
 
 - (void)walkthroughControllerDidClose:(RTWalkthroughViewController *)controller {
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -17,18 +17,20 @@
 @end
 
 @interface MedsCell : UITableViewCell{
-    CGPoint _originalCenter;
-    BOOL _openMenu;
-    BOOL _markCompleteOnDragRelease;
-    BOOL _closeMenu;
-    BOOL _closeGesture;
-    BOOL _marked;
-    BOOL _viewSet;
+    CGPoint originalCenter;
+    BOOL openMenu;
+    BOOL markCompleteOnDragRelease;
+    BOOL closeMenu;
+    BOOL closeGesture;
+    BOOL marked;
+    BOOL viewSet;
     
     StrikeThroughLabel *medLabel;
     StrikeThroughLabel *chemLabel;
     StrikeThroughLabel *timeLabel;
+    
     UIView *mainView;
+    
     TodayMedication *medication;
     
     UIGestureRecognizer* panRecognizer;
@@ -43,8 +45,7 @@
 - (void)setPannable;
 - (void)removePannable;
 - (void)closeCell;
-- (void)undo;
-- (void)uiUndo;
 - (void)complete;
 - (void)uiComplete;
+
 @end

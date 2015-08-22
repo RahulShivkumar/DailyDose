@@ -18,9 +18,9 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        if( ! _viewSet){
+        if( ! viewSet){
             [self setViews];
-            _viewSet = YES;
+            viewSet = YES;
         }
 
     }
@@ -39,6 +39,7 @@
     undo = [[UIButton alloc] initWithFrame:CGRectMake(0.77 * [Constants window_width], self.frame.origin.y, 0.23 * [Constants window_width], [Constants window_height]/8)];
     [undo.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:17]];
     [undo setBackgroundColor:kDoneColor];
+    [undo setTitle:@"Taken" forState:UIControlStateNormal];
     
     postpone = [[UIButton alloc] initWithFrame:CGRectMake(0.54 * [Constants window_width], self.frame.origin.y, 0.23 * [Constants window_width], [Constants window_height]/8)];
     [postpone.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:17]];
@@ -154,8 +155,8 @@
     CGPoint velocity = [recognizer velocityInView:mainView];
     
     // Lets check if our item has been marked complete
-    _markCompleteOnDragRelease = mainView.frame.origin.x > mainView.frame.size.width / 8;
-    if (_markCompleteOnDragRelease) {
+    markCompleteOnDragRelease = mainView.frame.origin.x > mainView.frame.size.width / 8;
+    if (markCompleteOnDragRelease) {
         [info setHidden:YES];
         [undo setHidden:YES];
         [postpone setHidden:YES];
@@ -174,12 +175,12 @@
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         // if the gesture has just started, record the current center location
-        _originalCenter = mainView.center;
-        if (_originalCenter.x <= -0.18 * [Constants window_width]){
-            _closeMenu = YES;
+        originalCenter = mainView.center;
+        if (originalCenter.x <= -0.18 * [Constants window_width]){
+            closeMenu = YES;
         }
         else{
-            _closeMenu = NO;
+            closeMenu = NO;
         }
     }
     
@@ -187,23 +188,23 @@
     if (recognizer.state == UIGestureRecognizerStateChanged) {
         // translate the center
         CGPoint translation = [recognizer translationInView:mainView];
-        mainView.center = CGPointMake(_originalCenter.x + translation.x, _originalCenter.y);
+        mainView.center = CGPointMake(originalCenter.x + translation.x, originalCenter.y);
         // determine whether the item has been dragged far enough to initiate a close or open menu
-        if(!_closeMenu){
-            _openMenu = mainView.frame.origin.x < -mainView.frame.size.width / 6;
+        if(!closeMenu){
+            openMenu = mainView.frame.origin.x < -mainView.frame.size.width / 6;
         }
         else{
             [info setHidden:NO];
             [undo setHidden:NO];
             [postpone setHidden:NO];
-            if(mainView.center.x < _originalCenter.x){
-                _closeGesture = NO;
-                _openMenu = YES;
+            if(mainView.center.x < originalCenter.x){
+                closeGesture = NO;
+                openMenu = YES;
 
             }
             else{
-                _openMenu = NO;
-                _closeGesture = mainView.frame.origin.x <- mainView.frame.size.width / 6;
+                openMenu = NO;
+                closeGesture = mainView.frame.origin.x <- mainView.frame.size.width / 6;
 
             }
         
@@ -216,8 +217,8 @@
         // the frame this cell would have had before being dragged
         CGRect originalFrame = CGRectMake(0, mainView.frame.origin.y,
                                           mainView.bounds.size.width, mainView.bounds.size.height);
-        _marked = NO;
-        if (!_openMenu) {
+        marked = NO;
+        if (!openMenu) {
             // if the menu is not being opened, snap back to the original location
             [UIView animateWithDuration:0.2
                              animations:^{
@@ -234,7 +235,7 @@
 
 
         }
-        else if (_openMenu || _closeGesture){
+        else if (openMenu || closeGesture){
             //If the close gesture is activated or open is not, shut the menu
             [UIView animateWithDuration:0.2
                              animations:^{
@@ -262,7 +263,7 @@
     timeLabel.strikethrough = YES;
     chemLabel.strikethrough = YES;
     [self.delegate strikeDelegate:self];
-    [undo setTitle:@"Undo" forState:UIControlStateNormal];
+    //[undo setTitle:@"Undo" forState:UIControlStateNormal];
 }
 
 - (void)closeCell{
@@ -274,19 +275,19 @@
      ];
 }
 
-- (void)undo{
-    medication.taken = NO;
-    [medication commit];
-    [EventLogger logAction:@"undo" andMedication:medication.coreMed andTime:medication.time];
-    [self uiUndo];
-}
-
-- (void)uiUndo{
-    medLabel.strikethrough = NO;
-    timeLabel.strikethrough = NO;
-    chemLabel.strikethrough = NO;
-    [undo setTitle:@"Taken" forState:UIControlStateNormal];
-}
+//- (void)undo{
+//    medication.taken = NO;
+//    [medication commit];
+//    [EventLogger logAction:@"undo" andMedication:medication.coreMed andTime:medication.time];
+//    [self uiUndo];
+//}
+//
+//- (void)uiUndo{
+//    medLabel.strikethrough = NO;
+//    timeLabel.strikethrough = NO;
+//    chemLabel.strikethrough = NO;
+//    [undo setTitle:@"Taken" forState:UIControlStateNormal];
+//}
 
 - (void)roundCornersOnView:(UIView *)view onTopLeft:(BOOL)tl topRight:(BOOL)tr bottomLeft:(BOOL)bl bottomRight:(BOOL)br radius:(float)radius {
     
