@@ -41,7 +41,7 @@
         
         MFMailComposeViewController *composeViewController = [MFMailComposeViewController new];
         [composeViewController setMailComposeDelegate:self];
-        NSArray *recipients = [NSArray arrayWithObjects:@"feedback@klinik.io", nil];
+        NSArray *recipients = [NSArray arrayWithObjects:@"info@klinik.io", nil];
         [composeViewController setToRecipients:recipients];
         [composeViewController setSubject:@"Feedback"];
         [composeViewController.navigationBar setTintColor:[UIColor whiteColor]];
