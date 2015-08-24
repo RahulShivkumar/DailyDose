@@ -19,13 +19,45 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyMeds/TodayViewController.m"
-            timestampString = "461968874.488753"
+            filePath = "MyMeds/NotificationScheduler.m"
+            timestampString = "462135893.029207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "-setupTodayArrays:"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
+            landmarkName = "+scheduleTodayNotificationsWithNumber:AndDay:AndDayIndex:AndTime:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/NotificationScheduler.m"
+            timestampString = "462135896.685254"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "324"
+            endingLineNumber = "324"
+            landmarkName = "+scheduleTodayNotificationsWithNumber:AndDay:AndDayIndex:AndTime:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyMeds/NotificationScheduler.m"
+            timestampString = "462136211.430082"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
+            landmarkName = "+scheduleTodayNotificationsWithNumber:AndDay:AndDayIndex:AndTime:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

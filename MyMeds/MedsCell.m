@@ -255,6 +255,7 @@
     medication.taken = YES;
     [medication commit];
     [EventLogger logAction:@"taken" andMedication:medication.coreMed andTime:medication.time];
+    [NotificationScheduler alterNotificationsForTakenMed:medication];
     [self uiComplete];
 }
 

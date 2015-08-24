@@ -14,6 +14,7 @@
 #import "TodayMedication.h"
 #import "Medication.h"
 #import "GraphData.h"
+#import "NotificationScheduler.h"
 
 
 @interface EventLogger : NSObject {
