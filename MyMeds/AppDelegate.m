@@ -45,11 +45,6 @@
     [DBAccess setDelegate:self];
     [DBAccess openDatabaseNamed:@"dailydose"];
 
-    //Ask for notifications permission
-    if ([UIApplication instancesRespondToSelector:@selector(registerUserNotificationSettings:)]) {
-        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeSound|UIUserNotificationTypeBadge
-                                                                                                              categories:nil]];
-    }
     
     //If passcode is enabled, show lock screen
     if ([LTHPasscodeViewController doesPasscodeExist] &&

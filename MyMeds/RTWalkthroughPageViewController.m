@@ -44,7 +44,7 @@
 	self.view.layer.masksToBounds = YES;
 	self.subsWeights = [NSMutableArray array];
 	
-	for (UIView *v in self.animatedSubviews) {
+    for (int i = 0; i < [self.animatedSubviews count]; i++) {
 		CGPoint speed = self.speed;
 		speed.x += self.speedVariance.x;
 		speed.y += self.speedVariance.y;

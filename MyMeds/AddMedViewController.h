@@ -15,8 +15,9 @@
 #import "TodayMedication.h"
 #import "CoreMedication.h"
 #import "NotificationScheduler.h"
+#import "PermissionView.h"
 
-@interface AddMedViewController : UIViewController<UITextFieldDelegate, RMDateSelectionViewControllerDelegate, MPGTextFieldDelegate, UIAlertViewDelegate>{
+@interface AddMedViewController : UIViewController<UITextFieldDelegate, RMDateSelectionViewControllerDelegate, MPGTextFieldDelegate, UIAlertViewDelegate, PermissionViewDelegate, UIApplicationDelegate>{
     UIButton *cancel;
     UIButton *done;
     UILabel *addMed;
@@ -46,6 +47,8 @@
     int selectedTag;
     
     DBResultSet *set;
+    
+    CoreMedication *coreMed;
 }
 
 @property (nonatomic, strong) UIScrollView *scrollView;
