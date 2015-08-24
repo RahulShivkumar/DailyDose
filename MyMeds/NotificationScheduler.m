@@ -110,6 +110,8 @@
         notification.category = @"action_notifs";
     }
     
+    // day(string)-time(float)-num meds(int)
+    
     NSString *key = [timeString stringByAppendingString:[@"-" stringByAppendingString:[NSString stringWithFormat:@"%d", number]]];
     day = [day stringByAppendingString:@"-"];
     key = [day stringByAppendingString:key];
@@ -189,15 +191,17 @@
     UIApplication *app = [UIApplication sharedApplication];
     NSArray *eventArray = [app scheduledLocalNotifications];
     
+    BOOL flag = YES;
+    
     for (int i = 0; i < [eventArray count]; i++) {
         UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
         NSDictionary *userInfoCurrent = oneEvent.userInfo;
         NSString *identifier = [userInfoCurrent objectForKey:kUID];
-        NSString *prefix = [day stringByAppendingString:[@"-" stringByAppendingString:[NSString stringWithFormat:@"%@",[NSNumber numberWithFloat:med.time]]]];
-        NSString *completeKey = [prefix stringByAppendingString:@"-today"];
+        NSString *prefix = [NSString stringWithFormat:@"%@",[NSNumber numberWithFloat:med.time]];
+        prefix = [@"today-" stringByAppendingString:prefix];
 
         
-        if (identifier == completeKey){
+        if ([identifier hasPrefix:prefix]){
             //If we already have an "editted" notification for the day, lets just reduce the number from it
             int number = [[identifier substringFromIndex:[prefix length] + 1] intValue];
             number -= 1;
@@ -210,75 +214,79 @@
                 [app cancelLocalNotification:oneEvent];
             }
             
+            flag = NO;
             break;
             
         }
         
     }
-    for (int i = 0; i < [eventArray count]; i++) {
-        UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
-        NSDictionary *userInfoCurrent = oneEvent.userInfo;
-        NSString *identifier = [userInfoCurrent objectForKey:kUID];
-        NSString *prefix = [day stringByAppendingString:[@"-" stringByAppendingString:[NSString stringWithFormat:@"%@",[NSNumber numberWithFloat:med.time]]]];
-        
-        if ([identifier hasPrefix:prefix]) {
+    if(flag) {
+        for (int i = 0; i < [eventArray count]; i++) {
             
-            NSString *alertMsg = oneEvent.alertBody;
-            [app cancelLocalNotification:oneEvent];
+            UILocalNotification* oneEvent = [eventArray objectAtIndex:i];
+            NSDictionary *userInfoCurrent = oneEvent.userInfo;
+            NSString *identifier = [userInfoCurrent objectForKey:kUID];
+            NSString *prefix = [day stringByAppendingString:[@"-" stringByAppendingString:[NSString stringWithFormat:@"%@",[NSNumber numberWithFloat:med.time]]]];
             
-            
-            int number = [[identifier substringFromIndex:[prefix length] + 1] intValue];
-            number -= 1;
-            //First Lets change the notification for today.
-            if (number > 0) {
-                NSLog(@"%@", @"Notification never seen before! Creating one for today!");
-                [self scheduleTodayNotificationsWithNumber:number AndDay:day AndDayIndex:dayIndex AndTime:med.time];
+            if ([identifier hasPrefix:prefix]) {
+                
+                NSString *alertMsg = oneEvent.alertBody;
+                [app cancelLocalNotification:oneEvent];
+                
+                
+                int number = [[identifier substringFromIndex:[prefix length] + 1] intValue];
+                number -= 1;
+                //First Lets change the notification for today.
+                if (number > 0) {
+                    NSLog(@"%@", @"Notification never seen before! Creating one for today!");
+                    [self scheduleTodayNotificationsWithNumber:number AndDay:day AndDayIndex:dayIndex AndTime:med.time];
+                }
+                
+                //Now lets re-add the existing notification for a week from today
+                
+                NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                NSDate *now = [[NSDate date] dateByAddingTimeInterval:7*24*60*60];
+                
+                NSDateComponents *componentsForFireDate = [calendar components:(NSYearCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit| NSSecondCalendarUnit | NSWeekdayCalendarUnit) fromDate: now];
+                [componentsForFireDate setTimeZone:[NSTimeZone localTimeZone]];
+                [componentsForFireDate setWeekday: dayIndex];
+                
+                float timeFloat = med.time;
+                int minute = 0;
+                if (timeFloat != (int)timeFloat){
+                    timeFloat = (int)timeFloat;
+                    minute = 30;
+                }
+                [componentsForFireDate setHour:timeFloat];
+                [componentsForFireDate setMinute:minute];
+                [componentsForFireDate setSecond:0];
+                
+                UILocalNotification *notification = [[UILocalNotification alloc] init];
+                
+                notification.fireDate = [calendar dateFromComponents:componentsForFireDate];
+                notification.repeatInterval = NSCalendarUnitWeekOfYear;
+                
+                
+                //Set the title of the notification
+                notification.alertBody = alertMsg;
+                
+                // Check if its iOS 8 for Mutable Notifications
+                if IS_OS_8_OR_LATER {
+                    [self registerMutableNotifications];
+                    notification.category = @"action_notifs";
+                }
+                
+                
+                [notification setUserInfo:[NSDictionary dictionaryWithObject:identifier forKey:kUID]];
+                [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+                
+                break;
             }
-            
-            //Now lets re-add the existing notification for a week from today
-            
-            NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-            NSDate *now = [[NSDate date] dateByAddingTimeInterval:7*24*60*60];
-            
-            NSDateComponents *componentsForFireDate = [calendar components:(NSYearCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit| NSSecondCalendarUnit | NSWeekdayCalendarUnit) fromDate: now];
-            [componentsForFireDate setTimeZone:[NSTimeZone localTimeZone]];
-            [componentsForFireDate setWeekday: dayIndex];
-            
-            float timeFloat = med.time;
-            int minute = 0;
-            if (timeFloat != (int)timeFloat){
-                timeFloat = (int)timeFloat;
-                minute = 30;
-            }
-            [componentsForFireDate setHour:timeFloat];
-            [componentsForFireDate setMinute:minute];
-            [componentsForFireDate setSecond:0];
-            
-            UILocalNotification *notification = [[UILocalNotification alloc] init];
-            
-            notification.fireDate = [calendar dateFromComponents:componentsForFireDate];
-            notification.repeatInterval = NSCalendarUnitWeekOfYear;
-            
-            
-            //Set the title of the notification
-            notification.alertBody = alertMsg;
-            
-            // Check if its iOS 8 for Mutable Notifications
-            if IS_OS_8_OR_LATER {
-                [self registerMutableNotifications];
-                notification.category = @"action_notifs";
-            }
-            
-            
-            [notification setUserInfo:[NSDictionary dictionaryWithObject:identifier forKey:kUID]];
-            [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-            
-            break;
         }
     }
 }
 
-+ (void)scheduleTodayNotificationsWithNumber:(int)number AndDay:(NSString*)day AndDayIndex:(int)dayIndex AndTime:(int)time {
++ (void)scheduleTodayNotificationsWithNumber:(int)number AndDay:(NSString*)day AndDayIndex:(int)dayIndex AndTime:(float)time {
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDate *now = [NSDate date];
     
@@ -319,10 +327,11 @@
         notification.category = @"action_notifs";
     }
     
+    // today-time(float)-num meds(int)
     
-    NSString *key = [[NSString stringWithFormat:@"%d", time] stringByAppendingString:[@"-" stringByAppendingString:[NSString stringWithFormat:@"%d", number]]];
-    day = [key stringByAppendingString:@"-"];
-    key = [day stringByAppendingString:@"today"];
+    NSString *key = [[NSString stringWithFormat:@"%@", [NSNumber numberWithFloat:time]] stringByAppendingString:[@"-" stringByAppendingString:[NSString stringWithFormat:@"%d", number]]];
+    NSString *today = [@"today" stringByAppendingString:@"-"];
+    key = [today stringByAppendingString:key];
     
     [notification setUserInfo:[NSDictionary dictionaryWithObject:key forKey:kUID]];
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
