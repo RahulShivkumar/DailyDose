@@ -206,12 +206,13 @@
             int number = [[identifier substringFromIndex:[prefix length] + 1] intValue];
             number -= 1;
             
+            [app cancelLocalNotification:oneEvent];
+
             if (number > 0){
                 NSLog(@"%@", @"Notification seen before! Creating new one for today");
                 [self scheduleTodayNotificationsWithNumber:number AndDay:day AndDayIndex:dayIndex AndTime:med.time];
             } else {
                 NSLog(@"%@", @"Notification seen before! Not creating any more for today!");
-                [app cancelLocalNotification:oneEvent];
             }
             
             flag = NO;
