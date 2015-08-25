@@ -14,8 +14,9 @@
 #import "CoreMedication.h"
 #import "TodayMedication.h"
 #import "NotificationScheduler.h"
+#import "MPGTextField.h"
 
-@interface EditMedsController : UIViewController <UITextFieldDelegate, RMDateSelectionViewControllerDelegate>{
+@interface EditMedsController : UIViewController <UITextFieldDelegate, RMDateSelectionViewControllerDelegate, MPGTextFieldDelegate>{
     UIButton *cancel;
     UIButton *done;
     UILabel *addMed;
@@ -28,8 +29,8 @@
     
     CoreMedication *cm;
     
-    UITextField *medName;
-    UITextField *chemName;
+    MPGTextField *medName;
+    MPGTextField *chemName;
     UITextField *dosageNum;
     UITextField *tView;
     
@@ -40,6 +41,7 @@
     NSMutableArray *timePickers;
     NSMutableArray *times;
     NSMutableArray *oldTimes;
+    NSMutableArray *data;
     
     int selectedTag;
 }

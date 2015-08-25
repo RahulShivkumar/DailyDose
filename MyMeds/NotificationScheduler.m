@@ -209,10 +209,10 @@
             [app cancelLocalNotification:oneEvent];
 
             if (number > 0){
-                NSLog(@"%@", @"Notification seen before! Creating new one for today");
+                //NSLog(@"%@", @"Notification seen before! Creating new one for today");
                 [self scheduleTodayNotificationsWithNumber:number AndDay:day AndDayIndex:dayIndex AndTime:med.time];
             } else {
-                NSLog(@"%@", @"Notification seen before! Not creating any more for today!");
+                //NSLog(@"%@", @"Notification seen before! Not creating any more for today!");
             }
             
             flag = NO;
@@ -239,7 +239,7 @@
                 number -= 1;
                 //First Lets change the notification for today.
                 if (number > 0) {
-                    NSLog(@"%@", @"Notification never seen before! Creating one for today!");
+                    //NSLog(@"%@", @"Notification never seen before! Creating one for today!");
                     [self scheduleTodayNotificationsWithNumber:number AndDay:day AndDayIndex:dayIndex AndTime:med.time];
                 }
                 

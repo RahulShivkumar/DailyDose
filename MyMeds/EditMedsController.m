@@ -31,6 +31,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupView];
+    [self generateData];
     // Do any additional setup after loading the view.
 }
 
@@ -80,7 +81,7 @@
     [name setTextColor:[UIColor whiteColor]];
     [self.scrollView addSubview:name];
     
-    medName = [[UITextField alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.12 + 20, [Constants window_width], [Constants window_height]/15)];
+    medName = [[MPGTextField alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.12 + 20, [Constants window_width], [Constants window_height]/15)];
     [medName setBackgroundColor:[UIColor clearColor]];
     [medName setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:25]];
     [medName setTextColor:[UIColor whiteColor]];
@@ -97,7 +98,7 @@
     [generic setTextColor:[UIColor whiteColor]];
     [self.scrollView  addSubview:generic];
     
-    chemName = [[UITextField alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.23 + 20, [Constants window_width], [Constants window_height]/15)];
+    chemName = [[MPGTextField alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.23 + 20, [Constants window_width], [Constants window_height]/15)];
     [chemName setBackgroundColor:[UIColor clearColor]];
     [chemName setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:25]];
     [chemName setTextColor:[UIColor whiteColor]];
@@ -396,6 +397,46 @@
 //        [AZNotification showNotificationWithTitle:@"Please Add All Information!" controller:self notificationType:AZNotificationTypeWarning];
     }
     
+}
+
+#pragma mark - MPGTextfield Delegate
+- (NSArray *)dataForPopoverInTextField:(MPGTextField *)textField
+{
+    return data;
+}
+
+
+- (BOOL)textFieldShouldSelect:(MPGTextField *)textField
+{
+    return YES;
+}
+
+
+- (void)textField:(MPGTextField *)textField didEndEditingWithSelection:(NSDictionary *)result
+{
+    // TO-DO See why NEW is actually popping up!
+    if ([result objectForKey:@"CustomObject"] == nil) {
+        [medName setText:[result objectForKey:@"DisplayText"]];
+        [chemName setText:[result objectForKey:@"DisplaySubText"]];
+    }
+
+}
+
+#pragma mark - Setup Data
+- (void)generateData {
+    dispatch_async( dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+        NSError* err = nil;
+        data = [[NSMutableArray alloc] init];
+
+        NSString* dataPath = [[NSBundle mainBundle] pathForResource:@"drugsdb" ofType:@"json"];
+        NSArray* contents = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfFile:dataPath] options:kNilOptions error:&err];
+        dispatch_async( dispatch_get_main_queue(), ^{
+            [contents enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                [data addObject:[NSDictionary dictionaryWithObjectsAndKeys:[obj objectForKey:@"med_name"], @"DisplayText", [obj objectForKey:@"chem_name"], @"DisplaySubText",nil]];
+            }];
+        });
+    });
 }
 
 
