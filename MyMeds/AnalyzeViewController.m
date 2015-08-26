@@ -105,7 +105,7 @@
     
     //Setup Top 5 Meds
     topMeds = [EventLogger getTopFiveMissedMeds];
-    tmt = [[TopMedsTable alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.33 + 55, [Constants window_width], [Constants window_height] * 0.66 - 129) andData:topMeds];
+    tmt = [[TopMedsTable alloc] initWithFrame:CGRectMake(0, [Constants window_height] * 0.33 + 55, [Constants window_width], [Constants window_height] * 0.62 - 129) andData:topMeds];
     [self.view addSubview:tmt];
     
 }
