@@ -204,9 +204,9 @@
     }
     
     // Get am and pm meds from today's sql table
-    NSString *query = [NSString stringWithFormat:@"time > %f and time < 12", (float)hour -1];
+    NSString *query = [NSString stringWithFormat:@"time > %f and time < 12 and taken = %i", (float)hour -1, NO];
     amMeds = [NSMutableArray arrayWithArray:[[[[TodayMedication query] where:query] orderBy:@"time"] fetch]];
-    query = [NSString stringWithFormat:@"time > %f and time >= 12", (float)hour -1];
+    query = [NSString stringWithFormat:@"time > %f and time >= 12 and taken = %i", (float)hour - 1, NO];
     pmMeds = [NSMutableArray arrayWithArray:[[[[TodayMedication query] where:query] orderBy:@"time"] fetch]];
     
     // First lets see if there are any missed meds today
