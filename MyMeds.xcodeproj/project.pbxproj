@@ -43,6 +43,8 @@
 		B73A942B1B44F36E00590D79 /* DBAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B73A94291B44F36E00590D79 /* DBAccess.framework */; };
 		B73A942E1B44F4AA00590D79 /* TodayMedication.m in Sources */ = {isa = PBXBuildFile; fileRef = B73A942D1B44F4AA00590D79 /* TodayMedication.m */; };
 		B73A942F1B44F4AA00590D79 /* TodayMedication.m in Sources */ = {isa = PBXBuildFile; fileRef = B73A942D1B44F4AA00590D79 /* TodayMedication.m */; };
+		B74E58C61B8E7108004D80C3 /* feedback@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B74E58C51B8E7108004D80C3 /* feedback@2x.png */; };
+		B74E58C81B8E7122004D80C3 /* feedback.png in Resources */ = {isa = PBXBuildFile; fileRef = B74E58C71B8E7122004D80C3 /* feedback.png */; };
 		B75A08EE1AB945D8009D2056 /* DayPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A08ED1AB945D8009D2056 /* DayPicker.m */; };
 		B75A08F11AB9DC79009D2056 /* DayPickerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B75A08F01AB9DC79009D2056 /* DayPickerButton.m */; };
 		B75FAD681A9FBE140094ACE5 /* MissedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B75FAD671A9FBE140094ACE5 /* MissedViewController.m */; };
@@ -173,6 +175,8 @@
 		B73A94291B44F36E00590D79 /* DBAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DBAccess.framework; path = MyMedsTests/DBAccess.framework; sourceTree = SOURCE_ROOT; };
 		B73A942C1B44F4AA00590D79 /* TodayMedication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodayMedication.h; sourceTree = "<group>"; };
 		B73A942D1B44F4AA00590D79 /* TodayMedication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodayMedication.m; sourceTree = "<group>"; };
+		B74E58C51B8E7108004D80C3 /* feedback@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feedback@2x.png"; sourceTree = "<group>"; };
+		B74E58C71B8E7122004D80C3 /* feedback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = feedback.png; sourceTree = "<group>"; };
 		B75A08EC1AB945D8009D2056 /* DayPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DayPicker.h; path = ../DayPicker.h; sourceTree = "<group>"; };
 		B75A08ED1AB945D8009D2056 /* DayPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DayPicker.m; path = ../DayPicker.m; sourceTree = "<group>"; };
 		B75A08EF1AB9DC79009D2056 /* DayPickerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayPickerButton.h; sourceTree = "<group>"; };
@@ -514,9 +518,11 @@
 			children = (
 				B737A4BB1B6ECF0500E86F31 /* gestures@2x.png */,
 				B737A4C51B6ECF8200E86F31 /* notifs.png */,
+				B74E58C51B8E7108004D80C3 /* feedback@2x.png */,
 				B737A4C31B6ECF6200E86F31 /* passcode.png */,
 				B737A4C11B6ECF3E00E86F31 /* gestures.png */,
 				B737A4BC1B6ECF0500E86F31 /* notifs@2x.png */,
+				B74E58C71B8E7122004D80C3 /* feedback.png */,
 				B737A4BD1B6ECF0500E86F31 /* passcode@2x.png */,
 				B7B1186C1B6E90AD00C79E2C /* leftarrow@2x.png */,
 				B7B1186D1B6E90AD00C79E2C /* rightarrow@2x.png */,
@@ -798,6 +804,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B74E58C81B8E7122004D80C3 /* feedback.png in Resources */,
 				B777650E1B63376000F85E00 /* drugsdb.json in Resources */,
 				B7B118681B6E8F7600C79E2C /* Walkthrough.storyboard in Resources */,
 				B737A4D31B6ED7A800E86F31 /* SVWebViewController.strings in Resources */,
@@ -819,6 +826,7 @@
 				B737A4C01B6ECF0500E86F31 /* passcode@2x.png in Resources */,
 				B737A4E91B6ED8A000E86F31 /* SVWebViewControllerActivityChrome@2x.png in Resources */,
 				B7B118751B6E90AD00C79E2C /* rightarrow@2x.png in Resources */,
+				B74E58C61B8E7108004D80C3 /* feedback@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

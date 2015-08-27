@@ -169,6 +169,8 @@
         pmMeds = [self createTodayMedsArray:pmMeds];
         
         header = [[NSMutableArray alloc] init];
+        
+        
         if([amMeds count] == 0 && [pmMeds count] == 0){
             NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:@"Date"];
             if (!date){
@@ -178,16 +180,25 @@
                 [self setupEmptyStateWithImage:@"completed" AndText:@"Completed All Meds For Today!" AndSubText:@""];
             } else if(IS_NO_MEDS_FUTURE_DAY){
                 [self setupEmptyStateWithImage:@"nomedsday" AndText:@"No Meds For The Day!" AndSubText:@""];
+            } else {
+    //            [self removeEmptyState];
+                [self setupTableView];
+                [self.medsView reloadData];
             }
         } else if([amMeds count] == 0){
             [header addObject:@"PM"];
+            [self setupTableView];
+            [self.medsView reloadData];
         } else if ([pmMeds count] == 0){
             [header addObject:@"AM"];
+            [self setupTableView];
+            [self.medsView reloadData];
         } else {
             [header addObject:@"AM"];
             [header addObject:@"PM"];
+            [self setupTableView];
+            [self.medsView reloadData];
         }
-        [self.medsView reloadData];
     }
 }
 
@@ -235,19 +246,24 @@
         }
         else if(IS_NO_MEDS_FUTURE_DAY){
             [self setupEmptyStateWithImage:@"nomedday" AndText:@"No Meds For The Day!" AndSubText:@""];
+        } else{
+            [self setupTableView];
         }
     } else if([amMeds count] == 0){
         [self removeEmptyState];
         [header addObject:@"PM"];
+        [self setupTableView];
         [self.medsView reloadData];
     } else if ([pmMeds count] == 0){
         [self removeEmptyState];
         [header addObject:@"AM"];
+        [self setupTableView];
         [self.medsView reloadData];
     } else {
         [self removeEmptyState];
         [header addObject:@"AM"];
         [header addObject:@"PM"];
+        [self setupTableView];
         [self.medsView reloadData];
     }
 }
@@ -278,21 +294,7 @@
          [self setupEmptyStateWithImage:@"nomedday" AndText:@"No Meds For The Day!" AndSubText:@""];
      }
      else {
-        
-        [self removeEmptyState];
-        self.medsView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
-
-        UITapGestureRecognizer *singleFingerTap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
-        [self.medsView addGestureRecognizer:singleFingerTap];
-
-        [self.medsView setDataSource:self];
-        [self.medsView setDelegate:self];
-
-        [self.medsView setBackgroundColor:[UIColor whiteColor]];
-        [self.medsView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-        [self.medsView setSeparatorInset:UIEdgeInsetsZero];
-
-        [self.view addSubview:self.medsView];
+         [self setupTableView];
      }
     [self setupTabBar];
     [self setupNavBar];
@@ -300,7 +302,22 @@
     [self addTutorial];
 }
 
-
+- (void)setupTableView{
+    [self removeEmptyState];
+    self.medsView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
+    
+    UITapGestureRecognizer *singleFingerTap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+    [self.medsView addGestureRecognizer:singleFingerTap];
+    
+    [self.medsView setDataSource:self];
+    [self.medsView setDelegate:self];
+    
+    [self.medsView setBackgroundColor:[UIColor whiteColor]];
+    [self.medsView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.medsView setSeparatorInset:UIEdgeInsetsZero];
+    
+    [self.view addSubview:self.medsView];
+}
 // Method called to setup tabbar
 - (void)setupTabBar{
     [self.tabBarController.tabBar setTintColor:TabBarColor];
@@ -353,7 +370,7 @@
 // Method used to setup empty states
 - (void)setupEmptyStateWithImage:(NSString*)image AndText:(NSString*)text AndSubText:(NSString*)subText {
     [self.medsView removeFromSuperview];
-    [completedView removeFromSuperview];
+   // [completedView removeFromSuperview];
     
     completedView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.navigationController.view.frame.size.height - 44)];
     [completedView setBackgroundColor:kBGColor];
