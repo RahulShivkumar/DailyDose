@@ -49,15 +49,15 @@
     self.scrollView = [[UIScrollView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:self.scrollView];
     
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Constants window_width], 50)];
-    [headerView setBackgroundColor:bgColor];
-    [self.view addSubview:headerView];
+//    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Constants window_width], 50)];
+//    [headerView setBackgroundColor:bgColor];
+//    [self.view addSubview:headerView];
     
     cancel = [[UIButton alloc]initWithFrame:CGRectMake(0, 15, 60, 40)];
     [cancel.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15]];
     [cancel setTitle:@"Cancel" forState:UIControlStateNormal];
     [cancel.titleLabel setTextColor:[UIColor whiteColor]];
-    [headerView addSubview:cancel];
+    [self.scrollView addSubview:cancel];
     [cancel addTarget:self action:@selector(closeWindow:) forControlEvents:UIControlEventTouchUpInside];
     
     done = [[UIButton alloc]initWithFrame:CGRectMake([Constants window_width]-60, 15, 60, 40)];
@@ -65,7 +65,7 @@
     [done.titleLabel setFont:[UIFont fontWithName:@"HelveticaNeue" size:15]];
     [done setTitle:@"Done" forState:UIControlStateNormal];
     [done.titleLabel setTextColor:[UIColor whiteColor]];
-    [headerView addSubview:done];
+    [self.scrollView addSubview:done];
     [done addTarget:self action:@selector(done:) forControlEvents:UIControlEventTouchUpInside];
     
     addMed = [[UILabel alloc]initWithFrame:CGRectMake([Constants window_width]/2 -100, 15, 200, 40)];
@@ -73,7 +73,7 @@
     [addMed setFont:[UIFont fontWithName:@"HelveticaNeue" size:18]];
     [addMed setText:@"New Medication"];
     [addMed setTextColor:[UIColor whiteColor]];
-    [headerView addSubview:addMed];
+    [self.scrollView addSubview:addMed];
     
     name = [[UILabel alloc]initWithFrame:CGRectMake(7, [Constants window_height] * 0.12, 150, 20)];
     [name setFont:[UIFont fontWithName:@"HelveticaNeue" size:13]];

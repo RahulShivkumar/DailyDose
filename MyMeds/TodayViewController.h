@@ -50,7 +50,7 @@
 - (void)setupTodayArrays:(NSDate *)date;
 - (void)setupMeds;
 
-- (void)setupViews;
+- (void)setupCompAnalyzer;
 - (void)setupTabBar;
 - (void)setupCalendar;
 - (void)setupEmptyStateWithImage:(NSString*)image AndText:(NSString*)text AndSubText:(NSString*)subText;
