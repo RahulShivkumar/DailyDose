@@ -199,9 +199,9 @@
 #pragma mark - Compare Dates 
 -(BOOL)compareDate:(NSDate*)date1 withOtherdate:(NSDate*)date2{
     NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:(NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:date1];
+    NSDateComponents *components = [cal components:(NSCalendarUnitEra|NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay) fromDate:date1];
     NSDate *firstDate = [cal dateFromComponents:components];
-    components = [cal components:(NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:date2];
+    components = [cal components:(NSCalendarUnitEra|NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay) fromDate:date2];
     NSDate *otherDate = [cal dateFromComponents:components];
     
     if([firstDate isEqualToDate:otherDate]) {

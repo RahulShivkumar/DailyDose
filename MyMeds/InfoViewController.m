@@ -192,7 +192,7 @@
 -(void)setupTime{
     times = [[NSMutableArray alloc] init];
  
-    DBResultSet *temp = [[[Medication query] whereWithFormat:@"coreMed = %@", cm] fetch];
+    DBResultSet *temp = [[[[Medication query] whereWithFormat:@"coreMed = %@", cm] orderBy:@"time"]  fetch];
     
     int i = 0;
     

@@ -158,15 +158,7 @@
         badgesEnabled = userNotificationSettings.types & UIUserNotificationTypeBadge;
         soundsEnabled = userNotificationSettings.types & UIUserNotificationTypeSound;
         
-    } else {
-        // iOS7 and below
-        UIRemoteNotificationType enabledRemoteNotificationTypes = [UIApplication sharedApplication].enabledRemoteNotificationTypes;
-        
-        noneEnabled = enabledRemoteNotificationTypes == UIRemoteNotificationTypeNone;
-        alertsEnabled = enabledRemoteNotificationTypes & UIRemoteNotificationTypeAlert;
-        badgesEnabled = enabledRemoteNotificationTypes & UIRemoteNotificationTypeBadge;
-        soundsEnabled = enabledRemoteNotificationTypes & UIRemoteNotificationTypeSound;
-    }
+    } 
     
     if (!noneEnabled){
         return false;

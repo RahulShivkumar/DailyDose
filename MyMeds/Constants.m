@@ -27,10 +27,11 @@
 +(BOOL)compareDate:(NSDate*)date1 withOtherdate:(NSDate*)date2 {
     
     NSCalendar *cal = [NSCalendar currentCalendar];
-    NSDateComponents *components = [cal components:(NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:date1];
+    NSDateComponents *components = [cal components:(
+                                                    NSCalendarUnitEra|NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay) fromDate:date1];
     NSDate *firstDate = [cal dateFromComponents:components];
     
-    components = [cal components:(NSEraCalendarUnit|NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit) fromDate:date2];
+    components = [cal components:(NSCalendarUnitEra|NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay) fromDate:date2];
     NSDate *otherDate = [cal dateFromComponents:components];
     
     if([firstDate isEqualToDate:otherDate]) {
@@ -62,21 +63,21 @@
 
 #pragma mark - Get Current Hour
 + (NSInteger)getCurrentHour {
-     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:[NSDate date]];
+     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:[NSDate date]];
     
     return [components hour];
 }
 
 
 + (NSInteger)getCurrentMinute {
-    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:[NSDate date]];
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:[NSDate date]];
     
     return [components minute];
 }
 
 + (int)getCurrentDay {
-    NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *comp = [cal components:NSWeekdayCalendarUnit fromDate:[NSDate date]];
+    NSCalendar *cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *comp = [cal components:NSCalendarUnitWeekday fromDate:[NSDate date]];
     return (int)[comp weekday];
 }
 

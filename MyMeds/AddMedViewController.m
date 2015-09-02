@@ -286,7 +286,7 @@
 #pragma mark - Manipulate time setup
 - (void)manipulateTime {
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit) //Need to pass all this so we can get the day right later
+    NSDateComponents *components = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute) //Need to pass all this so we can get the day right later
                                                fromDate:[NSDate date]];
     
     [components setCalendar:calendar]; //even though you got the components from a calendar, you have to manually set the calendar anyways, I don't know why but it doesn't work otherwise
@@ -409,7 +409,8 @@
             coreMed.startDate = [NSDate date];
             [coreMed commit];
             
-            
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"medadded"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             
             if ([PermissionView showPermissionView]) {
                 PermissionView *pv = [[PermissionView alloc] init];

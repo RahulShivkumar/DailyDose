@@ -9,7 +9,7 @@
 #import "MissedViewController.h"
 
 
-#define kBGColor [UIColor colorWithRed:194/255.0 green:59/255.0 blue:34/255.0 alpha:1.0]
+#define kBGColor [UIColor colorWithRed:229/255.0 green:98/255.0 blue:92/255.0 alpha:1.0]
 #define buttonFont [UIFont fontWithName:@"HelveticaNeue-Thin" size:18]
 
 @interface MissedViewController ()

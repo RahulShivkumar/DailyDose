@@ -138,7 +138,9 @@
 }
 
 - (void)removePannable{
-    [mainView removeGestureRecognizer:panRecognizer];
+    for (UIGestureRecognizer *recognizer in mainView.gestureRecognizers) {
+        [mainView removeGestureRecognizer:recognizer];
+    }
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer {

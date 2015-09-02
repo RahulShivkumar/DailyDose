@@ -21,7 +21,7 @@
 
 #define kBGColor [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0]
 
-#define IS_NO_MEDS_TODAY [amMeds count] == 0 && [pmMeds count] == 0 && [Constants compareDate:[NSDate date] withOtherdate:futureDate]
+#define IS_NO_MEDS_TODAY [amMeds count] == 0 && [pmMeds count] == 0 && !future
 #define IS_NO_MEDS_FUTURE_DAY [amMeds count] == 0 && [pmMeds count] == 0
 
 @implementation TodayViewController
@@ -54,7 +54,8 @@
 
 
 #pragma mark - Lifecycle
--(void)viewDidLoad {
+
+- (void)viewDidLoad {
     [super viewDidLoad];
 }
 
@@ -84,6 +85,7 @@
     [self setupCompAnalyzer];
     [self setupCalendar];
     [self addTutorial];
+    [self setupTableView];
     [self setupMeds];
     
 }
@@ -106,11 +108,17 @@
 // Meds setup method - Looks at current date selected and determines if its today or a future date
 - (void)setupMeds{
     
-    NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:@"Date"];
+    NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:@"date"];
     
+    if (date == nil){
+        [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"date"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+    BOOL medsExist = (BOOL)[[NSUserDefaults standardUserDefaults] objectForKey:@"medadded"];
     if(!future){
         // First time setup
-        if(!date){
+        if(!medsExist){
             [self setupEmptyStateWithImage:@"nomeds" AndText:@"No Meds Yet." AndSubText:@"Click the 'meds' tab to add meds"];
         } else if ([Constants compareDate:current withOtherdate:date]){
             [self setupTodayArrays:current];
@@ -127,8 +135,11 @@
 // Method called when a new day's meds are setup. Sql call takes data from the meds table and puts into the "today_meds" table
 - (void)setupSqlDefaults:(NSDate*)date{
     
-    NSString *dayOfWeek = [Constants getCurrentDayFromDate:date];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"date"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
+    NSString *dayOfWeek = [Constants getCurrentDayFromDate:date];
+
      // ----------------------------------------------------
     // TO DO - Check for expired
      // ----------------------------------------------------
@@ -143,16 +154,6 @@
         
         // Clear Today_Meds and load it with new data
         [[[TodayMedication query] fetch] removeAll];
-        
-        if([amMeds count] == 0 && [pmMeds count] == 0) {
-
-        }
-        else {
-            [[NSUserDefaults standardUserDefaults] setObject:current forKey:@"Date"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            
-
-        }
         
         // Store stuff in today's table
         for (Medication *m in amMeds){
@@ -179,8 +180,8 @@
         
         
         if([amMeds count] == 0 && [pmMeds count] == 0){
-            NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:@"Date"];
-            if (!date){
+            BOOL medExists = (BOOL)[[NSUserDefaults standardUserDefaults] objectForKey:@"medadded"];
+            if (!medExists){
                 [self setupEmptyStateWithImage:@"nomeds" AndText:@"No Meds Yet." AndSubText:@"Click the 'meds' tab to add meds"];
             }
             else if(IS_NO_MEDS_TODAY){
@@ -215,7 +216,7 @@
     pmMeds = [NSMutableArray arrayWithArray:[[[[TodayMedication query] where:query] orderBy:@"time"] fetch]];
     
     // First lets see if there are any missed meds today
-    if([Constants compareDate:[NSDate date] withOtherdate:date]){
+    if(!future){
        query = [NSString stringWithFormat:@"time < %d and taken = 0", (int)hour - 1];
         missedMeds = [[[[TodayMedication query] where:query] orderBy:@"time"] fetch];
         
@@ -286,6 +287,11 @@
     if (![self.medsView isDescendantOfView:self.view]){
         [self.view addSubview:self.medsView];
     }
+    
+//    NSLog(@"LIST OF SUBVIEW ----");
+//    for (UIView *v in self.view.subviews){
+//        NSLog(@"Subviews :%@", v);
+//    }
 
     [self.medsView reloadData];
 }
@@ -293,7 +299,7 @@
 // Method called to setup tabbar
 - (void)setupTabBar{
     [self.tabBarController.tabBar setTintColor:TabBarColor];
-    [self.tabBarController.tabBar setSelectedImageTintColor:kMainColor];
+    [self.tabBarController.tabBar setTintColor:kMainColor];
     CALayer *topBorder = [CALayer layer];
     [topBorder setFrame:TabBarBorderFrame];
     [topBorder setBackgroundColor:kMainColor.CGColor];
@@ -399,12 +405,16 @@
     MedsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     [cell setDelegate:self];
     
+    
     if (cell == nil) {
         cell = [[MedsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         [cell setDelegate:self];
         // cell.reuseIdentifier = @"cell";
     }
-    if([Constants compareDate:current withOtherdate:futureDate]){
+    
+    [cell closeCell];
+    
+    if(!future){
         [cell setPannable];
     } else {
         [cell removePannable];
@@ -417,10 +427,12 @@
     TodayMedication * med;
     
     //  set the text
-    if([[header objectAtIndex:indexPath.section]  isEqual: @"AM"]){
-        med = [amMeds objectAtIndex:indexPath.row];
-    } else {
-        med = [pmMeds objectAtIndex:indexPath.row];
+    if ([header count] > 0) {
+        if([[header objectAtIndex:indexPath.section]  isEqual: @"AM"]){
+            med = [amMeds objectAtIndex:indexPath.row];
+        } else {
+            med = [pmMeds objectAtIndex:indexPath.row];
+        }
     }
     
     [cell setMed:med];
@@ -509,7 +521,7 @@
     }
     
     [self setupMeds];
-
+    [self.medsView reloadData];
 }
 
 
@@ -739,15 +751,6 @@
         [sideBar dismissMenu];
     }
     
-    current = [NSDate date];
-    future = NO;
-    futureDate = current;
-    
-    [self setupTabBar];
-    [self setupNavBar];
-    [self setupCompAnalyzer];
-    [self setupCalendar];
-    [self addTutorial];
     [self setupMeds];
 }
 
