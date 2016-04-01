@@ -8,33 +8,26 @@
 
 @import UIKit;
 
-
 /// A line displayed horizontally across the graph at the average y-value
 @interface BEMAverageLine : NSObject
 
-
 /// When set to YES, an average line will be displayed on the line graph
-@property (nonatomic) BOOL enableAverageLine;
-
+@property(nonatomic) BOOL enableAverageLine;
 
 /// The color of the average line
-@property (strong, nonatomic) UIColor *color;
+@property(strong, nonatomic) UIColor *color;
 
-
-/// The Y-Value of the average line. This could be an average, a median, a mode, sum, etc.
-@property (nonatomic) CGFloat yValue;
-
+/// The Y-Value of the average line. This could be an average, a median, a mode,
+/// sum, etc.
+@property(nonatomic) CGFloat yValue;
 
 /// The alpha of the average line
-@property (nonatomic) CGFloat alpha;
-
+@property(nonatomic) CGFloat alpha;
 
 /// The width of the average line
-@property (nonatomic) CGFloat width;
-
+@property(nonatomic) CGFloat width;
 
 /// Dash pattern for the average line
-@property (strong, nonatomic) NSArray *dashPattern;
-
+@property(strong, nonatomic) NSArray *dashPattern;
 
 @end

@@ -12,12 +12,11 @@
 
 @interface RTWalkthroughViewController : UIViewController
 
-@property (nonatomic, weak) id<RTWalkthroughViewControllerDelegate> delegate;
-@property (nonatomic, readonly) NSInteger currentPage;
+@property(nonatomic, weak) id<RTWalkthroughViewControllerDelegate> delegate;
+@property(nonatomic, readonly) NSInteger currentPage;
 - (void)addViewController:(UIViewController *)vc;
 
 @end
-
 
 @protocol RTWalkthroughViewControllerDelegate <NSObject>
 
@@ -25,10 +24,10 @@
 - (void)walkthroughControllerDidClose:(RTWalkthroughViewController *)controller;
 - (void)walkthroughControllerWentNext:(RTWalkthroughViewController *)controller;
 - (void)walkthroughControllerWentPrev:(RTWalkthroughViewController *)controller;
-- (void)walkthroughController:(RTWalkthroughViewController *)controller didChangeToPage:(NSInteger)page;
+- (void)walkthroughController:(RTWalkthroughViewController *)controller
+              didChangeToPage:(NSInteger)page;
 
 @end
-
 
 @protocol RTWalkthroughPage <NSObject>
 

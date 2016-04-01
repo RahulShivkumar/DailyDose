@@ -17,7 +17,11 @@
 #import "NotificationScheduler.h"
 #import "PermissionView.h"
 
-@interface AddMedViewController : UIViewController<UITextFieldDelegate, RMDateSelectionViewControllerDelegate, MPGTextFieldDelegate, UIAlertViewDelegate, PermissionViewDelegate, UIApplicationDelegate>{
+@interface AddMedViewController
+: UIViewController <UITextFieldDelegate,
+RMDateSelectionViewControllerDelegate,
+MPGTextFieldDelegate, UIAlertViewDelegate,
+PermissionViewDelegate, UIApplicationDelegate> {
     UIButton *cancel;
     UIButton *done;
     UILabel *addMed;
@@ -51,7 +55,7 @@
     CoreMedication *coreMed;
 }
 
-@property (nonatomic, strong) UIScrollView *scrollView;
+@property(nonatomic, strong) UIScrollView *scrollView;
 
 - (void)setupViews;
 
@@ -59,7 +63,9 @@
 - (void)dismissKeyboard;
 
 - (void)manipulateTime;
-- (void)addTimeWithHour:(NSString *)hour andMins:(NSString *)mins andAmPm:(NSString *)ampm;
+- (void)addTimeWithHour:(NSString *)hour
+                andMins:(NSString *)mins
+                andAmPm:(NSString *)ampm;
 
 - (void)addMeds:(CoreMedication *)coreMed;
 
@@ -71,6 +77,5 @@
 - (IBAction)removeDate:(id)sender;
 - (IBAction)closeWindow:(id)sender;
 - (IBAction)done:(id)sender;
-
 
 @end

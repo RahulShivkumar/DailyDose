@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface GraphData : NSObject {
-    
 }
 
-@property(nonatomic, strong)NSString *date;
+@property(nonatomic, strong) NSString *date;
 
-@property(nonatomic)int compliance;
+@property(nonatomic) int compliance;
 
 @end

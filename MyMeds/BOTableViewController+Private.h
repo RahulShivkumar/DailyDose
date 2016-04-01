@@ -10,6 +10,6 @@
 
 @interface BOTableViewController ()
 
-@property (nonatomic) NSIndexPath *expansionIndexPath;
+@property(nonatomic) NSIndexPath *expansionIndexPath;
 
 @end

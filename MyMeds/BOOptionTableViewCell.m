@@ -13,17 +13,17 @@
 @implementation BOOptionTableViewCell
 
 - (void)setup {
-	self.selectionStyle = UITableViewCellSelectionStyleDefault;
+    self.selectionStyle = UITableViewCellSelectionStyleDefault;
 }
 
 - (void)wasSelectedFromViewController:(BOTableViewController *)viewController {
-	NSInteger optionIndex = [viewController.tableView indexPathForCell:self].row;
-	self.setting.value = @(optionIndex);
+    NSInteger optionIndex = [viewController.tableView indexPathForCell:self].row;
+    self.setting.value = @(optionIndex);
 }
 
 - (void)settingValueDidChange {
-	NSInteger optionIndex = [self.setting.value integerValue];
-	
+    NSInteger optionIndex = [self.setting.value integerValue];
+    
     if (optionIndex == self.indexPath.row) {
         self.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {

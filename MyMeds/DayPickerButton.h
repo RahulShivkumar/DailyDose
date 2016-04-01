@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DayPickerButton : UIButton{
+@interface DayPickerButton : UIButton {
     UIView *bgView;
     
     UIColor *highlight;
@@ -16,12 +16,12 @@
     UIColor *textColor;
 }
 
-@property (nonatomic) int sel;
+@property(nonatomic) int sel;
 
--(id)initWithFrame:(CGRect)frame andTitle:(NSString *)title;
+- (id)initWithFrame:(CGRect)frame andTitle:(NSString *)title;
 
--(void)addHighlight;
--(void)addTextColor:(UIColor*)tc andHighlightTextColor:(UIColor*)htc;
--(void)addHighlightColor:(UIColor*)tc;
+- (void)addHighlight;
+- (void)addTextColor:(UIColor *)tc andHighlightTextColor:(UIColor *)htc;
+- (void)addHighlightColor:(UIColor *)tc;
 
 @end

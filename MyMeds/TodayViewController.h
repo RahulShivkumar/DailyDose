@@ -19,8 +19,11 @@
 #import "RTWalkthroughPageViewController.h"
 #import "RTWalkthroughViewController.h"
 
-
-@interface TodayViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MenuControllerDelegate, RTWalkthroughPageViewControllerDelegate, RTWalkthroughViewControllerDelegate, StrikeDelegate>{
+@interface TodayViewController
+: UIViewController <UITableViewDataSource, UITableViewDelegate,
+MenuControllerDelegate,
+RTWalkthroughPageViewControllerDelegate,
+RTWalkthroughViewControllerDelegate, StrikeDelegate> {
     
     NSMutableArray *amMeds;
     NSMutableArray *pmMeds;
@@ -43,17 +46,18 @@
     UIView *completedView;
 }
 
-@property (nonatomic, strong) UITableView *medsView;
+@property(nonatomic, strong) UITableView *medsView;
 
-
-- (void)setupSqlDefaults:(NSDate*)date;
+- (void)setupSqlDefaults:(NSDate *)date;
 - (void)setupTodayArrays:(NSDate *)date;
 - (void)setupMeds;
 
 - (void)setupCompAnalyzer;
 - (void)setupTabBar;
 - (void)setupCalendar;
-- (void)setupEmptyStateWithImage:(NSString*)image AndText:(NSString*)text AndSubText:(NSString*)subText;
+- (void)setupEmptyStateWithImage:(NSString *)image
+                         AndText:(NSString *)text
+                      AndSubText:(NSString *)subText;
 - (void)removeEmptyState;
 
 - (void)showCompliance;
@@ -70,9 +74,8 @@
 - (UIStatusBarStyle)preferredStatusBarStyle;
 - (void)appReturnsActive;
 
-- (NSMutableArray*)createTodayMedsArray:(NSMutableArray*)meds;
+- (NSMutableArray *)createTodayMedsArray:(NSMutableArray *)meds;
 
 - (void)addTutorial;
 
 @end
-

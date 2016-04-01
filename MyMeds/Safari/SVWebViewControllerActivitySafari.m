@@ -6,27 +6,28 @@
 //
 //  https://github.com/samvermette/SVWebViewController
 
-
 #import "SVWebViewControllerActivitySafari.h"
 
 @implementation SVWebViewControllerActivitySafari
 
 - (NSString *)activityTitle {
-	return NSLocalizedStringFromTable(@"Open in Safari", @"SVWebViewController", nil);
+    return NSLocalizedStringFromTable(@"Open in Safari", @"SVWebViewController",
+                                      nil);
 }
 
 - (BOOL)canPerformWithActivityItems:(NSArray *)activityItems {
-	for (id activityItem in activityItems) {
-		if ([activityItem isKindOfClass:[NSURL class]] && [[UIApplication sharedApplication] canOpenURL:activityItem]) {
-			return YES;
-		}
-	}
-	return NO;
+    for (id activityItem in activityItems) {
+        if ([activityItem isKindOfClass:[NSURL class]] &&
+            [[UIApplication sharedApplication] canOpenURL:activityItem]) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 - (void)performActivity {
-	BOOL completed = [[UIApplication sharedApplication] openURL:self.URLToOpen];
-	[self activityDidFinish:completed];
+    BOOL completed = [[UIApplication sharedApplication] openURL:self.URLToOpen];
+    [self activityDidFinish:completed];
 }
 
 @end

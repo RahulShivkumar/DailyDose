@@ -16,14 +16,24 @@
 
 @interface NotificationScheduler : NSObject
 
++ (void)setupLocalNotifsWithDictionary:(NSMutableDictionary *)days
+                              andTimes:(NSMutableArray *)times;
++ (void)initLocalNotif:(int)number
+                andDay:(NSString *)day
+               andTime:(NSString *)timeString
+           andDayIndex:(int)dayIndex;
 
-+ (void)setupLocalNotifsWithDictionary:(NSMutableDictionary*)days andTimes:(NSMutableArray*)times;
-+ (void)initLocalNotif:(int)number andDay:(NSString *)day andTime:(NSString*)timeString andDayIndex:(int)dayIndex;
++ (void)removeLocalNotificationWithCoreMedication:(CoreMedication *)cm
+                                         AndTimes:(NSMutableArray *)times;
++ (void)removeNotif:(int)number
+             andDay:(NSString *)day
+            andTime:(NSString *)timeString
+        andDayIndex:(int)dayIndex;
 
-+ (void)removeLocalNotificationWithCoreMedication:(CoreMedication*)cm AndTimes:(NSMutableArray*)times;
-+ (void)removeNotif:(int)number andDay:(NSString *)day andTime:(NSString*)timeString andDayIndex:(int)dayIndex;
-
-+ (void)alterNotificationsForTakenMed:(TodayMedication*)med;
-+ (void)scheduleTodayNotificationsWithNumber:(int)number AndDay:(NSString*)day AndDayIndex:(int)dayIndex AndTime:(float)time;
++ (void)alterNotificationsForTakenMed:(TodayMedication *)med;
++ (void)scheduleTodayNotificationsWithNumber:(int)number
+                                      AndDay:(NSString *)day
+                                 AndDayIndex:(int)dayIndex
+                                     AndTime:(float)time;
 
 @end

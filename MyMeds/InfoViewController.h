@@ -14,7 +14,7 @@
 #import "TodayMedication.h"
 #import "NotificationScheduler.h"
 
-@interface InfoViewController : UIViewController <UIAlertViewDelegate>{
+@interface InfoViewController : UIViewController <UIAlertViewDelegate> {
     UIButton *close;
     UIButton *edit;
     UIButton *endMed;
@@ -43,6 +43,6 @@
 - (IBAction)endCourse:(id)sender;
 - (IBAction)deleteRecord:(id)sender;
 
--(id)initWithMed:(CoreMedication*)medication;
+- (id)initWithMed:(CoreMedication *)medication;
 
 @end

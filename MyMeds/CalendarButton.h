@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CalendarButton : UIButton{
+@interface CalendarButton : UIButton {
     UIView *bgView;
     UILabel *dayLabel;
     UILabel *dateLabel;
@@ -16,12 +16,12 @@
     BOOL selected;
 }
 
-- (id)initWithDate:(NSDate*)date andFrame:(CGRect)frame;
-+ (id)initWithDate:(NSDate*)date andFrame:(CGRect)frame;
+- (id)initWithDate:(NSDate *)date andFrame:(CGRect)frame;
++ (id)initWithDate:(NSDate *)date andFrame:(CGRect)frame;
 
 - (void)addHighlight;
 - (void)removeHighlight;
 
-- (NSMutableArray*)convertDate:(NSDate*)date;
+- (NSMutableArray *)convertDate:(NSDate *)date;
 
 @end

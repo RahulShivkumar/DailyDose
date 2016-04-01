@@ -16,7 +16,9 @@
 #import "MedsCell.h"
 #import "EventLogger.h"
 
-@interface MissedViewController : UIViewController<UITableViewDelegate, UITableViewDataSource, StrikeDelegate>{
+@interface MissedViewController
+: UIViewController <UITableViewDelegate, UITableViewDataSource,
+StrikeDelegate> {
     NSMutableArray *meds;
     
     UILabel *title;
@@ -28,9 +30,9 @@
     long hour;
 }
 
-@property (nonatomic, strong) UITableView *medsView;
+@property(nonatomic, strong) UITableView *medsView;
 
-- (id)initWithMeds:(DBResultSet*)missedMeds andHour:(long)hr;
+- (id)initWithMeds:(DBResultSet *)missedMeds andHour:(long)hr;
 
 - (void)setupViews;
 
@@ -41,6 +43,5 @@
 - (IBAction)delaySingleMed:(id)sender;
 - (IBAction)skipSingleMed:(id)sender;
 - (void)checkCompleted;
-
 
 @end

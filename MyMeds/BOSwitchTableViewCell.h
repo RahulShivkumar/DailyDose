@@ -11,12 +11,12 @@
 @interface BOSwitchTableViewCell : BOTableViewCell
 
 /// The switch on the cell.
-@property (nonatomic, strong) UISwitch *toggleSwitch;
+@property(nonatomic, strong) UISwitch *toggleSwitch;
 
 /// The footer title when the toggle switch is on.
-@property (nonatomic, strong) IBInspectable NSString *onFooterTitle;
+@property(nonatomic, strong) IBInspectable NSString *onFooterTitle;
 
 /// The footer title when the toggle switch is off.
-@property (nonatomic, strong) IBInspectable NSString *offFooterTitle;
+@property(nonatomic, strong) IBInspectable NSString *offFooterTitle;
 
 @end

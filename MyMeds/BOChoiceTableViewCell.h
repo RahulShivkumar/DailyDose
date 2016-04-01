@@ -11,9 +11,10 @@
 @interface BOChoiceTableViewCell : BOTableViewCell
 
 /// An array defining (in short) all the options availables on the cell.
-@property (nonatomic, strong) NSArray *options;
+@property(nonatomic, strong) NSArray *options;
 
-/// An array defining all the footer titles for each option assigned to the cell.
-@property (nonatomic, strong) IBInspectable NSArray *footerTitles;
+/// An array defining all the footer titles for each option assigned to the
+/// cell.
+@property(nonatomic, strong) IBInspectable NSArray *footerTitles;
 
 @end

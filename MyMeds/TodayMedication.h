@@ -12,17 +12,17 @@
 
 @interface TodayMedication : DBObject
 
-@property (nonatomic, strong) CoreMedication *coreMed;
-@property (nonatomic, strong) NSString *rxid;
-@property (nonatomic, strong) NSString *type;
+@property(nonatomic, strong) CoreMedication *coreMed;
+@property(nonatomic, strong) NSString *rxid;
+@property(nonatomic, strong) NSString *type;
 
-@property (nonatomic) BOOL taken;
+@property(nonatomic) BOOL taken;
 
-@property (nonatomic) float time;
+@property(nonatomic) float time;
 
-@property (nonatomic) int dispense;
-@property (nonatomic) int refill;
-@property (nonatomic) int quantity;
+@property(nonatomic) int dispense;
+@property(nonatomic) int refill;
+@property(nonatomic) int quantity;
 
 - (void)createFromMedication:(Medication *)med;
 

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DayPickerButton.h"
 
-@interface DayPicker : UIView{
+@interface DayPicker : UIView {
     DayPickerButton *sunday;
     DayPickerButton *monday;
     DayPickerButton *tuesday;
@@ -21,9 +21,14 @@
     NSMutableArray *tviews;
 }
 
-@property (nonatomic, strong)NSMutableDictionary *days;
+@property(nonatomic, strong) NSMutableDictionary *days;
 
-- (id)initWithFrame:(CGRect)frame andBG:(UIColor*)bg andTc:(UIColor*)tc andHtc:(UIColor*)htc andHl:(UIColor*)hl andTextviews:(NSMutableArray *)tViews;
+- (id)initWithFrame:(CGRect)frame
+              andBG:(UIColor *)bg
+              andTc:(UIColor *)tc
+             andHtc:(UIColor *)htc
+              andHl:(UIColor *)hl
+       andTextviews:(NSMutableArray *)tViews;
 
 - (IBAction)sunday:(id)sender;
 - (IBAction)monday:(id)sender;

@@ -16,21 +16,25 @@ typedef NS_ENUM(NSInteger, VMMakeLocation) {
 @property(nonatomic) UIColor *strokeColor;
 
 @property(nonatomic) CAShapeLayer *circleLayer;
-@property (nonatomic) CAShapeLayer *lineLayerTopToBottom;
-@property (nonatomic) CAShapeLayer *lineLayerBottomToHide;
+@property(nonatomic) CAShapeLayer *lineLayerTopToBottom;
+@property(nonatomic) CAShapeLayer *lineLayerBottomToHide;
 
-@property (nonatomic, strong) UIImageView *imgIcon;
+@property(nonatomic, strong) UIImageView *imgIcon;
 
-@property (nonatomic, strong) UILabel *property;
-@property (nonatomic, strong) UILabel *value;
+@property(nonatomic, strong) UILabel *property;
+@property(nonatomic, strong) UILabel *value;
 
-@property (nonatomic) float lineWidth;
+@property(nonatomic) float lineWidth;
 
 - (void)addCircleLayerWithType:(NSInteger)type;
 - (void)setStrokeEnd:(CGFloat)strokeEnd animated:(BOOL)animated;
 - (void)buildButton;
-- (void)setValue:(NSString*)value andProperty:(NSString*)property andTextColor:(UIColor*)textColor;
-- (void)setIconButton:(UIImage*)icon withType:(NSInteger)type withColor:(UIColor*)color;
+- (void)setValue:(NSString *)value
+     andProperty:(NSString *)property
+    andTextColor:(UIColor *)textColor;
+- (void)setIconButton:(UIImage *)icon
+             withType:(NSInteger)type
+            withColor:(UIColor *)color;
 - (void)setLineWidthValue:(float)lineWidthTemp;
 - (void)addAction:(SEL)selector;
 

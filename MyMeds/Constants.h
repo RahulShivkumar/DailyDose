@@ -14,21 +14,20 @@
 + (CGFloat)window_height;
 + (CGFloat)window_width;
 
-+ (BOOL)compareDate:(NSDate*)date1 withOtherdate:(NSDate*)date2;
++ (BOOL)compareDate:(NSDate *)date1 withOtherdate:(NSDate *)date2;
 
-+ (void)setupNavbar:(UIViewController*)parentController;
++ (void)setupNavbar:(UIViewController *)parentController;
 + (void)setupMailNavBar;
-+ (UIColor*)getNavBarColor;
++ (UIColor *)getNavBarColor;
 
 + (NSInteger)getCurrentHour;
 + (NSInteger)getCurrentMinute;
 + (int)getCurrentDay;
-+ (NSString*)getCurrentDayFromDate:(NSDate*)date;
++ (NSString *)getCurrentDayFromDate:(NSDate *)date;
 
-+ (NSString*)convertTimeToString:(float)t;
++ (NSString *)convertTimeToString:(float)t;
 
-
-+ (void)addTextViewBorder:(UITextField*)textView withColor:(UIColor*)color;
-+ (void)addButtonBorder:(UIButton*)button;
++ (void)addTextViewBorder:(UITextField *)textView withColor:(UIColor *)color;
++ (void)addButtonBorder:(UIButton *)button;
 
 @end

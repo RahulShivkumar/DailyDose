@@ -11,7 +11,7 @@
 
 @interface Amplitude (SSLPinning)
 
-@property (nonatomic, assign) BOOL sslPinningEnabled;
+@property(nonatomic, assign) BOOL sslPinningEnabled;
 
 @end
 #endif

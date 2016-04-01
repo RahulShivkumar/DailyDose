@@ -12,7 +12,7 @@
 
 @dynamic coreMed, rxid, type, taken, time, dispense, refill, quantity;
 
-- (void)createFromMedication:(Medication *)med{
+- (void)createFromMedication:(Medication *)med {
     self.coreMed = med.coreMed;
     self.rxid = med.rxid;
     

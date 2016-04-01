@@ -13,7 +13,7 @@
 @end
 
 @implementation AMPDeviceInfo {
-    NSObject* networkInfo;
+    NSObject *networkInfo;
 }
 
 @synthesize appVersion = _appVersion;
@@ -25,15 +25,12 @@
 @synthesize advertiserID = _advertiserID;
 @synthesize vendorID = _vendorID;
 
-
-
-
--(id) init {
+- (id)init {
     self = [super init];
     return self;
 }
 
-- (void) dealloc {
+- (void)dealloc {
     SAFE_ARC_RELEASE(_appVersion);
     SAFE_ARC_RELEASE(_osVersion);
     SAFE_ARC_RELEASE(_model);
@@ -45,48 +42,53 @@
     SAFE_ARC_SUPER_DEALLOC();
 }
 
--(NSString*) appVersion {
+- (NSString *)appVersion {
     if (!_appVersion) {
-        _appVersion = SAFE_ARC_RETAIN([[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleShortVersionString"]);
+        _appVersion = SAFE_ARC_RETAIN([[[NSBundle mainBundle] infoDictionary]
+                                       valueForKey:@"CFBundleShortVersionString"]);
     }
     return _appVersion;
 }
 
--(NSString*) osName {
+- (NSString *)osName {
     return @"ios";
 }
 
--(NSString*) osVersion {
+- (NSString *)osVersion {
     if (!_osVersion) {
         _osVersion = SAFE_ARC_RETAIN([[UIDevice currentDevice] systemVersion]);
     }
     return _osVersion;
 }
 
--(NSString*) manufacturer {
+- (NSString *)manufacturer {
     return @"Apple";
 }
 
--(NSString*) model {
+- (NSString *)model {
     if (!_model) {
         _model = SAFE_ARC_RETAIN([AMPDeviceInfo getPhoneModel]);
     }
     return _model;
 }
 
--(NSString*) carrier {
+- (NSString *)carrier {
     if (!_carrier) {
         Class CTTelephonyNetworkInfo = NSClassFromString(@"CTTelephonyNetworkInfo");
-        SEL subscriberCellularProvider = NSSelectorFromString(@"subscriberCellularProvider");
+        SEL subscriberCellularProvider =
+        NSSelectorFromString(@"subscriberCellularProvider");
         SEL carrierName = NSSelectorFromString(@"carrierName");
         if (CTTelephonyNetworkInfo && subscriberCellularProvider && carrierName) {
-            networkInfo = SAFE_ARC_RETAIN([[NSClassFromString(@"CTTelephonyNetworkInfo") alloc] init]);
+            networkInfo = SAFE_ARC_RETAIN(
+                                          [[NSClassFromString(@"CTTelephonyNetworkInfo") alloc] init]);
             id carrier = nil;
-            id (*imp1)(id, SEL) = (id (*)(id, SEL))[networkInfo methodForSelector:subscriberCellularProvider];
+            id (*imp1)(id, SEL) = (id (*)(id, SEL))
+            [networkInfo methodForSelector:subscriberCellularProvider];
             if (imp1) {
                 carrier = imp1(networkInfo, subscriberCellularProvider);
             }
-            NSString* (*imp2)(id, SEL) = (NSString* (*)(id, SEL))[carrier methodForSelector:carrierName];
+            NSString *(*imp2)(id, SEL) =
+            (NSString * (*)(id, SEL))[carrier methodForSelector:carrierName];
             if (imp2) {
                 _carrier = SAFE_ARC_RETAIN(imp2(carrier, carrierName));
             }
@@ -95,63 +97,69 @@
     return _carrier;
 }
 
--(NSString*) country {
+- (NSString *)country {
     if (!_country) {
-        _country = SAFE_ARC_RETAIN([[NSLocale localeWithLocaleIdentifier:@"en_US"] displayNameForKey:
-            NSLocaleCountryCode value:
-            [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]]);
+        _country = SAFE_ARC_RETAIN([[NSLocale localeWithLocaleIdentifier:@"en_US"]
+                                    displayNameForKey:NSLocaleCountryCode
+                                    value:[[NSLocale currentLocale]
+                                           objectForKey:NSLocaleCountryCode]]);
     }
     return _country;
 }
 
--(NSString*) language {
+- (NSString *)language {
     if (!_language) {
-        _language = SAFE_ARC_RETAIN([[NSLocale localeWithLocaleIdentifier:@"en_US"] displayNameForKey:
-            NSLocaleLanguageCode value:[[NSLocale preferredLanguages] objectAtIndex:0]]);
+        _language = SAFE_ARC_RETAIN([[NSLocale localeWithLocaleIdentifier:@"en_US"]
+                                     displayNameForKey:NSLocaleLanguageCode
+                                     value:[[NSLocale preferredLanguages] objectAtIndex:0]]);
     }
     return _language;
 }
 
--(NSString*) advertiserID {
+- (NSString *)advertiserID {
     if (!_advertiserID) {
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= (float) 6.0) {
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= (float)6.0) {
             NSString *advertiserId = [AMPDeviceInfo getAdvertiserID:5];
             if (advertiserId != nil &&
-                ![advertiserId isEqualToString:@"00000000-0000-0000-0000-000000000000"]) {
-                _advertiserID = SAFE_ARC_RETAIN(advertiserId);
-            }
+                ![advertiserId
+                  isEqualToString:@"00000000-0000-0000-0000-000000000000"]) {
+                    _advertiserID = SAFE_ARC_RETAIN(advertiserId);
+                }
         }
     }
     return _advertiserID;
 }
 
--(NSString*) vendorID {
+- (NSString *)vendorID {
     if (!_vendorID) {
-        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= (float) 6.0) {
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] >= (float)6.0) {
             NSString *identifierForVendor = [AMPDeviceInfo getVendorID:5];
             if (identifierForVendor != nil &&
-                ![identifierForVendor isEqualToString:@"00000000-0000-0000-0000-000000000000"]) {
-                _vendorID = SAFE_ARC_RETAIN(identifierForVendor);
-            }
+                ![identifierForVendor
+                  isEqualToString:@"00000000-0000-0000-0000-000000000000"]) {
+                    _vendorID = SAFE_ARC_RETAIN(identifierForVendor);
+                }
         }
     }
     return _vendorID;
 }
 
-+ (NSString*)getAdvertiserID:(int) maxAttempts
-{
++ (NSString *)getAdvertiserID:(int)maxAttempts {
     Class ASIdentifierManager = NSClassFromString(@"ASIdentifierManager");
     SEL sharedManager = NSSelectorFromString(@"sharedManager");
     SEL advertisingIdentifier = NSSelectorFromString(@"advertisingIdentifier");
     if (ASIdentifierManager && sharedManager && advertisingIdentifier) {
-        id (*imp1)(id, SEL) = (id (*)(id, SEL))[ASIdentifierManager methodForSelector:sharedManager];
+        id (*imp1)(id, SEL) =
+        (id (*)(id, SEL))[ASIdentifierManager methodForSelector:sharedManager];
         id manager = nil;
         NSUUID *adid = nil;
         NSString *identifier = nil;
         if (imp1) {
             manager = imp1(ASIdentifierManager, sharedManager);
         }
-        NSUUID* (*imp2)(id, SEL) = (NSUUID* (*)(id, SEL))[manager methodForSelector:advertisingIdentifier];
+        NSUUID *(*imp2)(id, SEL) =
+        (NSUUID *
+         (*)(id, SEL))[manager methodForSelector:advertisingIdentifier];
         if (imp2) {
             adid = imp2(manager, advertisingIdentifier);
         }
@@ -170,9 +178,9 @@
     }
 }
 
-+ (NSString*)getVendorID:(int) maxAttempts
-{
-    NSString *identifier = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
++ (NSString *)getVendorID:(int)maxAttempts {
+    NSString *identifier =
+    [[[UIDevice currentDevice] identifierForVendor] UUIDString];
     if (identifier == nil && maxAttempts > 0) {
         // Try again every 5 seconds
         [NSThread sleepForTimeInterval:5.0];
@@ -182,23 +190,23 @@
     }
 }
 
-- (NSString*)generateUUID
-{
+- (NSString *)generateUUID {
     CFUUIDRef uuid = CFUUIDCreate(kCFAllocatorDefault);
 #if __has_feature(objc_arc)
-    NSString *uuidStr = (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
+    NSString *uuidStr = (__bridge_transfer NSString *)CFUUIDCreateString(
+                                                                         kCFAllocatorDefault, uuid);
 #else
-    NSString *uuidStr = (NSString *) CFUUIDCreateString(kCFAllocatorDefault, uuid);
+    NSString *uuidStr = (NSString *)CFUUIDCreateString(kCFAllocatorDefault, uuid);
 #endif
     CFRelease(uuid);
     // Add "R" at the end of the ID to distinguish it from advertiserId
-    NSString *result = SAFE_ARC_AUTORELEASE([uuidStr stringByAppendingString:@"R"]);
+    NSString *result =
+    SAFE_ARC_AUTORELEASE([uuidStr stringByAppendingString:@"R"]);
     SAFE_ARC_RELEASE(uuidStr);
     return result;
 }
 
-+ (NSString*)getPlatformString
-{
++ (NSString *)getPlatformString {
     size_t size;
     sysctlbyname("hw.machine", NULL, &size, NULL, 0);
     char *machine = malloc(size);
@@ -208,52 +216,96 @@
     return platform;
 }
 
-+ (NSString*)getPhoneModel{
++ (NSString *)getPhoneModel {
     NSString *platform = [self getPlatformString];
-    if ([platform isEqualToString:@"iPhone1,1"])    return @"iPhone 1";
-    if ([platform isEqualToString:@"iPhone1,2"])    return @"iPhone 3G";
-    if ([platform isEqualToString:@"iPhone2,1"])    return @"iPhone 3GS";
-    if ([platform isEqualToString:@"iPhone3,1"])    return @"iPhone 4";
-    if ([platform isEqualToString:@"iPhone3,3"])    return @"iPhone 4";
-    if ([platform isEqualToString:@"iPhone4,1"])    return @"iPhone 4S";
-    if ([platform isEqualToString:@"iPhone5,1"])    return @"iPhone 5";
-    if ([platform isEqualToString:@"iPhone5,2"])    return @"iPhone 5";
-    if ([platform isEqualToString:@"iPhone6,1"])    return @"iPhone 5s";
-    if ([platform isEqualToString:@"iPhone6,2"])    return @"iPhone 5s";
-    if ([platform isEqualToString:@"iPhone7,1"])    return @"iPhone 6 Plus";
-    if ([platform isEqualToString:@"iPhone7,2"])    return @"iPhone 6";
-    if ([platform isEqualToString:@"iPod1,1"])      return @"iPod Touch 1G";
-    if ([platform isEqualToString:@"iPod2,1"])      return @"iPod Touch 2G";
-    if ([platform isEqualToString:@"iPod3,1"])      return @"iPod Touch 3G";
-    if ([platform isEqualToString:@"iPod4,1"])      return @"iPod Touch 4G";
-    if ([platform isEqualToString:@"iPod5,1"])      return @"iPod Touch 5G";
-    if ([platform isEqualToString:@"iPad1,1"])      return @"iPad 1";
-    if ([platform isEqualToString:@"iPad2,1"])      return @"iPad 2";
-    if ([platform isEqualToString:@"iPad2,2"])      return @"iPad 2";
-    if ([platform isEqualToString:@"iPad2,3"])      return @"iPad 2";
-    if ([platform isEqualToString:@"iPad2,4"])      return @"iPad 2";
-    if ([platform isEqualToString:@"iPad2,5"])      return @"iPad Mini";
-    if ([platform isEqualToString:@"iPad2,6"])      return @"iPad Mini";
-    if ([platform isEqualToString:@"iPad2,7"])      return @"iPad Mini";
-    if ([platform isEqualToString:@"iPad4,4"])      return @"iPad Mini 2";
-    if ([platform isEqualToString:@"iPad4,5"])      return @"iPad Mini 2";
-    if ([platform isEqualToString:@"iPad4,6"])      return @"iPad Mini 2";
-    if ([platform isEqualToString:@"iPad4,7"])      return @"iPad Mini 3";
-    if ([platform isEqualToString:@"iPad4,8"])      return @"iPad Mini 3";
-    if ([platform isEqualToString:@"iPad4,9"])      return @"iPad Mini 3";
-    if ([platform isEqualToString:@"iPad3,1"])      return @"iPad 3";
-    if ([platform isEqualToString:@"iPad3,2"])      return @"iPad 3";
-    if ([platform isEqualToString:@"iPad3,3"])      return @"iPad 3";
-    if ([platform isEqualToString:@"iPad3,4"])      return @"iPad 4";
-    if ([platform isEqualToString:@"iPad3,5"])      return @"iPad 4";
-    if ([platform isEqualToString:@"iPad3,6"])      return @"iPad 4";
-    if ([platform isEqualToString:@"iPad4,1"])      return @"iPad Air";
-    if ([platform isEqualToString:@"iPad4,2"])      return @"iPad Air";
-    if ([platform isEqualToString:@"iPad4,3"])      return @"iPad Air";
-    if ([platform isEqualToString:@"iPad5,3"])      return @"iPad Air 2";
-    if ([platform isEqualToString:@"iPad5,4"])      return @"iPad Air 2";
-    if ([platform isEqualToString:@"i386"])         return @"Simulator";
-    if ([platform isEqualToString:@"x86_64"])       return @"Simulator";
+    if ([platform isEqualToString:@"iPhone1,1"])
+        return @"iPhone 1";
+    if ([platform isEqualToString:@"iPhone1,2"])
+        return @"iPhone 3G";
+    if ([platform isEqualToString:@"iPhone2,1"])
+        return @"iPhone 3GS";
+    if ([platform isEqualToString:@"iPhone3,1"])
+        return @"iPhone 4";
+    if ([platform isEqualToString:@"iPhone3,3"])
+        return @"iPhone 4";
+    if ([platform isEqualToString:@"iPhone4,1"])
+        return @"iPhone 4S";
+    if ([platform isEqualToString:@"iPhone5,1"])
+        return @"iPhone 5";
+    if ([platform isEqualToString:@"iPhone5,2"])
+        return @"iPhone 5";
+    if ([platform isEqualToString:@"iPhone6,1"])
+        return @"iPhone 5s";
+    if ([platform isEqualToString:@"iPhone6,2"])
+        return @"iPhone 5s";
+    if ([platform isEqualToString:@"iPhone7,1"])
+        return @"iPhone 6 Plus";
+    if ([platform isEqualToString:@"iPhone7,2"])
+        return @"iPhone 6";
+    if ([platform isEqualToString:@"iPod1,1"])
+        return @"iPod Touch 1G";
+    if ([platform isEqualToString:@"iPod2,1"])
+        return @"iPod Touch 2G";
+    if ([platform isEqualToString:@"iPod3,1"])
+        return @"iPod Touch 3G";
+    if ([platform isEqualToString:@"iPod4,1"])
+        return @"iPod Touch 4G";
+    if ([platform isEqualToString:@"iPod5,1"])
+        return @"iPod Touch 5G";
+    if ([platform isEqualToString:@"iPad1,1"])
+        return @"iPad 1";
+    if ([platform isEqualToString:@"iPad2,1"])
+        return @"iPad 2";
+    if ([platform isEqualToString:@"iPad2,2"])
+        return @"iPad 2";
+    if ([platform isEqualToString:@"iPad2,3"])
+        return @"iPad 2";
+    if ([platform isEqualToString:@"iPad2,4"])
+        return @"iPad 2";
+    if ([platform isEqualToString:@"iPad2,5"])
+        return @"iPad Mini";
+    if ([platform isEqualToString:@"iPad2,6"])
+        return @"iPad Mini";
+    if ([platform isEqualToString:@"iPad2,7"])
+        return @"iPad Mini";
+    if ([platform isEqualToString:@"iPad4,4"])
+        return @"iPad Mini 2";
+    if ([platform isEqualToString:@"iPad4,5"])
+        return @"iPad Mini 2";
+    if ([platform isEqualToString:@"iPad4,6"])
+        return @"iPad Mini 2";
+    if ([platform isEqualToString:@"iPad4,7"])
+        return @"iPad Mini 3";
+    if ([platform isEqualToString:@"iPad4,8"])
+        return @"iPad Mini 3";
+    if ([platform isEqualToString:@"iPad4,9"])
+        return @"iPad Mini 3";
+    if ([platform isEqualToString:@"iPad3,1"])
+        return @"iPad 3";
+    if ([platform isEqualToString:@"iPad3,2"])
+        return @"iPad 3";
+    if ([platform isEqualToString:@"iPad3,3"])
+        return @"iPad 3";
+    if ([platform isEqualToString:@"iPad3,4"])
+        return @"iPad 4";
+    if ([platform isEqualToString:@"iPad3,5"])
+        return @"iPad 4";
+    if ([platform isEqualToString:@"iPad3,6"])
+        return @"iPad 4";
+    if ([platform isEqualToString:@"iPad4,1"])
+        return @"iPad Air";
+    if ([platform isEqualToString:@"iPad4,2"])
+        return @"iPad Air";
+    if ([platform isEqualToString:@"iPad4,3"])
+        return @"iPad Air";
+    if ([platform isEqualToString:@"iPad5,3"])
+        return @"iPad Air 2";
+    if ([platform isEqualToString:@"iPad5,4"])
+        return @"iPad Air 2";
+    if ([platform isEqualToString:@"i386"])
+        return @"Simulator";
+    if ([platform isEqualToString:@"x86_64"])
+        return @"Simulator";
     return platform;
 }
 @end

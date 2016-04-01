@@ -13,10 +13,9 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, DBDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UINavigationController *navController;
+@property(strong, nonatomic) UIWindow *window;
+@property(strong, nonatomic) UINavigationController *navController;
 
-- (NSString*)getUserID;
+- (NSString *)getUserID;
 
 @end
-

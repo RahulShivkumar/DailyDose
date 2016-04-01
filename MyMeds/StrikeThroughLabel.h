@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StrikeThroughLabel : UILabel{
+@interface StrikeThroughLabel : UILabel {
     bool _strikethrough;
-    CALayer* _strikethroughLayer;
+    CALayer *_strikethroughLayer;
 }
 
-@property (nonatomic) bool strikethrough;
+@property(nonatomic) bool strikethrough;
 
 - (void)setText:(NSString *)text;
 - (void)resizeStrikeThrough;

@@ -541,7 +541,6 @@
 		B7B43F051B519F240063FEA3 /* Bohr Settings View */ = {
 			isa = PBXGroup;
 			children = (
-				B7B43EE61B519F1E0063FEA3 /* Bohr.h */,
 				B7B43EE71B519F1E0063FEA3 /* BOTableViewController.h */,
 				B7B43EE81B519F1E0063FEA3 /* BOTableViewController.m */,
 				B7B43EE91B519F1E0063FEA3 /* BOTableViewController+Private.h */,
@@ -550,6 +549,7 @@
 				B7B43EEC1B519F1E0063FEA3 /* BOTableViewCell+Subclass.h */,
 				B7B43EED1B519F1E0063FEA3 /* BOSwitchTableViewCell.h */,
 				B7B43EEE1B519F1E0063FEA3 /* BOSwitchTableViewCell.m */,
+				B7B43EE61B519F1E0063FEA3 /* Bohr.h */,
 				B7B43EEF1B519F1E0063FEA3 /* BOTextTableViewCell.h */,
 				B7B43EF01B519F1E0063FEA3 /* BOTextTableViewCell.m */,
 				B7B43EF11B519F1E0063FEA3 /* BOTimeTableViewCell.h */,

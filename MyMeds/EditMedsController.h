@@ -16,7 +16,10 @@
 #import "NotificationScheduler.h"
 #import "MPGTextField.h"
 
-@interface EditMedsController : UIViewController <UITextFieldDelegate, RMDateSelectionViewControllerDelegate, MPGTextFieldDelegate>{
+@interface EditMedsController
+: UIViewController <UITextFieldDelegate,
+RMDateSelectionViewControllerDelegate,
+MPGTextFieldDelegate> {
     UIButton *cancel;
     UIButton *done;
     UILabel *addMed;
@@ -46,11 +49,13 @@
     int selectedTag;
 }
 
-@property (nonatomic, strong) UIScrollView *scrollView;
+@property(nonatomic, strong) UIScrollView *scrollView;
 
-@property (nonatomic, strong) NSMutableArray *dayShedule;
+@property(nonatomic, strong) NSMutableArray *dayShedule;
 
-- (id)initWithMed:(CoreMedication*)medication andDays:(NSMutableArray *)daySchedule andTime:(NSMutableArray *)timeSchedule;
+- (id)initWithMed:(CoreMedication *)medication
+          andDays:(NSMutableArray *)daySchedule
+          andTime:(NSMutableArray *)timeSchedule;
 
 - (void)setupView;
 - (void)createButton;
@@ -58,6 +63,5 @@
 - (void)manipulateTime;
 
 - (IBAction)closeWindow:(id)sender;
-
 
 @end

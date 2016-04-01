@@ -11,7 +11,7 @@
 
 @interface SVModalWebViewController ()
 
-@property (nonatomic, strong) SVWebViewController *webViewController;
+@property(nonatomic, strong) SVWebViewController *webViewController;
 
 @end
 
@@ -21,13 +21,11 @@
 
 @end
 
-
 @implementation SVModalWebViewController
 
 #pragma mark - Initialization
 
-
-- (instancetype)initWithAddress:(NSString*)urlString {
+- (instancetype)initWithAddress:(NSString *)urlString {
     return [self initWithURL:[NSURL URLWithString:urlString]];
 }
 
@@ -36,11 +34,13 @@
 }
 
 - (instancetype)initWithURLRequest:(NSURLRequest *)request {
-    self.webViewController = [[SVWebViewController alloc] initWithURLRequest:request];
+    self.webViewController =
+    [[SVWebViewController alloc] initWithURLRequest:request];
     if (self = [super initWithRootViewController:self.webViewController]) {
-        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                                    target:self.webViewController
-                                                                                    action:@selector(doneButtonTapped:)];
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc]
+                                       initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                       target:self.webViewController
+                                       action:@selector(doneButtonTapped:)];
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
             self.webViewController.navigationItem.leftBarButtonItem = doneButton;

@@ -11,75 +11,86 @@
 #import "InfoViewController.h"
 #import "AddMedViewController.h"
 
-
 @interface OverviewViewController ()
 
 @end
 
-
-#define kBGColor [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0]
+#define kBGColor                                                               \
+[UIColor colorWithRed:245 / 255.0                                            \
+green:245 / 255.0                                            \
+blue:245 / 255.0                                            \
+alpha:1.0]
 
 @implementation OverviewViewController
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
 }
 
-
-- (void)viewDidAppear:(BOOL)animated{
-    //Lets ensure that the first page opened is our Schedule view regardless
+- (void)viewDidAppear:(BOOL)animated {
+    // Lets ensure that the first page opened is our Schedule view regardless
     int index = 0;
     
-    if(self.timeline.selectedSegmentIndex == 1){
+    if (self.timeline.selectedSegmentIndex == 1) {
         index = 1;
     }
-
+    
     [Constants setupNavbar:self];
     [self setupMeds:index];
-   
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
 #pragma mark - Set up views
-//Method called to set up views
+// Method called to set up views
 - (void)setupViews {
-    self.medsView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, [Constants window_width], self.navigationController.view.frame.size.height - 44)];
+    self.medsView = [[UITableView alloc]
+                     initWithFrame:CGRectMake(
+                                              0, 0, [Constants window_width],
+                                              self.navigationController.view.frame.size.height - 44)];
     [self.medsView setDataSource:self];
     [self.medsView setDelegate:self];
     [self.medsView setBackgroundColor:[UIColor whiteColor]];
     [self.medsView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    [self.medsView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    [self.medsView registerClass:[UITableViewCell class]
+          forCellReuseIdentifier:@"cell"];
     [self.view addSubview:self.medsView];
-
+    
     [self.medsView reloadData];
 }
 
-
 // Method used to setup empty states
-- (void)setupEmptyStateWithImage:(NSString*)image AndText:(NSString*)text AndSubText:(NSString*)subText {
+- (void)setupEmptyStateWithImage:(NSString *)image
+                         AndText:(NSString *)text
+                      AndSubText:(NSString *)subText {
     [completedView removeFromSuperview];
     
-    completedView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.navigationController.view.frame.size.height - 44)];
+    completedView = [[UIView alloc]
+                     initWithFrame:CGRectMake(
+                                              0, 0, self.view.frame.size.width,
+                                              self.navigationController.view.frame.size.height - 44)];
     [completedView setBackgroundColor:kBGColor];
     
-    UIImageView *completedImage = [[UIImageView alloc] initWithFrame:CGRectMake([Constants window_width]/4, 110, [Constants window_width]/2, [Constants window_width]/2)];
+    UIImageView *completedImage = [[UIImageView alloc]
+                                   initWithFrame:CGRectMake([Constants window_width] / 4, 110,
+                                                            [Constants window_width] / 2,
+                                                            [Constants window_width] / 2)];
     [completedImage setImage:[UIImage imageNamed:image]];
-    UILabel *completedText = [[UILabel alloc] initWithFrame:CGRectMake(0, 120 + [Constants window_width]/2, [Constants window_width], 30)];
+    UILabel *completedText = [[UILabel alloc]
+                              initWithFrame:CGRectMake(0, 120 + [Constants window_width] / 2,
+                                                       [Constants window_width], 30)];
     [completedText setTextAlignment:NSTextAlignmentCenter];
     [completedText setText:text];
     [completedText setTextColor:[UIColor lightGrayColor]];
     [completedText setFont:[UIFont systemFontOfSize:20]];
     
-    UILabel *completedText2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 150 + [Constants window_width]/2, [Constants window_width], 30)];
+    UILabel *completedText2 = [[UILabel alloc]
+                               initWithFrame:CGRectMake(0, 150 + [Constants window_width] / 2,
+                                                        [Constants window_width], 30)];
     [completedText2 setTextAlignment:NSTextAlignmentCenter];
     [completedText2 setText:subText];
     [completedText2 setTextColor:[UIColor lightGrayColor]];
@@ -92,181 +103,197 @@
     [self.view addSubview:completedView];
 }
 
-
-
-#pragma mark - Set Up Medication 
-//Method called to setup meds based on selection current/past
+#pragma mark - Set Up Medication
+// Method called to setup meds based on selection current/past
 - (void)setupMeds:(int)expired {
-    meds = [[[CoreMedication query] whereWithFormat:@"expired = %d",expired] fetch];
+    meds =
+    [[[CoreMedication query] whereWithFormat:@"expired = %d", expired] fetch];
     if ([meds count] == 0 && expired == 0) {
-        [self setupEmptyStateWithImage:@"nomeds" AndText:@"No Meds Yet." AndSubText:@"Press The '+' button to add a med."];
-    }
-    else {
+        [self setupEmptyStateWithImage:@"nomeds"
+                               AndText:@"No Meds Yet."
+                            AndSubText:@"Press The '+' button to add a med."];
+    } else {
         [self setupViews];
     }
 }
-
 
 ////Method called to convert SQLData to Array
 //- (NSMutableArray *)setDataInArray:(NSArray *)temp{
 //    NSMutableArray *tempMutable = [[NSMutableArray alloc] init];
 //    for(int i = 0; i < [temp count]; i++){
-//        NSString *medName = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"med_name"]];
-//        NSString *chemName = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"chem_name"]];
-//        NSString *dosage = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"dosage"]];
+//        NSString *medName = [[temp objectAtIndex:i]
+//        objectAtIndex:[self.dbManager.arrColumnNames
+//        indexOfObject:@"med_name"]];
+//        NSString *chemName = [[temp objectAtIndex:i]
+//        objectAtIndex:[self.dbManager.arrColumnNames
+//        indexOfObject:@"chem_name"]];
+//        NSString *dosage = [[temp objectAtIndex:i]
+//        objectAtIndex:[self.dbManager.arrColumnNames
+//        indexOfObject:@"dosage"]];
 //        NSString *subName = [chemName stringByAppendingString:@" - "];
 //        subName = [subName stringByAppendingString:dosage];
-//        
-//        NSString *completed = [[temp objectAtIndex:i] objectAtIndex:[self.dbManager.arrColumnNames indexOfObject:@"completed"]];
+//
+//        NSString *completed = [[temp objectAtIndex:i]
+//        objectAtIndex:[self.dbManager.arrColumnNames
+//        indexOfObject:@"completed"]];
 //        int intCompleted = [completed intValue];
-//        
-//        Medication *med = [[Medication alloc]initWithName:medName andChemName:chemName];
+//
+//        Medication *med = [[Medication alloc]initWithName:medName
+//        andChemName:chemName];
 //        med.subName = subName;
 //        med.dosage = dosage;
-//        
+//
 //        if (intCompleted == 1){
 //            [med setExpired:YES];
 //        } else {
 //            [med setCompleted:NO];
 //        }
-//        
+//
 //        [tempMutable addObject:med];
 //    }
 //    return tempMutable;
 //}
 
-
 #pragma mark - Table view delegate methods
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section {
     return [meds count];
 }
 
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell =
+    [tableView dequeueReusableCellWithIdentifier:@"cell"
+                                    forIndexPath:indexPath];
     CoreMedication *med = [meds objectAtIndex:indexPath.row];
     
-    [cell.textLabel setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:[Constants window_height]/8 * 0.4]];
-    [cell.textLabel setTextColor:[UIColor colorWithRed:94/255.0 green:94/255.0 blue:94/255.0 alpha:1.0]];
+    [cell.textLabel
+     setFont:[UIFont fontWithName:@"HelveticaNeue-Light"
+                             size:[Constants window_height] / 8 * 0.4]];
+    [cell.textLabel setTextColor:[UIColor colorWithRed:94 / 255.0
+                                                 green:94 / 255.0
+                                                  blue:94 / 255.0
+                                                 alpha:1.0]];
     [cell.textLabel setText:med.genName];
     
     return cell;
 }
 
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UIView *footer = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [Constants window_width], 50)];
+- (UIView *)tableView:(UITableView *)tableView
+viewForFooterInSection:(NSInteger)section {
+    UIView *footer = [[UIView alloc]
+                      initWithFrame:CGRectMake(0, 0, [Constants window_width], 50)];
     [footer setBackgroundColor:[UIColor whiteColor]];
     
     return footer;
 }
 
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return [Constants window_height]/10;
+- (CGFloat)tableView:(UITableView *)tableView
+heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [Constants window_height] / 10;
 }
 
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
+- (CGFloat)tableView:(UITableView *)tableView
+heightForFooterInSection:(NSInteger)section {
     return 70.0f;
 }
 
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-    InfoViewController *infoVC = [[InfoViewController alloc] initWithMed:[meds objectAtIndex:indexPath.row]];
-    [self.navigationController presentViewController:infoVC animated:YES completion:nil];
+- (void)tableView:(UITableView *)tableView
+didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    InfoViewController *infoVC = [[InfoViewController alloc]
+                                  initWithMed:[meds objectAtIndex:indexPath.row]];
+    [self.navigationController presentViewController:infoVC
+                                            animated:YES
+                                          completion:nil];
 }
-
-
 
 #pragma mark - UIImagePickerDelegate
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [[picker presentingViewController] dismissViewControllerAnimated:YES completion:nil];
+    [[picker presentingViewController] dismissViewControllerAnimated:YES
+                                                          completion:nil];
 }
 
-
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+- (void)imagePickerController:(UIImagePickerController *)picker
+didFinishPickingMediaWithInfo:(NSDictionary *)info {
     // Access the uncropped image from info dictionary
     UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     UIImage *fixedImage = [image imageWithFixedOrientation];
     
     [ImageProcessor sharedProcessor].delegate = self;
     [[ImageProcessor sharedProcessor] processImage:fixedImage];
-//    G8Tesseract *tesseract = [[G8Tesseract alloc] initWithLanguage:@"eng"];
-//    tesseract.delegate = self;
-//    
-//    [tesseract setImage:image];
-//    [tesseract recognize];
-//    NSLog(@"%@", [tesseract recognizedText]);
+    //    G8Tesseract *tesseract = [[G8Tesseract alloc] initWithLanguage:@"eng"];
+    //    tesseract.delegate = self;
+    //
+    //    [tesseract setImage:image];
+    //    [tesseract recognize];
+    //    NSLog(@"%@", [tesseract recognizedText]);
     
-    [[picker presentingViewController] dismissViewControllerAnimated:YES completion:nil];
-    
-    
+    [[picker presentingViewController] dismissViewControllerAnimated:YES
+                                                          completion:nil];
 }
 
-
-//- (UIImage *)preprocessedImageForTesseract:(G8Tesseract *)tesseract sourceImage:(UIImage *)sourceImage {
-//    
+//- (UIImage *)preprocessedImageForTesseract:(G8Tesseract *)tesseract
+// sourceImage:(UIImage *)sourceImage {
+//
 //    // Give the filteredImage to Tesseract instead of the original one,
 //    // allowing us to bypass the internal thresholding step.
 //    // filteredImage will be sent immediately to the recognition step
-//    
+//
 //    //sourceImage = [ImageProcessor processImage:sourceImage];
 //    return sourceImage;
 //}
 
-#pragma mark - ImageProcessor Delegate 
+#pragma mark - ImageProcessor Delegate
 - (void)imageProcessorFinishedProcessingWithImage:(UIImage *)outputImage {
-//    imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 44, [Constants window_width], [Constants window_height] - 44)];
-//    [self.view addSubview:imgView];
-//    [imgView setImage:outputImage];
-//    
-//    G8Tesseract *tesseract = [[G8Tesseract alloc] initWithLanguage:@"eng"];
-//    tesseract.delegate = self;
-//    [tesseract setImage:outputImage];
-//    [tesseract recognize];
-//    NSLog(@"%@", [tesseract recognizedText]);
+    //    imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 44,
+    //    [Constants window_width], [Constants window_height] - 44)];
+    //    [self.view addSubview:imgView];
+    //    [imgView setImage:outputImage];
+    //
+    //    G8Tesseract *tesseract = [[G8Tesseract alloc] initWithLanguage:@"eng"];
+    //    tesseract.delegate = self;
+    //    [tesseract setImage:outputImage];
+    //    [tesseract recognize];
+    //    NSLog(@"%@", [tesseract recognizedText]);
 }
 
 #pragma mark - IBActions
-//Method called for camera logic
+// Method called for camera logic
 - (void)openCamera:(id)sender {
-//    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])  {
-//        
-//        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-//        
-//        imagePicker.sourceType =  UIImagePickerControllerSourceTypeCamera;
-//        imagePicker.delegate = self;
-//        imagePicker.editing = NO;
-//        
-//        [self presentViewController:imagePicker animated:YES completion:nil];
-//    }
-//    else {
-//        //TO-DO Alert saying Camera not accessible :(
-//    }
+    //    if ([UIImagePickerController
+    //    isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])  {
+    //
+    //        UIImagePickerController *imagePicker = [[UIImagePickerController
+    //        alloc] init];
+    //
+    //        imagePicker.sourceType =  UIImagePickerControllerSourceTypeCamera;
+    //        imagePicker.delegate = self;
+    //        imagePicker.editing = NO;
+    //
+    //        [self presentViewController:imagePicker animated:YES
+    //        completion:nil];
+    //    }
+    //    else {
+    //        //TO-DO Alert saying Camera not accessible :(
+    //    }
 }
 
-
-//Method called to change the timeline 
+// Method called to change the timeline
 - (IBAction)changeTimeline:(id)sender {
-    if(self.timeline.selectedSegmentIndex == 0){
+    if (self.timeline.selectedSegmentIndex == 0) {
         [self setupMeds:NO];
-    }
-    else{
+    } else {
         [self setupMeds:YES];
     }
 }
 
-
 - (IBAction)addMedication:(id)sender {
     AddMedViewController *addMedVC = [[AddMedViewController alloc] init];
-    [self.navigationController presentViewController:addMedVC animated:YES completion:nil];
+    [self.navigationController presentViewController:addMedVC
+                                            animated:YES
+                                          completion:nil];
 }
 
 @end

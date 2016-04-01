@@ -16,7 +16,7 @@
 - (void)strikeDelegate:(id)sender;
 @end
 
-@interface MedsCell : UITableViewCell{
+@interface MedsCell : UITableViewCell {
     CGPoint originalCenter;
     BOOL openMenu;
     BOOL markCompleteOnDragRelease;
@@ -33,15 +33,18 @@
     
     TodayMedication *medication;
     
-    UIGestureRecognizer* panRecognizer;
+    UIGestureRecognizer *panRecognizer;
     
-    @public UIButton *undo;
-    @public UIButton *info;
-    @public UIButton *postpone;
+@public
+    UIButton *undo;
+@public
+    UIButton *info;
+@public
+    UIButton *postpone;
 }
-@property (nonatomic, assign) id  <StrikeDelegate> delegate;
+@property(nonatomic, assign) id<StrikeDelegate> delegate;
 
-- (void)setMed:(TodayMedication*)med;
+- (void)setMed:(TodayMedication *)med;
 - (void)setPannable;
 - (void)removePannable;
 - (void)closeCell;

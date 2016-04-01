@@ -13,21 +13,21 @@
 @implementation BOButtonTableViewCell
 
 - (void)setup {
-	self.selectionStyle = UITableViewCellSelectionStyleDefault;
-	self.textLabel.textAlignment = NSTextAlignmentLeft;
+    self.selectionStyle = UITableViewCellSelectionStyleDefault;
+    self.textLabel.textAlignment = NSTextAlignmentLeft;
 }
 
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
 - (void)wasSelectedFromViewController:(BOTableViewController *)viewController {
-	if ([self.target respondsToSelector:self.action]) {
-		[self.target performSelector:self.action];
-	}
+    if ([self.target respondsToSelector:self.action]) {
+        [self.target performSelector:self.action];
+    }
 }
 
 - (void)setTarget:(id)target action:(SEL)action {
-	self.target = target;
-	self.action = action;
+    self.target = target;
+    self.action = action;
 }
 
 @end

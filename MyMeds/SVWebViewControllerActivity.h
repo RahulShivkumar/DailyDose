@@ -10,7 +10,7 @@
 
 @interface SVWebViewControllerActivity : UIActivity
 
-@property (nonatomic, strong) NSURL *URLToOpen;
-@property (nonatomic, strong) NSString *schemePrefix;
+@property(nonatomic, strong) NSURL *URLToOpen;
+@property(nonatomic, strong) NSString *schemePrefix;
 
 @end

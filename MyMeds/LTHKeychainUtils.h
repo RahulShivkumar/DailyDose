@@ -30,14 +30,24 @@
 #import <UIKit/UIKit.h>
 
 /**
- Renamed it to LTHKeychainUtils because it could have conflicted with SFHFKeychainUtils already present in the project. This version is ARC-compliant, but all the rights and thanks go to Buzz Andersen for SFHFKeychainUtils.
+ Renamed it to LTHKeychainUtils because it could have conflicted with
+ SFHFKeychainUtils already present in the project. This version is
+ ARC-compliant, but all the rights and thanks go to Buzz Andersen for
+ SFHFKeychainUtils.
  */
 @interface LTHKeychainUtils : NSObject {
-	
 }
 
-+ (NSString *) getPasswordForUsername: (NSString *) username andServiceName: (NSString *) serviceName error: (NSError **) error;
-+ (BOOL) storeUsername: (NSString *) username andPassword: (NSString *) password forServiceName: (NSString *) serviceName updateExisting: (BOOL) updateExisting error: (NSError **) error;
-+ (BOOL) deleteItemForUsername: (NSString *) username andServiceName: (NSString *) serviceName error: (NSError **) error;
++ (NSString *)getPasswordForUsername:(NSString *)username
+                      andServiceName:(NSString *)serviceName
+                               error:(NSError **)error;
++ (BOOL)storeUsername:(NSString *)username
+          andPassword:(NSString *)password
+       forServiceName:(NSString *)serviceName
+       updateExisting:(BOOL)updateExisting
+                error:(NSError **)error;
++ (BOOL)deleteItemForUsername:(NSString *)username
+               andServiceName:(NSString *)serviceName
+                        error:(NSError **)error;
 
 @end

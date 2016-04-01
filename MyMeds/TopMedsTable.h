@@ -14,9 +14,9 @@
     UILabel *title;
 }
 
-@property(nonatomic, strong)NSMutableDictionary *data;
+@property(nonatomic, strong) NSMutableDictionary *data;
 
-- (id)initWithFrame:(CGRect)frame andData:(NSMutableDictionary*)data;
+- (id)initWithFrame:(CGRect)frame andData:(NSMutableDictionary *)data;
 
 - (void)setupViews;
 

@@ -10,13 +10,13 @@
 
 @interface CoreMedication : DBObject
 
-@property (nonatomic, strong) NSString *genName;
-@property (nonatomic, strong) NSString *chemName;
-@property (nonatomic, strong) NSString *dosage;
+@property(nonatomic, strong) NSString *genName;
+@property(nonatomic, strong) NSString *chemName;
+@property(nonatomic, strong) NSString *dosage;
 
-@property (nonatomic, copy) NSDate *startDate;
-@property (nonatomic, copy) NSDate *endDate;
+@property(nonatomic, copy) NSDate *startDate;
+@property(nonatomic, copy) NSDate *endDate;
 
-@property (nonatomic) int expired;
+@property(nonatomic) int expired;
 
 @end

@@ -13,17 +13,17 @@
 #import "GraphData.h"
 #import "TopMedsTable.h"
 
-
-@interface AnalyzeViewController : UIViewController <BEMSimpleLineGraphDataSource, BEMSimpleLineGraphDelegate>{
+@interface AnalyzeViewController
+: UIViewController <BEMSimpleLineGraphDataSource,
+BEMSimpleLineGraphDelegate> {
     NSMutableArray *data;
     NSMutableDictionary *topMeds;
     
     UILabel *graphTitle;
     TopMedsTable *tmt;
-    
 }
 
-@property(strong, nonatomic)BEMSimpleLineGraphView *complianceGraph;
+@property(strong, nonatomic) BEMSimpleLineGraphView *complianceGraph;
 - (void)setupViews;
 - (void)setupData;
 @end

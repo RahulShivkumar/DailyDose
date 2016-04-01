@@ -11,16 +11,16 @@
 
 @protocol ImageProcessorDelegate <NSObject>
 
-- (void)imageProcessorFinishedProcessingWithImage:(UIImage*)outputImage;
+- (void)imageProcessorFinishedProcessingWithImage:(UIImage *)outputImage;
 
 @end
 
 @interface ImageProcessor : NSObject
 
-@property (weak, nonatomic) id<ImageProcessorDelegate> delegate;
+@property(weak, nonatomic) id<ImageProcessorDelegate> delegate;
 
 + (instancetype)sharedProcessor;
 
-- (void)processImage:(UIImage*)img;
+- (void)processImage:(UIImage *)img;
 
 @end

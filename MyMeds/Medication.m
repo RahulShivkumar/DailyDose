@@ -10,6 +10,7 @@
 
 @implementation Medication
 
-@dynamic coreMed, rxid, type, time, dispense, refill, quantity, monday, tuesday, wednesday, thursday, friday, saturday, sunday;
+@dynamic coreMed, rxid, type, time, dispense, refill, quantity, monday, tuesday,
+wednesday, thursday, friday, saturday, sunday;
 
 @end

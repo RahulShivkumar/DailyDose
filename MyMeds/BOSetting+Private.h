@@ -10,8 +10,8 @@
 
 @interface BOSetting ()
 
-typedef void(^BOSettingValueDidChangeBlock)(void);
+typedef void (^BOSettingValueDidChangeBlock)(void);
 
-@property (nonatomic, copy) BOSettingValueDidChangeBlock valueDidChangeBlock;
+@property(nonatomic, copy) BOSettingValueDidChangeBlock valueDidChangeBlock;
 
 @end

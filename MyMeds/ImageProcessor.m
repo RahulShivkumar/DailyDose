@@ -8,12 +8,13 @@
 
 #import "ImageProcessor.h"
 
-#define Mask8(x) ( (x) & 0xFF )
-#define R(x) ( Mask8(x) )
-#define G(x) ( Mask8(x >> 8 ) )
-#define B(x) ( Mask8(x >> 16) )
-#define A(x) ( Mask8(x >> 24) )
-#define RGBAMake(r, g, b, a) ( Mask8(r) | Mask8(g) << 8 | Mask8(b) << 16 | Mask8(a) << 24 )
+#define Mask8(x) ((x)&0xFF)
+#define R(x) (Mask8(x))
+#define G(x) (Mask8(x >> 8))
+#define B(x) (Mask8(x >> 16))
+#define A(x) (Mask8(x >> 24))
+#define RGBAMake(r, g, b, a)                                                   \
+(Mask8(r) | Mask8(g) << 8 | Mask8(b) << 16 | Mask8(a) << 24)
 
 @implementation ImageProcessor
 
@@ -30,19 +31,20 @@
 
 #pragma mark - Public
 
-- (void)processImage:(UIImage*)inputImage {
-    UIImage * outputImage = [self smoothenImage:inputImage];
+- (void)processImage:(UIImage *)inputImage {
+    UIImage *outputImage = [self smoothenImage:inputImage];
     
-    if ([self.delegate respondsToSelector:
-         @selector(imageProcessorFinishedProcessingWithImage:)]) {
-        [self.delegate imageProcessorFinishedProcessingWithImage:outputImage];
-    }
+    if ([self.delegate
+         respondsToSelector:@selector(
+                                      imageProcessorFinishedProcessingWithImage:)]) {
+             [self.delegate imageProcessorFinishedProcessingWithImage:outputImage];
+         }
 }
 
-- (UIImage*)smoothenImage:(UIImage*)img{
-    //Setup pixel extractor
+- (UIImage *)smoothenImage:(UIImage *)img {
+    // Setup pixel extractor
     
-    UInt32 * inputPixels;
+    UInt32 *inputPixels;
     
     CGImageRef inputCGImage = [img CGImage];
     NSUInteger inputWidth = CGImageGetWidth(inputCGImage);
@@ -57,15 +59,16 @@
     
     inputPixels = (UInt32 *)calloc(inputHeight * inputWidth, sizeof(UInt32));
     
-    CGContextRef context = CGBitmapContextCreate(inputPixels, inputWidth, inputHeight,
-                                                 bitsPerComponent, inputBytesPerRow, colorSpace,
-                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGContextRef context = CGBitmapContextCreate(
+                                                 inputPixels, inputWidth, inputHeight, bitsPerComponent, inputBytesPerRow,
+                                                 colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
     
-    CGContextDrawImage(context, CGRectMake(0, 0, inputWidth, inputHeight), inputCGImage);
+    CGContextDrawImage(context, CGRectMake(0, 0, inputWidth, inputHeight),
+                       inputCGImage);
     
     for (NSUInteger j = 0; j < inputHeight; j++) {
         for (NSUInteger i = 0; i < inputWidth; i++) {
-            UInt32 * currentPixel = inputPixels + (j * inputWidth) + i;
+            UInt32 *currentPixel = inputPixels + (j * inputWidth) + i;
             UInt32 color = *currentPixel;
             
             // Read out the colors
@@ -74,7 +77,7 @@
             UInt32 b = B(color);
             // Add some red
             
-            if (r < 150 && g < 150 && b < 150){
+            if (r < 150 && g < 150 && b < 150) {
                 r = 10;
                 g = 10;
                 b = 10;
@@ -83,9 +86,7 @@
                 g = 255;
                 b = 255;
             }
-         
             
-
             // Write back the color
             *currentPixel = RGBAMake(r, g, b, A(color));
         }

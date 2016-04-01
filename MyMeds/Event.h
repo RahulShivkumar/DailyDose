@@ -11,15 +11,15 @@
 
 @interface Event : DBObject
 
-@property (nonatomic, strong) NSString *action;
+@property(nonatomic, strong) NSString *action;
 
-@property (nonatomic, strong) CoreMedication *cm;
+@property(nonatomic, strong) CoreMedication *cm;
 
-@property (nonatomic, strong) NSString *medName;
+@property(nonatomic, strong) NSString *medName;
 
-@property (nonatomic) long long timeStamp;
+@property(nonatomic) long long timeStamp;
 
-@property (nonatomic)float timeDelta;
-@property (nonatomic)int time;
+@property(nonatomic) float timeDelta;
+@property(nonatomic) int time;
 
 @end

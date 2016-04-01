@@ -16,20 +16,20 @@
 #import "GraphData.h"
 #import "NotificationScheduler.h"
 
-
 @interface EventLogger : NSObject {
     NSString *mName;
     NSString *eName;
     int time;
 }
 
-+ (void)logAction:(NSString*)action andMedication:(CoreMedication*)cm andTime:(float)time;
++ (void)logAction:(NSString *)action
+    andMedication:(CoreMedication *)cm
+          andTime:(float)time;
 
-+ (NSDictionary*)getComplianceAnalyzerMetrics;
-+ (NSMutableArray*)getGraphMetrics;
-+ (NSMutableDictionary*)getTopFiveMissedMeds;
++ (NSDictionary *)getComplianceAnalyzerMetrics;
++ (NSMutableArray *)getGraphMetrics;
++ (NSMutableDictionary *)getTopFiveMissedMeds;
 
-+ (void)logMissedMedsFromDate:(NSDate*)fromDate toDate:(NSDate*)toDate;
-
++ (void)logMissedMedsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
 
 @end

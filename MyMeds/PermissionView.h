@@ -12,15 +12,14 @@
 @protocol PermissionViewDelegate <NSObject>
 
 @required
--(void)PermissionAllowed:(BOOL)allowed;
+- (void)PermissionAllowed:(BOOL)allowed;
 
 @end
 
-@interface PermissionView : UIView <UIApplicationDelegate>
-{
+@interface PermissionView : UIView <UIApplicationDelegate> {
     UIView *view;
 }
-@property (nonatomic, weak) id <PermissionViewDelegate> delegate;
+@property(nonatomic, weak) id<PermissionViewDelegate> delegate;
 
 - (void)show;
 
@@ -38,18 +37,14 @@
 
 @end
 
-
 @interface showMeOrNot : DBObject <UIApplicationDelegate>
 
 @property BOOL showMe;
 
-+(void)setTrue;
++ (void)setTrue;
 
-+(void)setFalse;
++ (void)setFalse;
 
-+(BOOL)getValue;
++ (BOOL)getValue;
 
 @end
-
-
-

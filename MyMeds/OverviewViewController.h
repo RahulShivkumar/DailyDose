@@ -13,28 +13,31 @@
 #import "Constants.h"
 #import "UIImage+OrientationFix.h"
 
-
-
-@interface OverviewViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, ImageProcessorDelegate>{
+@interface OverviewViewController
+: UIViewController <UITableViewDataSource, UITableViewDelegate,
+UIImagePickerControllerDelegate,
+UINavigationControllerDelegate,
+ImageProcessorDelegate> {
     DBResultSet *meds;
     UIImageView *imgView;
     
     UIView *completedView;
 }
 
-@property (strong, nonatomic) UIImagePickerController * imagePickerController;
+@property(strong, nonatomic) UIImagePickerController *imagePickerController;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *add;
+@property(weak, nonatomic) IBOutlet UIBarButtonItem *add;
 
-@property (weak, nonatomic) IBOutlet UISegmentedControl *timeline;
+@property(weak, nonatomic) IBOutlet UISegmentedControl *timeline;
 
-@property (nonatomic, strong) UITableView *medsView;
+@property(nonatomic, strong) UITableView *medsView;
 
-@property (nonatomic, strong) UISearchBar *searchBar;
+@property(nonatomic, strong) UISearchBar *searchBar;
 
 - (void)setupViews;
-- (void)setupEmptyStateWithImage:(NSString*)image AndText:(NSString*)text AndSubText:(NSString*)subText;
-
+- (void)setupEmptyStateWithImage:(NSString *)image
+                         AndText:(NSString *)text
+                      AndSubText:(NSString *)subText;
 
 - (void)setupMeds:(int)expired;
 
@@ -42,7 +45,4 @@
 - (IBAction)changeTimeline:(id)sender;
 - (IBAction)openCamera:(id)sender;
 
-
-
 @end
-

@@ -9,30 +9,29 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, RTWalkthroughAnimationType) {
-	RTWalkthroughAnimationTypeLinear,
-	RTWalkthroughAnimationTypeCurve,
-	RTWalkthroughAnimationTypeZoom,
-	RTWalkthroughAnimationTypeInOut
+    RTWalkthroughAnimationTypeLinear,
+    RTWalkthroughAnimationTypeCurve,
+    RTWalkthroughAnimationTypeZoom,
+    RTWalkthroughAnimationTypeInOut
 };
-
 
 @protocol RTWalkthroughPageViewControllerDelegate;
 
 @interface RTWalkthroughPageViewController : UIViewController
 
-@property (nonatomic) IBInspectable CGPoint speed;
-@property (nonatomic) IBInspectable CGPoint speedVariance;
-@property (nonatomic) IBInspectable RTWalkthroughAnimationType animationType;
-@property (nonatomic) IBInspectable BOOL animateAlpha;
+@property(nonatomic) IBInspectable CGPoint speed;
+@property(nonatomic) IBInspectable CGPoint speedVariance;
+@property(nonatomic) IBInspectable RTWalkthroughAnimationType animationType;
+@property(nonatomic) IBInspectable BOOL animateAlpha;
 
-@property (nonatomic, weak) id<RTWalkthroughPageViewControllerDelegate> delegate;
+@property(nonatomic, weak) id<RTWalkthroughPageViewControllerDelegate> delegate;
 
 @end
-
 
 @protocol RTWalkthroughPageViewControllerDelegate <NSObject>
 
 @optional
-- (void)walkthroughPageRequestsClosing:(RTWalkthroughPageViewController *)controller;
+- (void)walkthroughPageRequestsClosing:
+(RTWalkthroughPageViewController *)controller;
 
 @end
